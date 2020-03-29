@@ -9,7 +9,7 @@
     <link rel="stylesheet" href="{{ url(mix('backend/assets/css/login.css')) }}"/>
     <link rel="icon" type="image/png" href="backend/assets/images/favicon.png"/>
 
-    <title>UpAdmin - Site Control</title>
+    <title>Campolimpo - Área Administrativa</title>
 
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
@@ -22,7 +22,7 @@
     <div class="dash_login_left">
         <article class="dash_login_left_box">
             <header class="dash_login_box_headline">
-                <div class="dash_login_box_headline_logo icon-imob icon-notext"></div>
+                <p style="text-align:center"><img src="{{ url(asset('backend/assets/images/logo_campolimpo_w.png')) }}"></p>
                 <h1>Login</h1>
             </header>
 
@@ -43,14 +43,7 @@
             </form>
 
             <footer>
-                <p>Desenvolvido por <a href="https://www.upinside.com.br">www.<b>upinside</b>.com.br</a></p>
-                <p>&copy; <?= date("Y"); ?> - Todos os Direitos Reservados</p>
-                <p class="dash_login_left_box_support">
-                    <a target="_blank"
-                       class="icon-whatsapp transition text-green"
-                       href="https://api.whatsapp.com/send?phone=DDI+DDD+TELEFONE&text=Olá, preciso de ajuda com o login."
-                    >Precisa de Suporte?</a>
-                </p>
+                <p>Desenvolvido por <a href="https://www.ruivooffice.com.br">www.<b>ruivooffice</b>.com.br</a></p>
             </footer>
         </article>
     </div>

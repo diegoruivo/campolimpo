@@ -281,7 +281,7 @@
                                         <label class="label">
                                             <span class="legend">E-mail:</span>
                                             <input type="email" name="email" placeholder="Melhor e-mail"
-                                                   value="{{ old('email') ?? $user->email }}"/>
+                                                   value="{{ old('email') ?? $user->email }}" required/>
                                         </label>
 
                                         <label class="label">

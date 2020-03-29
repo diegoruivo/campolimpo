@@ -237,7 +237,7 @@
                                     <label class="label">
                                         <span class="legend">E-mail:</span>
                                         <input type="email" name="email" placeholder="Melhor e-mail"
-                                               value="{{ old('email') }}"/>
+                                               value="{{ old('email') }}" required/>
                                     </label>
 
                                     <label class="label">

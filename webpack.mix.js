@@ -12,6 +12,38 @@ const mix = require('laravel-mix');
  */
 
 mix
+    // Assets Web
+    .sass('resources/views/web/assets/css/font-awesome.min.css', 'public/frontend/assets/css/font-awesome.min.css')
+
+    .styles([
+        'resources/views/web/assets/css/isotope/styles.css'
+    ], 'public/frontend/assets/css/isotope/styles.css')
+
+    .sass('resources/views/web/assets/css/animate.min.css', 'public/frontend/assets/css/animate.min.css')
+    .sass('resources/views/web/assets/css/bootstrap.min.css', 'public/frontend/assets/css/bootstrap.min.css')
+    .sass('resources/views/web/assets/css/carousel.css', 'public/frontend/assets/css/carousel.css')
+    .sass('resources/views/web/assets/css/responsive.css', 'public/frontend/assets/css/responsive.css')
+
+    // .scripts([
+    //     'resources/views/web/assets/js/jquery-1.12.3.min.js',
+    //     'resources/views/web/assets/js/waypoints.min.js',
+    //     'resources/views/web/assets/js/jquery.counterup.min.js',
+    //     'resources/views/web/assets/js/gmaps.min.js',
+    //     'resources/views/web/assets/js/isotope/min/scripts-min.js',
+    //     'resources/views/web/assets/js/isotope/cells-by-row.js',
+    //     'resources/views/web/assets/js/isotope/isotope.pkgd.min.js',
+    //     'resources/views/web/assets/js/isotope/packery-mode.pkgd.min.js',
+    //     'resources/views/web/assets/js/isotope/scripts.js',
+    //     'resources/views/web/assets/js/backtotop.js',
+    //     'resources/views/web/assets/js/jquery.localScroll.min.js',
+    //     'resources/views/web/assets/js/jquery.scrollTo.min.js',
+    //     'resources/views/web/assets/js/wow.min.js',
+    //     'resources/views/web/assets/js/assets/js/bootstrap.min.js',
+    //     'resources/views/web/assets/js/assets/js/main.js'
+    // ], 'public/frontend/assets/js/scripts.js')
+
+
+    // Assets Admin
     .sass('resources/views/admin/assets/scss/reset.scss', 'public/backend/assets/css/reset.css')
     .sass('resources/views/admin/assets/scss/boot.scss', 'public/backend/assets/css/boot.css')
     .sass('resources/views/admin/assets/scss/login.scss', 'public/backend/assets/css/login.css')

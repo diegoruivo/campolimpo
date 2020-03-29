@@ -2,6 +2,7 @@
 
 namespace CampoLimpo\Http\Controllers\Admin;
 
+use CampoLimpo\Contract;
 use CampoLimpo\User;
 use Illuminate\Http\Request;
 use CampoLimpo\Http\Controllers\Controller;
@@ -24,7 +25,12 @@ class AuthController extends Controller
 
     public function home()
     {
-        return view('admin.dashboard');
+
+        $contracts = Contract::all();
+        return view('admin.dashboard', [
+            'contracts' => $contracts
+        ]);
+
     }
 
     public function login(Request $request)

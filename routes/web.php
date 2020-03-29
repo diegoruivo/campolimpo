@@ -11,6 +11,15 @@
 |
 */
 
+
+Route::group(['namespace' => 'Web', 'as' => 'web.'], function() {
+
+    /** Home Page Site */
+    Route::get('/', 'WebController@home')->name('home');
+
+});
+
+
 Route::group(['prefix' => 'admin', 'namespace' => 'Admin', 'as' => 'admin.'], function(){
 
     /** Formulário de Login*/
@@ -20,8 +29,11 @@ Route::group(['prefix' => 'admin', 'namespace' => 'Admin', 'as' => 'admin.'], fu
     /** Rotas Protegidas */
     Route::group(['middleware' => ['auth']], function (){
 
-        /** Dashboard Home */
+        /** Painel de Controle */
         Route::get('home', 'AuthController@home')->name('home');
+
+        /** Atendimento */
+        Route::resource('calls', 'CallController');
 
         /** Usuários */
         Route::get('users/team', 'UserController@team')->name('users.team');
@@ -35,7 +47,7 @@ Route::group(['prefix' => 'admin', 'namespace' => 'Admin', 'as' => 'admin.'], fu
         Route::delete('properties/image-remove', 'PropertyController@imageRemove')->name('properties.imageRemove');
         Route::resource('properties', 'PropertyController');
 
-        /** Documents */
+        /** Documentos */
         Route::get('documents/trashed', 'DocumentController@trashed')->name('documents.trashed');
         Route::get('documents/{document}/restore', 'DocumentController@restore')->name('documents.restore');
         Route::delete('documents/{document}/forceDelete', 'DocumentController@forceDelete')->name('documents.forceDelete');
@@ -43,7 +55,7 @@ Route::group(['prefix' => 'admin', 'namespace' => 'Admin', 'as' => 'admin.'], fu
         Route::resource('documents', 'DocumentController');
         Route::resource('document_category', 'DocumentCategoryController');
 
-        /** Services */
+        /** Serviços */
         Route::resource('services', 'ServiceController');
         Route::resource('service_category', 'ServiceCategoryController');
 
