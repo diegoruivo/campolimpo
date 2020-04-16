@@ -16,7 +16,7 @@ class CreatePropertyImagesTable extends Migration
         Schema::create('property_images', function (Blueprint $table) {
             $table->increments('id');
             $table->unsignedInteger('property');
-            $table->string('path');
+            $table->string('path')->nullable();
             $table->boolean('cover')->nullable();
             $table->timestamps();
 

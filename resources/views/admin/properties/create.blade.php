@@ -2,230 +2,370 @@
 
 @section('content')
 
+    <!-- Content Wrapper. Contains page content -->
+    <div class="content-wrapper">
+        <!-- Content Header (Page header) -->
+        <section class="content-header">
+            <div class="container-fluid">
+                <div class="row mb-2">
+                    <div class="col-sm-6">
+                        <h1>
+                            <small><i class="fa fa-house-user"></i></small>
+                            Cadastrar Propriedade
+                        </h1>
+                    </div>
+                    <div class="col-sm-6">
+                        <ol class="breadcrumb float-sm-right">
+                            <li class="breadcrumb-item"><a href="{{ route('admin.home') }}">Home</a></li>
+                            <li class="breadcrumb-item"><a href="{{ route('admin.users.index') }}">Clientes</a></li>
+                            <li class="breadcrumb-item"><a href="{{ route('admin.properties.index') }}">Propriedades</a></li>
+                            <li class="breadcrumb-item active">Cadastrar Propriedade</li>
+                        </ol>
+                    </div>
+                </div>
+            </div><!-- /.container-fluid -->
+        </section>
 
-    <section class="dash_content_app">
-
-    <header class="dash_content_app_header">
-        <h2 class="icon-search">Cadastrar Novo Imóvel</h2>
-
-        <div class="dash_content_app_header_actions">
-            <nav class="dash_content_app_breadcrumb">
-                <ul>
-                    <li><a href="{{ route('admin.home') }}">Dashboard</a></li>
-                    <li class="separator icon-angle-right icon-notext"></li>
-                    <li><a href="{{ route('admin.users.index') }}">Clientes</a></li>
-                    <li class="separator icon-angle-right icon-notext"></li>
-                    <li><a href="{{ route('admin.properties.index') }}">Propriedades</a></li>
-                    <li class="separator icon-angle-right icon-notext"></li>
-                    <li><a href="" class="text-orange">Cadastrar Propriedade</a></li>
-                </ul>
-            </nav>
-
-        </div>
-    </header>
-
-
-    <div class="dash_content_app_box">
-
-        <div class="nav">
+        <!-- Main content -->
+        <section class="content">
 
             @if($errors->all())
                 @foreach($errors->all() as $error)
                     @message(['color' => 'orange'])
-                    <p class="icon-asterisk">{{ $error }}</p>
+                    {{ $error }}
                     @endmessage
                 @endforeach
             @endif
 
-            <ul class="nav_tabs">
-                <li class="nav_tabs_item">
-                    <a href="#data" class="nav_tabs_item_link active">Dados Cadastrais</a>
-                </li>
-                <li class="nav_tabs_item">
-                    <a href="#images" class="nav_tabs_item_link">Imagens</a>
-                </li>
-            </ul>
+            @if(session()->exists('message'))
+                @message(['color' => session()->get('color')])
+                {{ session()->get('message') }}
+                @endmessage
+            @endif
 
-            <form action="{{ route('admin.properties.store') }}" method="post" class="app_form" enctype="multipart/form-data">
+            <form class="app_form"
+                  action="{{ route('admin.properties.store') }}"
+                  method="post" enctype="multipart/form-data">
 
                 @csrf
 
-                <div class="nav_tabs_content">
-                    <div id="data">
+                <div class="card card-primary card-outline">
+                    <div class="card-header">
+                        <h3 class="card-title">
+                            Dados da Propriedade
+                        </h3>
+                    </div>
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-5 col-sm-3">
+                                <div class="nav flex-column nav-tabs h-100" id="vert-tabs-tab" role="tablist"
+                                     aria-orientation="vertical">
 
+                                    <a class="nav-link active" id="vert-tabs-prymary-tab" data-toggle="pill"
+                                       href="#vert-tabs-primary" role="tab" aria-controls="vert-tabs-primary"
+                                       aria-selected="true">Dados Primários</a>
 
+                                    <a class="nav-link" id="vert-tabs-address-tab" data-toggle="pill"
+                                       href="#vert-tabs-address" role="tab" aria-controls="vert-tabs-address"
+                                       aria-selected="false">Endereço</a>
 
-                        <div class="label_g2">
-                            <label class="label">
-                                <span class="legend">Categoria:</span>
-                                <select name="category" class="select2" required>
-                                    <option value="" {{ (old('category') == '' ? 'selected' : '') }}>Escolha uma Categoria</option>
-                                    <option value="Propriedade Rural" {{ (old('category') == 'Propriedade Rural' ? 'selected' : '') }}>Propriedade Rural</option>
-                                    <option value="Imóvel Residencial" {{ (old('category') == 'Imóvel Residencial' ? 'selected' : '') }}>Imóvel Residencial</option>
-                                    <option value="Comercial/Industrial" {{ (old('category') == 'Comercial/Industrial' ? 'selected' : '') }}>Comercial/Industrial</option>
-                                    <option value="Terreno" {{ (old('category') == 'Terreno' ? 'selected' : '') }}>Terreno</option>
-                                </select>
-                            </label>
-
-                            <label class="label">
-                                <span class="legend">Tipo:</span>
-                                <select name="type" class="select2" required>
-                                    <option value="" {{ (old('type') == '' ? 'selected' : '') }}>Escolha um Tipo</option>
-                                    <optgroup label="Propriedade Rural">
-                                        <option value="Pequeno Porte" {{ (old('type') == 'Pequeno Porte' ? 'selected' : '') }}>Pequeno Porte</option>
-                                        <option value="Médio Porte" {{ (old('type') == 'Médio Porte' ? 'selected' : '') }}>Médio Porte</option>
-                                        <option value="Grande Porte" {{ (old('type') == 'Grande Porte' ? 'selected' : '') }}>Grande Porte</option>
-                                    </optgroup>
-                                    <optgroup label="Imóvel Residencial">
-                                        <option value="Casa" {{ (old('type') == 'Casa' ? 'selected' : '') }}>Casa</option>
-                                        <option value="Cobertura" {{ (old('type') == 'Cobertura' ? 'selected' : '') }}>Cobertura</option>
-                                        <option value="Apartamento" {{ (old('type') == 'Apartamento' ? 'selected' : '') }}>Apartamento</option>
-                                        <option value="Studio" {{ (old('type') == 'Studio' ? 'selected' : '') }}>Studio</option>
-                                        <option value="Kitnet" {{ (old('type') == 'Kitnet' ? 'selected' : '') }}>Kitnet</option>
-                                    </optgroup>
-                                    <optgroup label="Comercial/Industrial">
-                                        <option value="Sala Comercial" {{ (old('type') == 'Sala Comercial' ? 'selected' : '') }}>Sala Comercial</option>
-                                        <option value="Depósito/Galpão" {{ (old('type') == 'deposit_shed' ? 'selected' : '') }}>Depósito/Galpão</option>
-                                        <option value="Ponto Comercial" {{ (old('type') == 'commercial_point' ? 'selected' : '') }}>Ponto Comercial</option>
-                                    </optgroup>
-                                    <optgroup label="Terreno">
-                                        <option value="Terreno" {{ (old('type') == 'Terreno' ? 'selected' : '') }}>Terreno</option>
-                                    </optgroup>
-                                </select>
-                            </label>
-
-
-                            <label class="label" style="margin-left: 20px">
-                                <span class="legend">Proprietário:</span>
-                                <select name="user" class="select2" required>
-                                    <option value=""  {{ (old('user') == '' ? 'selected' : '') }}>Selecione o Proprietário</option>
-                                    @foreach($users as $user)
-                                        @if (!empty($selected))
-                                            <option value="{{ $user->id }}" {{ ($user->id === $selected->id ? 'selected' : '') }}>{{ $user->name }} ({{ $user->document }})</option>
-                                        @else
-                                            <option value="{{ $user->id }}">{{ $user->name }} ({{ $user->document }})</option>
-                                        @endif
-                                    @endforeach
-                                </select>
-                            </label>
-
-
-
-                        </div>
-
-
-
-
-                        <div class="label_g2">
-                            <label class="label">
-                                <span class="legend">Valor de Venda:</span>
-                                <input type="tel" name="sale_price" class="mask-money" value="{{ old('sale_price') }}" required/>
-                            </label>
-
-                            <label class="label">
-                                <span class="legend">Área Total:</span>
-                                <input type="tel" name="area_total" placeholder="Quantidade de M&sup2;" value="{{ old('area_total') }}" required/>
-                            </label>
-
-                            <label class="label" style="margin-left: 20px">
-                                <span class="legend">Área Útil:</span>
-                                <input type="tel" name="area_util" placeholder="Quantidade de M&sup2;" value="{{ old('area_util') }}" required/>
-                            </label>
-                        </div>
-
-
-
-                        <label class="label">
-                            <span class="legend">Descrição da Propriedade:</span>
-                            <textarea name="description" cols="30" rows="10" class="mce">{{ old('description') }}</textarea>
-                        </label>
-
-
-
-                        <div class="app_collapse">
-                            <div class="app_collapse_header mt-2 collapse">
-                                <h3>Endereço</h3>
-                                <span class="icon-plus-circle icon-notext"></span>
-                            </div>
-
-                            <div class="app_collapse_content">
-                                <div class="label_g2">
-
-                                    <label class="label">
-                                        <span class="legend">*CEP:</span>
-                                        <input type="tel" name="zipcode" class="mask-zipcode zip_code_search"
-                                               placeholder="Digite o CEP" value="{{ old('zipcode') }}" required/>
-                                    </label>
-                                    <label class="label">
-                                        <span class="legend">*Endereço:</span>
-                                        <input type="text" name="street" class="street"
-                                               placeholder="Endereço Completo" value="{{ old('street') }}" required/>
-                                    </label>
-                                    <label class="label" style="margin-left: 20px">
-                                        <span class="legend">*Número:</span>
-                                        <input type="text" name="number" placeholder="Número do Endereço"
-                                               value="{{ old('number') }}" required/>
-                                    </label>
-
-
-                                </div>
-
-
-
-
-
-                                <div class="label_g4">
-
-                                    <label class="label">
-                                        <span class="legend">Complemento:</span>
-                                        <input type="text" name="complement" placeholder="Completo (Opcional)"
-                                               value="{{ old('complement') }}"/>
-                                    </label>
-
-                                    <label class="label">
-                                        <span class="legend">*Bairro:</span>
-                                        <input type="text" name="neighborhood" class="neighborhood"
-                                               placeholder="Bairro" value="{{ old('neighborhood') }}" required/>
-                                    </label>
-
-                                    <label class="label">
-                                        <span class="legend">*Estado:</span>
-                                        <input type="text" name="state" class="state" placeholder="Estado"
-                                               value="{{ old('state') }}" required/>
-                                    </label>
-
-                                    <label class="label">
-                                        <span class="legend">*Cidade:</span>
-                                        <input type="text" name="city" class="city" placeholder="Cidade"
-                                               value="{{ old('city') }}" required/>
-                                    </label>
-
+                                    <a class="nav-link" id="vert-tabs-images-tab" data-toggle="pill"
+                                       href="#vert-tabs-images" role="tab" aria-controls="vert-tabs-images"
+                                       aria-selected="false">Imagens</a>
 
                                 </div>
 
 
                             </div>
+                            <div class="col-7 col-sm-9">
+
+                                <div class="tab-content" id="vert-tabs-tabContent">
+
+                                    {{-- Dados Primários --}}
+                                    <div class="tab-pane text-left fade show active" id="vert-tabs-primary"
+                                         role="tabpanel"
+                                         aria-labelledby="vert-tabs-primary-tab">
+
+                                        <div class="card-header mb-4">
+                                            <h3 class="card-title">Dados Primários</h3>
+                                        </div>
+
+                                        <div class="row">
+
+                                            <div class="col-sm-6">
+                                                <div class="form-group">
+                                                    <label>Categoria</label>
+                                                    <select name="category" class="custom-select">
+                                                        <option value="" {{ (old('category') == '' ? 'selected' : '') }}>Escolha uma Categoria</option>
+                                                        <option value="Propriedade Rural" {{ (old('category') == 'Propriedade Rural' ? 'selected' : '') }}>Propriedade Rural</option>
+                                                        <option value="Imóvel Residencial" {{ (old('category') == 'Imóvel Residencial' ? 'selected' : '') }}>Imóvel Residencial</option>
+                                                        <option value="Comercial/Industrial" {{ (old('category') == 'Comercial/Industrial' ? 'selected' : '') }}>Comercial/Industrial</option>
+                                                        <option value="Terreno" {{ (old('category') == 'Terreno' ? 'selected' : '') }}>Terreno</option>
+                                                    </select>
+                                                </div>
+                                            </div>
+
+
+                                            <div class="col-sm-6">
+                                                <div class="form-group">
+                                                    <label>Tipo</label>
+                                                    <select name="type" class="custom-select">
+                                                        <option value="" {{ (old('type') == '' ? 'selected' : '') }}>Escolha um Tipo</option>
+                                                        <optgroup label="Propriedade Rural">
+                                                            <option value="Pequeno Porte" {{ (old('type') == 'Pequeno Porte' ? 'selected' : '') }}>Pequeno Porte</option>
+                                                            <option value="Médio Porte" {{ (old('type') == 'Médio Porte' ? 'selected' : '') }}>Médio Porte</option>
+                                                            <option value="Grande Porte" {{ (old('type') == 'Grande Porte' ? 'selected' : '') }}>Grande Porte</option>
+                                                        </optgroup>
+                                                        <optgroup label="Imóvel Residencial">
+                                                            <option value="Casa"  {{ (old('type') == 'Casa' ? 'selected' : '') }}>Casa</option>
+                                                            <option value="Cobertura"  {{ (old('type') == 'Cobertura' ? 'selected' : '') }}>Cobertura</option>
+                                                            <option value="Apartamento"  {{ (old('type') == 'Apartamento' ? 'selected' : '') }}>Apartamento</option>
+                                                            <option value="Studio"  {{ (old('type') == 'Studio' ? 'selected' : '') }}>Studio</option>
+                                                            <option value="Kitnet"  {{ (old('type') == 'Kitnet' ? 'selected' : '') }}>Kitnet</option>
+                                                        </optgroup>
+                                                        <optgroup label="Comercial/Industrial">
+                                                            <option value="Sala Comercial"  {{ (old('type') == 'Sala Comercial' ? 'selected' : '') }}>Sala Comercial</option>
+                                                            <option value="Depósito/Galpão"  {{ (old('type') == 'Depósito/Galpão' ? 'selected' : '') }}>Depósito/Galpão</option>
+                                                            <option value="Ponto Comercial"  {{ (old('type') == 'Ponto Comercial' ? 'selected' : '') }}>Ponto Comercial</option>
+                                                        </optgroup>
+                                                        <optgroup label="Terreno">
+                                                            <option value="Terreno"  {{ (old('type') == 'Terreno' ? 'selected' : '') }}>Terreno</option>
+                                                        </optgroup>
+                                                    </select>
+                                                </div>
+                                            </div>
+
+                                            <div class="col-sm-6">
+                                                <div class="form-group">
+                                                    <label>Responsável Legal</label>
+                                                    <select name="user" class="custom-select">
+                                                        <option value=""  {{ (old('user') == '' ? 'selected' : '') }}>Proprietário</option>
+                                                        @foreach($users as $user)
+                                                            @if (!empty($selected))
+                                                                <option value="{{ $user->id }}" {{ ($user->id === $selected->id ? 'selected' : '') }}>{{ $user->name }} ({{ $user->document }})</option>
+                                                            @else
+                                                                <option value="{{ $user->id }}">{{ $user->name }} ({{ $user->document }}) {{ $user->id }}</option>
+                                                            @endif
+                                                        @endforeach
+                                                    </select>
+                                                </div>
+                                            </div>
+
+                                            <div class="col-sm-6">
+                                                <div class="form-group">
+                                                    <label>Valor</label>
+                                                    <input type="text" name="sale_price" class="form-control"
+                                                           placeholder="Valor da propriedade"
+                                                           value="{{ old('sale_price') }}"/>
+                                                </div>
+                                            </div>
+
+                                            <div class="col-sm-6">
+                                                <div class="form-group">
+                                                    <label>Área Total</label>
+                                                    <input type="text" name="area_total" class="form-control"
+                                                           placeholder="Área"
+                                                           value="{{ old('area_total') }}"/>
+                                                </div>
+                                            </div>
+
+                                            <div class="col-sm-6">
+                                                <div class="form-group">
+                                                    <label>Área Útil</label>
+                                                    <input type="text" name="area_util" class="form-control"
+                                                           placeholder="Área"
+                                                           value="{{ old('area_util') }}"/>
+                                                </div>
+                                            </div>
+
+
+                                            <div class="col-sm-12">
+                                                <!-- textarea -->
+                                                <div class="form-group">
+                                                    <label>Descrição da Propriedade</label>
+                                                    <textarea class="form-control" name="description" cols="30"
+                                                              rows="4">{{ old('description') }}</textarea>
+                                                </div>
+                                            </div>
+
+
+
+                                        </div>
+
+                                    </div>
+                                    {{-- Fim Dados Primários --}}
+
+
+
+
+
+
+
+
+
+                                    {{-- Endereço e Contato --}}
+                                    <div class="tab-pane fade" id="vert-tabs-address" role="tabpanel"
+                                         aria-labelledby="vert-tabs-address-tab">
+
+
+                                        <div class="card-header mb-4">
+                                            <h3 class="card-title">Endereço</h3>
+                                        </div>
+
+                                        <div class="row">
+
+                                            <div class="col-sm-3">
+                                                <div class="form-group">
+                                                    <label>CEP</label>
+                                                    <input type="tel" name="zipcode" class="form-control"
+                                                           class="mask-zipcode zip_code_search"
+                                                           placeholder="Digite o CEP"
+                                                           value="{{ old('zipcode') }}"/>
+                                                </div>
+                                            </div>
+
+                                            <div class="col-sm-7">
+                                                <div class="form-group">
+                                                    <label>Endereço</label>
+                                                    <input type="text" name="street" class="form-control" class="street"
+                                                           placeholder="Endereço Completo"
+                                                           value="{{ old('street') }}"/>
+                                                </div>
+                                            </div>
+
+                                            <div class="col-sm-2">
+                                                <div class="form-group">
+                                                    <label>Número</label>
+                                                    <input type="text" name="number" class="form-control"
+                                                           placeholder="Número do Endereço"
+                                                           value="{{ old('number') }}"/>
+                                                </div>
+                                            </div>
+
+                                            <div class="col-sm-3">
+                                                <div class="form-group">
+                                                    <label>Complemento</label>
+                                                    <input type="text" name="complement" class="form-control"
+                                                           placeholder="Completo (Opcional)"
+                                                           value="{{ old('complement') }}"/>
+                                                </div>
+                                            </div>
+
+                                            <div class="col-sm-4">
+                                                <div class="form-group">
+                                                    <label>Bairro</label>
+                                                    <input type="text" name="neighborhood" class="form-control"
+                                                           class="neighborhood"
+                                                           placeholder="Bairro"
+                                                           value="{{ old('neighborhood') }}"/>
+                                                </div>
+                                            </div>
+
+                                            <div class="col-sm-2">
+                                                <div class="form-group">
+                                                    <label>Estado</label>
+                                                    <input type="text" name="state" class="form-control" class="state"
+                                                           placeholder="Estado"
+                                                           value="{{ old('state') }}"/>
+                                                </div>
+                                            </div>
+
+                                            <div class="col-sm-3">
+                                                <div class="form-group">
+                                                    <label>Cidade</label>
+                                                    <input type="text" name="city" class="form-control" class="city"
+                                                           placeholder="Cidade"
+                                                           value="{{ old('city') }}"/>
+                                                </div>
+                                            </div>
+
+                                        </div>
+
+                                    </div>
+                                    {{-- Fim Endereço e Contato --}}
+
+
+
+
+
+
+
+
+                                    {{-- Imagens --}}
+                                    <div class="tab-pane fade" id="vert-tabs-images" role="tabpanel"
+                                         aria-labelledby="vert-tabs-images-tab">
+
+                                        <div class="card-header mb-4">
+                                            <h3 class="card-title">Imagens</h3>
+                                        </div>
+
+
+                                        <div class="row">
+
+
+                                            <div class="col-sm-12">
+                                                <div class="form-group">
+                                                    <label for="exampleInputFile">Imagens</label>
+                                                    <div class="input-group">
+                                                        <div class="custom-file">
+                                                            <input type="file" class="custom-file-input" id="exampleInputFile" name="files[]" multiple>
+
+                                                            <label class="custom-file-label" for="exampleInputFile">Escolher
+                                                                Arquivo</label>
+                                                        </div>
+                                                        <div class="input-group-append">
+                                                            <span class="input-group-text" id="">Upload</span>
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                                <div class="content_image"></div>
+
+                                            </div>
+
+
+
+
+
+                                        </div>
+
+
+                                    </div>
+                                    {{-- Fim Imagens --}}
+
+
+
+
+
+
+
+
+                                </div>
+                            </div>
                         </div>
-                    </div>
 
-                    <div id="images" class="d-none">
-                        <label class="label">
-                            <span class="legend">Imagens</span>
-                            <input type="file" name="files[]" multiple>
-                        </label>
-
-                        <div class="content_image"></div>
                     </div>
+                    <!-- /.card -->
+
+
+                    <!-- /.card-body -->
+                    <div class="card-footer">
+
+                        <button type="submit" class="btn btn-lg bg-gradient-primary" style="float:right;"><i class="fa fa-long-arrow-alt-right"></i> Cadastrar Propriedade</button>
+
+                    </div>
+                    <!-- /.card-footer-->
+
 
                 </div>
 
-                <div class="text-right mt-2">
-                    <button class="btn btn-large btn-green icon-check-square-o">Cadastrar Propriedade</button>
-                </div>
             </form>
-        </div>
+
+
+        </section>
+        <!-- /.content -->
     </div>
-</section>
+    <!-- /.content-wrapper -->
 
 @endsection
 

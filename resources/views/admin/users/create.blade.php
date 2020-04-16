@@ -2,261 +2,305 @@
 
 @section('content')
 
+    <!-- Content Wrapper. Contains page content -->
+    <div class="content-wrapper">
+        <!-- Content Header (Page header) -->
+        <section class="content-header">
+            <div class="container-fluid">
+                <div class="row mb-2">
+                    <div class="col-sm-6">
+                        <h1>
+                            <small><i class="fa fa-user-edit"></i></small>
+                            Cadastrar Cliente
+                        </h1>
+                    </div>
+                    <div class="col-sm-6">
+                        <ol class="breadcrumb float-sm-right">
+                            <li class="breadcrumb-item"><a href="{{ route('admin.home') }}">Home</a></li>
+                            <li class="breadcrumb-item"><a href="{{ route('admin.users.index') }}">Clientes</a></li>
+                            <li class="breadcrumb-item active">Cadastrar Cliente</li>
+                        </ol>
+                    </div>
+                </div>
+            </div><!-- /.container-fluid -->
+        </section>
 
-    <section class="dash_content_app">
+        <!-- Main content -->
+        <section class="content">
 
-    <header class="dash_content_app_header">
-        <h2 class="icon-user-plus">Novo Cliente</h2>
-
-        <div class="dash_content_app_header_actions">
-            <nav class="dash_content_app_breadcrumb">
-                <ul>
-                    <li><a href="{{ route('admin.home') }}">Dashboard</a></li>
-                    <li class="separator icon-angle-right icon-notext"></li>
-                    <li><a href="{{ route('admin.users.index') }}">Clientes</a></li>
-                    <li class="separator icon-angle-right icon-notext"></li>
-                    <li><a href="" class="text-orange">Novo Cliente</a></li>
-                </ul>
-            </nav>
-        </div>
-    </header>
-
-    <div class="dash_content_app_box">
-        <div class="nav">
 
             @if($errors->all())
                 @foreach($errors->all() as $error)
                     @message(['color' => 'orange'])
-                    <p class="icon-asterisk">{{ $error }}</p>
+                    {{ $error }}
                     @endmessage
                 @endforeach
             @endif
 
+            @if(session()->exists('message'))
+                @message(['color' => session()->get('color')])
+                {{ session()->get('message') }}
+                @endmessage
+            @endif
 
-            <ul class="nav_tabs">
-                <li class="nav_tabs_item">
-                    <a href="#data" class="nav_tabs_item_link active">Dados Cadastrais</a>
-                </li>
-            </ul>
-
-            <form class="app_form" action="{{ route('admin.users.store') }}" method="post" enctype="multipart/form-data">
+            <form role="form"
+                  action="{{ route('admin.users.store') }}"
+                  method="post" enctype="multipart/form-data">
 
                 @csrf
 
-                <div class="nav_tabs_content">
-                    <div id="data">
+                <div class="card card-primary card-outline">
+                    <div class="card-header">
+                        <h3 class="card-title">
+                            <i class="fas fa-user"></i>
+                            Dados do Cliente
+                        </h3>
+                    </div>
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-5 col-sm-3">
+                                <div class="nav flex-column nav-tabs h-100" id="vert-tabs-tab" role="tablist"
+                                     aria-orientation="vertical">
 
-                        <div class="label_g4">
-
-                        <label class="label">
-                            <span class="legend">*Nome:</span>
-                            <input type="text" name="name" placeholder="Nome Completo" value="{{ old('name') }}" required />
-                        </label>
-
-
-
-                            <label class="label">
-                                <span class="legend">*Genero:</span>
-                                <select name="genre" required>
-                                    <option value="" {{ (old('genre') == '' ? 'selected' : '') }}>Escolha o Genero</option>
-                                    <option value="male" {{ (old('genre') == 'male' ? 'selected' : '') }}>Masculino</option>
-                                    <option value="female" {{ (old('genre') == 'female' ? 'selected' : '') }}>Feminino</option>
-                                    <option value="other" {{ (old('genre') == 'other' ? 'selected' : '') }}>Outros</option>
-                                </select>
-                            </label>
-
-
-                            <label class="label">
-                                <span class="legend">*CPF:</span>
-                                <input type="tel" class="mask-doc" name="document" placeholder="CPF do Cliente"
-                                       value="{{ old('document') }}" required/>
-                            </label>
-
-                            <label class="label">
-                                <span class="legend">*Data de Nascimento:</span>
-                                <input type="tel" name="date_of_birth" class="mask-date"
-                                       placeholder="Data de Nascimento" value="{{ old('date_of_birth') }}" required/>
-                            </label>
-
-
-
-
-                        </div>
-
-                        <div class="label_g4">
-
-
-                            <label class="label">
-                                <span class="legend">Naturalidade:</span>
-                                <input type="text" name="place_of_birth" placeholder="Cidade de Nascimento"
-                                       value="{{ old('place_of_birth') }}"/>
-                            </label>
-
-
-                            <label class="label">
-                                <span class="legend">Estado Civil:</span>
-                                <select name="civil_status">
-                                    <option value="" {{ (old('civil_status') == '' ? 'selected' : '') }}>Escolha o Estado Civil</option>
-
-                                    <optgroup label="Cônjuge Obrigatório">
-                                        <option value="married" {{ (old('civil_status') == 'married' ? 'selected' : '') }}>Casado</option>
-                                        <option value="separated" {{ (old('civil_status') == 'separated' ? 'selected' : '') }}>Separado</option>
-                                    </optgroup>
-                                    <optgroup label="Cônjuge não Obrigatório">
-                                        <option value="single" {{ (old('civil_status') == 'single' ? 'selected' : '') }}>Solteiro</option>
-                                        <option value="divorced" {{ (old('civil_status') == 'divorced' ? 'selected' : '') }}>Divorciado</option>
-                                        <option value="widower" {{ (old('civil_status') == 'widower' ? 'selected' : '') }}>Viúvo</option>
-                                    </optgroup>
-                                </select>
-                            </label>
-
-
-                            <label class="label">
-                                <span class="legend">RG:</span>
-                                <input type="text" name="document_secondary" placeholder="RG do Cliente"
-                                       value="{{ old('document_secondary') }}"/>
-                            </label>
-
-                            <label class="label">
-                                <span class="legend">Órgão Expedidor:</span>
-                                <input type="text" name="document_secondary_complement" placeholder="Expedição"
-                                       value="{{ old('document_secondary_complement') }}"/>
-                            </label>
-                        </div>
-
-
-
-                        <div class="app_collapse mt-2">
-                            <div class="app_collapse_header collapse">
-                                <h3>Endereço</h3>
-                                <span class="icon-plus-circle icon-notext"></span>
-                            </div>
-
-                            <div class="app_collapse_content d-none">
-                                <div class="label_g2">
-
-                                    <label class="label">
-                                        <span class="legend">CEP:</span>
-                                        <input type="tel" name="zipcode" class="mask-zipcode zip_code_search"
-                                               placeholder="Digite o CEP" value="{{ old('zipcode') }}"/>
-                                    </label>
-                                    <label class="label">
-                                        <span class="legend">*Endereço:</span>
-                                        <input type="text" name="street" class="street"
-                                               placeholder="Endereço Completo" value="{{ old('street') }}"/>
-                                    </label>
-                                    <label class="label"  style="margin-left:20px">
-                                        <span class="legend">Número:</span>
-                                        <input type="text" name="number" placeholder="Número do Endereço"
-                                               value="{{ old('number') }}"/>
-                                    </label>
-
-
+                                    <a class="nav-link active" id="vert-tabs-prymary-tab" data-toggle="pill"
+                                       href="#vert-tabs-primary" role="tab" aria-controls="vert-tabs-primary"
+                                       aria-selected="true">Dados Primários</a>
                                 </div>
 
 
+                            </div>
+                            <div class="col-7 col-sm-9">
+
+                                <div class="tab-content" id="vert-tabs-tabContent">
+
+                                    {{-- Dados Primários --}}
+                                    <div class="tab-pane text-left fade show active" id="vert-tabs-primary"
+                                         role="tabpanel"
+                                         aria-labelledby="vert-tabs-primary-tab">
+
+                                        <div class="card-header mb-4">
+                                            <h3 class="card-title">Dados Primários</h3>
+                                        </div>
+
+                                        <div class="row">
+
+                                            <div class="col-sm-8">
+                                                <div class="form-group">
+                                                    <label>*Nome</label>
+                                                    <input type="text" name="name" class="form-control"
+                                                           placeholder="Nome completo"
+                                                           value="{{ old('name') }}"/>
+                                                </div>
+                                            </div>
+
+                                            <div class="col-sm-4">
+                                                <div class="form-group">
+                                                    <label>Genero</label>
+                                                    <select name="genre" class="custom-select">
+                                                        <option value="" {{ (old('genre') == '') }}>
+                                                            Escolha o Genero
+                                                        </option>
+                                                        <option value="male" {{ (old('genre') == 'male') }}>
+                                                            Masculino
+                                                        </option>
+                                                        <option value="female" {{ (old('genre') == 'female') }}>
+                                                            Feminino
+                                                        </option>
+                                                        <option value="other" {{ (old('genre') == 'other') }}>
+                                                            Outros
+                                                        </option>
+                                                    </select>
+                                                </div>
+                                            </div>
+
+                                            <div class="col-sm-4">
+                                                <div class="form-group">
+                                                    <label>CPF</label>
+                                                    <input type="text" class="form-control"
+                                                           name="document" placeholder="CPF do Cliente"
+                                                           value="{{ old('document') }}"/>
+                                                </div>
+                                            </div>
+
+                                            <div class="col-sm-4">
+                                                <div class="form-group">
+                                                    <label>Data de Nascimento</label>
+                                                    <input type="text" class="form-control"
+                                                           name="date_of_birth" placeholder="Data de Nascimento"
+                                                           value="{{ old('date_of_birth') }}"/>
+                                                </div>
+                                            </div>
 
 
+                                            <div class="col-sm-4">
+                                                <div class="form-group">
+                                                    <label>Naturalidade</label>
+                                                    <input type="text" name="place_of_birth" class="form-control"
+                                                           placeholder="Cidade de Nascimento"
+                                                           value="{{ old('place_of_birth') }}"/>
+                                                </div>
+                                            </div>
 
-                                <div class="label_g4">
+                                            <div class="col-sm-4">
+                                                <div class="form-group">
+                                                    <label>Estado Civil</label>
+                                                    <select name="civil_status" class="custom-select">
+                                                        <option value="" {{ (old('civil_status') == '') }}>
+                                                            Escolha o Estado Civil
+                                                        </option>
 
-                                    <label class="label">
-                                        <span class="legend">Complemento:</span>
-                                        <input type="text" name="complement" placeholder="Completo (Opcional)"
-                                               value="{{ old('complement') }}"/>
-                                    </label>
+                                                        <optgroup label="Cônjuge Obrigatório">
+                                                            <option value="married" {{ (old('civil_status') == 'married') }}>
+                                                                Casado
+                                                            </option>
+                                                            <option value="separated" {{ (old('civil_status') == 'separated') }}>
+                                                                Separado
+                                                            </option>
+                                                        </optgroup>
+                                                        <optgroup label="Cônjuge não Obrigatório">
+                                                            <option value="single" {{ (old('civil_status') == 'single') }}>
+                                                                Solteiro
+                                                            </option>
+                                                            <option value="divorced" {{ (old('civil_status') == 'divorced') }}>
+                                                                Divorciado
+                                                            </option>
+                                                            <option value="widower" {{ (old('civil_status') == 'widower') }}>
+                                                                Viúvo
+                                                            </option>
+                                                        </optgroup>
+                                                    </select>
+                                                </div>
+                                            </div>
 
-                                    <label class="label">
-                                        <span class="legend">Bairro:</span>
-                                        <input type="text" name="neighborhood" class="neighborhood"
-                                               placeholder="Bairro" value="{{ old('neighborhood') }}"/>
-                                    </label>
 
-                                    <label class="label">
-                                        <span class="legend">Estado:</span>
-                                        <input type="text" name="state" class="state" placeholder="Estado"
-                                               value="{{ old('state') }}"/>
-                                    </label>
+                                            <div class="col-sm-4">
+                                                <div class="form-group">
+                                                    <label>RG</label>
+                                                    <input type="text" name="document_secondary" class="form-control"
+                                                           placeholder="RG do Cliente"
+                                                           value="{{ old('document_secondary') }}"/>
+                                                </div>
+                                            </div>
 
-                                    <label class="label">
-                                        <span class="legend">Cidade:</span>
-                                        <input type="text" name="city" class="city" placeholder="Cidade"
-                                               value="{{ old('city') }}"/>
-                                    </label>
+                                            <div class="col-sm-4">
+                                                <div class="form-group">
+                                                    <label>Órgão Expedidor</label>
 
+                                                    <input type="text" name="document_secondary_complement"
+                                                           class="form-control" placeholder="Expedição"
+                                                           value="{{ old('document_secondary_complement') }}"/>
+                                                </div>
+                                            </div>
+
+
+                                        </div>
+
+                                    </div>
+                                    {{-- Fim Dados Primários --}}
+
+
+                                    </div>
                                 </div>
                             </div>
+
                         </div>
+                        <!-- /.card -->
 
-                        <div class="app_collapse mt-2">
-                            <div class="app_collapse_header collapse">
-                                <h3>Contato</h3>
-                                <span class="icon-plus-circle icon-notext"></span>
-                            </div>
 
-                            <div class="app_collapse_content d-none">
-                                <div class="label_g2">
-                                    <label class="label">
-                                        <span class="legend">Residencial:</span>
-                                        <input type="tel" name="telephone" class="mask-phone"
-                                               placeholder="Número do Telefonce com DDD" value="{{ old('telephone') }}"/>
-                                    </label>
+                        <!-- /.card-body -->
+                        <div class="card-footer">
+                            <button type="submit" class="btn btn-lg bg-gradient-primary" style="float:right;"><i class="fa fa-long-arrow-alt-right"></i> Cadastrar</button>
 
-                                    <label class="label">
-                                        <span class="legend">Celular:</span>
-                                        <input type="tel" name="cell" class="mask-cell"
-                                               placeholder="Número do Telefonce com DDD" value="{{ old('cell') }}"/>
-                                    </label>
-                                </div>
-                            </div>
                         </div>
-
-                        <div class="app_collapse mt-2">
-                            <div class="app_collapse_header collapse">
-                                <h3>Acesso</h3>
-                                <span class="icon-plus-circle icon-notext"></span>
-                            </div>
-
-                            <div class="app_collapse_content d-none">
+                        <!-- /.card-footer-->
 
 
-                                <div class="label_gc">
-                                    <span class="legend">Conceder:</span>
-                                    <label class="label">
-                                        <input type="checkbox" name="admin" {{ (old('admin') == 'on' || old('admin') == true ? 'checked' : '') }}><span>Administrativo</span>
-                                    </label>
-                                    </label>
-
-                                    <label class="label">
-                                        <input type="checkbox" name="client" {{ (old('client') == 'on' || old('client') == true ? 'checked' : '') }}><span>Cliente</span>
-                                    </label>
-                                </div>
-
-
-                                <div class="label_g2">
-                                    <label class="label">
-                                        <span class="legend">E-mail:</span>
-                                        <input type="email" name="email" placeholder="Melhor e-mail"
-                                               value="{{ old('email') }}" required/>
-                                    </label>
-
-                                    <label class="label">
-                                        <span class="legend">Senha:</span>
-                                        <input type="password" name="password" placeholder="Senha de acesso"
-                                               value=""/>
-                                    </label>
-                                </div>
-                            </div>
-                        </div>
                     </div>
 
-                <div class="text-right mt-2">
-                    <button class="btn btn-large btn-green icon-check-square-o" type="submit">Cadastrar Cliente
-                    </button>
-                </div>
             </form>
-        </div>
-    </div>
-</section>
 
+
+        </section>
+        <!-- /.content -->
+    </div>
+    <!-- /.content-wrapper -->
+
+@endsection
+
+
+<script src="{{ url(mix('backend/assets/plugins/inputmask.js')) }}"></script>
+
+
+
+@section('js')
+
+    <script>
+        $(function () {
+            //Initialize Select2 Elements
+            $('.select2').select2()
+
+            //Initialize Select2 Elements
+            $('.select2bs4').select2({
+                theme: 'bootstrap4'
+            })
+
+            //Datemask dd/mm/yyyy
+            $('#datemask').inputmask('dd/mm/yyyy', { 'placeholder': 'dd/mm/yyyy' })
+            //Datemask2 mm/dd/yyyy
+            $('#datemask2').inputmask('mm/dd/yyyy', { 'placeholder': 'mm/dd/yyyy' })
+            //Money Euro
+            $('[data-mask]').inputmask()
+
+            //Date range picker
+            $('#reservation').daterangepicker()
+            //Date range picker with time picker
+            $('#reservationtime').daterangepicker({
+                timePicker: true,
+                timePickerIncrement: 30,
+                locale: {
+                    format: 'MM/DD/YYYY hh:mm A'
+                }
+            })
+            //Date range as a button
+            $('#daterange-btn').daterangepicker(
+                {
+                    ranges   : {
+                        'Today'       : [moment(), moment()],
+                        'Yesterday'   : [moment().subtract(1, 'days'), moment().subtract(1, 'days')],
+                        'Last 7 Days' : [moment().subtract(6, 'days'), moment()],
+                        'Last 30 Days': [moment().subtract(29, 'days'), moment()],
+                        'This Month'  : [moment().startOf('month'), moment().endOf('month')],
+                        'Last Month'  : [moment().subtract(1, 'month').startOf('month'), moment().subtract(1, 'month').endOf('month')]
+                    },
+                    startDate: moment().subtract(29, 'days'),
+                    endDate  : moment()
+                },
+                function (start, end) {
+                    $('#reportrange span').html(start.format('MMMM D, YYYY') + ' - ' + end.format('MMMM D, YYYY'))
+                }
+            )
+
+            //Timepicker
+            $('#timepicker').datetimepicker({
+                format: 'LT'
+            })
+
+            //Bootstrap Duallistbox
+            $('.duallistbox').bootstrapDualListbox()
+
+            //Colorpicker
+            $('.my-colorpicker1').colorpicker()
+            //color picker with addon
+            $('.my-colorpicker2').colorpicker()
+
+            $('.my-colorpicker2').on('colorpickerChange', function(event) {
+                $('.my-colorpicker2 .fa-square').css('color', event.color.toString());
+            });
+
+            $("input[data-bootstrap-switch]").each(function(){
+                $(this).bootstrapSwitch('state', $(this).prop('checked'));
+            });
+
+        })
+    </script>
 @endsection

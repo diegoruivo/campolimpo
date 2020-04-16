@@ -2,67 +2,96 @@
 
 @section('content')
 
+    <!-- Content Wrapper. Contains page content -->
+    <div class="content-wrapper">
+        <!-- Content Header (Page header) -->
+        <section class="content-header">
+            <div class="container-fluid">
+                <div class="row mb-2">
+                    <div class="col-sm-4">
+                        <h5>
+                            <small><i class="fa fa-id-card"></i></small>
+                            Cadastrar Categoria de Documentos
+                        </h5>
+                    </div>
+                    <div class="col-sm-8">
+                        <ol class="breadcrumb float-sm-right">
+                            <li class="breadcrumb-item"><a href="{{ route('admin.home') }}">Home</a></li>
+                            <li class="breadcrumb-item"><a href="{{ route('admin.users.index') }}">Clientes</a></li>
+                            <li class="breadcrumb-item"><a href="{{ route('admin.documents.index') }}">Documentos</a></li>
+                            <li class="breadcrumb-item"><a href="{{ route('admin.document_category.index') }}">Categoria de Documentos</a></li>
+                            <li class="breadcrumb-item active">Cadastrar Categoria Documento</li>
+                        </ol>
+                    </div>
+                </div>
+            </div><!-- /.container-fluid -->
+        </section>
 
-    <section class="dash_content_app">
+        <!-- Main content -->
+        <section class="content">
 
-        <header class="dash_content_app_header">
-            <h2 class="icon-search">Cadastrar Categoria de Documentos</h2>
+            @if($errors->all())
+                @foreach($errors->all() as $error)
+                    @message(['color' => 'orange'])
+                    <p class="icon-asterisk">{{ $error }}</p>
+                    @endmessage
+                @endforeach
+            @endif
 
-            <div class="dash_content_app_header_actions">
-                <nav class="dash_content_app_breadcrumb">
-                    <ul>
-                        <li><a href="{{ route('admin.home') }}">Dashboard</a></li>
-                        <li class="separator icon-angle-right icon-notext"></li>
-                        <li><a href="{{ route('admin.document_category.index') }}">Categoria de Documentos</a></li>
-                        <li class="separator icon-angle-right icon-notext"></li>
-                        <li><a href="{{ route('admin.document_category.create') }}" class="text-orange">Cadastrar Categoria
-                                de Documentos</a></li>
-                    </ul>
-                </nav>
+            <form role="form" action="{{ route('admin.document_category.store') }}" method="post">
 
-            </div>
-        </header>
+            @csrf
 
+            <!-- Default box -->
+                <div class="card">
+                    <div class="card-header">
+                        <h3 class="card-title">Cadastro de Categoria de Documentos</h3>
 
-        <div class="dash_content_app_box">
-
-            <div class="nav">
-
-                @if($errors->all())
-                    @foreach($errors->all() as $error)
-                        @message(['color' => 'orange'])
-                        <p class="icon-asterisk">{{ $error }}</p>
-                        @endmessage
-                    @endforeach
-                @endif
-
-                <ul class="nav_tabs">
-                    <li class="nav_tabs_item">
-                        <a href="#data" class="nav_tabs_item_link active">Categoria de Documentos</a>
-                    </li>
-                </ul>
-
-                <form action="{{ route('admin.document_category.store') }}" method="post" class="app_form">
-
-                    @csrf
-
-                    <div class="nav_tabs_content">
-                        <div id="data">
-
-                            <label class="label">
-                                <input type="text" name="title" placeholder="Nome da Categoria de Documentos"
-                                       value="{{ old('title') }}"/>
-                            </label>
-
+                        <div class="card-tools">
+                            <button type="button" class="btn btn-tool" data-card-widget="collapse" data-toggle="tooltip"
+                                    title="Collapse">
+                                <i class="fas fa-minus"></i></button>
+                            <button type="button" class="btn btn-tool" data-card-widget="remove" data-toggle="tooltip"
+                                    title="Remove">
+                                <i class="fas fa-times"></i></button>
                         </div>
+                    </div>
 
-                        <div class="text-right mt-2">
-                            <button class="btn btn-large btn-green icon-check-square-o">Criar Categoria de Documentos</button>
+                    <div class="card-body">
+                        <div class="row">
+
+
+                            <div class="col-sm-12">
+                                <div class="form-group">
+                                    <label>*Categoria de Documentos</label>
+                                    <input type="text" name="title" class="form-control"
+                                           placeholder="Título do Categoria de Documentos"
+                                           value="{{ old('title') }}" required/>
+                                </div>
+                            </div>
+
+
+                            <!-- /.row -->
                         </div>
+                        <!-- /.card-body -->
 
-                </form>
-            </div>
-        </div>
-    </section>
+                    </div>
+                    <!-- /.card -->
+
+
+                    <!-- /.card-body -->
+                    <div class="card-footer">
+                        <button type="submit" class="btn btn-lg bg-gradient-primary" style="float:right;"><i class="fa fa-long-arrow-alt-right"></i> Cadastrar Categoria de Documento</button>
+                    </div>
+                    <!-- /.card-footer-->
+                </div>
+                <!-- /.card -->
+
+            </form>
+
+        </section>
+        <!-- /.content -->
+    </div>
+    <!-- /.content-wrapper -->
 
 @endsection

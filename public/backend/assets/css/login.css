@@ -28,21 +28,26 @@ html, body {
 
 /** SCREEN */
 .dash_login {
+  display: -ms-flexbox;
   display: flex;
-  flex-wrap: nowrap;
+  -ms-flex-wrap: nowrap;
+      flex-wrap: nowrap;
   min-height: 100vh;
 }
 
 /** LEFT */
 .dash_login_left {
-  flex-basis: 40%;
+  -ms-flex-preferred-size: 100%;
+      flex-basis: 100%;
   background: #282f3a;
   color: #FFFFFF;
   background-size: cover;
   padding: 30px 0;
   box-shadow: 3px 0px 10px 5px #CCC;
+  display: -ms-flexbox;
   display: flex;
-  flex-wrap: nowrap;
+  -ms-flex-wrap: nowrap;
+      flex-wrap: nowrap;
 }
 
 .dash_login_left_box {
@@ -51,7 +56,8 @@ html, body {
   max-width: 90%;
   margin: auto;
   padding: 30px;
-  align-items: center;
+  -ms-flex-align: center;
+      align-items: center;
 }
 .dash_login_left_box .dash_login_box_headline h1 {
   font-size: 2em;
@@ -145,7 +151,8 @@ html, body {
 
 /** RIGHT */
 .dash_login_right {
-  flex-basis: 60%;
+  -ms-flex-preferred-size: 60%;
+      flex-basis: 60%;
   background: url("../images/login.svg") center/cover no-repeat;
   padding: 30px 0;
   background-size: 60%;
@@ -158,7 +165,8 @@ html, body {
   }
 
   .dash_login_left {
-    flex-basis: 100%;
+    -ms-flex-preferred-size: 100%;
+        flex-basis: 100%;
   }
 }
 @media (max-width: 40em) {

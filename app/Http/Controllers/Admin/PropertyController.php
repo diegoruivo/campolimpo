@@ -5,6 +5,7 @@ namespace CampoLimpo\Http\Controllers\Admin;
 use CampoLimpo\Property;
 use CampoLimpo\PropertyImage;
 use CampoLimpo\Support\Cropper;
+use CampoLimpo\System;
 use CampoLimpo\User;
 use Illuminate\Http\Request;
 use CampoLimpo\Http\Controllers\Controller;
@@ -21,8 +22,11 @@ class PropertyController extends Controller
     public function index()
     {
         $properties = Property::orderBy('id', 'DESC')->get();
+        $system = System::where('id', 1)->first();
+
         return view('admin.properties.index', [
-            'properties' => $properties
+            'properties' => $properties,
+            'system' => $system
         ]);
     }
 
@@ -34,6 +38,7 @@ class PropertyController extends Controller
     public function create(Request $request)
     {
         $users = User::orderBy('name')->get();
+        $system = System::where('id', 1)->first();
 
         if (!empty($request->user)) {
             $user = User::where('id', $request->user)->first();
@@ -41,6 +46,7 @@ class PropertyController extends Controller
 
         return view('admin.properties.create', [
             'users' => $users,
+            'system' => $system,
             'selected' => (!empty($user) ? $user : null)
         ]);
     }
@@ -92,10 +98,12 @@ class PropertyController extends Controller
 
         $property = Property::where('id', $id)->first();
         $users = User::orderBy('name')->get();
+        $system = System::where('id', 1)->first();
 
         return view('admin.properties.edit', [
             'property' => $property,
-            'users' => $users
+            'users' => $users,
+            'system' => $system
         ]);
 
     }

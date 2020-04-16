@@ -25,7 +25,7 @@ class AlterUsersTable extends Migration
             $table->string('place_of_birth')->nullable();
             $table->string('genre')->nullable();
             $table->string('civil_status')->nullable();
-            $table->string('document')->unique();
+            $table->string('document')->unique()->nullable();
             $table->string('document_secondary', 20)->nullable();
             $table->string('document_secondary_complement')->nullable();
             $table->string('cover')->nullable();
@@ -38,6 +38,7 @@ class AlterUsersTable extends Migration
             $table->string('neighborhood')->nullable();
             $table->string('state')->nullable();
             $table->string('city')->nullable();
+            $table->boolean('location_type')->nullable();
 
             /** contact */
             $table->string('telephone')->nullable();
@@ -71,6 +72,11 @@ class AlterUsersTable extends Migration
             /** access */
             $table->boolean('admin')->nullable();
             $table->boolean('client')->nullable();
+            $table->boolean('provider')->nullable();
+            $table->boolean('clerk')->nullable();
+
+            /** sector */
+            $table->boolean('sector')->nullable();
 
         });
     }
@@ -108,6 +114,8 @@ class AlterUsersTable extends Migration
             $table->dropColumn('neighborhood');
             $table->dropColumn('state');
             $table->dropColumn('city');
+            $table->dropColumn('urban_location');
+            $table->dropColumn('rural_location');
 
             /** contact */
             $table->dropColumn('telephone');
@@ -141,6 +149,12 @@ class AlterUsersTable extends Migration
             /** access */
             $table->dropColumn('admin');
             $table->dropColumn('client');
+            $table->dropColumn('provider');
+            $table->dropColumn('clerk');
+
+            /** sector */
+            $table->dropColumn('sector');
+
 
         });
     }

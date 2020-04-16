@@ -27,6 +27,13 @@ class Message
         return $this;
     }
 
+    public function danger(string $message): Message
+    {
+        $this->type = 'danger';
+        $this->text = $message;
+        return $this;
+    }
+
     public function error(string $message): Message
     {
         $this->type = 'error';

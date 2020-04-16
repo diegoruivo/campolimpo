@@ -5,6 +5,7 @@ namespace CampoLimpo\Http\Controllers\Admin;
 use CampoLimpo\Service;
 use CampoLimpo\ServiceCategory;
 use CampoLimpo\Http\Requests\Admin\Service as ServiceRequest;
+use CampoLimpo\System;
 use Illuminate\Http\Request;
 use CampoLimpo\Http\Controllers\Controller;
 
@@ -18,8 +19,11 @@ class ServiceController extends Controller
     public function index()
     {
         $services = Service::all();
+        $system = System::where('id', 1)->first();
+
         return view('admin.services.index', [
-            'services' => $services
+            'services' => $services,
+            'system' => $system
         ]);
     }
 
@@ -32,7 +36,7 @@ class ServiceController extends Controller
     {
 
         $services_categories = ServiceCategory::orderBy('title')->get();
-
+        $system = System::where('id', 1)->first();
 
         if (!empty($request->service_category)) {
             $service_category = ServiceCategory::where('id', $request->service_category)->first();
@@ -40,6 +44,7 @@ class ServiceController extends Controller
 
         return view('admin.services.create', [
             'services_categories' => $services_categories,
+            'system' => $system,
             'selected' => (!empty($service_category) ? $service_category : null)
 
         ]);
@@ -81,6 +86,7 @@ class ServiceController extends Controller
     {
         $service = Service::where('id', $id)->first();
         $services_categories = ServiceCategory::orderBy('title')->get();
+        $system = System::where('id', 1)->first();
 
         if (!empty($request->service)) {
             $service_category = ServiceCategory::where('id', $request->service)->first();
@@ -89,6 +95,7 @@ class ServiceController extends Controller
         return view('admin.services.edit', [
             'service' => $service,
             'services_categories' => $services_categories,
+            'system' => $system,
             'selected' => (!empty($service) ? $service : null)
         ]);
     }
@@ -105,8 +112,6 @@ class ServiceController extends Controller
         $updateService = Service::where('id', $id)->first();
         $updateService->fill($request->all());
         $updateService->save();
-
-
 
         return redirect()->route('admin.services.edit', [
             'service' => $updateService->id

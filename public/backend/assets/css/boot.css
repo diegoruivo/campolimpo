@@ -2670,10 +2670,12 @@ table.dataTable thead th, table.dataTable tfoot th {
 }
 @keyframes spin {
   0% {
-    transform: rotate(0deg);
+    -webkit-transform: rotate(0deg);
+            transform: rotate(0deg);
   }
   100% {
-    transform: rotate(360deg);
+    -webkit-transform: rotate(360deg);
+            transform: rotate(360deg);
   }
 }
 
@@ -2693,8 +2695,10 @@ table.dataTable thead th, table.dataTable tfoot th {
   border-radius: 4px;
   color: #ffffff;
   overflow: hidden;
+  display: -ms-flexbox;
   display: flex;
-  align-items: center;
+  -ms-flex-align: center;
+      align-items: center;
   width: 100%;
   padding: 15px 15px 20px 15px;
   margin-bottom: 15px;
@@ -2702,7 +2706,8 @@ table.dataTable thead th, table.dataTable tfoot th {
   cursor: pointer;
 }
 .ajax_response .message:before {
-  flex-basis: 0%;
+  -ms-flex-preferred-size: 0%;
+      flex-basis: 0%;
   margin: -5px 15px 0 0 !important;
   font-size: 2.4em;
   color: rgba(0, 0, 0, 0.5);
@@ -2740,6 +2745,7 @@ table.dataTable thead th, table.dataTable tfoot th {
 }
 
 .d-flex {
+  display: -ms-flexbox;
   display: flex;
 }
 

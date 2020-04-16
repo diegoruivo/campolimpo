@@ -35,6 +35,9 @@ Route::group(['prefix' => 'admin', 'namespace' => 'Admin', 'as' => 'admin.'], fu
         /** Atendimento */
         Route::resource('calls', 'CallController');
 
+        /** Setores de Atendimento */
+        Route::resource('call_sectors', 'CallSectorController');
+
         /** Usuários */
         Route::get('users/team', 'UserController@team')->name('users.team');
         Route::resource('users', 'UserController');
@@ -61,6 +64,12 @@ Route::group(['prefix' => 'admin', 'namespace' => 'Admin', 'as' => 'admin.'], fu
 
         /** Contracts */
         Route::resource('contracts', 'ContractController');
+
+
+
+        /** Settings */
+        Route::resource('system', 'SystemController');
+        Route::resource('banks', 'BankController');
 
 
     });

@@ -42,6 +42,7 @@ class User extends Authenticatable
         'neighborhood',
         'state',
         'city',
+        'location_type',
         'telephone',
         'cell',
         'type_of_communion',
@@ -59,7 +60,10 @@ class User extends Authenticatable
         'organized_group_type',
         'organized_group_name',
         'admin',
-        'client'
+        'client',
+        'provider',
+        'clerk',
+        'sector'
     ];
 
     /**
@@ -107,8 +111,6 @@ class User extends Authenticatable
 
 
 
-
-
     public function getUrlCoverAttribute()
     {
         if (!empty($this->cover)){
@@ -132,6 +134,7 @@ class User extends Authenticatable
         $this->attributes['large_rural_producer'] = ($value === true || $value === 'on' ? 1 : 0);
     }
 
+
     public function setDocumentAttribute($value)
     {
         $this->attributes['document'] = $this->clearField($value);
@@ -151,6 +154,7 @@ class User extends Authenticatable
     {
         return date('d/m/Y', strtotime($value));
     }
+
 
     public function setIncomeAttribute($value)
     {
@@ -177,8 +181,17 @@ class User extends Authenticatable
         $this->attributes['cell'] = $this->clearField($value);
     }
 
+    /**
+    Ao editar qualquer campo do usuário, a senha também é alterada impossibilitando efetuar um novo login.
+    Solução: Se o input for vazio, remove a posição da atualização com o unset.
+     */
     public function setPasswordAttribute($value)
     {
+        if (empty($value)) {
+            unset($this->attributes['password']);
+            return;
+        }
+
         $this->attributes['password'] = bcrypt($value);
     }
 
@@ -190,6 +203,16 @@ class User extends Authenticatable
     public function setClientAttribute($value)
     {
         $this->attributes['client'] = ($value === true || $value === 'on' ? 1 : 0);
+    }
+
+    public function setProviderAttribute($value)
+    {
+        $this->attributes['provider'] = ($value === true || $value === 'on' ? 1 : 0);
+    }
+
+    public function setClerkAttribute($value)
+    {
+        $this->attributes['clerk'] = ($value === true || $value === 'on' ? 1 : 0);
     }
 
 
@@ -224,8 +247,6 @@ class User extends Authenticatable
     {
         return number_format($value, 2, ',', '.');
     }
-
-
 
 
 

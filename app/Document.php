@@ -8,10 +8,12 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 class Document extends Model
 {
     protected $fillable = [
-        'cover',
         'title',
+        'path',
         'description',
-        'slug'
+        'document',
+        'user',
+        'property'
     ];
 
     public function user()
@@ -22,6 +24,11 @@ class Document extends Model
     public function document_category()
     {
         return $this->belongsTo(DocumentCategory::class, 'document', 'id');
+    }
+
+    public function property()
+    {
+        return $this->belongsTo(Property::class, 'property', 'id');
     }
 
 }

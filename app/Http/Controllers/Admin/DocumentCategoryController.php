@@ -3,6 +3,7 @@
 namespace CampoLimpo\Http\Controllers\Admin;
 
 use CampoLimpo\DocumentCategory;
+use CampoLimpo\System;
 use CampoLimpo\User;
 use Illuminate\Http\Request;
 use CampoLimpo\Http\Controllers\Controller;
@@ -17,9 +18,11 @@ class DocumentCategoryController extends Controller
     public function index()
     {
         $documents_categories = DocumentCategory::all();
+        $system = System::where('id', 1)->first();
 
         return view('admin.document_category.index', [
-            'documents_categories' => $documents_categories
+            'documents_categories' => $documents_categories,
+            'system' => $system
         ]);
     }
 
@@ -30,7 +33,11 @@ class DocumentCategoryController extends Controller
      */
     public function create()
     {
-        return view('admin.document_category.create');
+        $system = System::where('id', 1)->first();
+
+        return view('admin.document_category.create', [
+            'system' => $system
+        ]);
     }
 
     /**
@@ -70,9 +77,11 @@ class DocumentCategoryController extends Controller
     public function edit($id)
     {
         $document_category = DocumentCategory::where('id', $id)->first();
+        $system = System::where('id', 1)->first();
 
         return view('admin.document_category.edit', [
-            'document_category' => $document_category
+            'document_category' => $document_category,
+            'system' => $system
         ]);
     }
 

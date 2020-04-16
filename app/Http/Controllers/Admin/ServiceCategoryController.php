@@ -3,6 +3,7 @@
 namespace CampoLimpo\Http\Controllers\Admin;
 
 use CampoLimpo\ServiceCategory;
+use CampoLimpo\System;
 use Illuminate\Http\Request;
 use CampoLimpo\Http\Controllers\Controller;
 
@@ -16,9 +17,12 @@ class ServiceCategoryController extends Controller
     public function index()
     {
         $services_categories = ServiceCategory::all();
+        $system = System::where('id', 1)->first();
+
 
         return view('admin.service_category.index', [
-            'services_categories' => $services_categories
+            'services_categories' => $services_categories,
+            'system' => $system
         ]);
     }
     /**
@@ -28,7 +32,11 @@ class ServiceCategoryController extends Controller
      */
     public function create()
     {
-        return view('admin.service_category.create');
+        $system = System::where('id', 1)->first();
+
+        return view('admin.service_category.create', [
+            'system' => $system
+        ]);
     }
 
     /**
@@ -40,8 +48,10 @@ class ServiceCategoryController extends Controller
     public function store(Request $request)
     {
         $createServiceCategory= new ServiceCategory();
-        $createServiceCategory->cover = $request->file('cover')->store('services' . $createServiceCategory->id);
 
+        if(!empty($request->file('cover'))) {
+            $createServiceCategory->cover = $request->file('cover')->store('services');
+        }
         $createServiceCategory->title = $request->title;
         $createServiceCategory->description = $request->description;
         $createServiceCategory->save();
@@ -72,9 +82,11 @@ class ServiceCategoryController extends Controller
     {
 
         $services_categories = ServiceCategory::where('id', $id)->first();
+        $system = System::where('id', 1)->first();
 
         return view('admin.service_category.edit', [
-            'services_categories' => $services_categories
+            'services_categories' => $services_categories,
+            'system' => $system
         ]);
 
     }
@@ -95,7 +107,7 @@ class ServiceCategoryController extends Controller
 
 
         if (!empty($request->file('cover'))) {
-            $updateServiceCategory->cover= $request->file()['cover']->store('service_category' . $updateServiceCategory->id);
+            $updateServiceCategory->cover= $request->file()['cover']->store('service_category');
         }
         $updateServiceCategory->save();
 

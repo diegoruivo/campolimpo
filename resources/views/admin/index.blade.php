@@ -1,56 +1,97 @@
 <!DOCTYPE html>
-<html lang="pt-br">
+<html>
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>AdminLTE 3 | Log in</title>
 
-    <link rel="stylesheet" href="{{ url(mix('backend/assets/css/reset.css')) }}"/>
-    <link rel="stylesheet" href="{{ url(mix('backend/assets/css/boot.css')) }}"/>
-    <link rel="stylesheet" href="{{ url(mix('backend/assets/css/login.css')) }}"/>
-    <link rel="icon" type="image/png" href="backend/assets/images/favicon.png"/>
+  <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <title>Campolimpo - Área Administrativa</title>
+  <!-- Tell the browser to be responsive to screen width -->
+  <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <meta name="csrf-token" content="{{ csrf_token() }}">
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="../resources/views/admin/assets/plugins/fontawesome-free/css/all.min.css">
+  <!-- Ionicons -->
+  <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
+  <!-- icheck bootstrap -->
+  <link rel="stylesheet" href="../resources/views/admin/assets/plugins/icheck-bootstrap/icheck-bootstrap.min.css">
+  <!-- Theme style -->
+  <link rel="stylesheet" href="../resources/views/admin/assets/dist/css/adminlte.min.css">
+  <!-- Google Font: Source Sans Pro -->
+  <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
+
+
+  <link rel="stylesheet" href="{{ url(mix('backend/assets/css/login.css')) }}"/>
+
+  <link rel="icon" type="image/png" href="../resources/views/admin/assets/images/favicon.png"/>
+
 
 </head>
-<body>
+<body class="hold-transition login-page">
 
 <div class="ajax_response"></div>
 
-<div class="dash_login">
-    <div class="dash_login_left">
-        <article class="dash_login_left_box">
-            <header class="dash_login_box_headline">
-                <p style="text-align:center"><img src="{{ url(asset('backend/assets/images/logo_campolimpo_w.png')) }}"></p>
-                <h1>Login</h1>
-            </header>
 
-            <form name="login" action="{{ route('admin.login.do') }}" method="post" autocomplete="off">
+<div class="login-box">
+  <div class="login-logo">
+    <img src="{{ url('storage/' . $system->logo) }}">
+  </div>
+  <!-- /.login-logo -->
+  <div class="card">
+    <div class="card-body login-card-body">
+      <p class="login-box-msg">Faça login para iniciar sua sessão</p>
+
+        <form name="login" action="{{ route('admin.login.do') }}" method="post">
+
+        <div class="input-group mb-3">
+          <input type="email" class="form-control"  name="email" placeholder="E-mail" required>
+          <div class="input-group-append">
+            <div class="input-group-text">
+              <span class="fas fa-envelope"></span>
+            </div>
+          </div>
+        </div>
+        <div class="input-group mb-3">
+          <input type="password" class="form-control" name="password_check" placeholder="Senha" required>
+          <div class="input-group-append">
+            <div class="input-group-text">
+              <span class="fas fa-lock"></span>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-8">
+            <p class="mb-1">
+              <a href="forgot-password.html">Esqueci minha senha</a>
+            </p>
+          </div>
+          <!-- /.col -->
+          <div class="col-4">
+            <button type="submit" class="btn btn-primary btn-block">Acessar</button>
+          </div>
+          <!-- /.col -->
+        </div>
+      </form>
 
 
-                <label>
-                    <span class="field icon-envelope">E-mail:</span>
-                    <input type="email" name="email" placeholder="Informe seu e-mail" required/>
-                </label>
-
-                <label>
-                    <span class="field icon-unlock-alt">Senha:</span>
-                    <input type="password" name="password_check" placeholder="Informe sua senha" />
-                </label>
-
-                <button class="gradient gradient-orange radius icon-sign-in">Entrar</button>
-            </form>
-
-            <footer>
-                <p>Desenvolvido por <a href="https://www.ruivooffice.com.br">www.<b>ruivooffice</b>.com.br</a></p>
-            </footer>
-        </article>
+      <p class="mb-1" style="text-align: center; margin-top:40px; zoom: 80%;">
+      Desenvolvido por <a href="https://www.ruivooffice.com.br">www.<b>ruivooffice</b>.com.br</a>
+      </p>
     </div>
-
-    <div class="dash_login_right"></div>
-
+    <!-- /.login-card-body -->
+  </div>
 </div>
+<!-- /.login-box -->
+
+<!-- jQuery -->
+<script src="../resources/views/admin2/assets/plugins/jquery/jquery.min.js"></script>
+<!-- Bootstrap 4 -->
+<script src="../resources/views/admin2/assets/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+<!-- AdminLTE App -->
+<script src="../resources/views/admin2/assets/dist/js/adminlte.min.js"></script>
+
+
 
 <script src="{{ url(mix('backend/assets/js/jquery.js')) }}"></script>
 <script src="{{ url(mix('backend/assets/js/login.js')) }}"></script>

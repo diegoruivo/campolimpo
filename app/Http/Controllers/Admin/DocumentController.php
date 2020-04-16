@@ -5,6 +5,8 @@ namespace CampoLimpo\Http\Controllers\Admin;
 use CampoLimpo\Document;
 use CampoLimpo\DocumentCategory;
 use CampoLimpo\Http\Requests\Admin\Documents as DocumentRequest;
+use CampoLimpo\Property;
+use CampoLimpo\System;
 use CampoLimpo\User;
 use Illuminate\Http\Request;
 use CampoLimpo\Http\Controllers\Controller;
@@ -26,8 +28,6 @@ class DocumentController extends Controller
     {
         $document = Document::onlyTrashed()->where(['id' => $document])->first();
 
-        var_dump($document);
-
         if ($document->trashed()){
                 $document->restore();
         }
@@ -40,9 +40,11 @@ class DocumentController extends Controller
     public function trashed()
     {
         $documents = Document::onlyTrashed()->get();
+        $system = System::where('id', 1)->first();
 
         return view('admin.documents.trashed', [
-            'documents' => $documents
+            'documents' => $documents,
+            'system' => $system
         ]);
     }
     
@@ -54,8 +56,11 @@ class DocumentController extends Controller
     public function index()
     {
         $documents = Document::all();
+        $system = System::where('id', 1)->first();
+
         return view('admin.documents.index', [
-            'documents' => $documents
+            'documents' => $documents,
+            'system' => $system
         ]);
     }
 
@@ -67,18 +72,27 @@ class DocumentController extends Controller
     public function create(Request $request)
     {
         $users = User::orderBy('name')->get();
-        $documents = Document::orderBy('id')->get();
         $documents_categories = DocumentCategory::orderBy('title')->get();
+        $system = System::where('id', 1)->first();
 
         if (!empty($request->user)) {
             $user = User::where('id', $request->user)->first();
         }
 
+        if (!empty($request->property)) {
+            $properties = Property::where('id', $request->property)->get();
+            $property = Property::where('id', $request->property)->first();
+        } else {
+            $properties = Property::all();
+        }
+
         return view('admin.documents.create', [
             'users' => $users,
-            'documents' => $documents,
+            'system' => $system,
+            'properties' => $properties,
             'documents_categories' => $documents_categories,
-            'selected' => (!empty($user) ? $user : null)
+            'selected_user' => (!empty($user) ? $user : null),
+            'selected_property' => (!empty($property) ? $property : null)
         ]);
     }
 
@@ -90,17 +104,17 @@ class DocumentController extends Controller
      */
     public function store(DocumentRequest $request)
     {
-        $createDocument = new Document();
-        $createDocument->path = $request->file('path')->store('documents' . $createDocument->id);
-
-        $createDocument->title = $request->title;
-        $createDocument->description = $request->description;
-        $createDocument->document = $request->document;
-        $createDocument->user = $request->user;
-        $createDocument->save();
+        $documentCreate = new Document();
+        $documentCreate->title = $request->title;
+        $documentCreate->description = $request->description;
+        $documentCreate->document = $request->document;
+        $documentCreate->user = $request->user;
+        $documentCreate->property = $request->property;
+        $documentCreate->path = $request->file('path')->store('documents');
+        $documentCreate->save();
 
         return redirect()->route('admin.documents.edit', [
-            'document' => $createDocument->id
+            'document' => $documentCreate->id
         ])->with(['color' => 'green', 'message' => 'Documento cadastrado com sucesso!']);
     }
 
@@ -123,22 +137,33 @@ class DocumentController extends Controller
      */
     public function edit($id)
     {
-
         $document = Document::where('id', $id)->first();
         $users = User::orderBy('name')->get();
         $documents = Document::orderBy('id')->get();
         $documents_categories = DocumentCategory::orderBy('title')->get();
+        $system = System::where('id', 1)->first();
+
 
         if (!empty($request->user)) {
             $user = User::where('id', $request->user)->first();
         }
 
+        if (!empty($request->property)) {
+            $properties = Property::where('id', $request->property)->get();
+            $property = Property::where('id', $request->property)->first();
+        } else {
+            $properties = Property::all();
+        }
+
         return view('admin.documents.edit', [
             'users' => $users,
+            'system' => $system,
             'document' => $document,
             'documents' => $documents,
             'documents_categories' => $documents_categories,
-            'selected' => (!empty($user) ? $user : null)
+            'properties' => $properties,
+            'selected_user' => (!empty($user) ? $user : null),
+            'selected_property' => (!empty($property) ? $property : null)
         ]);
 
     }
@@ -156,12 +181,10 @@ class DocumentController extends Controller
         $updateDocument->fill($request->all());
         $updateDocument->save();
 
-
         if (!empty($request->file('path'))) {
             $updateDocument->path = $request->file()['path']->store('documents' . $updateDocument->id);
         }
         $updateDocument->save();
-
 
         return redirect()->route('admin.documents.edit', [
             'document' => $updateDocument->id

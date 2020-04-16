@@ -2,77 +2,101 @@
 
 @section('content')
 
-    <section class="dash_content_app">
+    <!-- Content Wrapper. Contains page content -->
+    <div class="content-wrapper">
+        <!-- Content Header (Page header) -->
+        <section class="content-header">
+            <div class="container-fluid">
+                <div class="row mb-2">
+                    <div class="col-sm-6">
+                        <h1>
+                            <small><i class="fa fa-id-card"></i></small>
+                            Documentos
+                        </h1>
+                    </div>
+                    <div class="col-sm-6">
+                        <ol class="breadcrumb float-sm-right">
+                            <li class="breadcrumb-item"><a href="{{ route('admin.home') }}">Home</a></li>
+                            <li class="breadcrumb-item"><a href="{{ route('admin.users.index') }}">Clientes</a></li>
+                            <li class="breadcrumb-item active">Documentos</li>
+                            <a href="{{ route('admin.documents.create') }}">
+                                <button type="button" class="btn bg-gradient-primary ml-3"><i class="fa fa-id-card"></i> Cadastrar Documento</button>
+                            </a>
+                        </ol>
+                    </div>
+                </div>
+            </div><!-- /.container-fluid -->
+        </section>
 
-    <header class="dash_content_app_header">
-        <h2 class="icon-file">Documentos</h2>
+        <!-- Main content -->
+        <section class="content">
 
-        <div class="dash_content_app_header_actions">
-
-            <nav class="dash_content_app_breadcrumb">
-                <ul>
-                    <li><a href="{{ route('admin.home') }}">Dashboard</a></li>
-                    <li class="separator icon-angle-right icon-notext"></li>
-                    <li><a href="{{ route('admin.users.index') }}">Clientes</a></li>
-                    <li class="separator icon-angle-right icon-notext"></li>
-                    <li><a href="{{ route('admin.documents.index') }}" class="text-orange">Documentos</a></li>
-                </ul>
-            </nav>
-
-            <a href="{{ route('admin.documents.create') }}" class="btn btn-large btn-green icon-file-o">Criar Documento</a>
-            <a href="{{ route('admin.documents.trashed') }}" class="btn btn-large btn-red icon-trash-o">Ver Lixeira</a>
-
-
-        </div>
-    </header>
-
-
-        @if($errors->all())
-            @foreach($errors->all() as $error)
-                @message(['color' => 'orange'])
-                <p class="icon-asterisk">{{ $error }}</p>
-                @endmessage
-            @endforeach
-        @endif
-
-        @if(session()->exists('message'))
-
-            @message(['color' => session()->get('color')])
-            <p class="icon-asterisk">{{ session()->get('message') }}</p>
-            @endmessage
-
-        @endif
-
-        <div class="dash_content_app_box">
-            <div class="dash_content_app_box_stage">
-                <table id="dataTable" class="nowrap stripe" width="100" style="width: 100% !important;">
-                    <thead>
-                    <tr>
-                        <th>Cliente</th>
-                        <th>Categoria</th>
-                        <th>Título</th>
-                        <th>Arquivo</th>
-                        <th width="80">Ação</th>
-                    </tr>
-                    </thead>
-                    <tbody>
-                    @foreach($documents as $document)
+            <div class="card">
+                <div class="card-header">
+                    <h3 class="card-title">Lista de Documentos</h3>
+                </div>
+                <!-- /.card-header -->
+                <div class="card-body">
+                    <table id="example1" class="table table-bordered table-striped">
+                        <thead>
                         <tr>
-                            <td><a href="{{ route('admin.documents.edit', ['document' => $document->id]) }}" class="text-orange">{{ $document->user()->first()->name }}</a></td>
-                            <td><a href="{{ route('admin.documents.edit', ['document' => $document->id]) }}" class="text-orange">{{ $document->document_category()->first()->title }}</a></td>
-                            <td><a href="{{ route('admin.documents.edit', ['document' => $document->id]) }}" class="text-orange">{{ $document->title }}</a></td>
-                            <td><a href="{{ asset('storage/' . $document->path) }}" class="btn icon-download" target="_blank">Download</a></td>
-                            <td>
-                                <a href="{{ route('admin.documents.edit', ['document' => $document->id]) }}" class="btn btn-large btn-blue icon-check">
-                                    Editar</a>
-                            </td>
+                            <th>Categoria</th>
+                            <th>Título</th>
+                            <th>Cliente</th>
+                            <th>Arquivo</th>
+                            <th width="100">Ação</th>
                         </tr>
-                    @endforeach
-                    </tbody>
-                </table>
+                        </thead>
+                        <tbody>
+                        @foreach($documents as $document)
+                            <tr>
+                                <td>{{ $document->document_category()->first()->title }}</td>
+                                <td>{{ $document->title }}</td>
+                                <td>{{ $document->user()->first()->name }}</td>
+                                <td>
+                                    <a href="{{ asset('storage/' . $document->path) }}" target="_blank">
+                                        <button type="button" class="btn btn-block bg-gradient-success btn-xs"><i class="fa fa-download"></i> Download</button>
+                                    </a>
+                                <td>
+                                    <a href="{{ route('admin.documents.edit', ['document' => $document->id]) }}">
+                                        <button type="button" class="btn btn-block bg-gradient-primary btn-xs"><i class="fa fa-edit"></i> Editar</button>
+                                    </a>
+                                </td>
+                            </tr>
+                        @endforeach
+                        </tbody>
+
+                    </table>
+                </div>
+                <!-- /.card-body -->
             </div>
-        </div>
+            <!-- /.card -->
 
-</section>
 
+        </section>
+        <!-- /.content -->
+    </div>
+    <!-- /.content-wrapper -->
+
+@endsection
+
+
+@section('js')
+    <script>
+        $(function () {
+            $("#example1").DataTable({
+                "responsive": true,
+                "autoWidth": false,
+            });
+            $('#example2').DataTable({
+                "paging": true,
+                "lengthChange": false,
+                "searching": false,
+                "ordering": true,
+                "info": true,
+                "autoWidth": false,
+                "responsive": true,
+            });
+        });
+    </script>
 @endsection

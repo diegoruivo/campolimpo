@@ -3,6 +3,7 @@
 namespace CampoLimpo\Http\Controllers\Admin;
 
 use CampoLimpo\Contract;
+use CampoLimpo\System;
 use CampoLimpo\User;
 use Illuminate\Http\Request;
 use CampoLimpo\Http\Controllers\Controller;
@@ -12,22 +13,27 @@ class AuthController extends Controller
 {
     public function showLoginForm()
     {
-// PARA RESETAR SENHA DO USUÁRIO ID 1 - SENHA: 123
-        $user = User::where('id', 1)->first();
-        $user->password = '123';
-        $user->save();
+        // PARA RESETAR SENHA DO USUÁRIO ID 1 - SENHA: 123
+//        $user = User::where('id', 1)->first();
+//        $user->password = '123';
+//        $user->save();
+
+        $system = System::where('id', 1)->first();
 
         if(Auth::check() === true) {
             return redirect()->route('admin.home');
         }
-        return view('admin.index');
+        return view('admin.index', [
+            'system' => $system
+        ]);
     }
 
     public function home()
     {
-
+        $system = System::where('id', 1)->first();
         $contracts = Contract::all();
         return view('admin.dashboard', [
+            'system' => $system,
             'contracts' => $contracts
         ]);
 

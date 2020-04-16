@@ -7,6 +7,7 @@ use CampoLimpo\Document;
 use CampoLimpo\DocumentCategory;
 use CampoLimpo\Http\Requests\Admin\Contract as ContractRequest;
 use CampoLimpo\Service;
+use CampoLimpo\System;
 use CampoLimpo\User;
 use Illuminate\Http\Request;
 use CampoLimpo\Http\Controllers\Controller;
@@ -21,8 +22,11 @@ class ContractController extends Controller
     public function index()
     {
         $contracts = Contract::all();
+        $system = System::where('id', 1)->first();
+
         return view('admin.contracts.index', [
-            'contracts' => $contracts
+            'contracts' => $contracts,
+            'system' => $system
         ]);
     }
 
@@ -36,6 +40,7 @@ class ContractController extends Controller
 
         $users = User::orderBy('name')->get();
         $services = Service::orderBy('title')->get();
+        $system = System::where('id', 1)->first();
 
         if (!empty($request->user)) {
             $user = User::where('id', $request->user)->first();
@@ -48,6 +53,7 @@ class ContractController extends Controller
         return view('admin.contracts.create', [
             'users' => $users,
             'services' => $services,
+            'system' => $system,
             'selected' => (!empty($user) ? $user : null)
         ]);
 
@@ -92,6 +98,7 @@ class ContractController extends Controller
         $contract = Contract::where('id', $id)->first();
         $users = User::orderBy('name')->get();
         $services = Service::orderBy('id')->get();
+        $system = System::where('id', 1)->first();
 
         if (!empty($request->user)) {
             $user = User::where('id', $request->user)->first();
@@ -101,6 +108,7 @@ class ContractController extends Controller
             'contract' => $contract,
             'users' => $users,
             'services' => $services,
+            'system' => $system,
             'selected' => (!empty($user) ? $user : null)
         ]);
     }
