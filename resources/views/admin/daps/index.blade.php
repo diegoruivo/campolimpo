@@ -10,17 +10,17 @@
                 <div class="row mb-2">
                     <div class="col-sm-6">
                         <h1>
-                            <small><i class="fa fa-house-user"></i></small>
-                            Propriedades
+                            <small><i class="fa fa-seedling"></i></small>
+                            DAP - Declaração de Aptidão ao Pronaf
                         </h1>
                     </div>
                     <div class="col-sm-6">
                         <ol class="breadcrumb float-sm-right">
                             <li class="breadcrumb-item"><a href="{{ route('admin.home') }}">Home</a></li>
                             <li class="breadcrumb-item"><a href="{{ route('admin.users.index') }}">Clientes</a></li>
-                            <li class="breadcrumb-item active">Propriedades</li>
-                            <a href="{{ route('admin.properties.create') }}">
-                                <button type="button" class="btn bg-gradient-primary ml-3"><i class="fa fa-plus"></i> Cadastrar Propriedade</button>
+                            <li class="breadcrumb-item active">DAP</li>
+                            <a href="{{ route('admin.daps.create') }}">
+                                <button type="button" class="btn bg-gradient-primary ml-3"><i class="fa fa-plus"></i> Cadastrar DAP</button>
                             </a>
                         </ol>
                     </div>
@@ -33,30 +33,34 @@
 
             <div class="card">
                 <div class="card-header">
-                    <h3 class="card-title">Lista de Propriedades</h3>
+                    <h3 class="card-title">Lista DAP</h3>
                 </div>
                 <!-- /.card-header -->
                 <div class="card-body">
                     <table id="example1" class="table table-bordered table-striped">
                         <thead>
                         <tr>
+                            <th>Produtor</th>
+                            <th>N° DAP</th>
+                            <th>Município/UF</th>
+                            <th>Validade</th>
                             <th>Categoria</th>
-                            <th>Tipo</th>
-                            <th>Valor</th>
-                            <th>Cliente</th>
+                            <th>Enquadramento</th>
                             <th width="100">Ação</th>
                         </tr>
                         </thead>
                         <tbody>
-                        @if(!empty($properties))
-                            @foreach($properties as $property)
+                        @if(!empty($daps))
+                            @foreach($daps as $dap)
                                 <tr>
-                                    <td>{{ $property->category }}</td>
-                                    <td>{{ $property->type }}</td>
-                                    <td>R$ {{ $property->sale_price }}</td>
-                                    <td>{{ $property->user()->first()->name }}</td>
+                                    <td>{{ $dap->user()->first()->name }}</td>
+                                    <td>{{ $dap->dap_number }}</td>
+                                    <td>{{ $dap->county }}/{{ $dap->state }}</td>
+                                    <td>{{ $dap->validity }}</td>
+                                    <td>{{ $dap->category }}</td>
+                                    <td>{{ $dap->framework }}</td>
                                     <td>
-                                        <a href="{{ route('admin.properties.edit', ['property' => $property->id]) }}">
+                                        <a href="{{ route('admin.daps.edit', ['dap' => $dap->id]) }}">
                                             <button type="button" class="btn btn-block bg-gradient-primary btn-xs"><i class="fa fa-edit"></i> Editar</button>
                                         </a>
                                     </td>

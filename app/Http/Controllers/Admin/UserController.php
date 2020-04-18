@@ -2,6 +2,8 @@
 
 namespace CampoLimpo\Http\Controllers\Admin;
 
+use CampoLimpo\Account;
+use CampoLimpo\Bank;
 use CampoLimpo\CallSector;
 use CampoLimpo\Document;
 use CampoLimpo\DocumentCategory;
@@ -121,6 +123,8 @@ class UserController extends Controller
         $documents_user = Document::where('user', $user->id)->first();
         $documents_categories = DocumentCategory::all();
         $sectors = CallSector::all();
+        $accounts = Account::where('user', $user->id)->get();
+        $banks = Bank::orderBy('bank')->get();
 
 
 //        if (!empty($request->sector)) {
@@ -133,6 +137,8 @@ class UserController extends Controller
             'documents_user' => $documents_user,
             'documents_categories' => $documents_categories,
             'sectors' => $sectors,
+            'accounts' => $accounts,
+            'banks' => $banks,
             'selected' => (!empty($sector) ? $sector : null)
 
         ]);

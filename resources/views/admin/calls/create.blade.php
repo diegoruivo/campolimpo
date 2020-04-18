@@ -6,7 +6,7 @@
     <section class="dash_content_app">
 
         <header class="dash_content_app_header">
-            <h2 class="icon-tags">Cadastrar Atendimento</h2>
+            <h2 class="icon-tags">Cadastrar DAP</h2>
 
             <div class="dash_content_app_header_actions">
                 <nav class="dash_content_app_breadcrumb">

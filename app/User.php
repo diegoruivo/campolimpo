@@ -109,6 +109,11 @@ class User extends Authenticatable
         return $this->hasMany(Service::class, 'service', 'id');
     }
 
+    public function bank()
+    {
+        return $this->hasMany(Bank::class, 'bank', 'id');
+    }
+
 
 
     public function getUrlCoverAttribute()

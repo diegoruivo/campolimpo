@@ -5,9 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title>CAMPOLIMPO - ERP</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" href="{{ url(mix('backend/assets/css/reset.css')) }}"/>
-    <link rel="stylesheet" href="{{ url(mix('backend/assets/css/style.css')) }}"/>
-    <link rel="stylesheet" href="{{ url(mix('backend/assets/dist/css/libs.css')) }}">
+    <link rel="stylesheet" href="{{ url(mix('backend/assets/css/libs.css')) }}">
     @hasSection('css')
         @yield('css')
     @endif
@@ -179,6 +177,12 @@
                                 </a>
                             </li>
                             <li class="nav-item">
+                                <a href="{{ route('admin.accounts.index') }}" class="nav-link">
+                                    <i class="fa fa-caret-right nav-icon"></i>
+                                    <p>Dados Bancários</p>
+                                </a>
+                            </li>
+                            <li class="nav-item">
                                 <a href="{{ route('admin.companies.index') }}" class="nav-link">
                                     <i class="fa fa-caret-right nav-icon"></i>
                                     <p>Empresas</p>
@@ -190,6 +194,29 @@
                                     <p>Propriedades</p>
                                 </a>
                             </li>
+
+                            <li class="nav-item">
+                                <a href="{{ route('admin.rural_properties.index') }}" class="nav-link">
+                                    <i class="fa fa-caret-right nav-icon"></i>
+                                    <p>Imóvel Rural</p>
+                                </a>
+                            </li>
+
+                            <li class="nav-item">
+                                <a href="{{ route('admin.daps.index') }}" class="nav-link">
+                                    <i class="fa fa-caret-right nav-icon"></i>
+                                    <p>DAP</p>
+                                </a>
+                            </li>
+
+                            <li class="nav-item">
+                                <a href="{{ route('admin.rural_environmental_registrations.index') }}" class="nav-link">
+                                    <i class="fa fa-caret-right nav-icon"></i>
+                                    <p>CAR</p>
+                                </a>
+                            </li>
+
+
                         </ul>
                     </li>
 
@@ -295,10 +322,9 @@
     @yield('js')
 @endif
 
-<script src="{{ url(mix('backend/assets/js/jquery.js')) }}"></script>
-<script src="{{ url(mix('backend/assets/dist/js/libs.js')) }}"></script>
-<script src="{{ url(mix('backend/assets/dist/js/libs_table.js')) }}"></script>
-
+<script src="{{ url(mix('backend/assets/js/libs.js')) }}"></script>
+<script src="{{ url(mix('backend/assets/js/libs_table.js')) }}"></script>
+<script src="{{ url(mix('backend/assets/js/inputmask.js')) }}"></script>
 
 </body>
 </html>

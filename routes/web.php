@@ -58,14 +58,24 @@ Route::group(['prefix' => 'admin', 'namespace' => 'Admin', 'as' => 'admin.'], fu
         Route::resource('documents', 'DocumentController');
         Route::resource('document_category', 'DocumentCategoryController');
 
+        /** Dados Bancários */
+        Route::resource('accounts', 'AccountController');
+
+        /** DAP */
+        Route::resource('daps', 'DapController');
+
+        /** Propriedades Rurais */
+        Route::resource('rural_properties', 'RuralPropertyController');
+
+        /** Cadastro Ambiental Rural  */
+        Route::resource('rural_environmental_registrations', 'RuralEnvironmentalRegistryController');
+
         /** Serviços */
         Route::resource('services', 'ServiceController');
         Route::resource('service_category', 'ServiceCategoryController');
 
         /** Contracts */
         Route::resource('contracts', 'ContractController');
-
-
 
         /** Settings */
         Route::resource('system', 'SystemController');

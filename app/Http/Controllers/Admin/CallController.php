@@ -79,7 +79,7 @@ class CallController extends Controller
 
         return redirect()->route('admin.calls.edit', [
             'call' => $createCall->id
-        ])->with(['color' => 'green', 'message' => 'Atendmento cadastrado com sucesso!']);
+        ])->with(['color' => 'green', 'message' => 'Atendimento cadastrado com sucesso!']);
 
     }
 

@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title>AdminLTE 3 | Log in</title>
+  <title>{{ $system->title }} | ERP | Login</title>
 
   <meta name="csrf-token" content="{{ csrf_token() }}">
 
@@ -24,7 +24,7 @@
 
   <link rel="stylesheet" href="{{ url(mix('backend/assets/css/login.css')) }}"/>
 
-  <link rel="icon" type="image/png" href="../resources/views/admin/assets/images/favicon.png"/>
+  <link rel="icon" type="image/png" href="{{ url('storage/' . $system->favico) }}"/>
 
 
 </head>

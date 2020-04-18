@@ -107,7 +107,7 @@ mix
         'resources/views/admin/assets/plugins/summernote/summernote-bs4.css',
         'resources/views/admin/assets/plugins/sweetalert2/sweetalert2.min.css',
         'resources/views/admin/assets/plugins/toastr/toastr.min.css'
-    ], 'public/backend/assets/dist/css/libs.css')
+    ], 'public/backend/assets/css/libs.css')
 
     // .scripts([
     //     'resources/views/admin/assets/js/datatables/js/jquery.dataTables.min.js',
@@ -130,6 +130,7 @@ mix
     .scripts([
         'resources/views/admin/assets/plugins/jquery/jquery.min.js',
         'resources/views/admin/assets/plugins/jquery-ui/jquery-ui.min.js',
+        'resources/views/admin/assets/plugins/bootstrap/js/bootstrap.bundle.min.js',
         // 'resources/views/admin/assets/plugins/chart.js/Chart.min.js',
         'resources/views/admin/assets/plugins/sparklines/sparkline.js',
         'resources/views/admin/assets/plugins/jquery-knob/jquery.knob.min.js',
@@ -141,22 +142,21 @@ mix
         'resources/views/admin/assets/dist/js/adminlte.js',
         'resources/views/admin/assets/dist/js/pages/dashboard.js',
         'resources/views/admin/assets/dist/js/demo.js',
-    ], 'public/backend/assets/dist/js/libs.js')
+    ], 'public/backend/assets/js/libs.js')
 
 
     .scripts([
         'resources/views/admin/assets/plugins/moment/moment.min.js',
         'resources/views/admin/assets/plugins/inputmask/min/jquery.inputmask.bundle.min.js'
-    ], 'public/backend/assets/plugins/inputmask.js')
+    ], 'public/backend/assets/js/inputmask.js')
 
 
     .scripts([
-        'resources/views/admin/assets/plugins/bootstrap/js/bootstrap.bundle.min.js',
         'resources/views/admin/assets/plugins/datatables/jquery.dataTables.min.js',
         'resources/views/admin/assets/plugins/datatables-bs4/js/dataTables.bootstrap4.min.js',
         'resources/views/admin/assets/plugins/datatables-responsive/js/dataTables.responsive.min.js',
         'resources/views/admin/assets/plugins/datatables-responsive/js/responsive.bootstrap4.min.js',
-    ], 'public/backend/assets/dist/js/libs_table.js')
+    ], 'public/backend/assets/js/libs_table.js')
 
 
     .copyDirectory('resources/views/admin/assets/plugins/fontawesome-free/css', 'public/backend/assets/plugins/fontawesome-free/css')

@@ -10,17 +10,17 @@
                 <div class="row mb-2">
                     <div class="col-sm-6">
                         <h1>
-                            <small><i class="fa fa-house-user"></i></small>
-                            Propriedades
+                            <small><i class="fa fa-money-check-alt"></i></small>
+                            Dados Bancários
                         </h1>
                     </div>
                     <div class="col-sm-6">
                         <ol class="breadcrumb float-sm-right">
                             <li class="breadcrumb-item"><a href="{{ route('admin.home') }}">Home</a></li>
                             <li class="breadcrumb-item"><a href="{{ route('admin.users.index') }}">Clientes</a></li>
-                            <li class="breadcrumb-item active">Propriedades</li>
-                            <a href="{{ route('admin.properties.create') }}">
-                                <button type="button" class="btn bg-gradient-primary ml-3"><i class="fa fa-plus"></i> Cadastrar Propriedade</button>
+                            <li class="breadcrumb-item active">Dados Bancários</li>
+                            <a href="{{ route('admin.accounts.create') }}">
+                                <button type="button" class="btn bg-gradient-primary ml-3"><i class="fa fa-plus"></i> Cadastrar Dados Bancários</button>
                             </a>
                         </ol>
                     </div>
@@ -33,30 +33,28 @@
 
             <div class="card">
                 <div class="card-header">
-                    <h3 class="card-title">Lista de Propriedades</h3>
+                    <h3 class="card-title">Lista Dados Bancários</h3>
                 </div>
                 <!-- /.card-header -->
                 <div class="card-body">
                     <table id="example1" class="table table-bordered table-striped">
                         <thead>
                         <tr>
-                            <th>Categoria</th>
-                            <th>Tipo</th>
-                            <th>Valor</th>
-                            <th>Cliente</th>
+                            <th>Titular</th>
+                            <th>Agência</th>
+                            <th>Conta</th>
                             <th width="100">Ação</th>
                         </tr>
                         </thead>
                         <tbody>
-                        @if(!empty($properties))
-                            @foreach($properties as $property)
+                        @if(!empty($accounts))
+                            @foreach($accounts as $account)
                                 <tr>
-                                    <td>{{ $property->category }}</td>
-                                    <td>{{ $property->type }}</td>
-                                    <td>R$ {{ $property->sale_price }}</td>
-                                    <td>{{ $property->user()->first()->name }}</td>
+                                    <td>{{ $account->user()->first()->name }}</td>
+                                    <td>{{ $account->bank()->first()->bank }} ({{ $account->agency }} - {{ $account->agency_dv }})</td>
+                                    <td>{{ $account->account }} - {{ $account->account_dv }}</td>
                                     <td>
-                                        <a href="{{ route('admin.properties.edit', ['property' => $property->id]) }}">
+                                        <a href="{{ route('admin.accounts.edit', ['account' => $account->id]) }}">
                                             <button type="button" class="btn btn-block bg-gradient-primary btn-xs"><i class="fa fa-edit"></i> Editar</button>
                                         </a>
                                     </td>
