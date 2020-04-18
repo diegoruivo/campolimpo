@@ -346,164 +346,351 @@
 
                                         <div class="row">
 
-
                                             <div class="col-sm-12 mb-4">
-                                                <div class="row">
-                                                    <label>Tipo de Produtor</label>
-                                                </div>
 
-                                                <div class="icheck-primary d-inline">
-                                                    <input type="checkbox" id="small_rural_producer"
-                                                           name="small_rural_producer" {{ (old('small_rural_producer') == 'on' || old('small_rural_producer') == true ? 'checked' : ($user->small_rural_producer == true ? 'checked' : '')) }}>
-                                                    <label for="small_rural_producer">Pequeno</label>
-                                                </div>
+                                                <div class="card card-primary card-outline card-outline-tabs">
 
-                                                <div class="icheck-primary offset-sm-1 d-inline">
-                                                    <input type="checkbox" id="medium_rural_producer"
-                                                           name="medium_rural_producer" {{ (old('medium_rural_producer') == 'on' || old('medium_rural_producer') == true ? 'checked' : ($user->medium_rural_producer == true ? 'checked' : '')) }}>
-                                                    <label for="medium_rural_producer">Médio</label>
-                                                </div>
+                                                    <div class="card-header p-0 border-bottom-0">
+                                                        <ul class="nav nav-tabs" id="custom-tabs-four-tab"
+                                                            role="tablist">
+                                                            <li class="nav-item">
+                                                                <a class="nav-link active"
+                                                                   id="custom-tabs-four-home-tab"
+                                                                   data-toggle="pill" href="#custom-tabs-four-home"
+                                                                   role="tab" aria-controls="custom-tabs-four-home"
+                                                                   aria-selected="true">Tipo de Produto</a>
+                                                            </li>
+                                                            <li class="nav-item">
+                                                                <a class="nav-link" id="custom-tabs-four-profile-tab"
+                                                                   data-toggle="pill" href="#custom-tabs-four-profile"
+                                                                   role="tab" aria-controls="custom-tabs-four-profile"
+                                                                   aria-selected="false">Imóvel Rural</a>
+                                                            </li>
+                                                            <li class="nav-item">
+                                                                <a class="nav-link" id="custom-tabs-four-messages-tab"
+                                                                   data-toggle="pill" href="#custom-tabs-four-messages"
+                                                                   role="tab" aria-controls="custom-tabs-four-messages"
+                                                                   aria-selected="false">DAP</a>
+                                                            </li>
+                                                            <li class="nav-item">
+                                                                <a class="nav-link" id="custom-tabs-four-settings-tab"
+                                                                   data-toggle="pill" href="#custom-tabs-four-settings"
+                                                                   role="tab" aria-controls="custom-tabs-four-settings"
+                                                                   aria-selected="false">CAR</a>
+                                                            </li>
+                                                        </ul>
+                                                    </div>
 
-                                                <div class="icheck-primary offset-sm-1 d-inline">
-                                                    <input type="checkbox" id="large_rural_producer"
-                                                           name="large_rural_producer" {{ (old('large_rural_producer') == 'on' || old('large_rural_producer') == true ? 'checked' : ($user->large_rural_producer == true ? 'checked' : '')) }}>
-                                                    <label for="large_rural_producer">Grande</label>
-                                                </div>
+                                                    <div class="card-body">
+                                                        <div class="tab-content" id="custom-tabs-four-tabContent">
 
-                                            </div>
-
-
-                                            <div class="col-sm-4">
-                                                <div class="form-group">
-                                                    <label>Grupo Organizado</label>
-                                                    <select name="organized_group" class="custom-select">
-                                                        <option value="" {{ (old('organized_group') == '' ? 'selected' : ($user->organized_group == '' ? 'selected' : '')) }}>
-                                                            Escolha a opção
-                                                        </option>
-                                                        <option value="1" {{ (old('organized_group') == '1' ? 'selected' : ($user->organized_group == '1' ? 'selected' : '')) }}>
-                                                            Sim
-                                                        </option>
-                                                        <option value="0" {{ (old('organized_group') == '0' ? 'selected' : ($user->organized_group == '0' ? 'selected' : '')) }}>
-                                                            Não
-                                                        </option>
-                                                    </select>
-                                                    </select>
-                                                </div>
-                                            </div>
+                                                            <div class="tab-pane fade show active"
+                                                                 id="custom-tabs-four-home" role="tabpanel"
+                                                                 aria-labelledby="custom-tabs-four-home-tab">
 
 
-                                            <div class="col-sm-4">
-                                                <div class="form-group">
-                                                    <label>Tipo do Grupo Organizado</label>
-                                                    <select name="organized_group_type" class="custom-select">
-                                                        <option value="" {{ (old('organized_group_type') == '0' ? 'selected' : ($user->organized_group_type == '0' ? 'selected' : '')) }}>
-                                                            Escolha a opção
-                                                        </option>
-                                                        <option value="Association" {{ (old('organized_group_type') == 'Association' ? 'selected' : ($user->organized_group_type == 'Association' ? 'selected' : '')) }}>
-                                                            Associação
-                                                        </option>
-                                                        <option value="Cooperative" {{ (old('organized_group_type') == 'Cooperative' ? 'selected' : ($user->organized_group_type == 'Cooperative' ? 'selected' : '')) }}>
-                                                            Cooperativa
-                                                        </option>
-                                                    </select>
-                                                    </select>
-                                                </div>
-                                            </div>
+                                                                <div class="col-sm-12 mb-4">
+                                                                    <div class="row">
+                                                                        <label>Tipo de Produtor</label>
+                                                                    </div>
+
+                                                                    <div class="icheck-primary d-inline">
+                                                                        <input type="checkbox" id="small_rural_producer"
+                                                                               name="small_rural_producer" {{ (old('small_rural_producer') == 'on' || old('small_rural_producer') == true ? 'checked' : ($user->small_rural_producer == true ? 'checked' : '')) }}>
+                                                                        <label for="small_rural_producer">Pequeno</label>
+                                                                    </div>
+
+                                                                    <div class="icheck-primary offset-sm-1 d-inline">
+                                                                        <input type="checkbox"
+                                                                               id="medium_rural_producer"
+                                                                               name="medium_rural_producer" {{ (old('medium_rural_producer') == 'on' || old('medium_rural_producer') == true ? 'checked' : ($user->medium_rural_producer == true ? 'checked' : '')) }}>
+                                                                        <label for="medium_rural_producer">Médio</label>
+                                                                    </div>
+
+                                                                    <div class="icheck-primary offset-sm-1 d-inline">
+                                                                        <input type="checkbox" id="large_rural_producer"
+                                                                               name="large_rural_producer" {{ (old('large_rural_producer') == 'on' || old('large_rural_producer') == true ? 'checked' : ($user->large_rural_producer == true ? 'checked' : '')) }}>
+                                                                        <label for="large_rural_producer">Grande</label>
+                                                                    </div>
+
+                                                                </div>
+
+                                                                <div class="row">
+
+                                                                    <div class="col-sm-4">
+                                                                        <div class="form-group">
+                                                                            <label>Grupo Organizado</label>
+                                                                            <select name="organized_group"
+                                                                                    class="custom-select">
+                                                                                <option value="" {{ (old('organized_group') == '' ? 'selected' : ($user->organized_group == '' ? 'selected' : '')) }}>
+                                                                                    Escolha a opção
+                                                                                </option>
+                                                                                <option value="1" {{ (old('organized_group') == '1' ? 'selected' : ($user->organized_group == '1' ? 'selected' : '')) }}>
+                                                                                    Sim
+                                                                                </option>
+                                                                                <option value="0" {{ (old('organized_group') == '0' ? 'selected' : ($user->organized_group == '0' ? 'selected' : '')) }}>
+                                                                                    Não
+                                                                                </option>
+                                                                            </select>
+                                                                            </select>
+                                                                        </div>
+                                                                    </div>
 
 
-                                            <div class="col-sm-4">
-                                                <div class="form-group">
-                                                    <label>Nome do Grupo Organizado</label>
-                                                    <input type="tel" class="form-control" class="mask-doc"
-                                                           name="organized_group_name"
-                                                           placeholder="Nome do Grupo Organizado"
-                                                           value="{{ old('organized_group_name') ?? $user->organized_group_name }}"/>
-                                                </div>
-                                            </div>
+                                                                    <div class="col-sm-4">
+                                                                        <div class="form-group">
+                                                                            <label>Tipo do Grupo Organizado</label>
+                                                                            <select name="organized_group_type"
+                                                                                    class="custom-select">
+                                                                                <option value="" {{ (old('organized_group_type') == '0' ? 'selected' : ($user->organized_group_type == '0' ? 'selected' : '')) }}>
+                                                                                    Escolha a opção
+                                                                                </option>
+                                                                                <option value="Association" {{ (old('organized_group_type') == 'Association' ? 'selected' : ($user->organized_group_type == 'Association' ? 'selected' : '')) }}>
+                                                                                    Associação
+                                                                                </option>
+                                                                                <option value="Cooperative" {{ (old('organized_group_type') == 'Cooperative' ? 'selected' : ($user->organized_group_type == 'Cooperative' ? 'selected' : '')) }}>
+                                                                                    Cooperativa
+                                                                                </option>
+                                                                            </select>
+                                                                            </select>
+                                                                        </div>
+                                                                    </div>
 
 
-                                        </div>
+                                                                    <div class="col-sm-4">
+                                                                        <div class="form-group">
+                                                                            <label>Nome do Grupo Organizado</label>
+                                                                            <input type="tel" class="form-control"
+                                                                                   class="mask-doc"
+                                                                                   name="organized_group_name"
+                                                                                   placeholder="Nome do Grupo Organizado"
+                                                                                   value="{{ old('organized_group_name') ?? $user->organized_group_name }}"/>
+                                                                        </div>
+                                                                    </div>
+
+                                                                </div>
 
 
+                                                            </div>
+                                                            <div class="tab-pane fade" id="custom-tabs-four-profile"
+                                                                 role="tabpanel"
+                                                                 aria-labelledby="custom-tabs-four-profile-tab">
 
 
+                                                                <div class="row">
+                                                                    <div class="col-sm-12 mb-2">
+                                                                        <a href="{{ route('admin.rural_properties.create', ['user' => $user->id]) }}">
+                                                                            <button type="button"
+                                                                                    class="btn btn-xs bg-gradient-primary ml-3"
+                                                                                    style="float:right;"><i
+                                                                                        class="fa fa-plus"></i>
+                                                                                Cadastrar Imóvel Rural
+                                                                            </button>
+                                                                        </a>
+                                                                    </div>
+                                                                </div>
+
+                                                                <div class="row">
+
+                                                                    <div class="col-sm-12">
+
+                                                                        <table class="table table-sm">
+                                                                            <thead>
+                                                                            <tr>
+                                                                                <th>N° NIRF</th>
+                                                                                <th>N° CCIR</th>
+                                                                                <th>Denominação</th>
+                                                                                <th>Área (HA)</th>
+                                                                                <th>Tipo de Domínio</th>
+                                                                                <th>Comprovação</th>
+                                                                                <th width="100">Ação</th>
+                                                                            </tr>
+                                                                            </thead>
+                                                                            <tbody>
+
+                                                                            @if(!empty($rural_properties))
+                                                                                @foreach($rural_properties as $rural_property)
+                                                                                    <tr>
+                                                                                        <td>{{ $rural_property->nirf_number }}</td>
+                                                                                        <td>{{ $rural_property->ccir_number }}</td>
+                                                                                        <td>{{ $rural_property->area }}</td>
+                                                                                        <td>{{ $rural_property->rural_property }}</td>
+                                                                                        <td>{{ $rural_property->domain_type }}</td>
+                                                                                        <td>{{ $rural_property->domain_document }}</td>
+                                                                                        <td>
+                                                                                            <a href="{{ route('admin.rural_properties.edit', ['rural_property' => $rural_property->id]) }}">
+                                                                                                <button type="button"
+                                                                                                        class="btn btn-block bg-gradient-primary btn-xs">
+                                                                                                    <i class="fa fa-edit"></i>
+                                                                                                    Editar
+                                                                                                </button>
+                                                                                            </a>
+                                                                                        </td>
+                                                                                    </tr>
+                                                                                @endforeach
+                                                                            @else
+                                                                                <div class="no-content">Não foram
+                                                                                    encontrados registros!
+                                                                                </div>
+                                                                            @endif
+
+                                                                            </tbody>
+                                                                        </table>
+
+                                                                    </div>
+
+                                                                </div>
 
 
+                                                            </div>
 
 
+                                                            <div class="tab-pane fade" id="custom-tabs-four-messages"
+                                                                 role="tabpanel"
+                                                                 aria-labelledby="custom-tabs-four-messages-tab">
 
 
+                                                                <div class="row">
+                                                                    <div class="col-sm-12 mb-2">
+                                                                        <a href="{{ route('admin.daps.create', ['user' => $user->id]) }}">
+                                                                            <button type="button"
+                                                                                    class="btn btn-xs bg-gradient-primary ml-3"
+                                                                                    style="float:right;"><i
+                                                                                        class="fa fa-plus"></i>
+                                                                                Cadastrar DAP
+                                                                            </button>
+                                                                        </a>
+                                                                    </div>
+                                                                </div>
+
+                                                                <div class="row">
+
+                                                                    <div class="col-sm-12">
+
+                                                                        <table class="table table-sm">
+                                                                            <thead>
+                                                                            <tr>
+                                                                                <th>N° DAP</th>
+                                                                                <th>Município/UF</th>
+                                                                                <th>Validade</th>
+                                                                                <th>Categoria</th>
+                                                                                <th>Enquadramento</th>
+                                                                                <th width="100">Ação</th>
+                                                                            </tr>
+                                                                            </thead>
+                                                                            <tbody>
+
+                                                                            @if(!empty($daps))
+                                                                                @foreach($daps as $dap)
+                                                                                    <tr>
+                                                                                        <td>{{ $dap->dap_number }}</td>
+                                                                                        <td>{{ $dap->county }}
+                                                                                            /{{ $dap->state }}</td>
+                                                                                        <td>{{ $dap->validity }}</td>
+                                                                                        <td>{{ $dap->category }}</td>
+                                                                                        <td>{{ $dap->framework }}</td>
+                                                                                        <td>
+                                                                                            <a href="{{ route('admin.daps.edit', ['dap' => $dap->id]) }}">
+                                                                                                <button type="button"
+                                                                                                        class="btn btn-block bg-gradient-primary btn-xs">
+                                                                                                    <i class="fa fa-edit"></i>
+                                                                                                    Editar
+                                                                                                </button>
+                                                                                            </a>
+                                                                                        </td>
+                                                                                    </tr>
+                                                                                @endforeach
+                                                                            @else
+                                                                                <div class="no-content">Não foram
+                                                                                    encontrados registros!
+                                                                                </div>
+                                                                            @endif
+
+                                                                            </tbody>
+                                                                        </table>
+
+                                                                    </div>
+                                                                </div>
 
 
+                                                            </div>
 
 
+                                                            <div class="tab-pane fade" id="custom-tabs-four-settings"
+                                                                 role="tabpanel"
+                                                                 aria-labelledby="custom-tabs-four-settings-tab">
 
 
+                                                                <div class="row">
+                                                                    <div class="col-sm-12 mb-2">
+                                                                        <a href="{{ route('admin.rural_environmental_registrations.create', ['user' => $user->id]) }}">
+                                                                            <button type="button"
+                                                                                    class="btn btn-xs bg-gradient-primary ml-3"
+                                                                                    style="float:right;"><i
+                                                                                        class="fa fa-plus"></i>
+                                                                                Cadastrar CAR
+                                                                            </button>
+                                                                        </a>
+                                                                    </div>
+                                                                </div>
+
+                                                                <div class="row">
+
+                                                                    <div class="col-sm-12">
+
+                                                                        <table class="table table-sm">
+                                                                            <thead>
+                                                                            <tr>
+                                                                                <th>N° CAR</th>
+                                                                                <th>Propriedade</th>
+                                                                                <th>Município</th>
+                                                                                <th>Data Cadastro</th>
+                                                                                <th>Código Imóvel MMA</th>
+                                                                                <th width="100">Ação</th>
+                                                                            </tr>
+                                                                            </thead>
+                                                                            <tbody>
+
+                                                                            @if(!empty($rural_environmental_registrations))
+                                                                                @foreach($rural_environmental_registrations as $rural_environmental_registry)
+                                                                                    <tr>
+                                                                                        <td>{{ $rural_environmental_registry->car_number }}</td>
+                                                                                        <td>{{ $rural_environmental_registry->property_name }}</td>
+                                                                                        <td>{{ $rural_environmental_registry->county }}</td>
+                                                                                        <td>{{ $rural_environmental_registry->register_date }}</td>
+                                                                                        <td>{{ $rural_environmental_registry->property_code_mma }}</td>
+                                                                                        <td>
+                                                                                            <a href="{{ route('admin.rural_environmental_registrations.edit', ['rural_environmental_registry' => $rural_environmental_registry->id]) }}">
+                                                                                                <button type="button"
+                                                                                                        class="btn btn-block bg-gradient-primary btn-xs">
+                                                                                                    <i class="fa fa-edit"></i>
+                                                                                                    Editar
+                                                                                                </button>
+                                                                                            </a>
+                                                                                        </td>
+                                                                                    </tr>
+                                                                                @endforeach
+                                                                            @else
+                                                                                <div class="no-content">Não foram
+                                                                                    encontrados registros!
+                                                                                </div>
+                                                                            @endif
+
+                                                                            </tbody>
+                                                                        </table>
+
+                                                                    </div>
+                                                                </div>
 
 
+                                                            </div>
 
-
-
-
-
-                                        <div class="col-12 col-sm-12">
-                                            <div class="card card-primary card-outline card-outline-tabs">
-
-                                                <div class="card-header p-0 border-bottom-0">
-                                                    <ul class="nav nav-tabs" id="custom-tabs-four-tab" role="tablist">
-                                                        <li class="nav-item">
-                                                            <a class="nav-link active" id="custom-tabs-four-home-tab" data-toggle="pill" href="#custom-tabs-four-home" role="tab" aria-controls="custom-tabs-four-home" aria-selected="true">Home</a>
-                                                        </li>
-                                                        <li class="nav-item">
-                                                            <a class="nav-link" id="custom-tabs-four-profile-tab" data-toggle="pill" href="#custom-tabs-four-profile" role="tab" aria-controls="custom-tabs-four-profile" aria-selected="false">Profile</a>
-                                                        </li>
-                                                        <li class="nav-item">
-                                                            <a class="nav-link" id="custom-tabs-four-messages-tab" data-toggle="pill" href="#custom-tabs-four-messages" role="tab" aria-controls="custom-tabs-four-messages" aria-selected="false">Messages</a>
-                                                        </li>
-                                                        <li class="nav-item">
-                                                            <a class="nav-link" id="custom-tabs-four-settings-tab" data-toggle="pill" href="#custom-tabs-four-settings" role="tab" aria-controls="custom-tabs-four-settings" aria-selected="false">Settings</a>
-                                                        </li>
-                                                    </ul>
-                                                </div>
-
-                                                <div class="card-body">
-                                                    <div class="tab-content" id="custom-tabs-four-tabContent">
-
-                                                        <div class="tab-pane fade show active" id="custom-tabs-four-home" role="tabpanel" aria-labelledby="custom-tabs-four-home-tab">
-                                                            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin malesuada lacus ullamcorper dui molestie, sit amet congue quam finibus. Etiam ultricies nunc non magna feugiat commodo. Etiam odio magna, mollis auctor felis vitae, ullamcorper ornare ligula. Proin pellentesque tincidunt nisi, vitae ullamcorper felis aliquam id. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Proin id orci eu lectus blandit suscipit. Phasellus porta, ante et varius ornare, sem enim sollicitudin eros, at commodo leo est vitae lacus. Etiam ut porta sem. Proin porttitor porta nisl, id tempor risus rhoncus quis. In in quam a nibh cursus pulvinar non consequat neque. Mauris lacus elit, condimentum ac condimentum at, semper vitae lectus. Cras lacinia erat eget sapien porta consectetur.
                                                         </div>
-                                                        <div class="tab-pane fade" id="custom-tabs-four-profile" role="tabpanel" aria-labelledby="custom-tabs-four-profile-tab">
-                                                            Mauris tincidunt mi at erat gravida, eget tristique urna bibendum. Mauris pharetra purus ut ligula tempor, et vulputate metus facilisis. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Maecenas sollicitudin, nisi a luctus interdum, nisl ligula placerat mi, quis posuere purus ligula eu lectus. Donec nunc tellus, elementum sit amet ultricies at, posuere nec nunc. Nunc euismod pellentesque diam.
-                                                        </div>
-                                                        <div class="tab-pane fade" id="custom-tabs-four-messages" role="tabpanel" aria-labelledby="custom-tabs-four-messages-tab">
-                                                            Morbi turpis dolor, vulputate vitae felis non, tincidunt congue mauris. Phasellus volutpat augue id mi placerat mollis. Vivamus faucibus eu massa eget condimentum. Fusce nec hendrerit sem, ac tristique nulla. Integer vestibulum orci odio. Cras nec augue ipsum. Suspendisse ut velit condimentum, mattis urna a, malesuada nunc. Curabitur eleifend facilisis velit finibus tristique. Nam vulputate, eros non luctus efficitur, ipsum odio volutpat massa, sit amet sollicitudin est libero sed ipsum. Nulla lacinia, ex vitae gravida fermentum, lectus ipsum gravida arcu, id fermentum metus arcu vel metus. Curabitur eget sem eu risus tincidunt eleifend ac ornare magna.
-                                                        </div>
-                                                        <div class="tab-pane fade" id="custom-tabs-four-settings" role="tabpanel" aria-labelledby="custom-tabs-four-settings-tab">
-                                                            Pellentesque vestibulum commodo nibh nec blandit. Maecenas neque magna, iaculis tempus turpis ac, ornare sodales tellus. Mauris eget blandit dolor. Quisque tincidunt venenatis vulputate. Morbi euismod molestie tristique. Vestibulum consectetur dolor a vestibulum pharetra. Donec interdum placerat urna nec pharetra. Etiam eget dapibus orci, eget aliquet urna. Nunc at consequat diam. Nunc et felis ut nisl commodo dignissim. In hac habitasse platea dictumst. Praesent imperdiet accumsan ex sit amet facilisis.
-                                                        </div>
-
-
                                                     </div>
                                                 </div>
                                             </div>
+
                                         </div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
                                     </div>
                                     {{-- Fim Dados Produtor --}}
 
@@ -765,8 +952,11 @@
 
                                                             <tr>
                                                                 <td>{{ $account->user()->first()->name }}</td>
-                                                                <td>{{ $account->bank()->first()->bank }} ({{ $account->agency }} - {{ $account->agency_dv }})</td>
-                                                                <td>{{ $account->account }} - {{ $account->account_dv }}</td>
+                                                                <td>{{ $account->bank()->first()->bank }}
+                                                                    ({{ $account->agency }} - {{ $account->agency_dv }})
+                                                                </td>
+                                                                <td>{{ $account->account }}
+                                                                    - {{ $account->account_dv }}</td>
                                                                 <td>
                                                                     <a href="{{ route('admin.accounts.edit', ['account' => $account->id]) }}">
                                                                         <button type="button"

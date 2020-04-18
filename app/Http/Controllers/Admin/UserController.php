@@ -5,9 +5,12 @@ namespace CampoLimpo\Http\Controllers\Admin;
 use CampoLimpo\Account;
 use CampoLimpo\Bank;
 use CampoLimpo\CallSector;
+use CampoLimpo\Dap;
 use CampoLimpo\Document;
 use CampoLimpo\DocumentCategory;
 use CampoLimpo\Http\Requests\Admin\User as UserRequest;
+use CampoLimpo\RuralEnvironmentalRegistry;
+use CampoLimpo\RuralProperty;
 use CampoLimpo\Support\Cropper;
 use CampoLimpo\System;
 use CampoLimpo\User;
@@ -125,7 +128,9 @@ class UserController extends Controller
         $sectors = CallSector::all();
         $accounts = Account::where('user', $user->id)->get();
         $banks = Bank::orderBy('bank')->get();
-
+        $rural_properties = RuralProperty::where('user', $user->id)->get();
+        $daps = Dap::where('user', $user->id)->get();
+        $rural_environmental_registrations = RuralEnvironmentalRegistry::where('user', $user->id)->get();
 
 //        if (!empty($request->sector)) {
 //            $sector = User::where('id', $request->sector)->first();
@@ -139,8 +144,10 @@ class UserController extends Controller
             'sectors' => $sectors,
             'accounts' => $accounts,
             'banks' => $banks,
+            'rural_properties' => $rural_properties,
+            'daps' => $daps,
+            'rural_environmental_registrations' => $rural_environmental_registrations,
             'selected' => (!empty($sector) ? $sector : null)
-
         ]);
     }
 
