@@ -228,10 +228,6 @@
 @endsection
 
 
-<script src="{{ url(mix('backend/assets/plugins/inputmask.js')) }}"></script>
-
-
-
 @section('js')
 
     <script>

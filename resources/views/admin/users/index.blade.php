@@ -38,8 +38,23 @@
                 </div>
 
 
+                @if($errors->all())
+                    @foreach($errors->all() as $error)
+                        @message(['color' => 'orange'])
+                        {{ $error }}
+                        @endmessage
+                    @endforeach
+                @endif
 
-                <!-- /.card-header -->
+                @if(session()->exists('message'))
+                    @message(['color' => session()->get('color')])
+                    {{ session()->get('message') }}
+                    @endmessage
+            @endif
+
+
+
+            <!-- /.card-header -->
                 <div class="card-body">
                     <table id="example1" class="table table-bordered table-striped">
                         <thead>

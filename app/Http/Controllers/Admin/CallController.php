@@ -4,6 +4,7 @@ namespace CampoLimpo\Http\Controllers\Admin;
 
 use CampoLimpo\Call;
 use CampoLimpo\CallSector;
+use CampoLimpo\CallService;
 use CampoLimpo\Service;
 use CampoLimpo\System;
 use CampoLimpo\User;
@@ -43,26 +44,15 @@ class CallController extends Controller
     {
         $users = User::orderBy('name')->get();
         $system = System::where('id', 1)->first();
-        $services = Service::orderBy('title')->get();
-        $sectors = CallSector::all();
 
         if (!empty($request->user)) {
             $user = User::where('id', $request->user)->first();
         }
 
-        if (!empty($request->service)) {
-            $service = Service::where('id', $request->service)->first();
-        }
-
-        if (!empty($request->sector)) {
-            $sector = CallSector::where('id', $request->sector)->first();
-        }
-
         return view('admin.calls.create', [
             'users' => $users,
             'system' => $system,
-            'services' => $services,
-            'sectors' => $sectors
+            'selected_user' => (!empty($user) ? $user : null)
         ]);
 
     }
@@ -75,13 +65,38 @@ class CallController extends Controller
      */
     public function store(Request $request)
     {
-        $createCall= Call::create($request->all());
+
+        if ((empty($request->user)) and empty($request->name)) {
+            return redirect()->route('admin.calls.create', [
+                'message' => 'Ooops'
+            ])->with(['color' => 'red', 'message' => 'Escolha ou cadastre um cliente!']);
+        }
+
+        if ((empty($request->user)) and !empty($request->name)) {
+            $userCreate = User::create($request->all());
+            $user = $userCreate->id;
+            $userCreate->client = 1;
+            $userCreate->save();
+        }
+
+        if ((!empty($request->user)) and empty($request->name)) {
+            $user = $request->user;
+        }
+
+        $call = new Call;
+        $call->user = $user;
+        $call->password = $request->password;
+        $call->status = 0;
+
+        $call->save();
 
         return redirect()->route('admin.calls.edit', [
-            'call' => $createCall->id
-        ])->with(['color' => 'green', 'message' => 'Atendimento cadastrado com sucesso!']);
+            'call' => $call->id
+        ])->with(['color' => 'green', 'message' => 'Atendimento iniciado com sucesso!']);
 
     }
+
+
 
     /**
      * Display the specified resource.
@@ -102,30 +117,18 @@ class CallController extends Controller
      */
     public function edit(Request $request,$id)
     {
-        $call = Call::where('id', $id)->first();
+        $call = Call::where('id', $request->call)->first();
+        $user = User::where('id', $call->user)->first();
         $system = System::where('id', 1)->first();
-        $users = User::orderBy('name')->get();
-        $sectors = CallSector::orderBy('title')->get();
-        $services = Service::orderBy('id')->get();
-
-        if (!empty($request->user)) {
-            $user = User::where('id', $request->user)->first();
-        }
-
-        if (!empty($request->service)) {
-            $service = Service::where('id', $request->service)->first();
-        }
-
-        if (!empty($request->sector)) {
-            $sector = CallSector::where('id', $request->sector)->first();
-        }
+        $services = Service::orderBy('title')->get();
+        $call_services = CallService::where('call', $call->id)->get();
 
         return view('admin.calls.edit', [
             'call' => $call,
             'system' => $system,
-            'users' => $users,
+            'user' => $user,
             'services' => $services,
-            'sectors' => $sectors
+            'call_services' => $call_services
         ]);
     }
 
@@ -141,6 +144,17 @@ class CallController extends Controller
         $updateCall = Call::where('id', $id)->first();
         $updateCall->fill($request->all());
         $updateCall->save();
+
+        // Relacionamento Serviços com Atendimento
+        if (!empty($request->input('services'))) {
+            $ids = $request->input('services');
+            $services_ids = [];
+            foreach ($ids as $service_id) {
+                $attributes = [];
+                $services_ids[$service_id] = $attributes;
+            }
+            $updateCall->services()->sync($services_ids);
+        }
 
         return redirect()->route('admin.calls.edit', [
             'call' => $updateCall->id

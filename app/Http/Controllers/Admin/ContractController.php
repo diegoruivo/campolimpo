@@ -2,6 +2,7 @@
 
 namespace CampoLimpo\Http\Controllers\Admin;
 
+use CampoLimpo\CallSector;
 use CampoLimpo\Contract;
 use CampoLimpo\Document;
 use CampoLimpo\DocumentCategory;
@@ -70,6 +71,8 @@ class ContractController extends Controller
     {
 
         $createContract= Contract::create($request->all());
+        $createContract->terms = $request->terms;
+        $createContract->save();
 
         return redirect()->route('admin.contracts.edit', [
             'contract' => $createContract->id
@@ -98,6 +101,7 @@ class ContractController extends Controller
         $contract = Contract::where('id', $id)->first();
         $users = User::orderBy('name')->get();
         $services = Service::orderBy('id')->get();
+        $sectors = CallSector::all();
         $system = System::where('id', 1)->first();
 
         if (!empty($request->user)) {
@@ -108,6 +112,7 @@ class ContractController extends Controller
             'contract' => $contract,
             'users' => $users,
             'services' => $services,
+            'sectors' => $sectors,
             'system' => $system,
             'selected' => (!empty($user) ? $user : null)
         ]);
@@ -124,6 +129,8 @@ class ContractController extends Controller
     {
         $updateContract= Contract::where('id', $id)->first();
         $updateContract->fill($request->all());
+        $updateContract->save();
+        $updateContract->terms = $request->terms;
         $updateContract->save();
 
         return redirect()->route('admin.contracts.edit', [

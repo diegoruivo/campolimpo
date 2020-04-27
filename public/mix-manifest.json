@@ -1,11 +1,9 @@
 {
-    "/backend/assets/css/reset.css": "/backend/assets/css/reset.css?id=3537f958f4cc0649ea1b",
     "/backend/assets/css/login.css": "/backend/assets/css/login.css?id=c368e75fb3b4f15e7224",
     "/backend/assets/css/style.css": "/backend/assets/css/style.css?id=8c36f7d703f81a3b273f",
-    "/backend/assets/css/libs.css": "/backend/assets/css/libs.css?id=9b011fcce562e0410f43",
-    "/backend/assets/js/jquery.js": "/backend/assets/js/jquery.js?id=a09e13ee94d51c524b7e",
+    "/backend/assets/css/libs.css": "/backend/assets/css/libs.css?id=0868251e47295fecb70d",
+    "/backend/assets/js/libs.js": "/backend/assets/js/libs.js?id=69b2a54372ea732f098f",
+    "/backend/assets/js/libs_table.js": "/backend/assets/js/libs_table.js?id=a2dfbad3d90431755d4f",
     "/backend/assets/js/login.js": "/backend/assets/js/login.js?id=d6bc59fabdf3be128ad0",
-    "/backend/assets/js/libs.js": "/backend/assets/js/libs.js?id=77c96211a493a11c8999",
-    "/backend/assets/js/inputmask.js": "/backend/assets/js/inputmask.js?id=d2bd113e5d0fc40df87b",
-    "/backend/assets/js/libs_table.js": "/backend/assets/js/libs_table.js?id=a2dfbad3d90431755d4f"
+    "/backend/assets/js/scripts.js": "/backend/assets/js/scripts.js?id=95546962937bc9355e34"
 }

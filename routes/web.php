@@ -35,6 +35,7 @@ Route::group(['prefix' => 'admin', 'namespace' => 'Admin', 'as' => 'admin.'], fu
         /** Atendimento */
         Route::resource('calls', 'CallController');
 
+
         /** Setores de Atendimento */
         Route::resource('call_sectors', 'CallSectorController');
 
@@ -77,9 +78,14 @@ Route::group(['prefix' => 'admin', 'namespace' => 'Admin', 'as' => 'admin.'], fu
         /** Contracts */
         Route::resource('contracts', 'ContractController');
 
+        /** Posts */
+        Route::resource('posts', 'PostController');
+        Route::resource('categories_post', 'CategoryPostController');
+
         /** Settings */
         Route::resource('system', 'SystemController');
         Route::resource('banks', 'BankController');
+        Route::resource('buttons', 'ButtonsController');
 
 
     });

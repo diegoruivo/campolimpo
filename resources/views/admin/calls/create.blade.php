@@ -2,143 +2,151 @@
 
 @section('content')
 
+    <!-- Content Wrapper. Contains page content -->
+    <div class="content-wrapper">
+        <!-- Content Header (Page header) -->
+        <section class="content-header">
+            <div class="container-fluid">
+                <div class="row mb-2">
+                    <div class="col-sm-6">
+                        <h1>
+                            <small><i class="fa fa-headset"></i></small>
+                            Abrir Atendimento
+                        </h1>
+                    </div>
+                    <div class="col-sm-6">
+                        <ol class="breadcrumb float-sm-right">
+                            <li class="breadcrumb-item"><a href="{{ route('admin.home') }}">Home</a></li>
+                            <li class="breadcrumb-item"><a href="{{ route('admin.calls.index') }}">Atendimentos</a></li>
+                            <li class="breadcrumb-item active">Abrir Atendimento</li>
+                        </ol>
+                    </div>
+                </div>
+            </div><!-- /.container-fluid -->
+        </section>
 
-    <section class="dash_content_app">
+        <!-- Main content -->
+        <section class="content">
 
-        <header class="dash_content_app_header">
-            <h2 class="icon-tags">Cadastrar DAP</h2>
+            @if($errors->all())
+                @foreach($errors->all() as $error)
+                    @message(['color' => 'orange'])
+                    {{ $error }}
+                    @endmessage
+                @endforeach
+            @endif
 
-            <div class="dash_content_app_header_actions">
-                <nav class="dash_content_app_breadcrumb">
-                    <ul>
-                        <li><a href="{{ route('admin.home') }}">Painel de Controle</a></li>
-                        <li class="separator icon-angle-right icon-notext"></li>
-                        <li><a href="{{ route('admin.calls.index') }}">Atendimento</a></li>
-                        <li class="separator icon-angle-right icon-notext"></li>
-                        <li><a href="" class="text-orange">Cadastrar Atendimento</a>
-                        </li>
-                    </ul>
-                </nav>
+            @if(session()->exists('message'))
+                @message(['color' => session()->get('color')])
+                {{ session()->get('message') }}
+                @endmessage
+            @endif
 
-            </div>
-        </header>
+            <form role="form" action="{{ route('admin.calls.store') }}" method="post">
 
-        <div class="dash_content_app_box">
+            @csrf
+            <?php $password = sprintf('%04X', mt_rand(0, 0xFFFF)); ?>
+            <input type="hidden" name="password" value="{{ $password }}">
 
-            <div class="nav">
+            <!-- Default box -->
+                <div class="card">
+                    <div class="card-header">
+                        <h3 class="card-title">Escolha um cliente cadastrado ou cadastre um novo cliente</h3>
 
-                @if($errors->all())
-                    @foreach($errors->all() as $error)
-                        @message(['color' => 'orange'])
-                        <p class="icon-asterisk">{{ $error }}</p>
-                        @endmessage
-                    @endforeach
-                @endif
+                        <div class="card-tools">
+                            <button type="button" class="btn btn-tool" data-card-widget="collapse" data-toggle="tooltip"
+                                    title="Collapse">
+                                <i class="fas fa-minus"></i></button>
+                            <button type="button" class="btn btn-tool" data-card-widget="remove" data-toggle="tooltip"
+                                    title="Remove">
+                                <i class="fas fa-times"></i></button>
+                        </div>
+                    </div>
 
-                <ul class="nav_tabs">
-                    <li class="nav_tabs_item">
-                        <a href="#data" class="nav_tabs_item_link active">Atendimento ao Cliente</a>
-                    </li>
-                </ul>
-
-                <form action="{{ route('admin.calls.store') }}" method="post" class="app_form"
-                      enctype="multipart/form-data">
-
-                    @csrf
-                    <?php $password = sprintf('%04X', mt_rand(0, 0xFFFF)); ?>
-
-
-                    <input type="hidden" name="password" value="{{ $password }}">
-
-
-                    <div class="nav_tabs_content">
-                        <div id="data">
-
-
-
-                            <div class="label_g2">
-                            <label class="label">
-                                <span class="legend">*Cliente:</span>
-                                <select name="user" class="select2" >
-                                    <option value="" {{ (old('user') == '' ? 'selected' : '') }}>Selecione um
-                                        Cliente
-                                    </option>
-                                    @foreach($users as $user)
-                                        @if (!empty($selected))
-                                            <option value="{{ $user->id }}" {{ ($user->id === $selected->id ? 'selected' : '') }} >{{ $user->name }}
-                                                ({{ $user->document }})
-
-                                            </option>
-                                        @else
-                                            <option value="{{ $user->id }}">{{ $user->name }} ({{ $user->document }}
-                                                )
-                                            </option>
-                                        @endif
-                                    @endforeach
-                                </select>
-                                <p style="margin-top: 4px;">
-                                    <a href="{{ route('admin.users.create') }}" class="text-orange icon-link" style="font-size: .8em;" target="_blank">Cadastrar Cliente</a>
-                                </p>
-                            </label>
+                    <div class="card-body">
+                        <div class="row">
 
 
-                            <label class="label">
-                                <span class="legend">*Serviço:</span>
-                                <select name="service" class="select2" >
-                                    <option value="" {{ (old('service') == '' ? 'selected' : '') }}>Selecione um
-                                        Serviço
-                                    </option>
-                                    @foreach($services as $service)
-                                        @if (!empty($selected))
-                                            <option value="{{ $service->id }}" {{ ($service->id === $selected->id ? 'selected' : '') }} >{{ $service->title }} </option>
-                                        @else
-                                            <option value="{{ $service->id }}">{{ $service->title }}
-                                            </option>
-                                        @endif
-                                    @endforeach
-                                </select>
-                            </label>
-
-
-
-                                <label class="label" style="margin-left: 20px;">
-                                    <span class="legend">*Setor de Atendimento:</span>
-                                    <select name="sector" class="select2" >
-                                        <option value="" {{ (old('user') == '' ? 'selected' : '') }}>Selecione um
-                                            Setor
-                                        </option>
-                                        @foreach($sectors as $sector)
-                                            @if (!empty($selected))
-                                                <option value="{{ $sector->id }}" {{ ($sector->id === $selected->id ? 'selected' : '') }} >{{ $sector->title}}</option>
+                            <div class="col-sm-12">
+                                <div class="form-group">
+                                    <label>Escolha um Cliente</label>
+                                    <select name="user" class="custom-select">
+                                        <option value=""  {{ (old('user') == '' ? 'selected' : '') }}>Selecione o Cliente</option>
+                                        @foreach($users as $user)
+                                            @if (!empty($selected_user))
+                                                <option value="{{ $user->id }}" {{ ($user->id === $selected_user->id ? 'selected' : '') }}>{{ $user->name }} ({{ $user->document }})</option>
                                             @else
-                                                <option value="{{ $sector->id }}">{{ $sector->title }}</option>
+                                                <option value="{{ $user->id }}">{{ $user->name }} ({{ $user->document }})</option>
                                             @endif
                                         @endforeach
                                     </select>
 
-                                </label>
-
+                                </div>
                             </div>
 
 
-                            <label class="label">
-                                <span class="legend">Descrição do Atendimento:</span>
-                                <textarea name="description" cols="30" rows="10"
-                                          class="mce">{{ old('description') }}</textarea>
-                            </label>
+                            <div class="col-sm-12 mb-3 mt-3">
+                                <h3 class="card-title">Cadastre um novo Cliente</h3>
+                            </div>
+
+                            <div class="col-sm-12">
+                                <div class="form-group">
+                                    <label>Nome</label>
+                                    <input type="text" name="name" class="form-control"
+                                           placeholder="Nome completo"
+                                           value="{{ old('name') }}"/>
+                                </div>
+                            </div>
+
+                            <div class="col-sm-4">
+                                <div class="form-group">
+                                    <label>E-mail</label>
+                                    <input type="email" name="email" class="form-control"
+                                           placeholder="Endereço de e-mail"
+                                           value="{{ old('email') }}"/>
+                                </div>
+                            </div>
+
+                            <div class="col-sm-4">
+                                <div class="form-group">
+                                    <label>Telefone Fixo</label>
+                                    <input type="tel" name="telephone" class="form-control" class="telephone"
+                                           placeholder="Telefone Fixo"
+                                           value="{{ old('telephone') }}"/>
+                                </div>
+                            </div>
+
+                            <div class="col-sm-4">
+                                <div class="form-group">
+                                    <label>Telefone Móvel</label>
+                                    <input type="tel" name="cell" class="form-control" class="cell"
+                                           placeholder="Telefone Móvel"
+                                           value="{{ old('cell') }}"/>
+                                </div>
+                            </div>
 
 
-
+                        <!-- /.row -->
                         </div>
+                        <!-- /.card-body -->
+
                     </div>
+                    <!-- /.card -->
 
 
-                    <div class="text-right mt-2">
-                        <button class="btn btn-large btn-green icon-check-square-o">Criar Atendimento</button>
+                    <!-- /.card-body -->
+                    <div class="card-footer">
+                        <button type="submit" class="btn btn-lg bg-gradient-primary" style="float:right;"><i class="fa fa-long-arrow-alt-right"></i> Cadastrar Atendimento</button>
                     </div>
-                </form>
-            </div>
-        </div>
-    </section>
+                    <!-- /.card-footer-->
+                </div>
+                <!-- /.card -->
+
+            </form>
+
+        </section>
+        <!-- /.content -->
+    </div>
+    <!-- /.content-wrapper -->
 
 @endsection

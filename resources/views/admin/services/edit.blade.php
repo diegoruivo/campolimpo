@@ -2,108 +2,142 @@
 
 @section('content')
 
+    <!-- Content Wrapper. Contains page content -->
+    <div class="content-wrapper">
+        <!-- Content Header (Page header) -->
+        <section class="content-header">
+            <div class="container-fluid">
+                <div class="row mb-2">
+                    <div class="col-sm-6">
+                        <h1>
+                            <small><i class="fa fa-briefcase"></i></small>
+                            Editar Portfólio
+                        </h1>
+                    </div>
+                    <div class="col-sm-6">
+                        <ol class="breadcrumb float-sm-right">
+                            <li class="breadcrumb-item"><a href="{{ route('admin.home') }}">Home</a></li>
+                            <li class="breadcrumb-item"><a href="{{ route('admin.services.index') }}">Portfólio</a></li>
+                            <li class="breadcrumb-item active">Editar Portfólio</li>
+                        </ol>
+                    </div>
+                </div>
+            </div><!-- /.container-fluid -->
+        </section>
 
-    <section class="dash_content_app">
+        <!-- Main content -->
+        <section class="content">
 
-        <header class="dash_content_app_header">
-            <h2 class="icon-tags">Editar Serviço</h2>
+            @if($errors->all())
+                @foreach($errors->all() as $error)
+                    @message(['color' => 'orange'])
+                    {{ $error }}
+                    @endmessage
+                @endforeach
+            @endif
 
-            <div class="dash_content_app_header_actions">
-                <nav class="dash_content_app_breadcrumb">
-                    <ul>
-                        <li><a href="{{ route('admin.home') }}">Dashboard</a></li>
-                        <li class="separator icon-angle-right icon-notext"></li>
-                        <li><a href="{{ route('admin.services.index') }}">Serviços</a></li>
-                        <li class="separator icon-angle-right icon-notext"></li>
-                        <li><a href="{{ route('admin.services.create') }}" class="text-orange">Criar Novo Serviço</a>
-                        </li>
-                    </ul>
-                </nav>
+            @if(session()->exists('message'))
+                @message(['color' => session()->get('color')])
+                {{ session()->get('message') }}
+                @endmessage
+            @endif
 
-            </div>
-        </header>
+            <form role="form" action="{{ route('admin.services.update', ['service' => $service->id]) }}" method="post">
 
-        <div class="dash_content_app_box">
+            @csrf
+            @method('PUT')
 
-            <div class="nav">
+            <!-- Default box -->
+                <div class="card">
+                    <div class="card-header">
+                        <h3 class="card-title">Edição de Portfólio</h3>
 
-                @if($errors->all())
-                    @foreach($errors->all() as $error)
-                        @message(['color' => 'orange'])
-                        <p class="icon-asterisk">{{ $error }}</p>
-                        @endmessage
-                    @endforeach
-                @endif
-
-                <ul class="nav_tabs">
-                    <li class="nav_tabs_item">
-                        <a href="#data" class="nav_tabs_item_link active">Serviço</a>
-                    </li>
-                </ul>
-
-                <form action="{{ route('admin.services.update', ['service' => $service->id]) }}" method="post" class="app_form"
-                      enctype="multipart/form-data">
-
-                    @csrf
-                    @method('PUT')
-                    <input type="hidden" name="id" value="{{ $service->id }}">
-
-
-                    <div class="nav_tabs_content">
-                        <div id="data">
-
-
-                            <label class="label">
-                                <span class="legend">*Categoria do Serviço:</span>
-                                <select name="service" class="select2">
-                                    <option value="">Selecione a Categoria do Serviço</option>
-                                    @foreach($services_categories as $category)
-                                        <option value="{{ $category->id }}" {{ ($category->id === $service->service ? 'selected' : '') }}>{{ $category->title }}</option>
-                                    @endforeach
-                                </select>
-                                <p style="margin-top: 4px;">
-                                    <a href="{{ route('admin.service_category.index') }}"
-                                       class="text-orange icon-link" style="font-size: .8em;" target="_blank">Editar
-                                        Categorias de Serviços</a> |
-                                    <a href="{{ route('admin.service_category.create') }}"
-                                       class="text-orange icon-link" style="font-size: .8em;" target="_blank">Cadastrar
-                                        Nova Categoria de Serviços</a>
-                                </p>
-                            </label>
-
-
-                            <label class="label">
-                                <span class="legend">*Título do Serviço:</span>
-                                <input type="text" name="title" placeholder="Título do Serviço"
-                                       value="{{ old('title') ?? $service->title }}"/>
-                            </label>
-
-
-
-                            <label class="label">
-                                <span class="legend">*Preço do Serviço:</span>
-                                <input type="tel" name="price" class="mask-money" value="{{ old('price') ?? $service ->price }}"/>
-                            </label>
-
-
-                            <label class="label">
-                                <span class="legend">Descrição do Serviço:</span>
-                                <textarea name="description" cols="30" rows="10"
-                                          class="mce">{{ old('description') ?? $service->description }}</textarea>
-                            </label>
-
-
-
+                        <div class="card-tools">
+                            <button type="button" class="btn btn-tool" data-card-widget="collapse" data-toggle="tooltip"
+                                    title="Collapse">
+                                <i class="fas fa-minus"></i></button>
+                            <button type="button" class="btn btn-tool" data-card-widget="remove" data-toggle="tooltip"
+                                    title="Remove">
+                                <i class="fas fa-times"></i></button>
                         </div>
                     </div>
 
+                    <div class="card-body">
+                        <div class="row">
 
-                    <div class="text-right mt-2">
-                        <button class="btn btn-large btn-green icon-check-square-o">Atualizar Serviço</button>
+
+
+                            <div class="col-sm-6">
+                                <div class="form-group">
+                                    <label>*Categoria de Portfólio</label>
+                                    <select name="service" class="custom-select" required>
+                                        <option value=""  {{ (old('service') == '' ? 'selected' : '') }}>Selecione a Categoria do Portfólio</option>
+                                        @foreach($services_categories as $category)
+                                            <option value="{{ $category->id }}" {{ ($category->id === $service->service ? 'selected' : '') }}>{{ $category->title }}</option>
+                                        @endforeach
+                                    </select>
+                                    <p style="margin-top: 4px;">
+                                        <a href="{{ route('admin.service_category.index') }}"
+                                           class="text-orange icon-link" style="font-size: .8em;" target="_blank">Editar
+                                            Categorias de Serviços</a> |
+                                        <a href="{{ route('admin.service_category.create') }}"
+                                           class="text-orange icon-link" style="font-size: .8em;" target="_blank">Cadastrar
+                                            Nova Categoria de Serviços</a>
+                                    </p>
+                                </div>
+                            </div>
+
+                            <div class="col-sm-4">
+                                <div class="form-group">
+                                    <label>Título</label>
+                                    <input type="text" name="title" class="form-control"
+                                           placeholder="Título"
+                                           value="{{ old('title') ?? $service->title }}"/>
+                                </div>
+                            </div>
+
+                            <div class="col-sm-2">
+                                <div class="form-group">
+                                    <label>Preço</label>
+                                    <input type="text" name="price" class="form-control"
+                                           placeholder="Preço"
+                                           value="{{ old('price') ?? $service->price }}"/>
+                                </div>
+                            </div>
+
+                            <div class="col-sm-12">
+                                <div class="form-group">
+                                    <label>Descrição</label>
+                                    <textarea class="form-control" name="description" cols="30"
+                                              rows="4">{{ old('description') ?? $service->description }}</textarea>
+                                </div>
+                            </div>
+
+
+                            <!-- /.row -->
+                        </div>
+                        <!-- /.card-body -->
+
                     </div>
-                </form>
-            </div>
-        </div>
-    </section>
+                    <!-- /.card -->
+
+
+                    <!-- /.card-body -->
+                    <div class="card-footer">
+
+                        Última atualização: {{ date('d/m/Y', strtotime($service->updated_at)) }}
+
+                        <button type="submit" class="btn btn-lg bg-gradient-primary" style="float:right;"><i class="fa fa-long-arrow-alt-right"></i> Atualizar Portfólio</button>
+                    </div>
+                    <!-- /.card-footer-->
+                </div>
+                <!-- /.card -->
+
+            </form>
+
+        </section>
+        <!-- /.content -->
+    </div>
+    <!-- /.content-wrapper -->
 
 @endsection

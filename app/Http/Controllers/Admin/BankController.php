@@ -49,6 +49,11 @@ class BankController extends Controller
     {
         $createBank = Bank::create($request->all());
 
+        if (!empty($request->file('logo'))) {
+            $createBank->logo = $request->file('logo')->store('bank');
+            $createBank->save();
+        }
+
         return redirect()->route('admin.banks.edit', [
             'bank' => $createBank->id
         ])->with(['color' => 'green', 'message' => 'Banco cadastrado com sucesso!']);

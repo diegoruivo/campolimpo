@@ -2,76 +2,100 @@
 
 @section('content')
 
+    <!-- Content Wrapper. Contains page content -->
+    <div class="content-wrapper">
+        <!-- Content Header (Page header) -->
+        <section class="content-header">
+            <div class="container-fluid">
+                <div class="row mb-2">
+                    <div class="col-sm-5">
+                        <h1>
+                            <small><i class="fa fa-headset"></i></small>
+                            Editar Setor de Atendimento
+                        </h1>
+                    </div>
+                    <div class="col-sm-7">
+                        <ol class="breadcrumb float-sm-right">
+                            <li class="breadcrumb-item"><a href="{{ route('admin.home') }}">Home</a></li>
+                            <li class="breadcrumb-item"><a href="{{ route('admin.call_sectors.index') }}">Setores de Atendimento</a></li>
+                            <li class="breadcrumb-item active">Cadastrar Setor de Atendimento</li>
+                        </ol>
+                    </div>
+                </div>
+            </div><!-- /.container-fluid -->
+        </section>
 
-    <section class="dash_content_app">
+        <!-- Main content -->
+        <section class="content">
 
-        <header class="dash_content_app_header">
-            <h2 class="icon-bookmark-o">Editar Setor de Atendimento</h2>
-
-            <div class="dash_content_app_header_actions">
-                <nav class="dash_content_app_breadcrumb">
-                    <ul>
-                        <li><a href="{{ route('admin.home') }}">Painel de Controle</a></li>
-                        <li class="separator icon-angle-right icon-notext"></li>
-                        <li><a href="{{ route('admin.call_sectors.index') }}">Setores de Atendimento</a></li>
-                        <li class="separator icon-angle-right icon-notext"></li>
-                        <li><a href="{{ route('admin.call_sectors.create') }}" class="text-orange">Cadastrar
-                                Novo Setor de Atendimento</a></li>
-                    </ul>
-                </nav>
-
-            </div>
-        </header>
-
-
-        <div class="dash_content_app_box">
-
-            <div class="nav">
-
-                @if($errors->all())
-                    @foreach($errors->all() as $error)
-                        @message(['color' => 'orange'])
-                        <p class="icon-asterisk">{{ $error }}</p>
-                        @endmessage
-                    @endforeach
-                @endif
-
-                @if(session()->exists('message'))
-                    @message(['color' => session()->get('color')])
-                    <p class="icon-asterisk">{{ session()->get('message') }}</p>
+            @if($errors->all())
+                @foreach($errors->all() as $error)
+                    @message(['color' => 'orange'])
+                    {{ $error }}
                     @endmessage
-                @endif
+                @endforeach
+            @endif
 
-                <ul class="nav_tabs">
-                    <li class="nav_tabs_item">
-                        <a href="#data" class="nav_tabs_item_link active">Setor de Atendimento</a>
-                    </li>
-                </ul>
+            @if(session()->exists('message'))
+                @message(['color' => session()->get('color')])
+                {{ session()->get('message') }}
+                @endmessage
+            @endif
 
-                <form action="{{ route('admin.call_sectors.update', ['sector' => $sector->id]) }}"
-                      method="post" class="app_form" enctype="multipart/form-data">
 
-                    @csrf
-                    @method('PUT')
-                    <input type="hidden" name="id" value="{{ $sector->id}}">
+            <form role="form" action="{{ route('admin.call_sectors.update', ['sector' => $sector->id]) }}" method="post">
 
-                    <div class="nav_tabs_content">
-                        <div id="data">
+            @csrf
+            @method('PUT')
 
-                            <label class="label">
-                                <input type="text" name="title" placeholder="Nome do Setor de Atendimento"
-                                       value="{{ old('title') ?? $sector->title }}" required/>
-                            </label>
+            <!-- Default box -->
+                <div class="card">
+                    <div class="card-header">
+                        <h3 class="card-title">Cadastro de Setor de Atendimento</h3>
 
+                        <div class="card-tools">
+                            <button type="button" class="btn btn-tool" data-card-widget="collapse" data-toggle="tooltip"
+                                    title="Collapse">
+                                <i class="fas fa-minus"></i></button>
+                            <button type="button" class="btn btn-tool" data-card-widget="remove" data-toggle="tooltip"
+                                    title="Remove">
+                                <i class="fas fa-times"></i></button>
                         </div>
+                    </div>
 
-                        <div class="text-right mt-2">
-                            <button class="btn btn-large btn-green icon-check-square-o">Atualizar Setor de Atendimento</button>
+                    <div class="card-body">
+                        <div class="row">
+
+                            <div class="col-sm-6">
+                                <div class="form-group">
+                                    <label>*Título do Setor</label>
+                                    <input type="text" name="title" class="form-control"
+                                           placeholder="Titulo do Setor"
+                                           value="{{ old('title') ?? $sector->title }}"/>
+                                </div>
+                            </div>
+
+                            <!-- /.row -->
                         </div>
+                        <!-- /.card-body -->
 
-                </form>
-            </div>
-        </div>
-    </section>
+                    </div>
+                    <!-- /.card -->
+
+
+                    <!-- /.card-body -->
+                    <div class="card-footer">
+                        <button type="submit" class="btn btn-lg bg-gradient-primary" style="float:right;"><i class="fa fa-long-arrow-alt-right"></i> Atualizar Setor de Atendimento</button>
+                    </div>
+                    <!-- /.card-footer-->
+                </div>
+                <!-- /.card -->
+
+            </form>
+
+        </section>
+        <!-- /.content -->
+    </div>
+    <!-- /.content-wrapper -->
 
 @endsection

@@ -21,7 +21,8 @@ class InsertUserAdmin extends Migration
         DB::table('users')->insert([
             'name' => 'Administrador',
             'email' => $email,
-            'password' => $password
+            'password' => $password,
+            'admin' => 1
         ]);
     }
 

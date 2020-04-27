@@ -185,7 +185,7 @@
                             <div class="col-sm-1">
                                 <div class="form-group">
                                     <label>CEP</label>
-                                    <input type="tel" name="zipcode"
+                                    <input type="tel" name="zipcode" class="form-control"
                                            class="mask-zipcode zip_code_search" placeholder="Digite o CEP"
                                            value="{{ old('zipcode') ?? $system->zipcode }}"/>
                                 </div>
@@ -194,7 +194,7 @@
                             <div class="col-sm-3">
                                 <div class="form-group">
                                     <label>Endereço</label>
-                                    <input type="text" name="street" class="street"
+                                    <input type="text" name="street" class="form-control"  class="street"
                                            placeholder="Endereço Completo"
                                            value="{{ old('street') ?? $system->street }}"/>
                                 </div>
@@ -343,26 +343,4 @@
     </div>
     <!-- /.content-wrapper -->
 
-@endsection
-
-
-
-@section('js')
-<script>
-    $(function () {
-        $("#example1").DataTable({
-            "responsive": true,
-            "autoWidth": false,
-        });
-        $('#example2').DataTable({
-            "paging": true,
-            "lengthChange": false,
-            "searching": false,
-            "ordering": true,
-            "info": true,
-            "autoWidth": false,
-            "responsive": true,
-        });
-    });
-</script>
 @endsection

@@ -2,45 +2,107 @@
 
 @section('content')
 
-    <section class="dash_content_app">
-
-    <header class="dash_content_app_header">
-        <h2 class="icon-users">Time</h2>
-
-        <div class="dash_content_app_header_actions">
-            <nav class="dash_content_app_breadcrumb">
-                <ul>
-                    <li><a href="">Dashboard</a></li>
-                    <li class="separator icon-angle-right icon-notext"></li>
-                    <li><a href="" class="text-orange">Time</a></li>
-                </ul>
-            </nav>
-
-            <a href="" class="btn btn-orange icon-user-plus ml-1">Criar Usuário</a>
-        </div>
-    </header>
-
-    <div class="dash_content_app_box">
-        <section class="app_users_home">
-
-            @foreach($users as $user)
-            <article class="user radius">
-                <div class="cover"
-                     style="background-size: cover; background-image: url({{ $user->url_cover }});"></div>
-                <h4>{{ $user->name }}</h4>
-
-                <div class="info">
-                    <p>{{ $user->email }}</p>
-                    <p>Desde {{ date('d/m/Y', strtotime($user->last_login_at)) }}</p>
+    <!-- Content Wrapper. Contains page content -->
+    <div class="content-wrapper">
+        <!-- Content Header (Page header) -->
+        <section class="content-header">
+            <div class="container-fluid">
+                <div class="row mb-2">
+                    <div class="col-sm-6">
+                        <h1>
+                            <small><i class="fa fa-users-cog"></i></small>
+                            Usuários
+                        </h1>
+                    </div>
+                    <div class="col-sm-6">
+                        <ol class="breadcrumb float-sm-right">
+                            <li class="breadcrumb-item"><a href="{{ route('admin.home') }}">Home</a></li>
+                            <li class="breadcrumb-item active">Usuários</li>
+                            <a href="{{ route('admin.users.create') }}">
+                                <button type="button" class="btn bg-gradient-primary ml-3"><i class="fa fa-user-plus"></i> Cadastrar Usuário</button>
+                            </a>
+                        </ol>
+                    </div>
                 </div>
-
-                <div class="actions">
-                    <a class="icon-cog btn btn-orange" href="{{ route('admin.users.edit', ['user' => $user->id]) }}">Gerenciar</a>
-                </div>
-            </article>
-            @endforeach
+            </div><!-- /.container-fluid -->
         </section>
-    </div>
-</section>
 
+        <!-- Main content -->
+        <section class="content">
+
+
+
+            <div class="card">
+                <div class="card-header">
+                    <h3 class="card-title">Lista de Clientes</h3>
+                </div>
+
+
+
+                <!-- /.card-header -->
+                <div class="card-body">
+                    <table id="example1" class="table table-bordered table-striped">
+                        <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Nome Completo</th>
+                            <th>CPF</th>
+                            <th>E-mail</th>
+                            <th>Nascimento</th>
+                            <th width="100">Ação</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+
+                        @foreach($users as $user)
+                            <tr>
+                                <td>{{ $user->id }}</td>
+                                <td>{{ $user->name }}</td>
+                                <td>{{ $user->document }}</td>
+                                <td>{{ $user->email }}</td>
+                                <td>{{ $user->date_of_birth }}</td>
+                                <td>
+                                    <a href="{{ route('admin.users.edit', ['user' => $user->id]) }}">
+                                        <button type="button" class="btn btn-block bg-gradient-primary btn-xs"><i class="fa fa-edit"></i> Editar</button>
+                                    </a>
+                                </td>
+                            </tr>
+                        @endforeach
+
+                        </tbody>
+
+                    </table>
+                </div>
+                <!-- /.card-body -->
+            </div>
+            <!-- /.card -->
+
+
+
+
+        </section>
+        <!-- /.content -->
+    </div>
+    <!-- /.content-wrapper -->
+
+@endsection
+@section('js')
+
+    <script>
+        $(function () {
+            $("#example1").DataTable({
+                "responsive": true,
+                "autoWidth": false,
+            });
+            $('#example2').DataTable({
+                "paging": true,
+                "lengthChange": false,
+                "searching": false,
+                "ordering": true,
+                "info": true,
+                "autoWidth": false,
+                "responsive": true,
+            });
+        });
+    </script>
 @endsection

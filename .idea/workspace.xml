@@ -3,8 +3,601 @@
   <component name="ChangeListManager">
     <list default="true" id="cc3e8fd2-a7c7-44f9-9b61-c9a042efdff8" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Admin/UserController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Admin/UserController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Call.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Call.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/CallSector.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/CallSector.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Contract.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Contract.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Admin/AuthController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Admin/AuthController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Admin/BankController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Admin/BankController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Admin/CallController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Admin/CallController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Admin/CallSectorController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Admin/CallSectorController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Admin/ContractController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Admin/ContractController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Admin/DapController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Admin/DapController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Requests/Admin/Call.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Requests/Admin/Call.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Requests/Admin/Contract.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Requests/Admin/Contract.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/User.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/User.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/database/migrations/2020_03_30_094734_constraint_calls_services.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/database/migrations/2020_03_31_122705_constraint_call_sector.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/database/migrations/2020_04_07_144925_insert_user_admin.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/migrations/2020_04_07_144925_insert_user_admin.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/backend/assets/css/boot.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/backend/assets/css/libs.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/backend/assets/css/login.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/backend/assets/css/reset.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/backend/assets/css/style.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/backend/assets/dist/css/adminlte.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/backend/assets/dist/css/adminlte.css.map" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/backend/assets/dist/css/adminlte.min.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/backend/assets/dist/css/adminlte.min.css.map" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/backend/assets/dist/css/alt/adminlte.components.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/backend/assets/dist/css/alt/adminlte.components.css.map" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/backend/assets/dist/css/alt/adminlte.components.min.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/backend/assets/dist/css/alt/adminlte.components.min.css.map" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/backend/assets/dist/css/alt/adminlte.core.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/backend/assets/dist/css/alt/adminlte.core.css.map" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/backend/assets/dist/css/alt/adminlte.core.min.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/backend/assets/dist/css/alt/adminlte.core.min.css.map" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/backend/assets/dist/css/alt/adminlte.extra-components.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/backend/assets/dist/css/alt/adminlte.extra-components.css.map" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/backend/assets/dist/css/alt/adminlte.extra-components.min.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/backend/assets/dist/css/alt/adminlte.extra-components.min.css.map" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/backend/assets/dist/css/alt/adminlte.pages.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/backend/assets/dist/css/alt/adminlte.pages.css.map" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/backend/assets/dist/css/alt/adminlte.pages.min.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/backend/assets/dist/css/alt/adminlte.pages.min.css.map" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/backend/assets/dist/css/alt/adminlte.plugins.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/backend/assets/dist/css/alt/adminlte.plugins.css.map" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/backend/assets/dist/css/alt/adminlte.plugins.min.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/backend/assets/dist/css/alt/adminlte.plugins.min.css.map" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/backend/assets/dist/css/libs.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/backend/assets/dist/js/adminlte.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/backend/assets/dist/js/adminlte.js.map" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/backend/assets/dist/js/adminlte.min.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/backend/assets/dist/js/adminlte.min.js.map" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/backend/assets/dist/js/demo.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/backend/assets/dist/js/libs.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/backend/assets/dist/js/libs_table.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/backend/assets/dist/js/pages/dashboard.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/backend/assets/dist/js/pages/dashboard2.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/backend/assets/dist/js/pages/dashboard3.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/backend/assets/js/inputmask.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/backend/assets/js/jquery.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/backend/assets/js/libs.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/backend/assets/js/libs_table.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/backend/assets/js/libs_upinside.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/backend/assets/js/login.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/backend/assets/plugins/bootstrap-colorpicker/js/bootstrap-colorpicker.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/backend/assets/plugins/bootstrap-colorpicker/js/bootstrap-colorpicker.js.map" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/backend/assets/plugins/bootstrap-colorpicker/js/bootstrap-colorpicker.min.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/backend/assets/plugins/bootstrap-colorpicker/js/bootstrap-colorpicker.min.js.map" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/backend/assets/plugins/bootstrap-switch/js/bootstrap-switch.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/backend/assets/plugins/bootstrap-switch/js/bootstrap-switch.min.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/backend/assets/plugins/bootstrap/js/bootstrap.bundle.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/backend/assets/plugins/bootstrap/js/bootstrap.bundle.js.map" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/backend/assets/plugins/bootstrap/js/bootstrap.bundle.min.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/backend/assets/plugins/bootstrap/js/bootstrap.bundle.min.js.map" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/backend/assets/plugins/bootstrap/js/bootstrap.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/backend/assets/plugins/bootstrap/js/bootstrap.js.map" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/backend/assets/plugins/bootstrap/js/bootstrap.min.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/backend/assets/plugins/bootstrap/js/bootstrap.min.js.map" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/backend/assets/plugins/bootstrap4-duallistbox/bootstrap-duallistbox.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/backend/assets/plugins/bootstrap4-duallistbox/bootstrap-duallistbox.min.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/backend/assets/plugins/bootstrap4-duallistbox/jquery.bootstrap-duallistbox.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/backend/assets/plugins/bootstrap4-duallistbox/jquery.bootstrap-duallistbox.min.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/backend/assets/plugins/datatables-bs4/css/dataTables.bootstrap4.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/backend/assets/plugins/datatables-bs4/css/dataTables.bootstrap4.min.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/backend/assets/plugins/datatables-bs4/js/dataTables.bootstrap4.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/backend/assets/plugins/datatables-bs4/js/dataTables.bootstrap4.min.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/backend/assets/plugins/datatables-responsive/css/responsive.bootstrap4.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/backend/assets/plugins/datatables-responsive/css/responsive.bootstrap4.min.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/backend/assets/plugins/datatables-responsive/js/dataTables.responsive.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/backend/assets/plugins/datatables-responsive/js/dataTables.responsive.min.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/backend/assets/plugins/datatables-responsive/js/responsive.bootstrap4.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/backend/assets/plugins/datatables-responsive/js/responsive.bootstrap4.min.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/backend/assets/plugins/datatables/jquery.dataTables.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/backend/assets/plugins/datatables/jquery.dataTables.min.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/backend/assets/plugins/daterangepicker/bower.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/backend/assets/plugins/daterangepicker/daterangepicker.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/backend/assets/plugins/daterangepicker/daterangepicker.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/backend/assets/plugins/daterangepicker/drp.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/backend/assets/plugins/daterangepicker/example/amd/index.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/backend/assets/plugins/daterangepicker/example/amd/main.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/backend/assets/plugins/daterangepicker/example/amd/require.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/backend/assets/plugins/daterangepicker/example/browserify/README.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/backend/assets/plugins/daterangepicker/example/browserify/bundle.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/backend/assets/plugins/daterangepicker/example/browserify/index.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/backend/assets/plugins/daterangepicker/example/browserify/main.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/backend/assets/plugins/daterangepicker/moment.min.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/backend/assets/plugins/daterangepicker/package.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/backend/assets/plugins/daterangepicker/website.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/backend/assets/plugins/daterangepicker/website.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/backend/assets/plugins/daterangepicker/website/index.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/backend/assets/plugins/daterangepicker/website/website.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/backend/assets/plugins/daterangepicker/website/website.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/backend/assets/plugins/fontawesome-free/css/all.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/backend/assets/plugins/fontawesome-free/css/all.min.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/backend/assets/plugins/fontawesome-free/css/brands.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/backend/assets/plugins/fontawesome-free/css/brands.min.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/backend/assets/plugins/fontawesome-free/css/fontawesome.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/backend/assets/plugins/fontawesome-free/css/fontawesome.min.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/backend/assets/plugins/fontawesome-free/css/regular.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/backend/assets/plugins/fontawesome-free/css/regular.min.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/backend/assets/plugins/fontawesome-free/css/solid.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/backend/assets/plugins/fontawesome-free/css/solid.min.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/backend/assets/plugins/fontawesome-free/css/svg-with-js.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/backend/assets/plugins/fontawesome-free/css/svg-with-js.min.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/backend/assets/plugins/fontawesome-free/css/v4-shims.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/backend/assets/plugins/fontawesome-free/css/v4-shims.min.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/backend/assets/plugins/icheck-bootstrap/LICENSE" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/backend/assets/plugins/icheck-bootstrap/icheck-bootstrap.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/backend/assets/plugins/icheck-bootstrap/icheck-bootstrap.min.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/backend/assets/plugins/inputmask.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/backend/assets/plugins/inputmask/bindings/inputmask.binding.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/backend/assets/plugins/inputmask/inputmask.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/backend/assets/plugins/inputmask/inputmask.min.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/backend/assets/plugins/inputmask/inputmask/bindings/inputmask.binding.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/backend/assets/plugins/inputmask/inputmask/dependencyLibs/inputmask.dependencyLib.jqlite.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/backend/assets/plugins/inputmask/inputmask/dependencyLibs/inputmask.dependencyLib.jquery.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/backend/assets/plugins/inputmask/inputmask/dependencyLibs/inputmask.dependencyLib.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/backend/assets/plugins/inputmask/inputmask/global/window.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/backend/assets/plugins/inputmask/inputmask/inputmask.date.extensions.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/backend/assets/plugins/inputmask/inputmask/inputmask.extensions.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/backend/assets/plugins/inputmask/inputmask/inputmask.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/backend/assets/plugins/inputmask/inputmask/inputmask.numeric.extensions.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/backend/assets/plugins/inputmask/inputmask/jquery.inputmask.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/backend/assets/plugins/inputmask/jquery.inputmask.bundle.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/backend/assets/plugins/inputmask/jquery.inputmask.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/backend/assets/plugins/inputmask/jquery.inputmask.min.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/backend/assets/plugins/inputmask/min/inputmask/bindings/inputmask.binding.min.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/backend/assets/plugins/inputmask/min/inputmask/dependencyLibs/inputmask.dependencyLib.jqlite.min.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/backend/assets/plugins/inputmask/min/inputmask/dependencyLibs/inputmask.dependencyLib.jquery.min.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/backend/assets/plugins/inputmask/min/inputmask/dependencyLibs/inputmask.dependencyLib.min.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/backend/assets/plugins/inputmask/min/inputmask/global/window.min.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/backend/assets/plugins/inputmask/min/inputmask/inputmask.date.extensions.min.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/backend/assets/plugins/inputmask/min/inputmask/inputmask.extensions.min.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/backend/assets/plugins/inputmask/min/inputmask/inputmask.min.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/backend/assets/plugins/inputmask/min/inputmask/inputmask.numeric.extensions.min.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/backend/assets/plugins/inputmask/min/inputmask/jquery.inputmask.min.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/backend/assets/plugins/inputmask/min/jquery.inputmask.bundle.min.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/backend/assets/plugins/jquery-knob/jquery.knob.min.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/backend/assets/plugins/jqvmap/jquery.vmap.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/backend/assets/plugins/jqvmap/jquery.vmap.min.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/backend/assets/plugins/jqvmap/jqvmap.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/backend/assets/plugins/jqvmap/jqvmap.min.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/backend/assets/plugins/jqvmap/maps/continents/jquery.vmap.africa.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/backend/assets/plugins/jqvmap/maps/continents/jquery.vmap.asia.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/backend/assets/plugins/jqvmap/maps/continents/jquery.vmap.australia.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/backend/assets/plugins/jqvmap/maps/continents/jquery.vmap.europe.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/backend/assets/plugins/jqvmap/maps/continents/jquery.vmap.north-america.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/backend/assets/plugins/jqvmap/maps/continents/jquery.vmap.south-america.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/backend/assets/plugins/jqvmap/maps/jquery.vmap.algeria.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/backend/assets/plugins/jqvmap/maps/jquery.vmap.argentina.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/backend/assets/plugins/jqvmap/maps/jquery.vmap.brazil.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/backend/assets/plugins/jqvmap/maps/jquery.vmap.canada.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/backend/assets/plugins/jqvmap/maps/jquery.vmap.croatia.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/backend/assets/plugins/jqvmap/maps/jquery.vmap.europe.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/backend/assets/plugins/jqvmap/maps/jquery.vmap.france.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/backend/assets/plugins/jqvmap/maps/jquery.vmap.germany.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/backend/assets/plugins/jqvmap/maps/jquery.vmap.greece.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/backend/assets/plugins/jqvmap/maps/jquery.vmap.indonesia.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/backend/assets/plugins/jqvmap/maps/jquery.vmap.iran.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/backend/assets/plugins/jqvmap/maps/jquery.vmap.iraq.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/backend/assets/plugins/jqvmap/maps/jquery.vmap.new_regions_france.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/backend/assets/plugins/jqvmap/maps/jquery.vmap.russia.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/backend/assets/plugins/jqvmap/maps/jquery.vmap.serbia.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/backend/assets/plugins/jqvmap/maps/jquery.vmap.tunisia.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/backend/assets/plugins/jqvmap/maps/jquery.vmap.turkey.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/backend/assets/plugins/jqvmap/maps/jquery.vmap.ukraine.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/backend/assets/plugins/jqvmap/maps/jquery.vmap.usa.counties.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/backend/assets/plugins/jqvmap/maps/jquery.vmap.usa.districts.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/backend/assets/plugins/jqvmap/maps/jquery.vmap.usa.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/backend/assets/plugins/jqvmap/maps/jquery.vmap.world.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/backend/assets/plugins/moment/locale/af.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/backend/assets/plugins/moment/locale/ar-dz.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/backend/assets/plugins/moment/locale/ar-kw.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/backend/assets/plugins/moment/locale/ar-ly.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/backend/assets/plugins/moment/locale/ar-ma.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/backend/assets/plugins/moment/locale/ar-sa.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/backend/assets/plugins/moment/locale/ar-tn.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/backend/assets/plugins/moment/locale/ar.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/backend/assets/plugins/moment/locale/az.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/backend/assets/plugins/moment/locale/be.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/backend/assets/plugins/moment/locale/bg.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/backend/assets/plugins/moment/locale/bm.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/backend/assets/plugins/moment/locale/bn.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/backend/assets/plugins/moment/locale/bo.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/backend/assets/plugins/moment/locale/br.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/backend/assets/plugins/moment/locale/bs.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/backend/assets/plugins/moment/locale/ca.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/backend/assets/plugins/moment/locale/cs.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/backend/assets/plugins/moment/locale/cv.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/backend/assets/plugins/moment/locale/cy.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/backend/assets/plugins/moment/locale/da.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/backend/assets/plugins/moment/locale/de-at.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/backend/assets/plugins/moment/locale/de-ch.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/backend/assets/plugins/moment/locale/de.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/backend/assets/plugins/moment/locale/dv.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/backend/assets/plugins/moment/locale/el.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/backend/assets/plugins/moment/locale/en-SG.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/backend/assets/plugins/moment/locale/en-au.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/backend/assets/plugins/moment/locale/en-ca.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/backend/assets/plugins/moment/locale/en-gb.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/backend/assets/plugins/moment/locale/en-ie.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/backend/assets/plugins/moment/locale/en-il.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/backend/assets/plugins/moment/locale/en-nz.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/backend/assets/plugins/moment/locale/eo.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/backend/assets/plugins/moment/locale/es-do.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/backend/assets/plugins/moment/locale/es-us.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/backend/assets/plugins/moment/locale/es.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/backend/assets/plugins/moment/locale/et.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/backend/assets/plugins/moment/locale/eu.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/backend/assets/plugins/moment/locale/fa.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/backend/assets/plugins/moment/locale/fi.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/backend/assets/plugins/moment/locale/fo.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/backend/assets/plugins/moment/locale/fr-ca.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/backend/assets/plugins/moment/locale/fr-ch.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/backend/assets/plugins/moment/locale/fr.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/backend/assets/plugins/moment/locale/fy.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/backend/assets/plugins/moment/locale/ga.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/backend/assets/plugins/moment/locale/gd.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/backend/assets/plugins/moment/locale/gl.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/backend/assets/plugins/moment/locale/gom-latn.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/backend/assets/plugins/moment/locale/gu.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/backend/assets/plugins/moment/locale/he.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/backend/assets/plugins/moment/locale/hi.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/backend/assets/plugins/moment/locale/hr.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/backend/assets/plugins/moment/locale/hu.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/backend/assets/plugins/moment/locale/hy-am.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/backend/assets/plugins/moment/locale/id.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/backend/assets/plugins/moment/locale/is.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/backend/assets/plugins/moment/locale/it-ch.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/backend/assets/plugins/moment/locale/it.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/backend/assets/plugins/moment/locale/ja.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/backend/assets/plugins/moment/locale/jv.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/backend/assets/plugins/moment/locale/ka.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/backend/assets/plugins/moment/locale/kk.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/backend/assets/plugins/moment/locale/km.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/backend/assets/plugins/moment/locale/kn.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/backend/assets/plugins/moment/locale/ko.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/backend/assets/plugins/moment/locale/ku.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/backend/assets/plugins/moment/locale/ky.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/backend/assets/plugins/moment/locale/lb.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/backend/assets/plugins/moment/locale/lo.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/backend/assets/plugins/moment/locale/lt.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/backend/assets/plugins/moment/locale/lv.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/backend/assets/plugins/moment/locale/me.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/backend/assets/plugins/moment/locale/mi.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/backend/assets/plugins/moment/locale/mk.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/backend/assets/plugins/moment/locale/ml.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/backend/assets/plugins/moment/locale/mn.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/backend/assets/plugins/moment/locale/mr.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/backend/assets/plugins/moment/locale/ms-my.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/backend/assets/plugins/moment/locale/ms.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/backend/assets/plugins/moment/locale/mt.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/backend/assets/plugins/moment/locale/my.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/backend/assets/plugins/moment/locale/nb.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/backend/assets/plugins/moment/locale/ne.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/backend/assets/plugins/moment/locale/nl-be.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/backend/assets/plugins/moment/locale/nl.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/backend/assets/plugins/moment/locale/nn.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/backend/assets/plugins/moment/locale/pa-in.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/backend/assets/plugins/moment/locale/pl.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/backend/assets/plugins/moment/locale/pt-br.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/backend/assets/plugins/moment/locale/pt.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/backend/assets/plugins/moment/locale/ro.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/backend/assets/plugins/moment/locale/ru.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/backend/assets/plugins/moment/locale/sd.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/backend/assets/plugins/moment/locale/se.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/backend/assets/plugins/moment/locale/si.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/backend/assets/plugins/moment/locale/sk.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/backend/assets/plugins/moment/locale/sl.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/backend/assets/plugins/moment/locale/sq.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/backend/assets/plugins/moment/locale/sr-cyrl.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/backend/assets/plugins/moment/locale/sr.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/backend/assets/plugins/moment/locale/ss.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/backend/assets/plugins/moment/locale/sv.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/backend/assets/plugins/moment/locale/sw.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/backend/assets/plugins/moment/locale/ta.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/backend/assets/plugins/moment/locale/te.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/backend/assets/plugins/moment/locale/tet.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/backend/assets/plugins/moment/locale/tg.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/backend/assets/plugins/moment/locale/th.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/backend/assets/plugins/moment/locale/tl-ph.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/backend/assets/plugins/moment/locale/tlh.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/backend/assets/plugins/moment/locale/tr.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/backend/assets/plugins/moment/locale/tzl.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/backend/assets/plugins/moment/locale/tzm-latn.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/backend/assets/plugins/moment/locale/tzm.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/backend/assets/plugins/moment/locale/ug-cn.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/backend/assets/plugins/moment/locale/uk.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/backend/assets/plugins/moment/locale/ur.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/backend/assets/plugins/moment/locale/uz-latn.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/backend/assets/plugins/moment/locale/uz.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/backend/assets/plugins/moment/locale/vi.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/backend/assets/plugins/moment/locale/x-pseudo.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/backend/assets/plugins/moment/locale/yo.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/backend/assets/plugins/moment/locale/zh-cn.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/backend/assets/plugins/moment/locale/zh-hk.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/backend/assets/plugins/moment/locale/zh-tw.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/backend/assets/plugins/moment/locales.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/backend/assets/plugins/moment/locales.min.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/backend/assets/plugins/moment/moment-with-locales.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/backend/assets/plugins/moment/moment-with-locales.min.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/backend/assets/plugins/moment/moment.min.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/backend/assets/plugins/overlayScrollbars/css/OverlayScrollbars.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/backend/assets/plugins/overlayScrollbars/css/OverlayScrollbars.min.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/backend/assets/plugins/overlayScrollbars/js/OverlayScrollbars.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/backend/assets/plugins/overlayScrollbars/js/OverlayScrollbars.min.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/backend/assets/plugins/overlayScrollbars/js/jquery.overlayScrollbars.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/backend/assets/plugins/overlayScrollbars/js/jquery.overlayScrollbars.min.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/backend/assets/plugins/select2/js/i18n/af.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/backend/assets/plugins/select2/js/i18n/ar.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/backend/assets/plugins/select2/js/i18n/az.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/backend/assets/plugins/select2/js/i18n/bg.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/backend/assets/plugins/select2/js/i18n/bn.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/backend/assets/plugins/select2/js/i18n/bs.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/backend/assets/plugins/select2/js/i18n/build.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/backend/assets/plugins/select2/js/i18n/ca.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/backend/assets/plugins/select2/js/i18n/cs.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/backend/assets/plugins/select2/js/i18n/da.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/backend/assets/plugins/select2/js/i18n/de.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/backend/assets/plugins/select2/js/i18n/dsb.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/backend/assets/plugins/select2/js/i18n/el.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/backend/assets/plugins/select2/js/i18n/en.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/backend/assets/plugins/select2/js/i18n/es.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/backend/assets/plugins/select2/js/i18n/et.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/backend/assets/plugins/select2/js/i18n/eu.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/backend/assets/plugins/select2/js/i18n/fa.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/backend/assets/plugins/select2/js/i18n/fi.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/backend/assets/plugins/select2/js/i18n/fr.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/backend/assets/plugins/select2/js/i18n/gl.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/backend/assets/plugins/select2/js/i18n/he.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/backend/assets/plugins/select2/js/i18n/hi.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/backend/assets/plugins/select2/js/i18n/hr.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/backend/assets/plugins/select2/js/i18n/hsb.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/backend/assets/plugins/select2/js/i18n/hu.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/backend/assets/plugins/select2/js/i18n/hy.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/backend/assets/plugins/select2/js/i18n/id.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/backend/assets/plugins/select2/js/i18n/is.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/backend/assets/plugins/select2/js/i18n/it.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/backend/assets/plugins/select2/js/i18n/ja.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/backend/assets/plugins/select2/js/i18n/ka.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/backend/assets/plugins/select2/js/i18n/km.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/backend/assets/plugins/select2/js/i18n/ko.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/backend/assets/plugins/select2/js/i18n/lt.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/backend/assets/plugins/select2/js/i18n/lv.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/backend/assets/plugins/select2/js/i18n/mk.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/backend/assets/plugins/select2/js/i18n/ms.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/backend/assets/plugins/select2/js/i18n/nb.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/backend/assets/plugins/select2/js/i18n/ne.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/backend/assets/plugins/select2/js/i18n/nl.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/backend/assets/plugins/select2/js/i18n/pl.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/backend/assets/plugins/select2/js/i18n/ps.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/backend/assets/plugins/select2/js/i18n/pt-BR.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/backend/assets/plugins/select2/js/i18n/pt.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/backend/assets/plugins/select2/js/i18n/ro.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/backend/assets/plugins/select2/js/i18n/ru.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/backend/assets/plugins/select2/js/i18n/sk.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/backend/assets/plugins/select2/js/i18n/sl.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/backend/assets/plugins/select2/js/i18n/sq.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/backend/assets/plugins/select2/js/i18n/sr-Cyrl.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/backend/assets/plugins/select2/js/i18n/sr.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/backend/assets/plugins/select2/js/i18n/sv.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/backend/assets/plugins/select2/js/i18n/th.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/backend/assets/plugins/select2/js/i18n/tk.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/backend/assets/plugins/select2/js/i18n/tr.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/backend/assets/plugins/select2/js/i18n/uk.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/backend/assets/plugins/select2/js/i18n/vi.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/backend/assets/plugins/select2/js/i18n/zh-CN.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/backend/assets/plugins/select2/js/i18n/zh-TW.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/backend/assets/plugins/select2/js/select2.full.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/backend/assets/plugins/select2/js/select2.full.min.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/backend/assets/plugins/select2/js/select2.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/backend/assets/plugins/select2/js/select2.min.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/backend/assets/plugins/sparklines/sparkline.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/backend/assets/plugins/summernote/font/summernote.eot" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/backend/assets/plugins/summernote/font/summernote.ttf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/backend/assets/plugins/summernote/font/summernote.woff" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/backend/assets/plugins/summernote/font/summernote.woff2" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/backend/assets/plugins/summernote/lang/summernote-ar-AR.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/backend/assets/plugins/summernote/lang/summernote-ar-AR.min.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/backend/assets/plugins/summernote/lang/summernote-ar-AR.min.js.LICENSE.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/backend/assets/plugins/summernote/lang/summernote-az-AZ.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/backend/assets/plugins/summernote/lang/summernote-az-AZ.min.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/backend/assets/plugins/summernote/lang/summernote-az-AZ.min.js.LICENSE.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/backend/assets/plugins/summernote/lang/summernote-bg-BG.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/backend/assets/plugins/summernote/lang/summernote-bg-BG.min.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/backend/assets/plugins/summernote/lang/summernote-bg-BG.min.js.LICENSE.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/backend/assets/plugins/summernote/lang/summernote-ca-ES.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/backend/assets/plugins/summernote/lang/summernote-ca-ES.min.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/backend/assets/plugins/summernote/lang/summernote-ca-ES.min.js.LICENSE.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/backend/assets/plugins/summernote/lang/summernote-cs-CZ.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/backend/assets/plugins/summernote/lang/summernote-cs-CZ.min.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/backend/assets/plugins/summernote/lang/summernote-cs-CZ.min.js.LICENSE.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/backend/assets/plugins/summernote/lang/summernote-da-DK.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/backend/assets/plugins/summernote/lang/summernote-da-DK.min.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/backend/assets/plugins/summernote/lang/summernote-da-DK.min.js.LICENSE.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/backend/assets/plugins/summernote/lang/summernote-de-DE.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/backend/assets/plugins/summernote/lang/summernote-de-DE.min.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/backend/assets/plugins/summernote/lang/summernote-de-DE.min.js.LICENSE.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/backend/assets/plugins/summernote/lang/summernote-el-GR.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/backend/assets/plugins/summernote/lang/summernote-el-GR.min.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/backend/assets/plugins/summernote/lang/summernote-el-GR.min.js.LICENSE.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/backend/assets/plugins/summernote/lang/summernote-es-ES.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/backend/assets/plugins/summernote/lang/summernote-es-ES.min.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/backend/assets/plugins/summernote/lang/summernote-es-ES.min.js.LICENSE.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/backend/assets/plugins/summernote/lang/summernote-es-EU.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/backend/assets/plugins/summernote/lang/summernote-es-EU.min.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/backend/assets/plugins/summernote/lang/summernote-es-EU.min.js.LICENSE.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/backend/assets/plugins/summernote/lang/summernote-fa-IR.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/backend/assets/plugins/summernote/lang/summernote-fa-IR.min.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/backend/assets/plugins/summernote/lang/summernote-fa-IR.min.js.LICENSE.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/backend/assets/plugins/summernote/lang/summernote-fi-FI.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/backend/assets/plugins/summernote/lang/summernote-fi-FI.min.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/backend/assets/plugins/summernote/lang/summernote-fi-FI.min.js.LICENSE.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/backend/assets/plugins/summernote/lang/summernote-fr-FR.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/backend/assets/plugins/summernote/lang/summernote-fr-FR.min.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/backend/assets/plugins/summernote/lang/summernote-fr-FR.min.js.LICENSE.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/backend/assets/plugins/summernote/lang/summernote-gl-ES.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/backend/assets/plugins/summernote/lang/summernote-gl-ES.min.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/backend/assets/plugins/summernote/lang/summernote-gl-ES.min.js.LICENSE.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/backend/assets/plugins/summernote/lang/summernote-he-IL.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/backend/assets/plugins/summernote/lang/summernote-he-IL.min.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/backend/assets/plugins/summernote/lang/summernote-he-IL.min.js.LICENSE.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/backend/assets/plugins/summernote/lang/summernote-hr-HR.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/backend/assets/plugins/summernote/lang/summernote-hr-HR.min.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/backend/assets/plugins/summernote/lang/summernote-hr-HR.min.js.LICENSE.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/backend/assets/plugins/summernote/lang/summernote-hu-HU.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/backend/assets/plugins/summernote/lang/summernote-hu-HU.min.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/backend/assets/plugins/summernote/lang/summernote-hu-HU.min.js.LICENSE.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/backend/assets/plugins/summernote/lang/summernote-id-ID.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/backend/assets/plugins/summernote/lang/summernote-id-ID.min.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/backend/assets/plugins/summernote/lang/summernote-id-ID.min.js.LICENSE.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/backend/assets/plugins/summernote/lang/summernote-it-IT.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/backend/assets/plugins/summernote/lang/summernote-it-IT.min.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/backend/assets/plugins/summernote/lang/summernote-it-IT.min.js.LICENSE.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/backend/assets/plugins/summernote/lang/summernote-ja-JP.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/backend/assets/plugins/summernote/lang/summernote-ja-JP.min.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/backend/assets/plugins/summernote/lang/summernote-ja-JP.min.js.LICENSE.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/backend/assets/plugins/summernote/lang/summernote-ko-KR.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/backend/assets/plugins/summernote/lang/summernote-ko-KR.min.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/backend/assets/plugins/summernote/lang/summernote-ko-KR.min.js.LICENSE.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/backend/assets/plugins/summernote/lang/summernote-lt-LT.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/backend/assets/plugins/summernote/lang/summernote-lt-LT.min.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/backend/assets/plugins/summernote/lang/summernote-lt-LT.min.js.LICENSE.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/backend/assets/plugins/summernote/lang/summernote-lt-LV.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/backend/assets/plugins/summernote/lang/summernote-lt-LV.min.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/backend/assets/plugins/summernote/lang/summernote-lt-LV.min.js.LICENSE.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/backend/assets/plugins/summernote/lang/summernote-mn-MN.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/backend/assets/plugins/summernote/lang/summernote-mn-MN.min.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/backend/assets/plugins/summernote/lang/summernote-mn-MN.min.js.LICENSE.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/backend/assets/plugins/summernote/lang/summernote-nb-NO.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/backend/assets/plugins/summernote/lang/summernote-nb-NO.min.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/backend/assets/plugins/summernote/lang/summernote-nb-NO.min.js.LICENSE.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/backend/assets/plugins/summernote/lang/summernote-nl-NL.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/backend/assets/plugins/summernote/lang/summernote-nl-NL.min.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/backend/assets/plugins/summernote/lang/summernote-nl-NL.min.js.LICENSE.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/backend/assets/plugins/summernote/lang/summernote-pl-PL.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/backend/assets/plugins/summernote/lang/summernote-pl-PL.min.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/backend/assets/plugins/summernote/lang/summernote-pl-PL.min.js.LICENSE.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/backend/assets/plugins/summernote/lang/summernote-pt-BR.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/backend/assets/plugins/summernote/lang/summernote-pt-BR.min.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/backend/assets/plugins/summernote/lang/summernote-pt-BR.min.js.LICENSE.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/backend/assets/plugins/summernote/lang/summernote-pt-PT.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/backend/assets/plugins/summernote/lang/summernote-pt-PT.min.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/backend/assets/plugins/summernote/lang/summernote-pt-PT.min.js.LICENSE.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/backend/assets/plugins/summernote/lang/summernote-ro-RO.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/backend/assets/plugins/summernote/lang/summernote-ro-RO.min.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/backend/assets/plugins/summernote/lang/summernote-ro-RO.min.js.LICENSE.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/backend/assets/plugins/summernote/lang/summernote-ru-RU.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/backend/assets/plugins/summernote/lang/summernote-ru-RU.min.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/backend/assets/plugins/summernote/lang/summernote-ru-RU.min.js.LICENSE.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/backend/assets/plugins/summernote/lang/summernote-sk-SK.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/backend/assets/plugins/summernote/lang/summernote-sk-SK.min.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/backend/assets/plugins/summernote/lang/summernote-sk-SK.min.js.LICENSE.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/backend/assets/plugins/summernote/lang/summernote-sl-SI.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/backend/assets/plugins/summernote/lang/summernote-sl-SI.min.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/backend/assets/plugins/summernote/lang/summernote-sl-SI.min.js.LICENSE.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/backend/assets/plugins/summernote/lang/summernote-sr-RS-Latin.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/backend/assets/plugins/summernote/lang/summernote-sr-RS-Latin.min.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/backend/assets/plugins/summernote/lang/summernote-sr-RS-Latin.min.js.LICENSE.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/backend/assets/plugins/summernote/lang/summernote-sr-RS.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/backend/assets/plugins/summernote/lang/summernote-sr-RS.min.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/backend/assets/plugins/summernote/lang/summernote-sr-RS.min.js.LICENSE.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/backend/assets/plugins/summernote/lang/summernote-sv-SE.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/backend/assets/plugins/summernote/lang/summernote-sv-SE.min.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/backend/assets/plugins/summernote/lang/summernote-sv-SE.min.js.LICENSE.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/backend/assets/plugins/summernote/lang/summernote-ta-IN.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/backend/assets/plugins/summernote/lang/summernote-ta-IN.min.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/backend/assets/plugins/summernote/lang/summernote-ta-IN.min.js.LICENSE.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/backend/assets/plugins/summernote/lang/summernote-th-TH.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/backend/assets/plugins/summernote/lang/summernote-th-TH.min.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/backend/assets/plugins/summernote/lang/summernote-th-TH.min.js.LICENSE.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/backend/assets/plugins/summernote/lang/summernote-tr-TR.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/backend/assets/plugins/summernote/lang/summernote-tr-TR.min.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/backend/assets/plugins/summernote/lang/summernote-tr-TR.min.js.LICENSE.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/backend/assets/plugins/summernote/lang/summernote-uk-UA.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/backend/assets/plugins/summernote/lang/summernote-uk-UA.min.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/backend/assets/plugins/summernote/lang/summernote-uk-UA.min.js.LICENSE.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/backend/assets/plugins/summernote/lang/summernote-uz-UZ.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/backend/assets/plugins/summernote/lang/summernote-uz-UZ.min.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/backend/assets/plugins/summernote/lang/summernote-uz-UZ.min.js.LICENSE.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/backend/assets/plugins/summernote/lang/summernote-vi-VN.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/backend/assets/plugins/summernote/lang/summernote-vi-VN.min.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/backend/assets/plugins/summernote/lang/summernote-vi-VN.min.js.LICENSE.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/backend/assets/plugins/summernote/lang/summernote-zh-CN.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/backend/assets/plugins/summernote/lang/summernote-zh-CN.min.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/backend/assets/plugins/summernote/lang/summernote-zh-CN.min.js.LICENSE.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/backend/assets/plugins/summernote/lang/summernote-zh-TW.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/backend/assets/plugins/summernote/lang/summernote-zh-TW.min.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/backend/assets/plugins/summernote/lang/summernote-zh-TW.min.js.LICENSE.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/backend/assets/plugins/summernote/plugin/databasic/summernote-ext-databasic.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/backend/assets/plugins/summernote/plugin/databasic/summernote-ext-databasic.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/backend/assets/plugins/summernote/plugin/hello/summernote-ext-hello.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/backend/assets/plugins/summernote/plugin/specialchars/summernote-ext-specialchars.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/backend/assets/plugins/summernote/summernote-bs4.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/backend/assets/plugins/summernote/summernote-bs4.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/backend/assets/plugins/summernote/summernote-bs4.js.map" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/backend/assets/plugins/summernote/summernote-bs4.min.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/backend/assets/plugins/summernote/summernote-bs4.min.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/backend/assets/plugins/summernote/summernote-bs4.min.js.LICENSE.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/backend/assets/plugins/summernote/summernote-bs4.min.js.map" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/backend/assets/plugins/summernote/summernote-lite.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/backend/assets/plugins/summernote/summernote-lite.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/backend/assets/plugins/summernote/summernote-lite.js.map" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/backend/assets/plugins/summernote/summernote-lite.min.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/backend/assets/plugins/summernote/summernote-lite.min.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/backend/assets/plugins/summernote/summernote-lite.min.js.LICENSE.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/backend/assets/plugins/summernote/summernote-lite.min.js.map" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/backend/assets/plugins/summernote/summernote.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/backend/assets/plugins/summernote/summernote.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/backend/assets/plugins/summernote/summernote.js.map" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/backend/assets/plugins/summernote/summernote.min.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/backend/assets/plugins/summernote/summernote.min.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/backend/assets/plugins/summernote/summernote.min.js.LICENSE.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/backend/assets/plugins/summernote/summernote.min.js.map" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/backend/assets/plugins/sweetalert2/sweetalert2.all.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/backend/assets/plugins/sweetalert2/sweetalert2.all.min.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/backend/assets/plugins/sweetalert2/sweetalert2.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/backend/assets/plugins/sweetalert2/sweetalert2.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/backend/assets/plugins/sweetalert2/sweetalert2.min.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/backend/assets/plugins/sweetalert2/sweetalert2.min.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/backend/assets/plugins/tempusdominus-bootstrap-4/css/tempusdominus-bootstrap-4.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/backend/assets/plugins/tempusdominus-bootstrap-4/css/tempusdominus-bootstrap-4.min.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/backend/assets/plugins/tempusdominus-bootstrap-4/js/tempusdominus-bootstrap-4.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/backend/assets/plugins/tempusdominus-bootstrap-4/js/tempusdominus-bootstrap-4.min.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/backend/assets/plugins/toastr/toastr.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/backend/assets/plugins/toastr/toastr.js.map" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/backend/assets/plugins/toastr/toastr.min.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/backend/assets/plugins/toastr/toastr.min.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/mix-manifest.json" beforeDir="false" afterPath="$PROJECT_DIR$/public/mix-manifest.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/admin/assets/js/scripts.js" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/admin/assets/js/scripts.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/admin/banks/create.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/admin/banks/create.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/admin/banks/edit.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/admin/banks/edit.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/admin/banks/index.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/admin/banks/index.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/admin/call_sectors/create.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/admin/call_sectors/create.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/admin/call_sectors/edit.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/admin/call_sectors/edit.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/admin/call_sectors/index.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/admin/call_sectors/index.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/admin/calls/create.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/admin/calls/create.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/admin/calls/edit.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/admin/calls/edit.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/admin/calls/index.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/admin/calls/index.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/admin/contracts/create.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/admin/contracts/create.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/admin/contracts/edit.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/admin/contracts/edit.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/admin/contracts/filter.blade.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/admin/contracts/index.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/admin/contracts/index.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/admin/dashboard.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/admin/dashboard.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/admin/master/master.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/admin/master/master.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/admin/service_category/create.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/admin/service_category/create.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/admin/service_category/edit.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/admin/service_category/edit.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/admin/service_category/index.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/admin/service_category/index.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/admin/services/create.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/admin/services/create.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/admin/services/edit.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/admin/services/edit.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/admin/services/index.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/admin/services/index.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/admin/system/edit.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/admin/system/edit.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/admin/users/create.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/admin/users/create.blade.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/resources/views/admin/users/edit.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/admin/users/edit.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/admin/users/index.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/admin/users/index.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/admin/users/team.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/admin/users/team.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/routes/web.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/web.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/webpack.mix.js" beforeDir="false" afterPath="$PROJECT_DIR$/webpack.mix.js" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -2821,14 +3414,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/app/Http/Controllers/Admin/UserController.php">
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/Http/Controllers/Admin/CallController.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="170">
-              <caret line="132" column="71" selection-start-line="132" selection-start-column="71" selection-end-line="132" selection-end-column="71" />
-              <folding>
-                <element signature="e#53#76#0#PHP" expanded="true" />
-              </folding>
+            <state relative-caret-position="153">
+              <caret line="143" selection-start-line="143" selection-end-line="143" />
             </state>
           </provider>
         </entry>
@@ -2836,20 +3426,35 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/resources/views/admin/users/edit.blade.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="375">
-              <caret line="660" column="124" selection-start-line="660" selection-start-column="124" selection-end-line="660" selection-end-column="124" />
+            <state relative-caret-position="304">
+              <caret line="1429" lean-forward="true" selection-start-line="1429" selection-end-line="1429" />
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/Http/Controllers/Admin/RuralEnvironmentalRegistryController.php">
+        <entry file="file://$PROJECT_DIR$/resources/views/admin/master/master.blade.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="245">
-              <caret line="25" column="11" lean-forward="true" selection-start-line="25" selection-start-column="11" selection-end-line="25" selection-end-column="11" />
-              <folding>
-                <element signature="e#53#95#0#PHP" expanded="true" />
-              </folding>
+            <state relative-caret-position="329">
+              <caret line="369" column="54" lean-forward="true" selection-start-line="369" selection-start-column="54" selection-end-line="369" selection-end-column="54" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/webpack.mix.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="376">
+              <caret line="95" selection-start-line="95" selection-end-line="95" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/resources/views/admin/assets/js/scripts.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="1056">
+              <caret line="66" selection-start-line="66" selection-end-line="66" />
             </state>
           </provider>
         </entry>
@@ -2865,36 +3470,36 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>&lt;/form</find>
-      <find>isActive</find>
-      <find>select</find>
-      <find>empresas</find>
-      <find>endereço</find>
-      <find>file</find>
-      <find>text</find>
-      <find>cpf</find>
-      <find>path</find>
-      <find>content</find>
-      <find>breadcrumb</find>
-      <find>container-fluid</find>
-      <find>content-wrapper</find>
-      <find>content-header</find>
-      <find>document</find>
-      <find>bootstrap.bundle.min.js</find>
-      <find>dataTables.bootstrap4.min.css</find>
-      <find>Prop</find>
-      <find>property</find>
-      <find>proper</find>
-      <find>id</find>
-      <find>documents</find>
-      <find>dados ban</find>
-      <find>bancários</find>
-      <find>propriedad</find>
-      <find>uf</find>
-      <find>CNPJ</find>
-      <find>date</find>
-      <find>password</find>
-      <find>dap</find>
+      <find>files</find>
+      <find>sass</find>
+      <find>scss</find>
+      <find>Post</find>
+      <find>servicepost</find>
+      <find>BlogPost</find>
+      <find>Blog</find>
+      <find>post</find>
+      <find>bank</find>
+      <find>phone</find>
+      <find>email</find>
+      <find>telephone</find>
+      <find>cover</find>
+      <find>profiss</find>
+      <find>services</find>
+      <find>select2</find>
+      <find>select2.min.css</find>
+      <find>resources/views/admin/assets/plugins/select2</find>
+      <find>daterangepicker.css</find>
+      <find>daterangepicker</find>
+      <find>icheck-bootstrap.min.css</find>
+      <find>resources/views/admin/assets/plugins/inputmask/min</find>
+      <find>resources/views/admin/assets/plugins/moment</find>
+      <find>resources/views/admin/assets/plugins/inputmask/min/</find>
+      <find>zipco</find>
+      <find>resources/views/admin/assets/plugins/inputmask</find>
+      <find>js/scripts.js</find>
+      <find>app_form</find>
+      <find>cep</find>
+      <find>resources/views/admin/assets/js</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -2903,57 +3508,57 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/resources/views/admin/documents/create.blade.php" />
-        <option value="$PROJECT_DIR$/resources/views/admin/users/create.blade.php" />
+        <option value="$PROJECT_DIR$/app/Contract.php" />
+        <option value="$PROJECT_DIR$/app/Http/Requests/Admin/Contract.php" />
+        <option value="$PROJECT_DIR$/resources/views/admin/contracts/edit.blade.php" />
+        <option value="$PROJECT_DIR$/resources/views/admin/contracts/create.blade.php" />
+        <option value="$PROJECT_DIR$/app/Http/Controllers/Admin/ContractController.php" />
+        <option value="$PROJECT_DIR$/database/migrations/2020_04_22_152045_create_orders_table.php" />
+        <option value="$PROJECT_DIR$/database/migrations/2020_04_23_144217_create_posts_table.php" />
         <option value="$PROJECT_DIR$/resources/views/admin/system/edit.blade.php" />
-        <option value="$PROJECT_DIR$/resources/views/admin/banks/edit.blade.php" />
-        <option value="$PROJECT_DIR$/resources/views/admin/documents/index.blade.php" />
+        <option value="$PROJECT_DIR$/resources/views/admin/users/team.blade.php" />
+        <option value="$PROJECT_DIR$/database/migrations/2020_04_07_144925_insert_user_admin.php" />
+        <option value="$PROJECT_DIR$/database/migrations/2020_04_23_164017_create_category_posts_table.php" />
+        <option value="$PROJECT_DIR$/app/CategoryPost.php" />
+        <option value="$PROJECT_DIR$/app/Http/Controllers/Admin/CategoryPostController.php" />
         <option value="$PROJECT_DIR$/resources/views/admin/users/index.blade.php" />
-        <option value="$PROJECT_DIR$/resources/views/admin/companies/index.blade.php" />
-        <option value="$PROJECT_DIR$/resources/views/admin/components/message.blade.php" />
-        <option value="$PROJECT_DIR$/app/Http/Controllers/Admin/DocumentController.php" />
-        <option value="$PROJECT_DIR$/resources/views/admin/companies/edit.blade.php" />
-        <option value="$PROJECT_DIR$/resources/views/admin/document_category/edit.blade.php" />
-        <option value="$PROJECT_DIR$/resources/views/admin/document_category/index.blade.php" />
-        <option value="$PROJECT_DIR$/resources/views/admin/documents/edit.blade.php" />
-        <option value="$PROJECT_DIR$/resources/views/admin/properties/edit.blade.php" />
-        <option value="$PROJECT_DIR$/resources/views/admin/properties/create.blade.php" />
-        <option value="$PROJECT_DIR$/webpack.mix.js" />
-        <option value="$PROJECT_DIR$/app/Http/Requests/Admin/Account.php" />
-        <option value="$PROJECT_DIR$/database/migrations/2020_04_17_111843_create_accounts_table.php" />
-        <option value="$PROJECT_DIR$/resources/views/admin/properties/index.blade.php" />
-        <option value="$PROJECT_DIR$/resources/views/admin/accounts/create.blade.php" />
-        <option value="$PROJECT_DIR$/app/Http/Controllers/Admin/AccountController.php" />
-        <option value="$PROJECT_DIR$/resources/views/admin/accounts/index.blade.php" />
-        <option value="$PROJECT_DIR$/app/User.php" />
-        <option value="$PROJECT_DIR$/app/Account.php" />
-        <option value="$PROJECT_DIR$/resources/views/admin/accounts/edit.blade.php" />
-        <option value="$PROJECT_DIR$/resources/views/admin/index.blade.php" />
-        <option value="$PROJECT_DIR$/database/migrations/2020_04_17_143701_create_daps_table.php" />
+        <option value="$PROJECT_DIR$/database/migrations/2020_04_23_152944_create_posts_table.php" />
+        <option value="$PROJECT_DIR$/database/migrations/2020_04_24_113650_constraint_category_posts.php" />
+        <option value="$PROJECT_DIR$/database/migrations/2020_04_24_120942_post_images.php" />
+        <option value="$PROJECT_DIR$/app/PostImage.php" />
+        <option value="$PROJECT_DIR$/app/Post.php" />
+        <option value="$PROJECT_DIR$/resources/views/admin/category_post/index.blade.php" />
+        <option value="$PROJECT_DIR$/resources/views/admin/category_post/create.blade.php" />
+        <option value="$PROJECT_DIR$/resources/views/admin/category_post/edit.blade.php" />
+        <option value="$PROJECT_DIR$/resources/views/admin/posts/index.blade.php" />
+        <option value="$PROJECT_DIR$/resources/views/admin/posts/edit.blade.php" />
+        <option value="$USER_HOME$/AppData/Local/Temp/Packagist.url" />
+        <option value="$PROJECT_DIR$/app/Http/Controllers/Admin/AuthController.php" />
+        <option value="$PROJECT_DIR$/app/Http/Controllers/Admin/PostController.php" />
+        <option value="$PROJECT_DIR$/resources/views/admin/posts/create.blade.php" />
+        <option value="$PROJECT_DIR$/resources/views/admin/dashboard.blade.php" />
+        <option value="$PROJECT_DIR$/resources/views/admin/banks/create.blade.php" />
+        <option value="$PROJECT_DIR$/resources/views/admin/banks/edit.blade.php" />
+        <option value="$PROJECT_DIR$/app/Http/Controllers/Admin/CallSectorController.php" />
+        <option value="$PROJECT_DIR$/resources/views/admin/call_sectors/edit.blade.php" />
+        <option value="$PROJECT_DIR$/resources/views/admin/call_sectors/create.blade.php" />
+        <option value="$PROJECT_DIR$/resources/views/admin/call_sectors/index.blade.php" />
+        <option value="$PROJECT_DIR$/app/Http/Requests/Admin/Call.php" />
         <option value="$PROJECT_DIR$/resources/views/admin/calls/create.blade.php" />
-        <option value="$PROJECT_DIR$/app/Http/Controllers/Admin/CallController.php" />
-        <option value="$PROJECT_DIR$/app/Property.php" />
-        <option value="$PROJECT_DIR$/app/Dap.php" />
-        <option value="$PROJECT_DIR$/resources/views/admin/daps/index.blade.php" />
-        <option value="$PROJECT_DIR$/app/RuralProperty.php" />
-        <option value="$PROJECT_DIR$/app/Http/Controllers/Admin/DapController.php" />
-        <option value="$PROJECT_DIR$/app/Http/Controllers/Admin/RuralPropertyController.php" />
-        <option value="$PROJECT_DIR$/database/migrations/2020_04_18_114619_create_rural_properties_table.php" />
-        <option value="$PROJECT_DIR$/resources/views/admin/daps/create.blade.php" />
-        <option value="$PROJECT_DIR$/resources/views/admin/daps/edit.blade.php" />
+        <option value="$PROJECT_DIR$/resources/views/admin/services/edit.blade.php" />
+        <option value="$PROJECT_DIR$/resources/views/admin/calls/services.blade.php" />
         <option value="$PROJECT_DIR$/routes/web.php" />
-        <option value="$PROJECT_DIR$/resources/views/admin/rural_properties/create.blade.php" />
-        <option value="$PROJECT_DIR$/database/migrations/2020_04_18_130637_create_rural_environmental_registries_table.php" />
-        <option value="$PROJECT_DIR$/resources/views/admin/master/master.blade.php" />
-        <option value="$PROJECT_DIR$/app/RuralEnvironmentalRegistry.php" />
-        <option value="$PROJECT_DIR$/app/Http/Controllers/Admin/RuralEnvironmentalRegistryController.php" />
-        <option value="$PROJECT_DIR$/resources/views/admin/rural_environmental_registrations/index.blade.php" />
-        <option value="$PROJECT_DIR$/resources/views/admin/rural_environmental_registrations/create.blade.php" />
-        <option value="$PROJECT_DIR$/resources/views/admin/rural_environmental_registrations/edit.blade.php" />
-        <option value="$PROJECT_DIR$/resources/views/admin/rural_properties/edit.blade.php" />
-        <option value="$PROJECT_DIR$/resources/views/admin/rural_properties/index.blade.php" />
+        <option value="$PROJECT_DIR$/database/migrations/2020_04_27_143526_call_services.php" />
+        <option value="$PROJECT_DIR$/app/User.php" />
+        <option value="$PROJECT_DIR$/app/CallService.php" />
+        <option value="$PROJECT_DIR$/resources/views/admin/calls/index.blade.php" />
+        <option value="$PROJECT_DIR$/app/Call.php" />
+        <option value="$PROJECT_DIR$/app/Http/Controllers/Admin/CallController.php" />
+        <option value="$PROJECT_DIR$/resources/views/admin/calls/edit.blade.php" />
         <option value="$PROJECT_DIR$/resources/views/admin/users/edit.blade.php" />
-        <option value="$PROJECT_DIR$/app/Http/Controllers/Admin/UserController.php" />
+        <option value="$PROJECT_DIR$/resources/views/admin/master/master.blade.php" />
+        <option value="$PROJECT_DIR$/resources/views/admin/assets/js/scripts.js" />
+        <option value="$PROJECT_DIR$/webpack.mix.js" />
       </list>
     </option>
   </component>
@@ -3072,6 +3677,7 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -3082,66 +3688,39 @@
             <path>
               <item name="campolimpo" type="b2602c69:ProjectViewProjectNode" />
               <item name="campolimpo" type="462c0819:PsiDirectoryNode" />
-              <item name="app" type="462c0819:PsiDirectoryNode" />
+              <item name="public" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="campolimpo" type="b2602c69:ProjectViewProjectNode" />
               <item name="campolimpo" type="462c0819:PsiDirectoryNode" />
-              <item name="app" type="462c0819:PsiDirectoryNode" />
-              <item name="Http" type="462c0819:PsiDirectoryNode" />
+              <item name="public" type="462c0819:PsiDirectoryNode" />
+              <item name="backend" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="campolimpo" type="b2602c69:ProjectViewProjectNode" />
               <item name="campolimpo" type="462c0819:PsiDirectoryNode" />
-              <item name="app" type="462c0819:PsiDirectoryNode" />
-              <item name="Http" type="462c0819:PsiDirectoryNode" />
-              <item name="Controllers" type="462c0819:PsiDirectoryNode" />
+              <item name="public" type="462c0819:PsiDirectoryNode" />
+              <item name="backend" type="462c0819:PsiDirectoryNode" />
+              <item name="assets" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="campolimpo" type="b2602c69:ProjectViewProjectNode" />
               <item name="campolimpo" type="462c0819:PsiDirectoryNode" />
-              <item name="app" type="462c0819:PsiDirectoryNode" />
-              <item name="Http" type="462c0819:PsiDirectoryNode" />
-              <item name="Controllers" type="462c0819:PsiDirectoryNode" />
-              <item name="Admin" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="campolimpo" type="b2602c69:ProjectViewProjectNode" />
-              <item name="campolimpo" type="462c0819:PsiDirectoryNode" />
-              <item name="resources" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="campolimpo" type="b2602c69:ProjectViewProjectNode" />
-              <item name="campolimpo" type="462c0819:PsiDirectoryNode" />
-              <item name="resources" type="462c0819:PsiDirectoryNode" />
-              <item name="views" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="campolimpo" type="b2602c69:ProjectViewProjectNode" />
-              <item name="campolimpo" type="462c0819:PsiDirectoryNode" />
-              <item name="resources" type="462c0819:PsiDirectoryNode" />
-              <item name="views" type="462c0819:PsiDirectoryNode" />
-              <item name="admin" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="campolimpo" type="b2602c69:ProjectViewProjectNode" />
-              <item name="campolimpo" type="462c0819:PsiDirectoryNode" />
-              <item name="resources" type="462c0819:PsiDirectoryNode" />
-              <item name="views" type="462c0819:PsiDirectoryNode" />
-              <item name="admin" type="462c0819:PsiDirectoryNode" />
-              <item name="users" type="462c0819:PsiDirectoryNode" />
+              <item name="public" type="462c0819:PsiDirectoryNode" />
+              <item name="backend" type="462c0819:PsiDirectoryNode" />
+              <item name="assets" type="462c0819:PsiDirectoryNode" />
+              <item name="js" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
         </subPane>
       </pane>
-      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/resources/views/admin/rural_environmental_registrations" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/resources/views/admin/calls" />
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
     <property name="nodejs_npm_path_reset_for_default_project" value="true" />
     <property name="nodejs_package_manager_path" value="npm" />
@@ -3150,11 +3729,11 @@
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
-      <recent name="C:\xampp\htdocs\campolimpo\resources\views\admin\rural_environmental_registrations" />
-      <recent name="C:\xampp\htdocs\campolimpo\resources\views\admin\rural_properties" />
-      <recent name="C:\xampp\htdocs\campolimpo\resources\views\admin\daps" />
-      <recent name="C:\xampp\htdocs\campolimpo\resources\views\admin\accounts" />
-      <recent name="C:\xampp\htdocs\campolimpo\resources\views\admin\assets" />
+      <recent name="C:\xampp\htdocs\campolimpo\resources\views\admin\calls" />
+      <recent name="C:\xampp\htdocs\campolimpo\resources\views\admin\category_post" />
+      <recent name="C:\xampp\htdocs\campolimpo\resources\views\admin\posts" />
+      <recent name="C:\xampp\htdocs\campolimpo\resources\views\admin\buttons" />
+      <recent name="C:\xampp\htdocs\campolimpo\public\backend\assets" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="C:\xampp\htdocs\campolimpo\resources\views\admin2\master" />
@@ -3221,12 +3800,21 @@
       <workItem from="1587129915224" duration="12151000" />
       <workItem from="1587216484750" duration="6990000" />
       <workItem from="1587223751089" duration="514000" />
-      <workItem from="1587224423037" duration="10420000" />
+      <workItem from="1587224423037" duration="10614000" />
+      <workItem from="1587306822196" duration="5006000" />
+      <workItem from="1587312128665" duration="9274000" />
+      <workItem from="1587384754566" duration="3616000" />
+      <workItem from="1587401429802" duration="14096000" />
+      <workItem from="1587561410874" duration="14234000" />
+      <workItem from="1587647760218" duration="14335000" />
+      <workItem from="1587735256450" duration="24753000" />
+      <workItem from="1587826946489" duration="3174000" />
+      <workItem from="1587995214884" duration="23123000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="511759000" />
+    <option name="totallyTimeSpent" value="623564000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1376" height="744" extended-state="6" />
@@ -3234,10 +3822,10 @@
     <layout>
       <window_info id="npm" order="0" sideWeight="0.7659575" side_tool="true" weight="0.25151977" />
       <window_info id="Favorites" order="1" sideWeight="0.7659575" side_tool="true" weight="0.25151977" />
-      <window_info id="Project" order="2" sideWeight="0.23404256" weight="0.21428572" />
+      <window_info id="Project" order="2" sideWeight="0.23404256" weight="0.34726444" />
       <window_info id="Structure" order="3" sideWeight="0.502455" side_tool="true" weight="0.27887538" />
       <window_info anchor="bottom" id="Docker" order="0" show_stripe_button="false" />
-      <window_info anchor="bottom" id="Terminal" order="1" sideWeight="0.49848023" weight="0.5452992" />
+      <window_info anchor="bottom" id="Terminal" order="1" sideWeight="0.49848023" weight="0.3666121" />
       <window_info anchor="bottom" id="Event Log" order="2" sideWeight="0.50151974" side_tool="true" weight="0.5155483" />
       <window_info anchor="bottom" id="Database Changes" order="3" />
       <window_info anchor="bottom" id="Version Control" order="4" weight="0.32820514" />
@@ -3253,6 +3841,28 @@
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
       <window_info anchor="right" id="Database" order="3" weight="0.32978722" />
     </layout>
+    <layout-to-restore>
+      <window_info id="npm" order="0" sideWeight="0.7659575" side_tool="true" weight="0.25151977" />
+      <window_info id="Favorites" order="1" sideWeight="0.7659575" side_tool="true" weight="0.25151977" />
+      <window_info active="true" id="Project" order="2" sideWeight="0.23404256" visible="true" weight="0.34726444" />
+      <window_info id="Structure" order="3" sideWeight="0.502455" side_tool="true" weight="0.27887538" />
+      <window_info anchor="bottom" id="Docker" order="0" show_stripe_button="false" />
+      <window_info anchor="bottom" id="Terminal" order="1" sideWeight="0.49848023" weight="0.3666121" />
+      <window_info anchor="bottom" id="Event Log" order="2" sideWeight="0.50151974" side_tool="true" weight="0.5155483" />
+      <window_info anchor="bottom" id="Database Changes" order="3" />
+      <window_info anchor="bottom" id="Version Control" order="4" weight="0.32820514" />
+      <window_info anchor="bottom" id="Message" order="5" />
+      <window_info anchor="bottom" id="Find" order="6" />
+      <window_info anchor="bottom" id="Run" order="7" />
+      <window_info anchor="bottom" id="Debug" order="8" weight="0.4" />
+      <window_info anchor="bottom" id="Cvs" order="9" weight="0.25" />
+      <window_info anchor="bottom" id="Inspection" order="10" weight="0.4" />
+      <window_info anchor="bottom" content_ui="combo" id="TODO" order="11" weight="0.3289689" />
+      <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
+      <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
+      <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
+      <window_info anchor="right" id="Database" order="3" weight="0.32978722" />
+    </layout-to-restore>
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="1" />
@@ -3260,382 +3870,383 @@
   <component name="UnknownFeatures">
     <option featureType="com.intellij.fileTypeFactory" implementationName="*.env" />
   </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="php">
+          <url>file://$PROJECT_DIR$/app/Http/Controllers/Admin/PropertyController.php</url>
+          <line>4</line>
+          <option name="timeStamp" value="1" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
+  </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/resources/views/admin/properties/index.blade.php">
+    <entry file="file://$PROJECT_DIR$/database/migrations/2020_03_30_094734_constraint_calls_services.php" />
+    <entry file="file://$PROJECT_DIR$/resources/views/admin/call_sectors/create.blade.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="167">
-          <caret line="22" column="111" selection-start-line="22" selection-start-column="111" selection-end-line="22" selection-end-column="111" />
+        <state relative-caret-position="-482">
+          <caret line="13" column="58" selection-start-line="13" selection-start-column="58" selection-end-line="13" selection-end-column="58" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/resources/views/admin/accounts/create.blade.php">
+    <entry file="file://$PROJECT_DIR$/resources/views/admin/call_sectors/index.blade.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="116">
-          <caret line="79" column="121" selection-start-line="79" selection-start-column="121" selection-end-line="79" selection-end-column="121" />
+        <state relative-caret-position="431">
+          <caret line="64" column="4" selection-start-line="64" selection-start-column="4" selection-end-line="64" selection-end-column="4" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/resources/views/admin/users/index.blade.php">
+    <entry file="file://$PROJECT_DIR$/resources/views/admin/users/create.blade.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="210">
-          <caret line="67" column="37" lean-forward="true" selection-start-line="63" selection-start-column="32" selection-end-line="67" selection-end-column="37" />
+        <state relative-caret-position="448">
+          <caret line="93" column="50" selection-start-line="86" selection-start-column="44" selection-end-line="93" selection-end-column="50" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/resources/views/admin/accounts/index.blade.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="269">
-          <caret line="54" column="97" lean-forward="true" selection-start-line="52" selection-start-column="36" selection-end-line="54" selection-end-column="97" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/resources/views/admin/accounts/edit.blade.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="37">
-          <caret line="67" column="29" lean-forward="true" selection-start-line="67" selection-start-column="29" selection-end-line="67" selection-end-column="29" />
-          <folding>
-            <element signature="e#3632#3656#0#HTML" expanded="true" />
-            <element signature="e#3828#3852#0#HTML" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/Account.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="480">
-          <caret line="30" column="5" lean-forward="true" selection-start-line="30" selection-start-column="5" selection-end-line="30" selection-end-column="5" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/Admin/AccountController.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="102">
-          <caret line="20" column="28" lean-forward="true" selection-start-line="20" selection-start-column="28" selection-end-line="20" selection-end-column="28" />
-          <folding>
-            <element signature="e#53#76#0#PHP" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/Document.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="320">
-          <caret line="21" column="5" lean-forward="true" selection-start-line="9" selection-start-column="4" selection-end-line="21" selection-end-column="5" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/resources/views/admin/index.blade.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1456">
-          <caret line="91" column="80" lean-forward="true" selection-start-line="85" selection-end-line="91" selection-end-column="80" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/Admin/AuthController.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-4">
-          <caret line="11" column="6" selection-start-line="11" selection-start-column="6" selection-end-line="11" selection-end-column="6" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/database/migrations/2020_04_17_111843_create_accounts_table.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="263">
-          <caret line="31" selection-start-line="16" selection-start-column="12" selection-end-line="31" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/resources/views/admin/calls/index.blade.php">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/Admin/DocumentController.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="160">
-          <caret line="57" column="27" selection-start-line="57" selection-end-line="58" />
-          <folding>
-            <element signature="e#53#77#0#PHP" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/database/migrations/2020_03_24_165231_create_services_table.php">
+    <entry file="file://$PROJECT_DIR$/database/migrations/2020_03_30_094620_constraint_calls_users.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="64">
+          <caret line="6" column="6" selection-start-line="6" selection-start-column="6" selection-end-line="6" selection-end-column="6" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/database/migrations/2020_03_31_122705_constraint_call_sector.php" />
+    <entry file="file://$PROJECT_DIR$/app/Http/Requests/Admin/Call.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="416">
+          <caret line="27" selection-start-line="27" selection-end-line="27" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/Admin/UserController.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="293">
+          <caret line="96" column="9" selection-start-line="80" selection-end-line="96" selection-end-column="9" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/database/migrations/2020_03_17_114452_alter_users_table.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-208">
           <caret line="6" column="6" selection-start-line="6" selection-start-column="6" selection-end-line="6" selection-end-column="6" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/database/migrations/2020_03_28_121322_create_calls_table.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="64">
-          <caret line="6" column="6" selection-start-line="6" selection-start-column="6" selection-end-line="6" selection-end-column="6" />
+        <state relative-caret-position="256">
+          <caret line="18" column="39" selection-start-line="18" selection-start-column="39" selection-end-line="18" selection-end-column="39" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/database/migrations/2020_03_17_114452_alter_users_table.php">
+    <entry file="file://$PROJECT_DIR$/resources/views/admin/daps/edit.blade.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="336">
-          <caret line="23" column="20" selection-start-line="23" selection-end-line="24" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/database/migrations/2020_03_16_173601_alter_user_table_add_control_login.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="64">
-          <caret line="6" column="6" selection-start-line="6" selection-start-column="6" selection-end-line="6" selection-end-column="6" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/database/migrations/2014_10_12_000000_create_users_table.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="64">
-          <caret line="6" column="6" selection-start-line="6" selection-start-column="6" selection-end-line="6" selection-end-column="6" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/resources/views/admin/system/edit.blade.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="240">
-          <caret line="15" column="26" lean-forward="true" selection-start-line="15" selection-start-column="26" selection-end-line="15" selection-end-column="26" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/resources/views/admin/calls/create.blade.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="240">
-          <caret line="15" column="57" lean-forward="true" selection-start-line="15" selection-start-column="57" selection-end-line="15" selection-end-column="57" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/resources/views/admin/banks/create.blade.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="192">
-          <caret line="12" column="30" lean-forward="true" selection-end-line="80" selection-end-column="11" />
+        <state relative-caret-position="112">
+          <caret line="31" lean-forward="true" selection-start-line="31" selection-end-line="43" selection-end-column="18" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/resources/views/admin/documents/create.blade.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="204">
-          <caret line="82" column="34" selection-start-line="82" selection-start-column="33" selection-end-line="82" selection-end-column="34" />
+        <state relative-caret-position="319">
+          <caret line="76" column="51" lean-forward="true" selection-start-line="70" selection-start-column="40" selection-end-line="76" selection-end-column="51" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/resources/views/admin/companies/create.blade.php">
+    <entry file="file://$PROJECT_DIR$/app/Http/Requests/Admin/User.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="528">
-          <caret line="126" column="34" lean-forward="true" selection-start-line="126" selection-start-column="34" selection-end-line="126" selection-end-column="34" />
+        <state relative-caret-position="-398">
+          <caret line="28" column="5" lean-forward="true" selection-start-line="28" selection-start-column="5" selection-end-line="28" selection-end-column="5" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/views/admin_old/calls/index.blade.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="768">
+          <caret line="48" selection-start-line="48" selection-end-line="48" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Providers/AppServiceProvider.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="96">
+          <caret line="8" column="6" selection-start-line="8" selection-start-column="6" selection-end-line="8" selection-end-column="6" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Providers/RouteServiceProvider.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="96">
+          <caret line="7" column="6" selection-start-line="7" selection-start-column="6" selection-end-line="7" selection-end-column="6" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/Controller.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="96">
+          <caret line="10" column="6" selection-start-line="10" selection-start-column="6" selection-end-line="10" selection-end-column="6" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/Admin/DocumentController.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="432">
+          <caret line="34" column="47" selection-start-line="34" selection-end-line="35" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Document.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="448">
+          <caret line="29" column="5" lean-forward="true" selection-start-line="29" selection-start-column="5" selection-end-line="29" selection-end-column="5" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/views/admin/services/edit.blade.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="274">
+          <caret line="103" column="85" selection-start-line="103" selection-start-column="85" selection-end-line="103" selection-end-column="85" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/views/admin/calls/services.blade.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="169">
+          <caret line="38" column="30" selection-end-line="184" selection-end-column="11" />
+          <folding>
+            <element signature="e#5261#5280#0#HTML" expanded="true" />
+            <element signature="e#7263#7281#0#HTML" expanded="true" />
+            <element signature="e#5533#5552#0#HTML" expanded="true" />
+            <element signature="e#6248#6268#0#HTML" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/views/admin_old/calls/edit.blade.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="224">
+          <caret line="14" column="80" lean-forward="true" selection-start-line="14" selection-start-column="80" selection-end-line="14" selection-end-column="80" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/Http/Controllers/Admin/PropertyController.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="498">
-          <caret line="135" column="89" lean-forward="true" selection-start-line="119" selection-start-column="8" selection-end-line="135" selection-end-column="89" />
+        <state relative-caret-position="16">
+          <caret line="100" column="15" selection-start-line="100" selection-start-column="8" selection-end-line="100" selection-end-column="15" />
+          <folding>
+            <element signature="e#53#77#0#PHP" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/database/migrations/2020_03_30_104406_create_call_sectors_table.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="64">
+          <caret line="6" column="6" selection-start-line="6" selection-start-column="6" selection-end-line="6" selection-end-column="6" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/database/migrations/2020_04_07_152846_constraint_documents_properties.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="64">
+          <caret line="6" column="6" selection-start-line="6" selection-start-column="6" selection-end-line="6" selection-end-column="6" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/database/migrations/2020_04_08_085553_create_banks_table.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="64">
+          <caret line="6" column="6" selection-start-line="6" selection-start-column="6" selection-end-line="6" selection-end-column="6" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/Property.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="400">
-          <caret line="28" column="4" lean-forward="true" selection-start-line="28" selection-start-column="4" selection-end-line="31" selection-end-column="5" />
+        <state relative-caret-position="275">
+          <caret line="33" column="2" selection-start-line="33" selection-start-column="2" selection-end-line="36" selection-end-column="5" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/database/migrations/2020_04_27_143526_call_services.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="320">
+          <caret line="22" column="66" selection-start-line="22" selection-start-column="66" selection-end-line="22" selection-end-column="66" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/views/admin/calls/create.blade.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="159">
+          <caret line="44" column="59" selection-start-line="44" selection-start-column="59" selection-end-line="44" selection-end-column="59" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/database/migrations/2020_04_24_120942_post_images.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="352">
+          <caret line="24" column="11" selection-start-line="15" selection-start-column="8" selection-end-line="24" selection-end-column="11" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/CallSector.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="208">
+          <caret line="13" column="4" lean-forward="true" selection-start-line="13" selection-start-column="4" selection-end-line="17" selection-end-column="5" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/PostImage.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="192">
+          <caret line="14" column="6" lean-forward="true" selection-start-line="10" selection-start-column="4" selection-end-line="14" selection-end-column="6" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Post.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="96">
+          <caret line="43" column="4" selection-start-line="43" selection-start-column="4" selection-end-line="46" selection-end-column="5" />
           <folding>
             <element signature="e#30#61#0#PHP" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/User.php">
+    <entry file="file://$PROJECT_DIR$/resources/views/admin/properties/edit.blade.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="177">
-          <caret line="152" column="4" lean-forward="true" selection-start-line="152" selection-start-column="4" selection-end-line="155" selection-end-column="5" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/Admin/CallController.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="438">
-          <caret line="128" column="11" selection-start-line="104" selection-start-column="8" selection-end-line="128" selection-end-column="11" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/database/migrations/2020_04_17_143701_create_daps_table.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="224">
-          <caret line="26" column="88" lean-forward="true" selection-start-line="17" selection-start-column="12" selection-end-line="26" selection-end-column="88" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/RuralProperty.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="96">
-          <caret line="6" column="6" selection-start-line="6" selection-start-column="6" selection-end-line="6" selection-end-column="6" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/resources/views/admin/daps/create.blade.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="94">
-          <caret line="66" column="44" selection-start-line="66" selection-start-column="44" selection-end-line="66" selection-end-column="44" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/resources/views/admin/daps/edit.blade.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="230">
-          <caret line="153" column="45" selection-start-line="153" selection-start-column="45" selection-end-line="153" selection-end-column="45" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/routes/web.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="399">
-          <caret line="70" column="88" selection-start-line="70" selection-start-column="88" selection-end-line="70" selection-end-column="88" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/database/migrations/2020_04_18_114619_create_rural_properties_table.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="319">
-          <caret line="26" column="88" lean-forward="true" selection-start-line="17" selection-start-column="12" selection-end-line="26" selection-end-column="88" />
+        <state relative-caret-position="-4752">
+          <folding>
+            <element signature="n#style#0;n#div#0;n#div#0;n#!!top" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/resources/views/admin/documents/edit.blade.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="358">
-          <caret line="114" column="34" lean-forward="true" selection-start-line="101" selection-start-column="31" selection-end-line="114" selection-end-column="34" />
+        <state relative-caret-position="381">
+          <caret line="111" column="51" lean-forward="true" selection-start-line="107" selection-start-column="40" selection-end-line="111" selection-end-column="51" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/resources/views/admin/master/master.blade.php">
+    <entry file="file://$PROJECT_DIR$/resources/views/admin/calls/index.blade.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="188">
-          <caret line="206" column="76" lean-forward="true" selection-start-line="206" selection-start-column="76" selection-end-line="206" selection-end-column="76" />
+        <state relative-caret-position="292">
+          <caret line="53" column="53" selection-start-line="53" selection-start-column="53" selection-end-line="53" selection-end-column="53" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/Dap.php">
+    <entry file="file://$PROJECT_DIR$/app/CallService.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="398">
-          <caret line="41" column="5" lean-forward="true" selection-start-line="8" selection-start-column="4" selection-end-line="41" selection-end-column="5" />
+        <state relative-caret-position="272">
+          <caret line="17" column="5" selection-start-line="17" selection-start-column="5" selection-end-line="17" selection-end-column="5" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/RuralEnvironmentalRegistry.php">
+    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/Admin/PostController.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="814">
-          <caret line="34" column="5" lean-forward="true" selection-start-line="34" selection-start-column="5" selection-end-line="34" selection-end-column="5" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/database/migrations/2020_04_18_130637_create_rural_environmental_registries_table.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="356">
-          <caret line="21" column="30" selection-start-line="21" selection-start-column="30" selection-end-line="21" selection-end-column="30" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/resources/views/admin/companies/edit.blade.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="24">
-          <caret line="36" column="12" lean-forward="true" selection-start-line="36" selection-start-column="12" selection-end-line="48" selection-end-column="18" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/resources/views/admin/rural_environmental_registrations/edit.blade.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="24">
-          <caret line="1" lean-forward="true" selection-start-line="1" selection-end-line="1" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/resources/views/admin/rural_environmental_registrations/create.blade.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="288">
-          <caret line="12" column="55" selection-start-line="12" selection-start-column="55" selection-end-line="12" selection-end-column="55" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/resources/views/admin/rural_properties/edit.blade.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="224">
-          <caret line="84" column="64" lean-forward="true" selection-start-line="84" selection-start-column="64" selection-end-line="84" selection-end-column="64" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/resources/views/admin/rural_properties/index.blade.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-135">
-          <caret line="42" column="41" lean-forward="true" selection-start-line="42" selection-end-line="43" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/resources/views/admin/rural_properties/create.blade.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-456">
-          <caret line="20" column="103" selection-start-line="20" selection-start-column="103" selection-end-line="20" selection-end-column="103" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/Admin/DapController.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1521">
-          <caret line="112" column="17" lean-forward="true" selection-start-line="112" selection-start-column="17" selection-end-line="112" selection-end-column="17" />
+        <state relative-caret-position="-752">
+          <caret line="67" column="16" lean-forward="true" selection-start-line="67" selection-start-column="16" selection-end-line="67" selection-end-column="16" />
           <folding>
-            <element signature="e#53#72#0#PHP" expanded="true" />
+            <element signature="e#53#81#0#PHP" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/Admin/RuralPropertyController.php">
+    <entry file="file://$PROJECT_DIR$/app/User.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="309">
-          <caret line="40" column="9" lean-forward="true" selection-start-line="40" selection-start-column="9" selection-end-line="40" selection-end-column="9" />
+        <state relative-caret-position="295">
+          <caret line="131" column="4" selection-start-line="131" selection-start-column="4" selection-end-line="134" selection-end-column="5" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Call.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="400">
+          <caret line="25" selection-start-line="25" selection-end-line="25" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/views/admin/calls/edit.blade.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="464">
+          <caret line="308" column="11" lean-forward="true" selection-start-line="235" selection-end-line="308" selection-end-column="11" />
           <folding>
-            <element signature="e#53#82#0#PHP" expanded="true" />
+            <element signature="e#2632#2652#0#HTML" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/resources/views/admin/rural_environmental_registrations/index.blade.php">
+    <entry file="file://$PROJECT_DIR$/resources/views/admin_old/users/edit.blade.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="390">
-          <caret line="70" column="30" lean-forward="true" selection-start-line="52" selection-start-column="24" selection-end-line="70" selection-end-column="30" />
+        <state relative-caret-position="252">
+          <caret line="186" column="48" lean-forward="true" selection-start-line="181" selection-start-column="39" selection-end-line="186" selection-end-column="48" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/resources/views/admin/daps/index.blade.php">
+    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/Admin/CallController.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="419">
-          <caret line="70" column="30" lean-forward="true" selection-start-line="52" selection-start-column="24" selection-end-line="70" selection-end-column="30" />
+        <state relative-caret-position="153">
+          <caret line="143" selection-start-line="143" selection-end-line="143" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/views/admin_old/assets/js/jquery.mask.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-709">
+          <caret selection-end-line="1" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/views/admin_old/assets/js/jquery.form.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="160">
+          <caret line="10" column="38" selection-start-line="10" selection-start-column="38" selection-end-line="10" selection-end-column="38" />
+          <folding>
+            <element signature="n#!!doc" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/public/backend/assets/js/scripts.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <caret selection-end-column="1" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/routes/web.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="100">
+          <caret line="35" selection-start-line="35" selection-end-line="35" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/resources/views/admin/users/edit.blade.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="375">
-          <caret line="660" column="124" selection-start-line="660" selection-start-column="124" selection-end-line="660" selection-end-column="124" />
+        <state relative-caret-position="304">
+          <caret line="1429" lean-forward="true" selection-start-line="1429" selection-end-line="1429" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/Admin/RuralEnvironmentalRegistryController.php">
+    <entry file="file://$PROJECT_DIR$/resources/views/admin/assets/js/scripts.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="245">
-          <caret line="25" column="11" lean-forward="true" selection-start-line="25" selection-start-column="11" selection-end-line="25" selection-end-column="11" />
-          <folding>
-            <element signature="e#53#95#0#PHP" expanded="true" />
-          </folding>
+        <state relative-caret-position="1056">
+          <caret line="66" selection-start-line="66" selection-end-line="66" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/Admin/UserController.php">
+    <entry file="file://$PROJECT_DIR$/resources/views/admin/master/master.blade.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="170">
-          <caret line="132" column="71" selection-start-line="132" selection-start-column="71" selection-end-line="132" selection-end-column="71" />
-          <folding>
-            <element signature="e#53#76#0#PHP" expanded="true" />
-          </folding>
+        <state relative-caret-position="329">
+          <caret line="369" column="54" lean-forward="true" selection-start-line="369" selection-start-column="54" selection-end-line="369" selection-end-column="54" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/webpack.mix.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="376">
+          <caret line="95" selection-start-line="95" selection-end-line="95" />
         </state>
       </provider>
     </entry>

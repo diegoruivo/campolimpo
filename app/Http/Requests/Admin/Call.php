@@ -25,7 +25,6 @@ class Call extends FormRequest
     public function rules()
     {
         return [
-            'service' => 'required',
             'user' => 'required',
         ];
     }

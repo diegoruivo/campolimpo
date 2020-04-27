@@ -3,6 +3,7 @@
 namespace CampoLimpo\Http\Controllers\Admin;
 
 use CampoLimpo\CallSector;
+use CampoLimpo\System;
 use Illuminate\Http\Request;
 use CampoLimpo\Http\Controllers\Controller;
 
@@ -16,8 +17,11 @@ class CallSectorController extends Controller
     public function index()
     {
         $sectors = CallSector::all();
+        $system = System::where('id', 1)->first();
+
         return view('admin.call_sectors.index', [
-            'sectors' => $sectors
+            'sectors' => $sectors,
+            'system' => $system
         ]);
     }
 
@@ -28,7 +32,11 @@ class CallSectorController extends Controller
      */
     public function create()
     {
-        return view('admin.call_sectors.create');
+        $system = System::where('id', 1)->first();
+
+        return view('admin.call_sectors.create', [
+            'system' => $system
+        ]);
     }
 
     /**
@@ -66,9 +74,11 @@ class CallSectorController extends Controller
     public function edit($id)
     {
         $sector = CallSector::where('id', $id)->first();
+        $system = System::where('id', 1)->first();
 
         return view('admin.call_sectors.edit', [
-            'sector' => $sector
+            'sector' => $sector,
+            'system' => $system
         ]);
 
     }

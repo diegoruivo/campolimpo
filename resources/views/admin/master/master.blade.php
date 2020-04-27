@@ -5,6 +5,10 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title>CAMPOLIMPO - ERP</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
+
+{{--    <link rel="stylesheet" href="{{ url(mix('backend/assets/css/style.css')) }}"/>--}}
+
+
     <link rel="stylesheet" href="{{ url(mix('backend/assets/css/libs.css')) }}">
     @hasSection('css')
         @yield('css')
@@ -136,24 +140,37 @@
                             </p>
                         </a>
                         <ul class="nav nav-treeview">
+
                             <li class="nav-item">
-                                <a href="{{ route('admin.users.index') }}" class="nav-link">
+                                <a href="{{ route('admin.calls.index') }}" class="nav-link {{ isActive('admin.calls') }}">
                                     <i class="fa fa-caret-right nav-icon"></i>
-                                    <p>Clientes</p>
+                                    <p>
+                                        Atendimento
+                                    </p>
+                                </a>
+                            </li>
+
+                            <li class="nav-item">
+                                <a href="{{ route('admin.contracts.index') }}" class="nav-link">
+                                    <i class="fa fa-caret-right nav-icon"></i>
+                                    <p>
+                                        Contratos
+                                    </p>
+                                </a>
+                            </li>
+
+                            <li class="nav-item">
+                                <a href="{{ route('admin.contracts.index') }}" class="nav-link">
+                                    <i class="fa fa-caret-right nav-icon"></i>
+                                    <p>
+                                        Ordens
+                                    </p>
                                 </a>
                             </li>
 
                         </ul>
                     </li>
 
-                    <li class="nav-item">
-                        <a href="{{ route('admin.calls.index') }}" class="nav-link {{ isActive('admin.calls') }}">
-                            <i class="nav-icon far fa-calendar-alt"></i>
-                            <p>
-                                Atendimento
-                            </p>
-                        </a>
-                    </li>
 
                     <li class="nav-item has-treeview">
                         <a href="#" class="nav-link {{ isActive('admin.users') }}">
@@ -221,24 +238,39 @@
                     </li>
 
 
-                    <li class="nav-item">
-                        <a href="{{ route('admin.contracts.index') }}" class="nav-link">
-                            <i class="nav-icon fa fa-file-signature"></i>
+
+                    <li class="nav-item has-treeview">
+                        <a href="#" class="nav-link">
+                            <i class="nav-icon fa fa-globe"></i>
                             <p>
-                                Contratos
+                                Site
+                                <i class="right fas fa-angle-left"></i>
                             </p>
                         </a>
+                        <ul class="nav nav-treeview">
+
+                            <li class="nav-item">
+                                <a href="#" class="nav-link">
+                                    <i class="fa fa-caret-right nav-icon"></i>
+                                    <p>
+                                        Páginas
+                                    </p>
+                                </a>
+                            </li>
+
+                            <li class="nav-item">
+                                <a href="{{ route('admin.posts.index') }}" class="nav-link">
+                                    <i class="fa fa-caret-right nav-icon"></i>
+                                    <p>
+                                        Posts
+                                    </p>
+                                </a>
+                            </li>
+
+                        </ul>
                     </li>
 
 
-                    <li class="nav-item">
-                        <a href="{{ route('admin.services.index') }}" class="nav-link">
-                            <i class="nav-icon fa fa-briefcase"></i>
-                            <p>
-                                Portfólio
-                            </p>
-                        </a>
-                    </li>
 
 
                     <li class="nav-item has-treeview">
@@ -250,6 +282,7 @@
                             </p>
                         </a>
                         <ul class="nav nav-treeview">
+
                             <li class="nav-item">
                                 <a href="{{ route('admin.system.edit', ['system' => $system_id]) }}" class="nav-link">
                                     <i class="fa fa-caret-right nav-icon"></i>
@@ -263,18 +296,35 @@
                                     <p>Usuários</p>
                                 </a>
                             </li>
+
                             <li class="nav-item">
-                                <a href="pages/examples/recover-password.html" class="nav-link">
+                                <a href="{{ route('admin.services.index') }}" class="nav-link">
                                     <i class="fa fa-caret-right nav-icon"></i>
-                                    <p>Metas</p>
+                                    <p>Portfólio</p>
                                 </a>
                             </li>
+
                             <li class="nav-item">
                                 <a href="{{ route('admin.banks.index') }}" class="nav-link">
                                     <i class="fa fa-caret-right nav-icon"></i>
                                     <p>Bancos</p>
                                 </a>
                             </li>
+
+                            <li class="nav-item">
+                                <a href="{{ route('admin.buttons.index') }}" class="nav-link">
+                                    <i class="fa fa-caret-right nav-icon"></i>
+                                    <p>Botões</p>
+                                </a>
+                            </li>
+
+                            <li class="nav-item">
+                                <a href="{{ route('admin.call_sectors.index') }}" class="nav-link">
+                                    <i class="fa fa-caret-right nav-icon"></i>
+                                    <p>Setores de Atendimento</p>
+                                </a>
+                            </li>
+
                         </ul>
                     </li>
 
@@ -317,14 +367,14 @@
 
 
 
+{{--<script src="{{ url(mix('backend/assets/js/scripts.js')) }}"></script>--}}
 
+<script src="{{ url(mix('backend/assets/js/libs.js')) }}"></script>
+<script src="{{ url(mix('backend/assets/js/libs_table.js')) }}"></script>
 @hasSection('js')
     @yield('js')
 @endif
 
-<script src="{{ url(mix('backend/assets/js/libs.js')) }}"></script>
-<script src="{{ url(mix('backend/assets/js/libs_table.js')) }}"></script>
-<script src="{{ url(mix('backend/assets/js/inputmask.js')) }}"></script>
 
 </body>
 </html>

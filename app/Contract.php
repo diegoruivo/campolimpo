@@ -29,6 +29,7 @@ class Contract extends Model
 
 
 
+
     public function setContractPriceAttribute($value)
     {
         if (empty($value)) {

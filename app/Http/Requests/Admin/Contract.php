@@ -31,6 +31,7 @@ class Contract extends FormRequest
             'pay_day' => 'required',
             'deadline' => 'required',
             'start_date' => 'required',
+            'terms' => 'required',
         ];
     }
 }

@@ -125,6 +125,10 @@
 
                                         <div class="row">
 
+
+
+
+
                                             <div class="col-sm-8">
                                                 <div class="form-group">
                                                     <label>Nome</label>
@@ -158,6 +162,7 @@
                                                 <div class="form-group">
                                                     <label>CPF</label>
                                                     <input type="text" class="form-control"
+                                                           data-inputmask-alias="999.999.999-99" data-inputmask-inputformat="999.999.999-99" data-mask
                                                            name="document" placeholder="CPF do Cliente"
                                                            value="{{ old('document') ?? $user->document }}"/>
                                                 </div>
@@ -168,10 +173,10 @@
                                                     <label>Data de Nascimento</label>
                                                     <input type="text" class="form-control"
                                                            name="date_of_birth" placeholder="Data de Nascimento"
+                                                           data-inputmask-alias="datetime" data-inputmask-inputformat="dd/mm/yyyy" data-mask
                                                            value="{{ old('date_of_birth') ?? $user->date_of_birth }}"/>
                                                 </div>
                                             </div>
-
 
                                             <div class="col-sm-4">
                                                 <div class="form-group">
@@ -258,20 +263,22 @@
 
                                         <div class="row">
 
+
                                             <div class="col-sm-3">
                                                 <div class="form-group">
                                                     <label>CEP</label>
-                                                    <input type="tel" name="zipcode" class="form-control"
-                                                           class="mask-zipcode zip_code_search"
+                                                    <input type="tel" name="zipcode" id="zipcode" class="form-control"
+                                                           data-inputmask="'mask': ['99999-999']" data-mask
                                                            placeholder="Digite o CEP"
                                                            value="{{ old('zipcode') ?? $user->zipcode }}"/>
                                                 </div>
                                             </div>
 
+
                                             <div class="col-sm-7">
                                                 <div class="form-group">
                                                     <label>Endereço</label>
-                                                    <input type="text" name="street" class="form-control" class="street"
+                                                    <input type="text" name="street" id="street" class="form-control" class="street"
                                                            placeholder="Endereço Completo"
                                                            value="{{ old('street') ?? $user->street }}"/>
                                                 </div>
@@ -298,7 +305,7 @@
                                             <div class="col-sm-4">
                                                 <div class="form-group">
                                                     <label>Bairro</label>
-                                                    <input type="text" name="neighborhood" class="form-control"
+                                                    <input type="text" name="neighborhood" id="neighborhood" class="form-control"
                                                            class="neighborhood"
                                                            placeholder="Bairro"
                                                            value="{{ old('neighborhood') ?? $user->neighborhood  }}"/>
@@ -308,7 +315,7 @@
                                             <div class="col-sm-2">
                                                 <div class="form-group">
                                                     <label>Estado</label>
-                                                    <input type="text" name="state" class="form-control" class="state"
+                                                    <input type="text" name="state" id="state" class="form-control" class="state"
                                                            placeholder="Estado"
                                                            value="{{ old('state') ?? $user->state }}"/>
                                                 </div>
@@ -317,9 +324,32 @@
                                             <div class="col-sm-3">
                                                 <div class="form-group">
                                                     <label>Cidade</label>
-                                                    <input type="text" name="city" class="form-control" class="city"
+                                                    <input type="text" name="city" id="city" class="form-control" class="city"
                                                            placeholder="Cidade"
                                                            value="{{ old('city') ?? $user->city }}"/>
+                                                </div>
+                                            </div>
+
+
+
+                                            <div class="col-sm-6">
+                                                <div class="form-group">
+                                                    <label>Telefone Fixo</label>
+                                                    <input type="tel" name="telephone" class="form-control"
+                                                           data-inputmask="'mask': ['(99) 9999-9999']" data-mask
+                                                           placeholder="Telefone Fixo"
+                                                           value="{{ old('telephone') ?? $user->telephone }}"/>
+                                                </div>
+                                            </div>
+
+
+                                            <div class="col-sm-6">
+                                                <div class="form-group">
+                                                    <label>Telefone Móvel</label>
+                                                    <input type="tel" name="cell" class="form-control" class="cell"
+                                                           data-inputmask="'mask': ['(99) 99999-9999']" data-mask
+                                                           placeholder="Telefone Móvel"
+                                                           value="{{ old('cell') ?? $user->cell }}"/>
                                                 </div>
                                             </div>
 
@@ -948,8 +978,6 @@
 
                                                     @if($accounts)
                                                         @foreach($accounts as $account)
-
-
                                                             <tr>
                                                                 <td>{{ $account->user()->first()->name }}</td>
                                                                 <td>{{ $account->bank()->first()->bank }}
@@ -966,8 +994,6 @@
                                                                     </a>
                                                                 </td>
                                                             </tr>
-
-
                                                         @endforeach
                                                     @else
                                                         <div class="no-content">Não foram encontrados registros!</div>
@@ -1373,4 +1399,66 @@
     </div>
     <!-- /.content-wrapper -->
 
+@endsection
+
+
+@section('js')
+
+    <!-- Page script -->
+    <script>
+        $(function () {
+            //Initialize Select2 Elements
+            $('.select2').select2()
+
+            //Initialize Select2 Elements
+            $('.select2bs4').select2({
+                theme: 'bootstrap4'
+            })
+
+            //Datemask dd/mm/yyyy
+            $('#datemask').inputmask('dd/mm/yyyy', { 'placeholder': 'dd/mm/yyyy' })
+            //Datemask2 mm/dd/yyyy
+            $('#cpf').inputmask('999.999.999-99', { 'placeholder': '999.999.999-99' })
+            //Money Euro
+            $('[data-mask]').inputmask()
+
+
+
+        })
+    </script>
+
+
+    <script type="text/javascript">
+        $(document).ready(function() {
+
+            $("#zipcode").mask("99999-999",{completed:function(){
+                    var zipcode = $(this).val().replace(/[^0-9]/, "");
+
+                    // Validação do CEP; caso o CEP não possua 8 números, então cancela
+                    // a consulta
+                    if(zipcode.length != 8){
+                        return false;
+                    }
+
+
+
+                    // A url de pesquisa consiste no endereço do webservice + o cep que
+                    // o usuário informou + o tipo de retorno desejado (entre "json",
+                    // "jsonp", "xml", "piped" ou "querty")
+                    var url = "http://viacep.com.br/ws/"+zipcode+"/json/";
+
+                    $.getJSON(url, function(dadosRetorno){
+                        try{
+                            // Preenche os campos de acordo com o retorno da pesquisa
+                            $("#street").val(dadosRetorno.logradouro);
+                            $("#neighborhood").val(dadosRetorno.bairro);
+                            $("#city").val(dadosRetorno.localidade);
+                            $("#state").val(dadosRetorno.uf);
+                            $("#nr_end").focus();
+                        }catch(ex){}
+                    });
+                }});
+
+        });
+    </script>
 @endsection

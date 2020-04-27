@@ -2,7 +2,9 @@
 
 namespace CampoLimpo\Http\Controllers\Admin;
 
+use CampoLimpo\Buttons;
 use CampoLimpo\Contract;
+use CampoLimpo\Post;
 use CampoLimpo\System;
 use CampoLimpo\User;
 use Illuminate\Http\Request;
@@ -31,10 +33,15 @@ class AuthController extends Controller
     public function home()
     {
         $system = System::where('id', 1)->first();
+        $buttons = Buttons::orderBy('position', 'ASC')->get();
         $contracts = Contract::all();
+        $posts = Post::orderBy('id', 'DESC')->get();
+
         return view('admin.dashboard', [
             'system' => $system,
-            'contracts' => $contracts
+            'buttons' => $buttons,
+            'contracts' => $contracts,
+            'posts' => $posts
         ]);
 
     }

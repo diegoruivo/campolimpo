@@ -9,25 +9,20 @@ class Call extends Model
     protected $fillable = [
         'password',
         'description',
-        'user',
-        'service',
-        'sector'
+        'status',
+        'user'
     ];
-
 
     public function user()
     {
         return $this->belongsTo(User::class, 'user', 'id');
     }
 
-    public function service()
+    public function services()
     {
-        return $this->belongsTo(Service::class, 'service', 'id');
+        return $this->belongsToMany(Service::class, 'call_services', 'call', 'service');
     }
 
-    public function sector()
-    {
-        return $this->belongsTo(CallSector::class, 'sector', 'id');
-    }
+
 
 }

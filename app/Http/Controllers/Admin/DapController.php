@@ -84,7 +84,6 @@ class DapController extends Controller
         $system = System::where('id', 1)->first();
         $users = User::orderBy('name')->get();
 
-
         if (!empty($request->user)) {
             $user = User::where('id', $request->user)->first();
         }
