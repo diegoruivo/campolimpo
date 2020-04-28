@@ -11,9 +11,11 @@ use CampoLimpo\DocumentCategory;
 use CampoLimpo\Http\Requests\Admin\User as UserRequest;
 use CampoLimpo\RuralEnvironmentalRegistry;
 use CampoLimpo\RuralProperty;
+use CampoLimpo\ServicesCallSector;
 use CampoLimpo\Support\Cropper;
 use CampoLimpo\System;
 use CampoLimpo\User;
+use CampoLimpo\UsersCallSector;
 use Illuminate\Http\Request;
 use CampoLimpo\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Storage;
@@ -126,6 +128,7 @@ class UserController extends Controller
         $documents_user = Document::where('user', $user->id)->first();
         $documents_categories = DocumentCategory::all();
         $sectors = CallSector::all();
+        $sector_users = UsersCallSector::where('user', $user->id)->get();
         $accounts = Account::where('user', $user->id)->get();
         $banks = Bank::orderBy('bank')->get();
         $rural_properties = RuralProperty::where('user', $user->id)->get();
@@ -142,6 +145,7 @@ class UserController extends Controller
             'documents_user' => $documents_user,
             'documents_categories' => $documents_categories,
             'sectors' => $sectors,
+            'sector_users' => $sector_users,
             'accounts' => $accounts,
             'banks' => $banks,
             'rural_properties' => $rural_properties,
@@ -166,16 +170,16 @@ class UserController extends Controller
         $user->setMediumRuralProducerAttribute($request->medium_rural_producer);
         $user->setLargeRuralProducerAttribute($request->large_rural_producer);
 
-//        // Relacionamento Setores de Atendimento e Usuários
-//        if (!empty($request->input('sectors'))) {
-//            $ids = $request->input('sectors');
-//            $sector_ids = [];
-//            foreach ($ids as $sector_id) {
-//                $attributes = [];
-//                $sector_ids[$sector_id] = $attributes;
-//            }
-//            $user->sectors()->sync($sector_ids);
-//        }
+        // Relacionamento Usuários com Setores
+        if (!empty($request->input('sectors'))) {
+            $ids = $request->input('sectors');
+            $sectors_ids = [];
+            foreach ($ids as $sectors_id) {
+                $attributes = [];
+                $sectors_ids[$sectors_id] = $attributes;
+            }
+            $user->sectors()->sync($sectors_ids);
+        }
 
 
         // Upload de Imagem

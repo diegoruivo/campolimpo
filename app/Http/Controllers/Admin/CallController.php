@@ -24,6 +24,7 @@ class CallController extends Controller
         $system = System::where('id', 1)->first();
         $users = User::orderBy('name')->get();
         $services = Service::orderBy('title')->get();
+        $call_services = CallService::all();
         $sectors = CallSector::all();
 
         return view('admin.calls.index', [
@@ -31,6 +32,7 @@ class CallController extends Controller
             'system' => $system,
             'users' => $users,
             'services' => $services,
+            'call_services' => $call_services,
             'sectors' => $sectors
         ]);
     }

@@ -72,9 +72,9 @@ mix
     .sass('resources/views/admin/assets/scss/login.scss', 'public/backend/assets/css/login.css')
     .sass('resources/views/admin/assets/scss/style.scss', 'public/backend/assets/css/style.css')
 
-    // .scripts([
-    //     'resources/views/admin/assets/js/jquery.min.js'
-    // ], 'public/backend/assets/js/jquery.js')
+    .scripts([
+        'resources/views/admin/assets/js/jquery.min.js'
+    ], 'public/backend/assets/js/jquery.js')
 
     .scripts([
         'resources/views/admin/assets/js/login.js'

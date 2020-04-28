@@ -1316,11 +1316,16 @@
 
                                             <div class="col-sm-12">
                                                 <div class="form-group">
-                                                    <label>Setor de Atendimento</label>
-                                                    <select name="sector" class="custom-select">
-                                                        <option value="">Escolha o setor de atendimento</option>
+                                                    <label>Escolha o(s) Setor(res)</label>
+                                                    <select class="select2" multiple="multiple" name="sectors[]"
+                                                            data-placeholder="Escolha o(s) Serviço(s)"
+                                                            style="width: 100%;">
                                                         @foreach($sectors as $sector)
-                                                            <option value="{{ $sector->id }}" {{ ($sector->id === $user->sector ? 'selected' : '') }}>{{ $sector->title }}</option>
+                                                            <option value="{{$sector->id}}"
+                                                            @foreach($sector_users as  $sector_user)
+                                                                {{ ($sector->id === $sector_user->sector ? 'selected' : '') }}
+                                                                    @endforeach
+                                                            >{{ $sector->title }}</option>
                                                         @endforeach
                                                     </select>
                                                 </div>
@@ -1335,6 +1340,7 @@
                                                         Novo Setor de Atendimento</a>
                                                 </p>
                                             </div>
+
 
                                             <div class="col-sm-6">
                                                 <div class="form-group">

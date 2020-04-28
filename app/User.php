@@ -114,11 +114,17 @@ class User extends Authenticatable
         return $this->hasMany(Bank::class, 'bank', 'id');
     }
 
-
     public function posts()
     {
         return $this->hasMany(Post::class, 'author', 'id');
     }
+
+    public function sectors()
+    {
+        return $this->belongsToMany(CallSector::class, 'users_call_sectors', 'user', 'sector');
+    }
+
+
 
 
     public function getUrlCoverAttribute()

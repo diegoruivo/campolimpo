@@ -2,9 +2,12 @@
 
 namespace CampoLimpo\Http\Controllers\Admin;
 
+use CampoLimpo\CallSector;
 use CampoLimpo\Service;
+use CampoLimpo\ServicesCallSector;
 use CampoLimpo\ServiceCategory;
 use CampoLimpo\Http\Requests\Admin\Service as ServiceRequest;
+use CampoLimpo\ServiceSector;
 use CampoLimpo\System;
 use Illuminate\Http\Request;
 use CampoLimpo\Http\Controllers\Controller;
@@ -37,6 +40,7 @@ class ServiceController extends Controller
 
         $services_categories = ServiceCategory::orderBy('title')->get();
         $system = System::where('id', 1)->first();
+        $sectors = CallSector::all();
 
         if (!empty($request->service_category)) {
             $service_category = ServiceCategory::where('id', $request->service_category)->first();
@@ -44,6 +48,7 @@ class ServiceController extends Controller
 
         return view('admin.services.create', [
             'services_categories' => $services_categories,
+            'sectors' => $sectors,
             'system' => $system,
             'selected' => (!empty($service_category) ? $service_category : null)
 
@@ -59,6 +64,17 @@ class ServiceController extends Controller
     public function store(ServiceRequest $request)
     {
         $createService = Service::create($request->all());
+
+        // Relacionamento Serviços com Setores
+        if (!empty($request->input('sectors'))) {
+            $ids = $request->input('sectors');
+            $sectors_ids = [];
+            foreach ($ids as $sectors_id) {
+                $attributes = [];
+                $sectors_ids[$sectors_id] = $attributes;
+            }
+            $createService->sectors()->sync($sectors_ids);
+        }
 
         return redirect()->route('admin.services.edit', [
             'service' => $createService->id
@@ -82,19 +98,19 @@ class ServiceController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Request $request, $id)
     {
         $service = Service::where('id', $id)->first();
         $services_categories = ServiceCategory::orderBy('title')->get();
+        $sectors = CallSector::all();
+        $sector_services = ServicesCallSector::where('service', $service->id)->get();
         $system = System::where('id', 1)->first();
-
-        if (!empty($request->service)) {
-            $service_category = ServiceCategory::where('id', $request->service)->first();
-        }
 
         return view('admin.services.edit', [
             'service' => $service,
             'services_categories' => $services_categories,
+            'sectors' => $sectors,
+            'sector_services' => $sector_services,
             'system' => $system,
             'selected' => (!empty($service) ? $service : null)
         ]);
@@ -113,7 +129,18 @@ class ServiceController extends Controller
         $updateService->fill($request->all());
         $updateService->save();
 
-        return redirect()->route('admin.services.edit', [
+        // Relacionamento Serviços com Setores
+        if (!empty($request->input('sectors'))) {
+            $ids = $request->input('sectors');
+            $sectors_ids = [];
+            foreach ($ids as $sectors_id) {
+                $attributes = [];
+                $sectors_ids[$sectors_id] = $attributes;
+            }
+            $updateService->sectors()->sync($sectors_ids);
+        }
+
+            return redirect()->route('admin.services.edit', [
             'service' => $updateService->id
         ])->with(['color' => 'green', 'message' => 'Serviço atualizado com sucesso!']);
     }

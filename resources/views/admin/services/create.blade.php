@@ -114,6 +114,20 @@
                             </div>
 
 
+                            <div class="col-sm-12">
+                                <div class="form-group">
+                                    <label>Escolha o(s) Setor(res)</label>
+                                    <select class="select2" multiple="multiple" name="sectors[]"
+                                            data-placeholder="Escolha o(s) Serviço(s)"
+                                            style="width: 100%;">
+                                        @foreach($sectors as $sector)
+                                            <option value="{{$sector->id}}">{{ $sector->title }}</option>
+                                        @endforeach
+                                    </select>
+                                </div>
+                            </div>
+
+
                             <!-- /.row -->
                         </div>
                         <!-- /.card-body -->
@@ -137,4 +151,37 @@
     </div>
     <!-- /.content-wrapper -->
 
+@endsection
+
+
+
+
+@section('js')
+
+    <!-- Page script -->
+    <script>
+        $(function () {
+            //Initialize Select2 Elements
+            $('.select2').select2()
+
+            //Initialize Select2 Elements
+            $('.select2bs4').select2({
+                theme: 'bootstrap4'
+            })
+
+            //Datemask dd/mm/yyyy
+            $('#datemask').inputmask('dd/mm/yyyy', { 'placeholder': 'dd/mm/yyyy' })
+            //Datemask2 mm/dd/yyyy
+            $('#datemask2').inputmask('mm/dd/yyyy', { 'placeholder': 'mm/dd/yyyy' })
+            //Money Euro
+            $('[data-mask]').inputmask()
+
+
+
+            $("input[data-bootstrap-switch]").each(function(){
+                $(this).bootstrapSwitch('state', $(this).prop('checked'));
+            });
+
+        })
+    </script>
 @endsection

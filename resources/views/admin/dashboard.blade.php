@@ -49,8 +49,6 @@
                                     <div class="active tab-pane" id="activity">
 
 
-
-
                                         <!-- The timeline -->
                                         <div class="timeline timeline-inverse">
                                             <!-- timeline time label -->
@@ -151,19 +149,8 @@
                                         </div>
 
 
-
-
                                     </div>
                                     <!-- /.tab-pane -->
-
-
-
-
-
-
-
-
-
 
 
                                     <div class="tab-pane" id="settings">
@@ -284,18 +271,6 @@
                                     <!-- /.tab-pane -->
 
 
-
-
-
-
-
-
-
-
-
-
-
-
                                     <div class="tab-pane" id="timeline">
 
 
@@ -304,12 +279,6 @@
 
                                     </div>
                                     <!-- /.tab-pane -->
-
-
-
-
-
-
 
 
                                 </div>
@@ -322,77 +291,6 @@
                     </div>
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
                     <div class="col-md-4">
 
 
@@ -401,10 +299,41 @@
                                     <span class="info-box-icon bg-success elevation-1"><i
                                                 class="fas fa-headset"></i></span>
                                 <div class="info-box-content">
-                                    <span class="info-box-text"><h4 style="margin-top:13px;">CRIAR ATENDIMENTO</h4></span>
+                                    <span class="info-box-text"><h4
+                                                style="margin-top:13px;">CRIAR ATENDIMENTO</h4></span>
                                 </div>
                             </div>
                         </a>
+
+
+                        <!-- small box -->
+                        <div class="small-box bg-info">
+                            <div class="inner">
+                                <h3>{{ $calls }}</h3>
+
+                                <p>Atendimentos</p>
+                            </div>
+                            <div class="icon">
+                                <i class="fas fa-headset"></i>
+                            </div>
+                            <a href="{{ route('admin.calls.index') }}" class="small-box-footer">Todos os Atendimentos <i
+                                        class="fas fa-arrow-circle-right"></i></a>
+                        </div>
+
+
+                        <!-- small box -->
+                        <div class="small-box bg-info">
+                            <div class="inner">
+                                <h3>{{ $clients }}</h3>
+
+                                <p>Clientes</p>
+                            </div>
+                            <div class="icon">
+                                <i class="fas fa-users"></i>
+                            </div>
+                            <a href="{{ route('admin.users.index') }}" class="small-box-footer">Todos os Clientes <i
+                                        class="fas fa-arrow-circle-right"></i></a>
+                        </div>
 
 
                         <!-- ÚLTIMOS POSTS -->
@@ -426,17 +355,18 @@
                                 <ul class="products-list product-list-in-card pl-2 pr-2">
 
 
-                                @foreach($posts as $post)
-                                    <li class="item">
-                                        <div class="product-img">
-                                            <img class="img-circle img-bordered-sm"
-                                                 src="{{  url('storage/' . $post->author()->first()->cover) }}" title="{{ $post->author()->first()->name }}">
-                                        </div>
-                                        <div class="product-info">
-                                            <a href="#" class="product-title">{{ $post->title }}</a>
-                                        </div>
-                                    </li>
-                                @endforeach
+                                    @foreach($posts as $post)
+                                        <li class="item">
+                                            <div class="product-img">
+                                                <img class="img-circle img-bordered-sm"
+                                                     src="{{  url('storage/' . $post->author()->first()->cover) }}"
+                                                     title="{{ $post->author()->first()->name }}">
+                                            </div>
+                                            <div class="product-info">
+                                                <a href="#" class="product-title">{{ $post->title }}</a>
+                                            </div>
+                                        </li>
+                                    @endforeach
                                 </ul>
                             </div>
                             <!-- /.card-body -->
@@ -447,7 +377,7 @@
                         </div>
                         <!-- /.card -->
 
-                        {{-- FIM POSTS --}}
+                    {{-- FIM POSTS --}}
 
 
 
@@ -480,12 +410,6 @@
                         <!-- /.card -->
 
                         {{-- FIM Botões --}}
-
-
-
-
-
-
 
 
                     </div>

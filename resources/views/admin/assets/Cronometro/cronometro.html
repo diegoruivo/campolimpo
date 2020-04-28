@@ -1,0 +1,23 @@
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<head><title>Cronômetro</title>
+<link rel="stylesheet" href="cronometro.css" type="text/css" media="screen" />
+<script language="JavaScript" src="cronometro.js"></script>
+</head>
+<body>
+<p><b>Teste do Código:</b></p>
+<div class="codigo">
+	<span id="hora">00h</span><span id="minuto">00m</span><span id="segundo">00s</span><br>
+	<input type="button" value="Volta" onclick="volta();"><br>
+	<div id="parar"><input type="button" value="Parar" onclick="parar();"></div>
+	<div id="comeca" style="display:none;"><input type="button" value="Comeca" onclick="tempo(1);"><br></div>
+	<input type="button" value="Limpa" onclick="limpa();"><br><br>
+	<div id="voltas"></div>
+</div>
+<p><b>Navegadores testados</b>
+<div class="navegador">
+	Internet Explorer 8<br>
+	Firefox 3.5.6<br>
+	Opera 10.10<br>
+	Safari	4.0.4
+</div>
+</body>

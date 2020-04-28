@@ -39,12 +39,13 @@
                     <table id="example1" class="table table-bordered table-striped">
                         <thead>
                         <tr>
-                            <th>ID</th>
+                            <th width="10">ID</th>
                             <th>Cliente</th>
                             <th>Serviço</th>
                             <th>Senha</th>
                             <th>Status</th>
-                            <th width="100">Ação</th>
+                            <th>Data</th>
+                            <th width="80">Ação</th>
                         </tr>
                         </thead>
                         <tbody>
@@ -53,12 +54,37 @@
                                 <tr>
                                     <td>{{ $call->id }}</td>
                                     <td>{{ $call->user()->first()->name }}</td>
-                                    <td></td>
-                                    <td>{{ $call->password }}</td>
-                                    <td>{{ $call->created_at }}</td>
+                                    <td>
+                                        @foreach($call_services as  $call_service)
+                                            {{ $call_service->service  }}
+                                        @endforeach
+                                    </td>
+                                    <td>
+                                        <span class="badge badge-secondary" style="zoom:150%;">{{ $call->password }}</span>
+                                    </td>
+                                    <td>
+                                        @if($call->status == 0)
+                                            <span class="badge badge-warning">Inicial</span>
+                                        @endif
+
+                                        @if($call->status == 1)
+                                            <span class="badge badge-info">Encaminhado</span>
+                                        @endif
+
+                                        @if($call->status == 2)
+                                            <span class="badge badge-success">Finalizado</span>
+                                        @endif
+
+                                        @if($call->status == 3)
+                                            <span class="badge badge-danger">Cancelado</span>
+                                        @endif
+                                    </td>
+                                    <td>
+                                        {{ $call->created_at }}
+                                    </td>
                                     <td>
                                         <a href="{{ route('admin.calls.edit', ['call' => $call->id]) }}">
-                                            <button type="button" class="btn btn-block bg-gradient-primary btn-xs"><i class="fa fa-edit"></i> Editar</button>
+                                            <button type="button" class="btn btn-block bg-gradient-warning btn-xs"><i class="fa fa-headset"></i> Acompanhar</button>
                                         </a>
                                     </td>
                                 </tr>

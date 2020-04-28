@@ -3,6 +3,7 @@
 namespace CampoLimpo\Http\Controllers\Admin;
 
 use CampoLimpo\Buttons;
+use CampoLimpo\Call;
 use CampoLimpo\Contract;
 use CampoLimpo\Post;
 use CampoLimpo\System;
@@ -34,13 +35,16 @@ class AuthController extends Controller
     {
         $system = System::where('id', 1)->first();
         $buttons = Buttons::orderBy('position', 'ASC')->get();
-        $contracts = Contract::all();
+        $clients = User::where('client', 1)->count();
+        $calls = Call::all()->count();
+
         $posts = Post::orderBy('id', 'DESC')->get();
 
         return view('admin.dashboard', [
             'system' => $system,
             'buttons' => $buttons,
-            'contracts' => $contracts,
+            'calls' => $calls,
+            'clients' => $clients,
             'posts' => $posts
         ]);
 

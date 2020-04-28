@@ -24,5 +24,10 @@ class Call extends Model
     }
 
 
+    public function getCreatedAtAttribute($value)
+    {
+        return date('d/m/Y H:i', strtotime($value));
+    }
+
 
 }

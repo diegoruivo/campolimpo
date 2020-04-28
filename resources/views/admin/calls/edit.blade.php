@@ -54,15 +54,7 @@
                 <div class="card">
 
                     <div class="card-header">
-                        <h3 class="card-title">Escolha o(s) serviço(s)</h3>
-
-                        <div class="card-tools">
-                            <a href="{{ route('admin.calls.index') }}">
-                                <button type="button" class="btn btn-lg bg-gradient-success" style="float:right;"><i
-                                            class="fa fa-long-arrow-alt-right"></i> Encaminhar Atendimento
-                                </button>
-                            </a>
-                        </div>
+                        <h3 class="card-title">Detalhes do Atendimento</h3>
                     </div>
 
                     <div class="card-body">
@@ -87,10 +79,10 @@
 
                                         <ul class="list-group list-group-unbordered mb-3">
                                             <li class="list-group-item">
-                                                <b>Atendimentos</b> <a class="float-right">1,322</a>
+                                                <b>Atendimentos</b> <a class="float-right">5</a>
                                             </li>
                                             <li class="list-group-item">
-                                                <b>Serviços Contrados</b> <a class="float-right">543</a>
+                                                <b>Serviços Contrados</b> <a class="float-right">3</a>
                                             </li>
                                         </ul>
 
@@ -102,7 +94,6 @@
                                 <!-- /.card -->
 
 
-
                             </div>
 
 
@@ -112,23 +103,43 @@
 
                                     <div class="col-md-8 col-sm-8 col-12">
                                         <div class="info-box bg-gradient-primary">
-                                            <span class="info-box-icon"><h1><big><i class="fa fa-headset"></i></big></h1></span>
+                                            <span class="info-box-icon"><h1><big><i
+                                                                class="fa fa-headset"></i></big></h1></span>
 
                                             <div class="info-box-content">
                                                 <span class="info-box-text">Atendimento n° <b>{{ $call->id }}</b></span>
-                                                <span class="progress-description" style="float:right"><small>Tempo:</small> {{ $call->status }}</span>
-                                                <span class="info-box-number"><small>Senha:</small> <h3>{{ $call->password }}</h3></span>
+                                                <span  class="progress-description" style="float:right">{{ $call->created_at }}
+                                                    <br> Status:
+                                                    @if($call->status == 0)
+                                                        <span class="badge badge-warning">Inicial</span>
+                                                    @endif
 
+                                                    @if($call->status == 1)
+                                                        <span class="badge badge-warning">Encaminhado</span>
+                                                    @endif
+
+                                                    @if($call->status == 2)
+                                                        <span class="badge badge-success">Finalizado</span>
+                                                    @endif
+
+                                                    @if($call->status == 3)
+                                                        <span class="badge badge-danger">Cancelado</span>
+                                                    @endif
+                                                </span>
+
+                                                <span class="info-box-number"><small>Senha:</small> <h3>{{ $call->password }}</h3></span>
                                                 <div class="progress">
                                                     <div class="progress-bar" style="width: 10%"></div>
                                                 </div>
-                                                <span class="progress-description" style="float:right"><small>Status:</small> {{ $call->status }}</span>
+                                                <span class="time" style="float:right"><i class="far fa-clock"></i>
+                                                    <span id="hora">00h</span><span id="minuto">00m</span><span
+                                                            id="segundo">00s</span>
+                                                </span>
                                             </div>
                                             <!-- /.info-box-content -->
                                         </div>
                                         <!-- /.info-box -->
                                     </div>
-
 
 
                                     <div class="col-md-4 col-sm-4 col-12">
@@ -167,8 +178,23 @@
                                         </div>
                                     </div>
 
+                                    @if($call->status != 0)
+                                        <div class="col-sm-12">
+                                        <h5>Serviço(s) Solicitado(s)</h5>
+                                        @foreach($services as $service)
+                                            @foreach($call_services as $call_service)
+                                                {{ ($service->id === $call_service->service ? $service->title . ' | ' : '') }}
+                                            @endforeach
+                                        @endforeach
+                                        </div>
 
+                                        <div class="col-sm-12 mt-3">
+                                            <h5>Descrição do Atendimento</h5>
+                                            {{ $call->description }}
+                                        </div>
+                                        @endif
 
+                                    @if($call->status == 0)
                                     <div class="col-sm-12">
                                         <div class="form-group">
                                             <label>Escolha o(s) Serviço(s)</label>
@@ -176,16 +202,12 @@
                                                     data-placeholder="Escolha o(s) Serviço(s)"
                                                     style="width: 100%;">
                                                 @foreach($services as $service)
-
                                                     <option value="{{$service->id}}"
                                                     @foreach($call_services as  $call_service)
                                                         {{ ($service->id === $call_service->service ? 'selected' : '') }}
-                                                    @endforeach
-
+                                                            @endforeach
                                                     >{{ $service->title }}</option>
                                                 @endforeach
-
-
                                             </select>
                                         </div>
                                     </div>
@@ -199,6 +221,7 @@
                                                       rows="4">{{ old('description') ?? $call->description }}</textarea>
                                         </div>
                                     </div>
+                                    @endif
 
 
                                 </div>
@@ -248,9 +271,9 @@
             })
 
             //Datemask dd/mm/yyyy
-            $('#datemask').inputmask('dd/mm/yyyy', { 'placeholder': 'dd/mm/yyyy' })
+            $('#datemask').inputmask('dd/mm/yyyy', {'placeholder': 'dd/mm/yyyy'})
             //Datemask2 mm/dd/yyyy
-            $('#datemask2').inputmask('mm/dd/yyyy', { 'placeholder': 'mm/dd/yyyy' })
+            $('#datemask2').inputmask('mm/dd/yyyy', {'placeholder': 'mm/dd/yyyy'})
             //Money Euro
             $('[data-mask]').inputmask()
 
@@ -267,16 +290,16 @@
             //Date range as a button
             $('#daterange-btn').daterangepicker(
                 {
-                    ranges   : {
-                        'Today'       : [moment(), moment()],
-                        'Yesterday'   : [moment().subtract(1, 'days'), moment().subtract(1, 'days')],
-                        'Last 7 Days' : [moment().subtract(6, 'days'), moment()],
+                    ranges: {
+                        'Today': [moment(), moment()],
+                        'Yesterday': [moment().subtract(1, 'days'), moment().subtract(1, 'days')],
+                        'Last 7 Days': [moment().subtract(6, 'days'), moment()],
                         'Last 30 Days': [moment().subtract(29, 'days'), moment()],
-                        'This Month'  : [moment().startOf('month'), moment().endOf('month')],
-                        'Last Month'  : [moment().subtract(1, 'month').startOf('month'), moment().subtract(1, 'month').endOf('month')]
+                        'This Month': [moment().startOf('month'), moment().endOf('month')],
+                        'Last Month': [moment().subtract(1, 'month').startOf('month'), moment().subtract(1, 'month').endOf('month')]
                     },
                     startDate: moment().subtract(29, 'days'),
-                    endDate  : moment()
+                    endDate: moment()
                 },
                 function (start, end) {
                     $('#reportrange span').html(start.format('MMMM D, YYYY') + ' - ' + end.format('MMMM D, YYYY'))
@@ -296,14 +319,61 @@
             //color picker with addon
             $('.my-colorpicker2').colorpicker()
 
-            $('.my-colorpicker2').on('colorpickerChange', function(event) {
+            $('.my-colorpicker2').on('colorpickerChange', function (event) {
                 $('.my-colorpicker2 .fa-square').css('color', event.color.toString());
             });
 
-            $("input[data-bootstrap-switch]").each(function(){
+            $("input[data-bootstrap-switch]").each(function () {
                 $(this).bootstrapSwitch('state', $(this).prop('checked'));
             });
 
         })
+
+
+        // Cronometro
+        var intervalo;
+
+        function tempo(op) {
+            if (op == 1) {
+                document.getElementById('parar').style.display = "block";
+                document.getElementById('comeca').style.display = "none";
+            }
+            var s = 1;
+            var m = 0;
+            var h = 0;
+            intervalo = window.setInterval(function () {
+                if (s == 60) {
+                    m++;
+                    s = 0;
+                }
+                if (m == 60) {
+                    h++;
+                    s = 0;
+                    m = 0;
+                }
+                if (h < 10) document.getElementById("hora").innerHTML = "0" + h + "h"; else document.getElementById("hora").innerHTML = h + "h";
+                if (s < 10) document.getElementById("segundo").innerHTML = "0" + s + "s"; else document.getElementById("segundo").innerHTML = s + "s";
+                if (m < 10) document.getElementById("minuto").innerHTML = "0" + m + "m"; else document.getElementById("minuto").innerHTML = m + "m";
+                s++;
+            }, 1000);
+        }
+
+        function parar() {
+            window.clearInterval(intervalo);
+            document.getElementById('parar').style.display = "none";
+            document.getElementById('comeca').style.display = "block";
+        }
+
+        function volta() {
+            document.getElementById('voltas').innerHTML += document.getElementById('hora').firstChild.data + "" + document.getElementById('minuto').firstChild.data + "" + document.getElementById('segundo').firstChild.data + "<br>";
+        }
+
+        function limpa() {
+            document.getElementById('voltas').innerHTML = "";
+        }
+
+        window.onload = tempo;
+
+
     </script>
 @endsection
