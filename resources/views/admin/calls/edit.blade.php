@@ -115,7 +115,7 @@
                                                     @endif
 
                                                     @if($call->status == 1)
-                                                        <span class="badge badge-warning">Encaminhado</span>
+                                                        <span class="badge badge-warning">Processando</span>
                                                     @endif
 
                                                     @if($call->status == 2)
@@ -157,7 +157,7 @@
                                             <div class="icheck-primary">
                                                 <input type="radio" name="status" @if($call->status == 1) checked
                                                        @endif id="1" value="1">
-                                                <label for="1">Encaminhado
+                                                <label for="1">Processando
                                                 </label>
                                             </div>
 

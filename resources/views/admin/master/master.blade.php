@@ -3,20 +3,24 @@
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>CAMPOLIMPO - ERP</title>
+    <title>{{ $system->title }} - ERP</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-{{--    <link rel="stylesheet" href="{{ url(mix('backend/assets/css/style.css')) }}"/>--}}
-
-
+    <link rel="stylesheet" href="{{ url(mix('backend/assets/css/reset.css')) }}"/>
+    <link rel="stylesheet" href="{{ url(mix('backend/assets/css/boot.css')) }}"/>
+    <link rel="stylesheet" href="{{ url(mix('backend/assets/css/style.css')) }}"/>
     <link rel="stylesheet" href="{{ url(mix('backend/assets/css/libs.css')) }}">
+
     @hasSection('css')
         @yield('css')
     @endif
+
     <!-- Google Font: Source Sans Pro -->
     <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
     <!-- Font Awesome Kit -->
     <script src="https://kit.fontawesome.com/cde8c0fee9.js" crossorigin="anonymous"></script>
+    <!-- Ionicons -->
+    <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
 
     <link rel="icon" type="image/png" href="{{ url('storage/' . $system->favico) }}"/>
 
@@ -250,7 +254,7 @@
                         <ul class="nav nav-treeview">
 
                             <li class="nav-item">
-                                <a href="#" class="nav-link">
+                                <a href="{{ route('admin.pages.index') }}" class="nav-link">
                                     <i class="fa fa-caret-right nav-icon"></i>
                                     <p>
                                         Páginas
@@ -365,16 +369,14 @@
 </div>
 <!-- ./wrapper -->
 
-
-
-{{--<script src="{{ url(mix('backend/assets/js/scripts.js')) }}"></script>--}}
-
 <script src="{{ url(mix('backend/assets/js/libs.js')) }}"></script>
 <script src="{{ url(mix('backend/assets/js/libs_table.js')) }}"></script>
+<script src="{{ url(mix('backend/assets/js/scripts_up.js')) }}"></script>
+<script src="{{ url(mix('backend/assets/js/mask_money.js')) }}"></script>
+
 @hasSection('js')
     @yield('js')
 @endif
-
 
 </body>
 </html>

@@ -11,7 +11,10 @@ class Service extends Model
         'slug',
         'price',
         'description',
-        'service'
+        'service',
+        'sector',
+        'icon',
+        'cover'
     ];
 
     public function service_category()
@@ -24,8 +27,11 @@ class Service extends Model
         return $this->belongsToMany(CallSector::class, 'services_call_sectors', 'service', 'sector');
     }
 
-
-
+    public function setTitleAttribute($value)
+    {
+        $this->attributes['title'] = $value;
+        $this->attributes['slug'] = str_slug($value);
+    }
 
     public function setPriceAttribute($value)
     {

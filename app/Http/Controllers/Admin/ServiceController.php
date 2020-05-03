@@ -98,7 +98,7 @@ class ServiceController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit(Request $request, $id)
+    public function edit($id)
     {
         $service = Service::where('id', $id)->first();
         $services_categories = ServiceCategory::orderBy('title')->get();

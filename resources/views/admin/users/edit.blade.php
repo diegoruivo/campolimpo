@@ -1318,7 +1318,7 @@
                                                 <div class="form-group">
                                                     <label>Escolha o(s) Setor(res)</label>
                                                     <select class="select2" multiple="multiple" name="sectors[]"
-                                                            data-placeholder="Escolha o(s) Serviço(s)"
+                                                            data-placeholder="Escolha o(s) Setor(es)"
                                                             style="width: 100%;">
                                                         @foreach($sectors as $sector)
                                                             <option value="{{$sector->id}}"
@@ -1427,8 +1427,6 @@
             $('#cpf').inputmask('999.999.999-99', { 'placeholder': '999.999.999-99' })
             //Money Euro
             $('[data-mask]').inputmask()
-
-
 
         })
     </script>

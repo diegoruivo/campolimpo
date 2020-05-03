@@ -186,8 +186,8 @@
                                                         <div class="property_image_item">
                                                             <img src="{{ $image->url_cropped}}" alt="">
                                                             <div class="property_image_actions">
-                                                                <a href="javascript:void(0)" class="btn btn-small {{ ($image->cover == true ? 'btn-green' : '') }} icon-check icon-notext image-set-cover" data-action="{{ route('admin.properties.imageSetCover', ['image' => $image->id]) }}"></a>
-                                                                <a href="javascript:void(0)" class="btn btn-red btn-small icon-times icon-notext image-remove" data-action="{{ route('admin.properties.imageRemove', ['image' => $image->id])  }}"></a>
+                                                                <a href="javascript:void(0)" class="btn btn-primary btn-small {{ ($image->cover == true ? 'btn-success' : '') }} icon-check icon-notext image-set-cover" data-action="{{ route('admin.properties.imageSetCover', ['image' => $image->id]) }}"><i class="fa fa-check"></i></a>
+                                                                <a href="javascript:void(0)" class="btn btn-danger btn-small icon-times icon-notext image-remove" data-action="{{ route('admin.properties.imageRemove', ['image' => $image->id])  }}"><i class="fa fa-trash"></i></a>
                                                             </div>
                                                         </div>
                                                     @endforeach

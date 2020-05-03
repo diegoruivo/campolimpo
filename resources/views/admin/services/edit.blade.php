@@ -19,6 +19,11 @@
                             <li class="breadcrumb-item"><a href="{{ route('admin.home') }}">Home</a></li>
                             <li class="breadcrumb-item"><a href="{{ route('admin.services.index') }}">Portfólio</a></li>
                             <li class="breadcrumb-item active">Editar Portfólio</li>
+                            <a href="{{ route('admin.services.create') }}">
+                                <button type="button" class="btn btn-xs bg-gradient-primary ml-3"><i
+                                            class="fa fa-plus"></i> Cadastrar Portfólio
+                                </button>
+                            </a>
                         </ol>
                     </div>
                 </div>
@@ -67,7 +72,7 @@
 
 
 
-                            <div class="col-sm-6">
+                            <div class="col-sm-5">
                                 <div class="form-group">
                                     <label>*Categoria de Portfólio</label>
                                     <select name="service" class="custom-select" required>
@@ -87,7 +92,7 @@
                                 </div>
                             </div>
 
-                            <div class="col-sm-4">
+                            <div class="col-sm-3">
                                 <div class="form-group">
                                     <label>Título</label>
                                     <input type="text" name="title" class="form-control"
@@ -98,38 +103,94 @@
 
                             <div class="col-sm-2">
                                 <div class="form-group">
+                                    <label>Ícone</label>
+                                    <div class="input-group mb-3">
+                                        <div class="input-group-prepend">
+                                            <span class="input-group-text"><i class="fa fa-{{ $service->icon }}"></i></span>
+                                        </div>
+                                        <input type="text" name="icon" class="form-control" placeholder="Ícone" value="{{ old('icon') ?? $service->icon }}"/>
+                                    </div>
+                                    <p>
+                                        <a href="https://fontawesome.com/icons?d=gallery&m=free" style="font-size: .8em;" target="_blank">
+                                            Lista de ícones</a>
+                                    </p>
+                                </div>
+                            </div>
+
+                            <div class="col-sm-2">
+                                <div class="form-group">
                                     <label>Preço</label>
-                                    <input type="text" name="price" class="form-control"
+                                    <input type="text" id="price" name="price" class="form-control"
                                            placeholder="Preço"
                                            value="{{ old('price') ?? $service->price }}"/>
                                 </div>
                             </div>
 
-                            <div class="col-sm-12">
+                            <div class="col-sm-9">
                                 <div class="form-group">
                                     <label>Descrição</label>
-                                    <textarea class="form-control" name="description" cols="30"
-                                              rows="4">{{ old('description') ?? $service->description }}</textarea>
+                                    <textarea class="textarea" name="description"
+                                              style="width: 100%; height: 600px; font-size: 14px; line-height: 18px; border: 1px solid #dddddd; padding: 10px;">
+                                        {{ old('description') ?? $service->description }}
+                                    </textarea>
                                 </div>
                             </div>
+
+
+
+
+                            <div class="col-sm-3">
+                                <div class="form-group">
+                                    <label>Habilitar no Site</label>
+
+                                    <div class="icheck-primary">
+                                        <input type="radio" name="cover" @if($service->cover == 0) checked
+                                               @endif id="0" value="0">
+                                        <label for="0">Inativo
+                                        </label>
+                                    </div>
+
+                                    <div class="icheck-primary">
+                                        <input type="radio" name="cover" @if($service->cover == 1) checked
+                                               @endif id="1" value="1">
+                                        <label for="1">Ativo
+                                        </label>
+                                    </div>
+
+
+
+                                </div>
+                            </div>
+
 
 
                             <div class="col-sm-12">
                                 <div class="form-group">
                                     <label>Escolha o(s) Setor(res)</label>
                                     <select class="select2" multiple="multiple" name="sectors[]"
-                                            data-placeholder="Escolha o(s) Serviço(s)"
+                                            data-placeholder="Escolha o(s) Setor(es)"
                                             style="width: 100%;">
                                         @foreach($sectors as $sector)
                                             <option value="{{$sector->id}}"
-                                            @foreach($sector_services as  $sector_service)
-                                                {{ ($sector->id === $sector_service->service ? 'selected' : '') }}
+                                            @foreach($sector_services as $sector_service)
+                                                {{ ($sector->id === $sector_service->sector ? 'selected' : '') }}
                                             @endforeach
                                             >{{ $sector->title }}</option>
                                         @endforeach
                                     </select>
                                 </div>
+                                <p style="margin-top: 4px; margin-bottom:40px;">
+                                    <a href="{{ route('admin.call_sectors.index') }}"
+                                       class="text-orange icon-link" style="font-size: .8em;"
+                                       target="_blank">Editar
+                                        Setores de Atendimento</a> |
+                                    <a href="{{ route('admin.call_sectors.create') }}"
+                                       class="text-orange icon-link" style="font-size: .8em;"
+                                       target="_blank">Cadastrar
+                                        Novo Setor de Atendimento</a>
+                                </p>
                             </div>
+
 
 
                             <!-- /.row -->
@@ -162,9 +223,8 @@
 
 
 @section('js')
+    <script type="text/javascript">
 
-    <!-- Page script -->
-    <script>
         $(function () {
             //Initialize Select2 Elements
             $('.select2').select2()
@@ -177,14 +237,13 @@
             //Datemask dd/mm/yyyy
             $('#datemask').inputmask('dd/mm/yyyy', { 'placeholder': 'dd/mm/yyyy' })
             //Datemask2 mm/dd/yyyy
-            $('#datemask2').inputmask('mm/dd/yyyy', { 'placeholder': 'mm/dd/yyyy' })
+            $('#cpf').inputmask('999.999.999-99', { 'placeholder': '999.999.999-99' })
             //Money Euro
             $('[data-mask]').inputmask()
 
-
-
-            $("input[data-bootstrap-switch]").each(function(){
-                $(this).bootstrapSwitch('state', $(this).prop('checked'));
+            var $j = jQuery.noConflict();
+            $j(document).ready(function(){
+                $j("#price").maskMoney({prefix:'R$ ', allowNegative: true, thousands:'.', decimal:',', affixesStay: false});
             });
 
         })

@@ -13,8 +13,42 @@ const mix = require('laravel-mix');
 
 mix
 
-// Assets Admin2
-     .styles([
+// Assets Web
+    .styles([
+        'resources/views/web/assets/vendor/simple-line-icons/simple-line-icons.min.css',
+        'resources/views/web/assets/vendor/bootstrap/css/bootstrap.min.css',
+        'resources/views/web/assets/css/animate.css',
+        'resources/views/web/assets/vendor/swiper/css/swiper.min.css',
+        'resources/views/web/assets/css/layout.min.css',
+    ], 'public/frontend/assets/css/libs.css')
+
+    .scripts([
+        'resources/views/web/assets/vendor/jquery.min.js',
+        'resources/views/web/assets/vendor/jquery-migrate.min.js',
+        'resources/views/web/assets/vendor/bootstrap/js/bootstrap.min.js',
+
+        'resources/views/web/assets/vendor/jquery.easing.js',
+        'resources/views/web/assets/vendor/jquery.back-to-top.js',
+        'resources/views/web/assets/vendor/jquery.smooth-scroll.js',
+        'resources/views/web/assets/vendor/jquery.wow.min.js',
+        'resources/views/web/assets/vendor/swiper/js/swiper.jquery.min.js',
+        'resources/views/web/assets/vendor/masonry/jquery.masonry.pkgd.min.js',
+        'resources/views/web/assets/vendor/masonry/imagesloaded.pkgd.min.js',
+
+        'resources/views/web/assets/js/layout.min.js',
+        'resources/views/web/assets/js/components/wow.min.js',
+        'resources/views/web/assets/js/components/swiper.min.js',
+        'resources/views/web/assets/js/components/masonry.min.js',
+
+    ], 'public/frontend/assets/js/libs.js')
+
+    .copyDirectory('resources/views/web/assets/vendor', 'public/frontend/assets/vendor')
+    .copyDirectory('resources/views/web/assets/css', 'public/frontend/assets/css')
+    .copyDirectory('resources/views/web/assets/js', 'public/frontend/assets/js')
+
+
+// Assets Admin
+    .styles([
         'resources/views/admin/assets/plugins/fontawesome-free/css/all.min.css',
         'resources/views/admin/assets/plugins/datatables-bs4/css/dataTables.bootstrap4.min.css',
         'resources/views/admin/assets/plugins/datatables-responsive/css/responsive.bootstrap4.min.css',
@@ -62,15 +96,22 @@ mix
         'resources/views/admin/assets/plugins/datatables-responsive/js/responsive.bootstrap4.min.js',
     ], 'public/backend/assets/js/libs_table.js')
 
+    .scripts([
+        'resources/views/admin/assets/js/jquery.maskMoney.js',
+    ], 'public/backend/assets/js/mask_money.js')
 
-    // .scripts([
-    //     'resources/views/admin/assets/plugins/moment/moment.min.js',
-    //     'resources/views/admin/assets/plugins/inputmask/min/jquery.inputmask.bundle.min.js'
-    // ], 'public/backend/assets/js/inputmask.js')
-
-
+    // Libs up
+    .sass('resources/views/admin/assets/scss/reset.scss', 'public/backend/assets/css/reset.css')
+    .sass('resources/views/admin/assets/scss/boot.scss', 'public/backend/assets/css/boot.css')
     .sass('resources/views/admin/assets/scss/login.scss', 'public/backend/assets/css/login.css')
     .sass('resources/views/admin/assets/scss/style.scss', 'public/backend/assets/css/style.css')
+
+    .styles([
+        'resources/views/admin/assets/js/datatables/css/jquery.dataTables.min.css',
+        'resources/views/admin/assets/js/datatables/css/responsive.dataTables.min.css',
+        'resources/views/admin/assets/js/select2/css/select2.min.css'
+    ], 'public/backend/assets/css/libs_up.css')
+
 
     .scripts([
         'resources/views/admin/assets/js/jquery.min.js'
@@ -81,16 +122,20 @@ mix
     ], 'public/backend/assets/js/login.js')
 
     // .scripts([
+    //     'resources/views/admin/assets/js/datatables/js/jquery.dataTables.min.js',
+    //     'resources/views/admin/assets/js/datatables/js/dataTables.responsive.min.js',
+    //     'resources/views/admin/assets/js/select2/js/select2.min.js',
+    //     'resources/views/admin/assets/js/select2/js/i18n/pt-BR.js',
     //     'resources/views/admin/assets/js/jquery.form.js',
+    //     'resources/views/admin/assets/js/jquery.mask.js',
     // ], 'public/backend/assets/js/libs_up.js')
 
     .scripts([
         'resources/views/admin/assets/js/scripts.js'
-    ], 'public/backend/assets/js/scripts.js')
+    ], 'public/backend/assets/js/scripts_up.js')
 
     .copyDirectory('resources/views/admin/assets/scss', 'public/backend/assets/scss')
     .copyDirectory('resources/views/admin/assets/js', 'public/backend/assets/js')
-
 
 
     .copyDirectory('resources/views/admin/assets/plugins/fontawesome-free/css', 'public/backend/assets/plugins/fontawesome-free/css')

@@ -68,7 +68,7 @@
                                         @endif
 
                                         @if($call->status == 1)
-                                            <span class="badge badge-info">Encaminhado</span>
+                                            <span class="badge badge-info">Processando</span>
                                         @endif
 
                                         @if($call->status == 2)
@@ -83,6 +83,9 @@
                                         {{ $call->created_at }}
                                     </td>
                                     <td>
+                                        <a href="{{ route('admin.calls.edit', ['call' => $call->id]) }}">
+                                            <button type="button" class="btn btn-block bg-gradient-warning btn-xs"><i class="fa fa-headset"></i> Acompanhar</button>
+                                        </a>
                                         <a href="{{ route('admin.calls.edit', ['call' => $call->id]) }}">
                                             <button type="button" class="btn btn-block bg-gradient-warning btn-xs"><i class="fa fa-headset"></i> Acompanhar</button>
                                         </a>

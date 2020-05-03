@@ -1,0 +1,119 @@
+/** COLOR's DEFAULT **/
+/** LOGIN - LEFT */
+/** LOGIN - RIGHT */
+/** DASH - SIDEBAR */
+/** DASH - CONTENT */
+/** DASH - RWD */
+/**
+FONT SYSTEM
+ */
+/**
+COLOR SYSTEM
+ */
+/** Auto generate buttons, gradients */
+/**
+RADIUS SYSTEM
+ */
+/**
+INDEX SYSTEM
+ */
+/** Components */
+.btn {
+  border-radius: 4px;
+  display: inline-block;
+  padding: 6px 12px;
+  background: #555555;
+  border: none;
+  cursor: pointer;
+  color: #ffffff;
+  font-size: 0.875em;
+  text-shadow: 1px 1px 0 rgba(0, 0, 0, 0.3);
+  transition-duration: 0.3s;
+  margin: 2px;
+  outline: none;
+}
+.btn:hover {
+  background-color: #414141;
+}
+
+.btn-small {
+  padding: 2px 4px;
+}
+
+.btn-large {
+  padding: 10px 20px;
+}
+
+.btn-large-ext {
+  padding: 20px 40px;
+}
+
+.btn-block {
+  display: block;
+  width: 100%;
+}
+
+.btn-disabled {
+  cursor: not-allowed;
+  opacity: 0.5;
+}
+
+.btn-green {
+  background-color: #36BA9B;
+  color: #ffffff;
+}
+.btn-green:hover {
+  background-color: #2d9a81;
+}
+.btn-green:disabled {
+  background-color: #7dd9c4;
+  cursor: not-allowed;
+}
+
+.btn-blue {
+  background-color: #39AED9;
+  color: #ffffff;
+}
+.btn-blue:hover {
+  background-color: #2699c4;
+}
+.btn-blue:disabled {
+  background-color: #8fd1e9;
+  cursor: not-allowed;
+}
+
+.btn-yellow {
+  background-color: #F5B946;
+  color: #ffffff;
+}
+.btn-yellow:hover {
+  background-color: #f3aa1f;
+}
+.btn-yellow:disabled {
+  background-color: #fadea7;
+  cursor: not-allowed;
+}
+
+.btn-red {
+  background-color: #D94352;
+  color: #ffffff;
+}
+.btn-red:hover {
+  background-color: #ca2939;
+}
+.btn-red:disabled {
+  background-color: #ea98a0;
+  cursor: not-allowed;
+}
+
+.btn-orange {
+  background-color: #F4645F;
+  color: #ffffff;
+}
+.btn-orange:hover {
+  background-color: #f13f39;
+}
+.btn-orange:disabled {
+  background-color: #fbc0be;
+  cursor: not-allowed;
+}

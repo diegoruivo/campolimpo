@@ -51,7 +51,7 @@
                                 <tr>
                                     <td>{{ $service->title}}</td>
                                     <td>{{ $service->service_category()->first()->title }}</td>
-                                    <td>{{ $service->price}}</td>
+                                    <td>R$ {{ $service->price}}</td>
                                     <td>
                                         <a href="{{ route('admin.services.edit', ['service' => $service->id]) }}">
                                             <button type="button" class="btn btn-block bg-gradient-primary btn-xs"><i class="fa fa-edit"></i> Editar</button>

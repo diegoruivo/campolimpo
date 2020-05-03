@@ -11,11 +11,15 @@
 |
 */
 
-
 Route::group(['namespace' => 'Web', 'as' => 'web.'], function() {
 
     /** Home Page Site */
     Route::get('/', 'WebController@home')->name('home');
+    Route::get('/content/{uri}', 'WebController@content')->name('content');
+    Route::get('/blog/', 'WebController@blog')->name('blog');
+    Route::get('/blog/{uri}', 'WebController@article')->name('article');
+    Route::get('/service/{uri}', 'WebController@service')->name('service');
+
 
 });
 
@@ -78,9 +82,16 @@ Route::group(['prefix' => 'admin', 'namespace' => 'Admin', 'as' => 'admin.'], fu
         /** Contracts */
         Route::resource('contracts', 'ContractController');
 
-        /** Posts */
+        /** Pages */
+        Route::resource('pages', 'PageController');
+        Route::resource('page_contents', 'PageContentController');
+
+        /** Posts (Blog) */
         Route::resource('posts', 'PostController');
         Route::resource('categories_post', 'CategoryPostController');
+
+        /** Parceiros do Site (Partner) */
+        Route::resource('partners', 'PartnerController');
 
         /** Settings */
         Route::resource('system', 'SystemController');

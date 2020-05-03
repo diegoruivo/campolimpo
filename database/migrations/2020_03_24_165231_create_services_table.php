@@ -16,9 +16,12 @@ class CreateServicesTable extends Migration
         Schema::create('services', function (Blueprint $table) {
             $table->increments('id');
             $table->string('title');
+            $table->string('icon')->nullable();
             $table->string('slug')->nullable();
             $table->double('price', 10, 2)->nullable();
             $table->text('description')->nullable();
+            $table->boolean('cover')->nullable();
+            $table->boolean('position')->nullable();
 
             $table->timestamps();
         });
