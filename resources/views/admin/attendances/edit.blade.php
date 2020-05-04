@@ -11,14 +11,14 @@
                     <div class="col-sm-6">
                         <h1>
                             <small><i class="fa fa-headset"></i></small>
-                            Atendimento
+                            Atendimento do Setor
                         </h1>
                     </div>
                     <div class="col-sm-6">
                         <ol class="breadcrumb float-sm-right">
                             <li class="breadcrumb-item"><a href="{{ route('admin.home') }}">Home</a></li>
                             <li class="breadcrumb-item"><a href="{{ route('admin.calls.index') }}">Atendimentos</a></li>
-                            <li class="breadcrumb-item active">Atendimento</li>
+                            <li class="breadcrumb-item active">Atendimento do Setor</li>
                         </ol>
                     </div>
                 </div>
@@ -42,7 +42,7 @@
                 @endmessage
             @endif
 
-            <form role="form" action="{{ route('admin.calls.update', ['call' => $call->id]) }}" method="post">
+            <form role="form" action="{{ route('admin.attendances.update', ['call' => $call->id]) }}" method="post">
 
             @csrf
             @method('PUT')
@@ -175,7 +175,6 @@
                                         </div>
                                     </div>
 
-                                    @if($call->status != 0)
                                         <div class="col-sm-12">
                                         <h5>Serviço(s) Solicitado(s)</h5>
                                         @foreach($services as $service)
@@ -185,16 +184,14 @@
                                         @endforeach
                                         </div>
 
-                                        <div class="col-sm-12 mt-3">
+                                        <div class="col-sm-12 mt-3 mb-4">
                                             <h5>Descrição do Atendimento</h5>
                                             {{ $call->description }}
                                         </div>
-                                        @endif
 
-                                    @if($call->status == 0)
                                     <div class="col-sm-12">
                                         <div class="form-group">
-                                            <label>Escolha o(s) Serviço(s)</label>
+                                            <label>Atualize o(s) Serviço(s)</label>
                                             <select class="select2" multiple="multiple" name="services[]"
                                                     data-placeholder="Escolha o(s) Serviço(s)"
                                                     style="width: 100%;">
@@ -213,12 +210,11 @@
                                     <div class="col-sm-12">
                                         <!-- textarea -->
                                         <div class="form-group">
-                                            <label>Descrição</label>
+                                            <label>Atualize a Descrição</label>
                                             <textarea class="form-control" name="description" cols="30"
                                                       rows="4">{{ old('description') ?? $call->description }}</textarea>
                                         </div>
                                     </div>
-                                    @endif
 
 
                                 </div>
@@ -238,7 +234,7 @@
                     <!-- /.card-body -->
                     <div class="card-footer">
                         <button type="submit" class="btn btn-lg bg-gradient-primary" style="float:right;"><i
-                                    class="fa fa-long-arrow-alt-right"></i> Atualizar Atendimento
+                                    class="fa fa-long-arrow-alt-right"></i> Atualizar Atendimento do Setor
                         </button>
                     </div>
                     <!-- /.card-footer-->

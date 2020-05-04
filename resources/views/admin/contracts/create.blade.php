@@ -59,48 +59,59 @@
                         <div class="row">
 
 
-                            <div class="col-sm-6">
-                                <div class="form-group">
-                                    <label>*Cliente</label>
-                                    <select name="user" class="custom-select" required>
-                                        <option value="" {{ (old('user') == '' ? 'selected' : '') }}>Selecione o
-                                            Cliente
-                                        </option>
-                                        @foreach($users as $user)
-                                            @if (!empty($selected_user))
-                                                <option value="{{ $user->id }}" {{ ($user->id === $selected_user->id ? 'selected' : '') }}>{{ $user->name }}
-                                                    ({{ $user->document }})
-                                                </option>
-                                            @else
-                                                <option value="{{ $user->id }}">{{ $user->name }} ({{ $user->document }}
-                                                    )
-                                                </option>
+
+
+
+                            <div class="col-md-3">
+
+                                <!-- Profile Image -->
+                                <div class="card card-primary card-outline">
+                                    <div class="card-body box-profile">
+                                        <div class="text-center">
+                                            @if(!empty($user->cover))
+                                                <img class="profile-user-img img-fluid img-circle"
+                                                     src="{{ $user->cover }}">
                                             @endif
-                                        @endforeach
-                                    </select>
-                                    <p style="margin-top: 4px;">
-                                        <a href="{{ route('admin.users.create') }}" style="font-size: .8em;"
-                                           target="_blank">Cadastrar Cliente</a>
-                                    </p>
+                                        </div>
+
+                                        <h3 class="profile-username text-center">{{ $user->name }}</h3>
+
+                                        <p class="text-muted text-center">{{ $user->occupation }}</p>
+
+                                        <ul class="list-group list-group-unbordered mb-3">
+                                            <li class="list-group-item">
+                                                <b>Atendimentos</b> <a class="float-right">5</a>
+                                            </li>
+                                            <li class="list-group-item">
+                                                <b>Serviços Contrados</b> <a class="float-right">3</a>
+                                            </li>
+                                        </ul>
+
+                                        <a href="{{ route('admin.users.edit', ['user' => $user->id]) }}"
+                                           class="btn btn-primary btn-block"><b>Cadastro do Cliente</b></a>
+                                    </div>
+                                    <!-- /.card-body -->
                                 </div>
+                                <!-- /.card -->
+
+
                             </div>
+
+
+
 
 
                             <div class="col-sm-6">
                                 <div class="form-group">
                                     <label>*Serviço</label>
-                                    <select name="service" class="custom-select" required>
-                                        <option value="" {{ (old('service') == '' ? 'selected' : '') }}>Selecione o
-                                            Serviço
-                                        </option>
-                                        @foreach($services as $service)
-                                            @if (!empty($selected_service))
-                                                <option value="{{ $service->id }}" {{ ($service->id === $selected_service->id ? 'selected' : '') }}>{{ $service->title }}</option>
-                                            @else
-                                                <option value="{{ $service->id }}">{{ $service->title }}</option>
-                                            @endif
+
+                                    @foreach($call_services as $call_service)
+                                        @foreach($services->call_services as $service)
+                                            {{ $service->title }}
                                         @endforeach
-                                    </select>
+                                    @endforeach
+
+
                                 </div>
                             </div>
 

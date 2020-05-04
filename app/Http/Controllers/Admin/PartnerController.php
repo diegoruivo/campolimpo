@@ -20,7 +20,7 @@ class PartnerController extends Controller
         $system = System::where('id', 1)->first();
 
         return view('admin.partners.index', [
-           'partners' => $partners,
+            'partners' => $partners,
             'system' => $system
         ]);
     }
@@ -34,7 +34,7 @@ class PartnerController extends Controller
     {
         $system = System::where('id', 1)->first();
 
-        return view('admin.partners.index', [
+        return view('admin.partners.create', [
             'system' => $system
         ]);
 
@@ -54,10 +54,11 @@ class PartnerController extends Controller
             $createPartner->path = $request->file('path')->store('partners');
         }
         $createPartner->title = $request->title;
-        $createPartner->description = $request->description;
+        $createPartner->link = $request->link;
+        $createPartner->position = $request->position;
         $createPartner->save();
 
-        return redirect()->route('admin.service_category.edit', [
+        return redirect()->route('admin.partners.edit', [
             'partner' => $createPartner->id
         ])->with(['color' => 'green', 'message' => 'Parceiro Site cadastrado com sucesso!']);
     }
@@ -84,7 +85,7 @@ class PartnerController extends Controller
         $partner = Partner::where('id', $id)->first();
         $system = System::where('id', 1)->first();
 
-        return view('admin.partners.index', [
+        return view('admin.partners.edit', [
             'partner' => $partner,
             'system' => $system
         ]);
@@ -121,8 +122,12 @@ class PartnerController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Partner $partner)
     {
-        //
+        $destroyPartner = Partner::destroy($partner->id);
+
+        return redirect()->route('admin.partners.index', [
+            'partner' => $partner->id
+        ])->with(['color' => 'green', 'message' => 'Parceiro Site excluído com sucesso!']);
     }
 }

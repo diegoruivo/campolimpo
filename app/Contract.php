@@ -22,9 +22,17 @@ class Contract extends Model
         return $this->belongsTo(User::class, 'user', 'id');
     }
 
-    public function service()
+
+    public function services()
     {
-        return $this->belongsTo(Service::class, 'service', 'id');
+        return $this->hasMany(CallService::class, 'service', 'id');
+
+    }
+
+
+    public function getCreatedAtAttribute($value)
+    {
+        return date('d/m/Y H:i', strtotime($value));
     }
 
 

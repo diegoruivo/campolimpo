@@ -44,6 +44,9 @@ class CreateSystemsTable extends Migration
             $table->string('youtube')->nullable();
             $table->string('twitter')->nullable();
 
+            /** maps */
+            $table->text('map')->nullable();
+
             $table->timestamps();
         });
     }

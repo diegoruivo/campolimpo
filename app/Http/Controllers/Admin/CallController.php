@@ -122,8 +122,8 @@ class CallController extends Controller
         $call = Call::where('id', $request->call)->first();
         $user = User::where('id', $call->user)->first();
         $system = System::where('id', 1)->first();
-        $services = Service::orderBy('title')->get();
         $call_services = CallService::where('call', $call->id)->get();
+        $services = Service::where('id', $call_services->service)->orderBy('title')->get();
 
         return view('admin.calls.edit', [
             'call' => $call,
@@ -162,6 +162,7 @@ class CallController extends Controller
             'call' => $updateCall->id
         ])->with(['color' => 'green', 'message' => 'Atendimento atualizado com sucesso!']);
     }
+
 
     /**
      * Remove the specified resource from storage.

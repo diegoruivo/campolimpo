@@ -22,6 +22,11 @@ class Service extends Model
         return $this->belongsTo(ServiceCategory::class, 'service', 'id');
     }
 
+    public function call_services()
+    {
+        return $this->belongsTo(CallService::class, 'service', 'id');
+    }
+
     public function sectors()
     {
         return $this->belongsToMany(CallSector::class, 'services_call_sectors', 'service', 'sector');

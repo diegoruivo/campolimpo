@@ -16,4 +16,5 @@ class CallService extends Model
     {
         return $this->hasMany(Service::class, 'service', 'id');
     }
+
 }

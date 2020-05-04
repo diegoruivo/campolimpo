@@ -4,6 +4,7 @@ namespace CampoLimpo\Http\Controllers\Web;
 
 use CampoLimpo\Page;
 use CampoLimpo\PageContent;
+use CampoLimpo\Partner;
 use CampoLimpo\Post;
 use CampoLimpo\Service;
 use CampoLimpo\ServiceCategory;
@@ -30,6 +31,8 @@ class WebController extends Controller
         $pageContato= Page::where('slug', 'contato')->first();
         $contatos = PageContent::where('page', $pageContato->id)->orderBy('position', 'ASC')->get();
 
+        $partners = Partner::orderBy('position', 'ASC')->get();
+
         $system = System::where('id', 1)->first();
 
         return view('web.home', [
@@ -39,6 +42,7 @@ class WebController extends Controller
             'services' => $services,
             'posts' => $posts,
             'contatos' => $contatos,
+            'partners' => $partners,
             'system' => $system
         ]);
 

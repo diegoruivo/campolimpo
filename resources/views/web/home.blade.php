@@ -235,24 +235,11 @@
         <div class="swiper-slider swiper-clients">
             <!-- Swiper Wrapper -->
             <div class="swiper-wrapper">
-                <div class="swiper-slide">
-                    <img class="swiper-clients-img" src="frontend/assets/img/clients/01.png" alt="Clients Logo">
-                </div>
-                <div class="swiper-slide">
-                    <img class="swiper-clients-img" src="frontend/assets/img/clients/02.png" alt="Clients Logo">
-                </div>
-                <div class="swiper-slide">
-                    <img class="swiper-clients-img" src="frontend/assets/img/clients/03.png" alt="Clients Logo">
-                </div>
-                <div class="swiper-slide">
-                    <img class="swiper-clients-img" src="frontend/assets/img/clients/04.png" alt="Clients Logo">
-                </div>
-                <div class="swiper-slide">
-                    <img class="swiper-clients-img" src="frontend/assets/img/clients/05.png" alt="Clients Logo">
-                </div>
-                <div class="swiper-slide">
-                    <img class="swiper-clients-img" src="frontend/assets/img/clients/06.png" alt="Clients Logo">
-                </div>
+                @foreach($partners as $partner)
+                    <div class="swiper-slide">
+                        <a href="{{ $partner->link }}" target="_blank"><img class="swiper-clients-img" src="{{ url('storage/' . $partner->path) }}"></a>
+                    </div>
+                @endforeach
             </div>
             <!-- End Swiper Wrapper -->
         </div>
@@ -299,7 +286,7 @@
 
         <!-- Google Map -->
         <div class="map height-300">
-            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2724.0694570748947!2d7.455080415208266!3d46.94067397914616!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x478e39d0cf20e8d1%3A0x9daac4cd3043d067!2sThunstrasse+50%2C+3005+Bern%2C+Switzerland!5e0!3m2!1sen!2sin!4v1496749852928" width="100%" height="100%" frameborder="0" style="border:0" allowfullscreen></iframe>
+            <iframe src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d14581.538422922275!2d-48.8783306!3d-23.9821921!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0xcb317ad7b3b80a66!2sCAMPOLIMPO!5e0!3m2!1spt-BR!2sbr!4v1588611624978!5m2!1spt-BR!2sbr" width="100%" height="100%" frameborder="0" style="border:0" allowfullscreen></iframe>
         </div>
     </div>
         <!-- End Contact -->

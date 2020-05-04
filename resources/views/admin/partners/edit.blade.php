@@ -142,6 +142,18 @@
 
             </form>
 
+
+
+<div class="col-lg-12" style="padding-bottom: 40px;">
+                <form action="{{ route('admin.partners.destroy', ['partner' => $partner->id]) }}" method="post"
+                      class="app_form">
+                    @csrf
+                    @method('DELETE')
+                    <button type="submit" class="btn btn-xs bg-gradient-danger" onclick="return confirm('Tem certeza que deseja excluir o Parceiro Site: {{ $partner->title }}?')"><i class="fa fa-trash"></i> Excluir Parceiro Site</button>
+                </form>
+</div>
+
+
         </section>
         <!-- /.content -->
     </div>

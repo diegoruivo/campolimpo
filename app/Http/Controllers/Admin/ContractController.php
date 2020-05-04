@@ -2,7 +2,9 @@
 
 namespace CampoLimpo\Http\Controllers\Admin;
 
+use CampoLimpo\Call;
 use CampoLimpo\CallSector;
+use CampoLimpo\CallService;
 use CampoLimpo\Contract;
 use CampoLimpo\Document;
 use CampoLimpo\DocumentCategory;
@@ -38,24 +40,23 @@ class ContractController extends Controller
      */
     public function create(Request $request)
     {
-
-        $users = User::orderBy('name')->get();
-        $services = Service::orderBy('title')->get();
+        $call = Call::where('id', $request->call)->first();
+        $user = User::where('id', $call->user)->first();
         $system = System::where('id', 1)->first();
+        $services = Service::orderBy('title')->get();
+        $call_services = CallService::where('call', $call->id)->get();
+        $ncall_services = CallService::where('call', $call->id)->count();
+        $ncalls = Call::all()->count();
+        $ncontracts = Call::all()->count();
 
-        if (!empty($request->user)) {
-            $user = User::where('id', $request->user)->first();
-        }
-
-        if (!empty($request->service)) {
-            $service = Service::where('id', $request->service)->first();
-        }
 
         return view('admin.contracts.create', [
-            'users' => $users,
+            'call' => $call,
+            'user' => $user,
             'services' => $services,
-            'system' => $system,
-            'selected' => (!empty($user) ? $user : null)
+            'call_services' => $call_services,
+            'ncall_services' => $ncall_services,
+            'system' => $system
         ]);
 
         return view('admin.contracts.create');

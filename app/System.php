@@ -28,7 +28,8 @@ class System extends Model
         'facebook',
         'instagram',
         'youtube',
-        'twitter'
+        'twitter',
+        'map'
     ];
 
 

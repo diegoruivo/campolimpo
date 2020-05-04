@@ -178,7 +178,7 @@
 
                     <li class="nav-item has-treeview">
                         <a href="#" class="nav-link {{ isActive('admin.users') }}">
-                            <i class="nav-icon fa fa-folder-plus"></i>
+                            <i class="nav-icon fa fa-users"></i>
                             <p>
                                 Cadastros
                                 <i class="fas fa-angle-left right"></i>
@@ -267,6 +267,15 @@
                                     <i class="fa fa-caret-right nav-icon"></i>
                                     <p>
                                         Posts
+                                    </p>
+                                </a>
+                            </li>
+
+                            <li class="nav-item">
+                                <a href="{{ route('admin.partners.index') }}" class="nav-link">
+                                    <i class="fa fa-caret-right nav-icon"></i>
+                                    <p>
+                                        Parceiros
                                     </p>
                                 </a>
                             </li>

@@ -40,7 +40,7 @@
                         <thead>
                         <tr>
                             <th>Parceiro</th>
-                            <th>Logotipo</th>
+                            <th>Posição</th>
                             <th width="80">Ação</th>
                         </tr>
                         </thead>
@@ -48,8 +48,8 @@
                         @if(!empty($partners))
                             @foreach($partners as $partner)
                                 <tr>
-                                    <td>{{ $partners->title}}</td>
-                                    <td>{{ $partners->cover }}</td>
+                                    <td>{{ $partner->title}}</td>
+                                    <td>{{ $partner->position}}</td>
                                     <td>
                                         <a href="{{ route('admin.partners.edit', ['partner' => $partner->id]) }}">
                                             <button type="button" class="btn btn-block bg-gradient-primary btn-xs"><i class="fa fa-edit"></i> Editar</button>

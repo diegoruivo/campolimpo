@@ -45,7 +45,7 @@
                             <th>Senha</th>
                             <th>Status</th>
                             <th>Data</th>
-                            <th width="80">Ação</th>
+                            <th width="120">Ação</th>
                         </tr>
                         </thead>
                         <tbody>
@@ -84,10 +84,10 @@
                                     </td>
                                     <td>
                                         <a href="{{ route('admin.calls.edit', ['call' => $call->id]) }}">
-                                            <button type="button" class="btn btn-block bg-gradient-warning btn-xs"><i class="fa fa-headset"></i> Acompanhar</button>
+                                            <button type="button" class="btn bg-gradient-primary btn-xs"><i class="fa fa-edit"></i> Editar</button>
                                         </a>
-                                        <a href="{{ route('admin.calls.edit', ['call' => $call->id]) }}">
-                                            <button type="button" class="btn btn-block bg-gradient-warning btn-xs"><i class="fa fa-headset"></i> Acompanhar</button>
+                                        <a href="{{ route('admin.attendances.edit', ['call' => $call->id]) }}">
+                                            <button type="button" class="btn bg-gradient-success btn-xs"><i class="fa fa-headset"></i> Atender</button>
                                         </a>
                                     </td>
                                 </tr>
