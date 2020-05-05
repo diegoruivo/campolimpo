@@ -76,10 +76,10 @@
 
                                         <ul class="list-group list-group-unbordered mb-3">
                                             <li class="list-group-item">
-                                                <b>Atendimentos</b> <a class="float-right">5</a>
+                                                <b>Atendimentos</b> <a class="float-right">{{ $ncalls }}</a>
                                             </li>
                                             <li class="list-group-item">
-                                                <b>Serviços Contrados</b> <a class="float-right">3</a>
+                                                <b>Serviços Contrados</b> <a class="float-right">{{ $ncontracts }}</a>
                                             </li>
                                         </ul>
 
@@ -158,19 +158,6 @@
                                                 </label>
                                             </div>
 
-                                            <div class="icheck-primary">
-                                                <input type="radio" name="status" @if($call->status == 2) checked
-                                                       @endif id="2" value="2">
-                                                <label for="2">Contratado
-                                                </label>
-                                            </div>
-
-                                            <div class="icheck-primary">
-                                                <input type="radio" name="status" @if($call->status == 3) checked
-                                                       @endif id="3" value="3">
-                                                <label for="3">Cancelado
-                                                </label>
-                                            </div>
 
                                         </div>
                                     </div>

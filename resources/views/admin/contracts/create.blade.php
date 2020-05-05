@@ -36,7 +36,7 @@
                 @endforeach
             @endif
 
-            <form role="form" action="{{ route('admin.contracts.store') }}" method="post" enctype="multipart/form-data">
+            <form role="form" action="{{ route('admin.contracts.store', ['call' => $call->id]) }}" method="post" enctype="multipart/form-data">
 
             @csrf
 
@@ -80,10 +80,10 @@
 
                                         <ul class="list-group list-group-unbordered mb-3">
                                             <li class="list-group-item">
-                                                <b>Atendimentos</b> <a class="float-right">5</a>
+                                                <b>Atendimentos</b> <a class="float-right">{{ $ncalls }}</a>
                                             </li>
                                             <li class="list-group-item">
-                                                <b>Serviços Contrados</b> <a class="float-right">3</a>
+                                                <b>Serviços Contrados</b> <a class="float-right">{{ $ncontracts }}</a>
                                             </li>
                                         </ul>
 
@@ -98,37 +98,92 @@
                             </div>
 
 
+                            <div class="col-sm-9">
 
 
+                                <div class="col-12">
+                                    <div class="info-box bg-gradient-primary">
+                                            <span class="info-box-icon"><h1><big><i
+                                                                class="fa fa-headset"></i></big></h1></span>
 
-                            <div class="col-sm-6">
-                                <div class="form-group">
-                                    <label>*Serviço</label>
+                                        <div class="info-box-content">
+                                            <span class="info-box-text">Atendimento n° <b>{{ $call->id }}</b></span>
+                                            <span  class="progress-description" style="float:right">{{ $call->created_at }}
+                                                    <br> Status:
+                                                    @if($call->status == 0)
+                                                    <span class="badge badge-warning">Inicial</span>
+                                                @endif
 
-                                    @foreach($call_services as $call_service)
-                                        @foreach($services->call_services as $service)
-                                            {{ $service->title }}
-                                        @endforeach
-                                    @endforeach
+                                                @if($call->status == 1)
+                                                    <span class="badge badge-warning">Processando</span>
+                                                @endif
 
+                                                @if($call->status == 2)
+                                                    <span class="badge badge-success">Contratado</span>
+                                                @endif
 
+                                                @if($call->status == 3)
+                                                    <span class="badge badge-danger">Cancelado</span>
+                                                @endif
+                                                </span>
+
+                                            <span class="info-box-number"><small>Senha:</small> <h3>{{ $call->password }}</h3></span>
+                                            <div class="progress">
+                                                <div class="progress-bar" style="width: 10%"></div>
+                                            </div>
+                                            <span class="time" style="float:right"><i class="far fa-clock"></i>
+                                                    <span id="hora">00h</span><span id="minuto">00m</span><span
+                                                        id="segundo">00s</span>
+                                                </span>
+                                        </div>
+                                        <!-- /.info-box-content -->
+                                    </div>
+                                    <!-- /.info-box -->
                                 </div>
+
+
+
+                                <!-- /.row -->
+                                <div class="row">
+                                    <div class="col-12">
+                                        <div class="card">
+                                            <div class="card-header">
+                                                <h3 class="card-title">Serviço(s) Contratado(s)</h3>
+                                            </div>
+                                            <!-- /.card-header -->
+                                            <div class="card-body table-responsive p-0" style="height: 300px;">
+                                                <table class="table table-head-fixed text-nowrap">
+                                                    <thead>
+                                                    <tr>
+                                                        <th>Serviço</th>
+                                                        <th>Preço</th>
+                                                    </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                    @foreach($call_services as $service)
+                                                        <tr>
+                                                        <td>{{ $service->title }}</td>
+                                                        <td>R$ {{ $service->price }}</td>
+                                                    </tr>
+                                                    @endforeach
+
+                                                    </tbody>
+                                                </table>
+                                            </div>
+                                            <!-- /.card-body -->
+                                        </div>
+                                        <!-- /.card -->
+                                    </div>
+                                </div>
+                                <!-- /.row -->
+
+
+
                             </div>
 
 
 
-                            <div class="col-sm-3">
-                                <div class="form-group">
-                                    <label>Valor do Serviço</label>
-                                    <input type="text" name="contract_price" class="form-control"
-                                           placeholder="Valor do Serviço"
-                                           value="{{ old('contract_price') }}"/>
-                                </div>
-                            </div>
-
-
-
-                            <div class="col-sm-3">
+                            <div class="col-sm-4">
                                 <div class="form-group">
                                     <label>*Dia do Vencimento</label>
                                     <select name="pay_day" class="custom-select" required>
@@ -169,7 +224,7 @@
                             </div>
 
 
-                            <div class="col-sm-3">
+                            <div class="col-sm-4">
                                 <div class="form-group">
                                     <label>*Prazo do Contrato</label>
                                     <select name="deadline" class="custom-select" required>
@@ -194,22 +249,13 @@
                             </div>
 
 
-                            <div class="col-sm-3">
+                            <div class="col-sm-4">
                                 <div class="form-group">
                                     <label>Data de Início</label>
                                     <input type="text" name="start_date" class="form-control"
+                                           data-inputmask-alias="datetime" data-inputmask-inputformat="dd/mm/yyyy" data-mask
                                            placeholder="Data de Início"
                                            value="{{ old('start_date') }}"/>
-                                </div>
-                            </div>
-
-
-                            <div class="col-sm-12">
-                                <!-- textarea -->
-                                <div class="form-group">
-                                    <label>Termos</label>
-                                    <textarea class="form-control" name="terms" cols="30"
-                                              rows="4">{{ old('terms')}}</textarea>
                                 </div>
                             </div>
 
@@ -239,4 +285,85 @@
     </div>
     <!-- /.content-wrapper -->
 
+@endsection
+
+
+
+@section('js')
+    <script type="text/javascript">
+
+        $(function () {
+            //Initialize Select2 Elements
+            $('.select2').select2()
+
+            //Initialize Select2 Elements
+            $('.select2bs4').select2({
+                theme: 'bootstrap4'
+            })
+
+            //Datemask dd/mm/yyyy
+            $('#datemask').inputmask('dd/mm/yyyy', { 'placeholder': 'dd/mm/yyyy' })
+            //Datemask2 mm/dd/yyyy
+            $('#cpf').inputmask('999.999.999-99', { 'placeholder': '999.999.999-99' })
+            //Money Euro
+            $('[data-mask]').inputmask()
+
+            var $j = jQuery.noConflict();
+            $j(document).ready(function(){
+                $j("#contract_price").maskMoney({prefix:'R$ ', allowNegative: true, thousands:'.', decimal:',', affixesStay: false});
+            });
+
+        })
+
+
+
+
+        // Cronometro
+        var intervalo;
+
+        function tempo(op) {
+            if (op == 1) {
+                document.getElementById('parar').style.display = "block";
+                document.getElementById('comeca').style.display = "none";
+            }
+            var s = 1;
+            var m = 0;
+            var h = 0;
+            intervalo = window.setInterval(function () {
+                if (s == 60) {
+                    m++;
+                    s = 0;
+                }
+                if (m == 60) {
+                    h++;
+                    s = 0;
+                    m = 0;
+                }
+                if (h < 10) document.getElementById("hora").innerHTML = "0" + h + "h"; else document.getElementById("hora").innerHTML = h + "h";
+                if (s < 10) document.getElementById("segundo").innerHTML = "0" + s + "s"; else document.getElementById("segundo").innerHTML = s + "s";
+                if (m < 10) document.getElementById("minuto").innerHTML = "0" + m + "m"; else document.getElementById("minuto").innerHTML = m + "m";
+                s++;
+            }, 1000);
+        }
+
+        function parar() {
+            window.clearInterval(intervalo);
+            document.getElementById('parar').style.display = "none";
+            document.getElementById('comeca').style.display = "block";
+        }
+
+        function volta() {
+            document.getElementById('voltas').innerHTML += document.getElementById('hora').firstChild.data + "" + document.getElementById('minuto').firstChild.data + "" + document.getElementById('segundo').firstChild.data + "<br>";
+        }
+
+        function limpa() {
+            document.getElementById('voltas').innerHTML = "";
+        }
+
+        window.onload = tempo;
+
+
+
+
+    </script>
 @endsection

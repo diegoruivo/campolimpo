@@ -5,6 +5,7 @@ namespace CampoLimpo\Http\Controllers\Admin;
 use CampoLimpo\Attendance;
 use CampoLimpo\Call;
 use CampoLimpo\CallService;
+use CampoLimpo\Contract;
 use CampoLimpo\Service;
 use CampoLimpo\System;
 use CampoLimpo\User;
@@ -68,13 +69,17 @@ class AttendanceController extends Controller
         $system = System::where('id', 1)->first();
         $services = Service::orderBy('title')->get();
         $call_services = CallService::where('call', $call->id)->get();
+        $ncalls = Call::all()->count();
+        $ncontracts = Contract::all()->count();
 
         return view('admin.attendances.edit', [
             'call' => $call,
             'system' => $system,
             'user' => $user,
             'services' => $services,
-            'call_services' => $call_services
+            'call_services' => $call_services,
+            'ncalls' => $ncalls,
+            'ncontracts' => $ncontracts
         ]);
     }
 
@@ -103,17 +108,11 @@ class AttendanceController extends Controller
             $updateCall->services()->sync($services_ids);
         }
 
-        if ($updateCall->status == 2) {
             return redirect()->route('admin.contracts.create', [
                 'call' => $updateCall->id
             ])->with(['color' => 'green', 'message' => 'Atendimento do Setor atualizado com sucesso! Agora é especificar o contrato.']);
-        }
 
-        if ($updateCall->status != 2) {
-            return redirect()->route('admin.attendances.edit', [
-                'call' => $updateCall->id
-            ])->with(['color' => 'green', 'message' => 'Atendimento do Setor atualizado com sucesso!']);
-        }
+
     }
 
     /**

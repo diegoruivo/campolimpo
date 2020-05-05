@@ -22,7 +22,7 @@ class ContractController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
         $contracts = Contract::all();
         $system = System::where('id', 1)->first();
@@ -44,22 +44,21 @@ class ContractController extends Controller
         $user = User::where('id', $call->user)->first();
         $system = System::where('id', 1)->first();
         $services = Service::orderBy('title')->get();
-        $call_services = CallService::where('call', $call->id)->get();
-        $ncall_services = CallService::where('call', $call->id)->count();
         $ncalls = Call::all()->count();
-        $ncontracts = Call::all()->count();
+        $ncontracts = Contract::all()->count();
 
+        $call_services = $call->services()->get();
 
         return view('admin.contracts.create', [
             'call' => $call,
             'user' => $user,
             'services' => $services,
             'call_services' => $call_services,
-            'ncall_services' => $ncall_services,
+            'ncalls' => $ncalls,
+            'ncontracts' => $ncontracts,
             'system' => $system
         ]);
 
-        return view('admin.contracts.create');
     }
 
     /**
@@ -68,16 +67,29 @@ class ContractController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(ContractRequest $request)
+    public function store(Request $request)
     {
+        $call = Call::where('id', $request->call)->first();
+        $user = User::where('id', $call->user)->first();
+        $services = Service::orderBy('title')->get();
+        $call_services = $call->services()->get();
 
-        $createContract= Contract::create($request->all());
-        $createContract->terms = $request->terms;
-        $createContract->save();
+        if (!empty($call->services()->get())) {
+            foreach ($call->services()->get() as $service) {
+                $createContract = new Contract();
+                $createContract->service = $service->id;
+                $createContract->user = $user->id;
+                $createContract->call = $call->id;
+                $createContract->contract_price = $service->price;
+                $createContract->pay_day = $request->pay_day;
+                $createContract->deadline = $request->deadline;
+                $createContract->start_date = $request->start_date;
+                $createContract->save();
+                unset($createContract);
+            }
+        }
 
-        return redirect()->route('admin.contracts.edit', [
-            'contract' => $createContract->id
-        ])->with(['color' => 'green', 'message' => 'Contrato cadastrado com sucesso!']);
+        return redirect()->route('admin.contracts.index');
     }
 
     /**
@@ -105,9 +117,6 @@ class ContractController extends Controller
         $sectors = CallSector::all();
         $system = System::where('id', 1)->first();
 
-        if (!empty($request->user)) {
-            $user = User::where('id', $request->user)->first();
-        }
 
         return view('admin.contracts.edit', [
             'contract' => $contract,

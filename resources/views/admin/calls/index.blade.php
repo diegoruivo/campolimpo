@@ -41,7 +41,6 @@
                         <tr>
                             <th width="10">ID</th>
                             <th>Cliente</th>
-                            <th>Serviço</th>
                             <th>Senha</th>
                             <th>Status</th>
                             <th>Data</th>
@@ -55,11 +54,6 @@
                                     <td>{{ $call->id }}</td>
                                     <td>{{ $call->user()->first()->name }}</td>
                                     <td>
-                                        @foreach($call_services as  $call_service)
-                                            {{ $call_service->service  }}
-                                        @endforeach
-                                    </td>
-                                    <td>
                                         <span class="badge badge-secondary" style="zoom:150%;">{{ $call->password }}</span>
                                     </td>
                                     <td>
@@ -72,7 +66,7 @@
                                         @endif
 
                                         @if($call->status == 2)
-                                            <span class="badge badge-success">Finalizado</span>
+                                            <span class="badge badge-success">Contratado</span>
                                         @endif
 
                                         @if($call->status == 3)

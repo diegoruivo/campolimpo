@@ -22,7 +22,7 @@ class Call extends Model
     {
         return $this->belongsToMany(Service::class, 'call_services', 'call', 'service');
     }
-
+    
 
     public function getCreatedAtAttribute($value)
     {

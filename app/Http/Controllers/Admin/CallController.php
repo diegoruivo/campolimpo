@@ -5,6 +5,7 @@ namespace CampoLimpo\Http\Controllers\Admin;
 use CampoLimpo\Call;
 use CampoLimpo\CallSector;
 use CampoLimpo\CallService;
+use CampoLimpo\Contract;
 use CampoLimpo\Service;
 use CampoLimpo\System;
 use CampoLimpo\User;
@@ -122,15 +123,20 @@ class CallController extends Controller
         $call = Call::where('id', $request->call)->first();
         $user = User::where('id', $call->user)->first();
         $system = System::where('id', 1)->first();
+        $services = Service::orderBy('title')->get();
         $call_services = CallService::where('call', $call->id)->get();
-        $services = Service::where('id', $call_services->service)->orderBy('title')->get();
+//        $services = Service::where('id', $call_services->service)->orderBy('title')->get();
+        $ncalls = Call::all()->count();
+        $ncontracts = Contract::all()->count();
 
         return view('admin.calls.edit', [
             'call' => $call,
             'system' => $system,
             'user' => $user,
             'services' => $services,
-            'call_services' => $call_services
+            'call_services' => $call_services,
+            'ncalls' => $ncalls,
+            'ncontracts' => $ncontracts
         ]);
     }
 

@@ -17,6 +17,8 @@ class Service extends Model
         'cover'
     ];
 
+    public const RALATIONSHIP_SERVICE_CALL = 'call_services';
+
     public function service_category()
     {
         return $this->belongsTo(ServiceCategory::class, 'service', 'id');
@@ -27,10 +29,22 @@ class Service extends Model
         return $this->belongsTo(CallService::class, 'service', 'id');
     }
 
+    public function services()
+    {
+        return $this->belongsToMany(Service::class, self::RALATIONSHIP_SERVICE_CALL, 'calls', 'service');
+    }
+
     public function sectors()
     {
         return $this->belongsToMany(CallSector::class, 'services_call_sectors', 'service', 'sector');
     }
+
+    public function contracts()
+    {
+        return $this->hasMany(Contract::class, 'service', 'id');
+    }
+
+
 
     public function setTitleAttribute($value)
     {
