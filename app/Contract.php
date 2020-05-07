@@ -13,7 +13,10 @@ class Contract extends Model
         'deadline',
         'start_date',
         'service',
-        'user'
+        'user',
+        'provider',
+        'term',
+        'status'
     ];
 
 
@@ -25,6 +28,21 @@ class Contract extends Model
     public function service()
     {
         return $this->belongsTo(Service::class, 'service', 'id');
+    }
+
+    public function provider()
+    {
+        return $this->belongsTo(User::class, 'provider', 'id');
+    }
+
+    public function order()
+    {
+        return $this->belongsTo(Order::class, 'order', 'id');
+    }
+
+    public function term()
+    {
+        return $this->belongsTo(Term::class, 'term', 'id');
     }
 
 

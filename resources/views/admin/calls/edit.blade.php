@@ -64,9 +64,9 @@
                                 <div class="card card-primary card-outline">
                                     <div class="card-body box-profile">
                                         <div class="text-center">
-                                            @if(!empty($user->cover))
+                                            @if(!empty($user->url_cover))
                                                 <img class="profile-user-img img-fluid img-circle"
-                                                     src="{{ $user->cover }}">
+                                                     src="{{ $user->url_cover }} ">
                                             @endif
                                         </div>
 
@@ -150,14 +150,12 @@
                                                 </label>
                                             </div>
 
-
                                             <div class="icheck-primary">
                                                 <input type="radio" name="status" @if($call->status == 1) checked
                                                        @endif id="1" value="1">
                                                 <label for="1">Processando
                                                 </label>
                                             </div>
-
 
                                         </div>
                                     </div>

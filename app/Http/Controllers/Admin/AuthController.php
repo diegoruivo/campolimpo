@@ -35,8 +35,9 @@ class AuthController extends Controller
     {
         $system = System::where('id', 1)->first();
         $buttons = Buttons::orderBy('position', 'ASC')->get();
-        $clients = User::where('client', 1)->count();
-        $calls = Call::all()->count();
+        $nclients = User::where('client', 1)->count();
+        $ncalls = Call::all()->count();
+        $calls = Call::all();
 
         $posts = Post::orderBy('id', 'DESC')->get();
 
@@ -44,7 +45,8 @@ class AuthController extends Controller
             'system' => $system,
             'buttons' => $buttons,
             'calls' => $calls,
-            'clients' => $clients,
+            'ncalls' => $ncalls,
+            'nclients' => $nclients,
             'posts' => $posts
         ]);
 

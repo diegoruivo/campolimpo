@@ -11,6 +11,7 @@ use CampoLimpo\System;
 use CampoLimpo\User;
 use Illuminate\Http\Request;
 use CampoLimpo\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Auth;
 
 class CallController extends Controller
 {
@@ -90,6 +91,7 @@ class CallController extends Controller
         $call->user = $user;
         $call->password = $request->password;
         $call->status = 0;
+        $call->provider = Auth::user()->id;
 
         $call->save();
 
@@ -125,9 +127,8 @@ class CallController extends Controller
         $system = System::where('id', 1)->first();
         $services = Service::orderBy('title')->get();
         $call_services = CallService::where('call', $call->id)->get();
-//        $services = Service::where('id', $call_services->service)->orderBy('title')->get();
-        $ncalls = Call::all()->count();
-        $ncontracts = Contract::all()->count();
+        $ncalls = Call::where('user', $user->id)->count();
+        $ncontracts = Contract::where('user', $user->id)->count();
 
         return view('admin.calls.edit', [
             'call' => $call,
@@ -151,6 +152,7 @@ class CallController extends Controller
     {
         $updateCall = Call::where('id', $id)->first();
         $updateCall->fill($request->all());
+        $updateCall->provider = Auth::user()->id;
         $updateCall->save();
 
         // Relacionamento Serviços com Atendimento

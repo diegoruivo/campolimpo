@@ -9,6 +9,7 @@ use CampoLimpo\ServiceCategory;
 use CampoLimpo\Http\Requests\Admin\Service as ServiceRequest;
 use CampoLimpo\ServiceSector;
 use CampoLimpo\System;
+use CampoLimpo\Term;
 use Illuminate\Http\Request;
 use CampoLimpo\Http\Controllers\Controller;
 
@@ -41,16 +42,23 @@ class ServiceController extends Controller
         $services_categories = ServiceCategory::orderBy('title')->get();
         $system = System::where('id', 1)->first();
         $sectors = CallSector::all();
+        $terms = Term::all();
 
         if (!empty($request->service_category)) {
             $service_category = ServiceCategory::where('id', $request->service_category)->first();
         }
 
+        if (!empty($request->term)) {
+            $term = Term::where('id', $request->term)->first();
+        }
+
         return view('admin.services.create', [
             'services_categories' => $services_categories,
             'sectors' => $sectors,
+            'terms' => $terms,
             'system' => $system,
-            'selected' => (!empty($service_category) ? $service_category : null)
+            'selected' => (!empty($service_category) ? $service_category : null),
+            'selected_term' => (!empty($term) ? $term: null)
 
         ]);
     }
@@ -105,14 +113,17 @@ class ServiceController extends Controller
         $sectors = CallSector::all();
         $sector_services = ServicesCallSector::where('service', $service->id)->get();
         $system = System::where('id', 1)->first();
+        $terms = Term::all();
 
         return view('admin.services.edit', [
             'service' => $service,
             'services_categories' => $services_categories,
             'sectors' => $sectors,
+            'terms' => $terms,
             'sector_services' => $sector_services,
             'system' => $system,
-            'selected' => (!empty($service) ? $service : null)
+            'selected' => (!empty($service) ? $service : null),
+            'selected_term' => (!empty($term) ? $term : null)
         ]);
     }
 

@@ -14,6 +14,7 @@ class Service extends Model
         'service',
         'sector',
         'icon',
+        'term',
         'cover'
     ];
 
@@ -42,6 +43,11 @@ class Service extends Model
     public function contracts()
     {
         return $this->hasMany(Contract::class, 'service', 'id');
+    }
+
+    public function terms()
+    {
+        return $this->belongsTo(Term::class, 'term', 'id');
     }
 
 

@@ -11,6 +11,7 @@ use CampoLimpo\System;
 use CampoLimpo\User;
 use Illuminate\Http\Request;
 use CampoLimpo\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Auth;
 
 class AttendanceController extends Controller
 {
@@ -69,8 +70,8 @@ class AttendanceController extends Controller
         $system = System::where('id', 1)->first();
         $services = Service::orderBy('title')->get();
         $call_services = CallService::where('call', $call->id)->get();
-        $ncalls = Call::all()->count();
-        $ncontracts = Contract::all()->count();
+        $ncalls = Call::where('user', $user->id)->count();
+        $ncontracts = Contract::where('user', $user->id)->count();
 
         return view('admin.attendances.edit', [
             'call' => $call,
@@ -95,6 +96,7 @@ class AttendanceController extends Controller
 
         $updateCall = Call::where('id', $request->attendance)->first();
         $updateCall->fill($request->all());
+        $updateCall->provider = Auth::user()->id;
         $updateCall->save();
 
         // Relacionamento Serviços com Atendimento
@@ -110,7 +112,7 @@ class AttendanceController extends Controller
 
             return redirect()->route('admin.contracts.create', [
                 'call' => $updateCall->id
-            ])->with(['color' => 'green', 'message' => 'Atendimento do Setor atualizado com sucesso! Agora é especificar o contrato.']);
+            ])->with(['color' => 'green', 'message' => 'Atendimento do Setor atualizado com sucesso! Agora especifique o contrato.']);
 
 
     }

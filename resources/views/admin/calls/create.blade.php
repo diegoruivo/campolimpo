@@ -111,6 +111,7 @@
                                 <div class="form-group">
                                     <label>Telefone Fixo</label>
                                     <input type="tel" name="telephone" class="form-control" class="telephone"
+                                           data-inputmask="'mask': ['(99) 9999-9999']" data-mask
                                            placeholder="Telefone Fixo"
                                            value="{{ old('telephone') }}"/>
                                 </div>
@@ -120,6 +121,7 @@
                                 <div class="form-group">
                                     <label>Telefone Móvel</label>
                                     <input type="tel" name="cell" class="form-control" class="cell"
+                                           data-inputmask="'mask': ['(99) 99999-9999']" data-mask
                                            placeholder="Telefone Móvel"
                                            value="{{ old('cell') }}"/>
                                 </div>
@@ -149,4 +151,28 @@
     </div>
     <!-- /.content-wrapper -->
 
+@endsection
+
+
+@section('js')
+    <!-- Page script -->
+    <script>
+        $(function () {
+            //Initialize Select2 Elements
+            $('.select2').select2()
+
+            //Initialize Select2 Elements
+            $('.select2bs4').select2({
+                theme: 'bootstrap4'
+            })
+
+            //Datemask dd/mm/yyyy
+            $('#datemask').inputmask('dd/mm/yyyy', {'placeholder': 'dd/mm/yyyy'})
+            //Datemask2 mm/dd/yyyy
+            $('#cpf').inputmask('999.999.999-99', {'placeholder': '999.999.999-99'})
+            //Money Euro
+            $('[data-mask]').inputmask()
+
+        })
+    </script>
 @endsection

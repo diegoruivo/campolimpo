@@ -10,7 +10,7 @@
                 <div class="row mb-2">
                     <div class="col-sm-6">
                         <h1>
-                            <small><i class="fa fa-home"></i></small>
+                            <small><i class="fa fa-warehouse"></i></small>
                             Cadastrar Imóvel Rural
                         </h1>
                     </div>

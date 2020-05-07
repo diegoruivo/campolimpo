@@ -10,16 +10,16 @@
                 <div class="row mb-2">
                     <div class="col-sm-6">
                         <h1>
-                            <small><i class="fa fa-file-signature"></i></small>
-                            Contratos
+                            <small><i class="fa fa-file-contract"></i></small>
+                            Termos Contratuais
                         </h1>
                     </div>
                     <div class="col-sm-6">
                         <ol class="breadcrumb float-sm-right">
                             <li class="breadcrumb-item"><a href="{{ route('admin.home') }}">Home</a></li>
-                            <li class="breadcrumb-item"><a href="{{ route('admin.contracts.index') }}">Contratos</a></li>
-                            <a href="{{ route('admin.contracts.create') }}">
-                                <button type="button" class="btn bg-gradient-primary ml-3"><i class="fa fa-plus"></i> Cadastrar Contrato</button>
+                            <li class="breadcrumb-item"><a href="{{ route('admin.terms.index') }}">Termos Contratuais</a></li>
+                            <a href="{{ route('admin.terms.create') }}">
+                                <button type="button" class="btn bg-gradient-primary ml-3"><i class="fa fa-plus"></i> Cadastrar Termo Contratual</button>
                             </a>
                         </ol>
                     </div>
@@ -32,48 +32,24 @@
 
             <div class="card">
                 <div class="card-header">
-                    <h3 class="card-title">Lista de Contratos</h3>
+                    <h3 class="card-title">Lista de Posts</h3>
                 </div>
                 <!-- /.card-header -->
                 <div class="card-body">
                     <table id="example1" class="table table-bordered table-striped">
                         <thead>
                         <tr>
-                            <th>ID</th>
-                            <th>Cliente</th>
-                            <th>Serviço</th>
-                            <th>Valor</th>
-                            <th>Status</th>
+                            <th>Título</th>
                             <th width="100">Ação</th>
                         </tr>
                         </thead>
                         <tbody>
-                        @if(!empty($contracts))
-                            @foreach($contracts as $contract)
+                        @if(!empty($terms))
+                            @foreach($terms as $term)
                                 <tr>
-                                    <td>{{ $contract->id }}</td>
-                                    <td>{{ $contract->user()->first()->name }}</td>
-                                    <td>{{ $contract->service()->first()->title }}</td>
-                                    <td>R$ {{ $contract->contract_price }}</td>
+                                    <td>{{ $term->title}}</td>
                                     <td>
-                                        @if($contract->status == 0)
-                                            <span class="badge badge-warning">Inicial</span>
-                                        @endif
-
-                                        @if($contract->status == 1)
-                                            <span class="badge badge-info">Em Andamento</span>
-                                        @endif
-
-                                        @if($contract->status == 2)
-                                            <span class="badge badge-success">Concluído</span>
-                                        @endif
-
-                                        @if($contract->status == 3)
-                                            <span class="badge badge-danger">Cancelado</span>
-                                        @endif
-                                    </td>
-                                    <td>
-                                        <a href="{{ route('admin.contracts.edit', ['contract' => $contract->id]) }}">
+                                        <a href="{{ route('admin.terms.edit', ['term' => $term->id]) }}">
                                             <button type="button" class="btn btn-block bg-gradient-primary btn-xs"><i class="fa fa-edit"></i> Editar</button>
                                         </a>
                                     </td>

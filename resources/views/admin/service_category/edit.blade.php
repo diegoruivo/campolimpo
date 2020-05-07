@@ -79,8 +79,9 @@
                             <div class="col-sm-4">
                                 <div class="form-group">
                                     <label>Descrição</label>
-                                    <textarea class="form-control" name="description" cols="30"
-                                              rows="4">{{ old('description') ?? $services_categories->description }}</textarea>
+                                    <input type="text" name="description" class="form-control"
+                                           placeholder="Descrição"
+                                           value="{{ old('description') ?? $services_categories->description }}"/>
                                 </div>
                             </div>
 

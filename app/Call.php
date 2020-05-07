@@ -10,12 +10,18 @@ class Call extends Model
         'password',
         'description',
         'status',
-        'user'
+        'user',
+        'provider'
     ];
 
     public function user()
     {
         return $this->belongsTo(User::class, 'user', 'id');
+    }
+
+    public function provider()
+    {
+        return $this->belongsTo(User::class, 'provider', 'id');
     }
 
     public function services()

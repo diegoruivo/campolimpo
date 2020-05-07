@@ -10,15 +10,15 @@
                 <div class="row mb-2">
                     <div class="col-sm-6">
                         <h1>
-                            <small><i class="fa fa-file-signature"></i></small>
-                            Cadastrar Contrato
+                            <small><i class="fa fa-business-time"></i></small>
+                            Cadastrar Ordem
                         </h1>
                     </div>
                     <div class="col-sm-6">
                         <ol class="breadcrumb float-sm-right">
                             <li class="breadcrumb-item"><a href="{{ route('admin.home') }}">Home</a></li>
-                            <li class="breadcrumb-item"><a href="{{ route('admin.contracts.index') }}">Contratos</a></li>
-                            <li class="breadcrumb-item active">Cadastrar Contrato</li>
+                            <li class="breadcrumb-item"><a href="{{ route('admin.orders.index') }}">Ordens</a></li>
+                            <li class="breadcrumb-item active">Cadastrar Ordem</li>
                         </ol>
                     </div>
                 </div>
@@ -42,14 +42,14 @@
                 @endmessage
             @endif
 
-            <form role="form" action="{{ route('admin.contracts.store', ['call' => $call->id]) }}" method="post" enctype="multipart/form-data">
+            <form role="form" action="{{ route('admin.orders.store') }}" method="post" enctype="multipart/form-data">
 
             @csrf
 
             <!-- Default box -->
                 <div class="card">
                     <div class="card-header">
-                        <h3 class="card-title">Cadastro de Contrato</h3>
+                        <h3 class="card-title">Cadastro de Ordem</h3>
 
                         <div class="card-tools">
                             <button type="button" class="btn btn-tool" data-card-widget="collapse" data-toggle="tooltip"
@@ -113,8 +113,8 @@
                                                                 class="fa fa-headset"></i></big></h1></span>
 
                                         <div class="info-box-content">
-                                            <span class="info-box-text">Cadastro de Contrato referente ao Atendimento n° <b>{{ $call->id }}</b></span>
-                                            <span  class="progress-description" style="float:right">{{ $call->created_at }}
+                                            <span class="info-box-text">Ordem referente ao Contrato n° <b>{{ $order->contract }}</b></span>
+                                            <span  class="progress-description" style="float:right">{{ $order->created_at }}
                                                     <br> Status:
                                                     @if($call->status == 0)
                                                     <span class="badge badge-warning">Inicial</span>
@@ -125,15 +125,13 @@
                                                 @endif
 
                                                 @if($call->status == 2)
-                                                    <span class="badge badge-success">Contratado</span>
+                                                    <span class="badge badge-success">Concluído</span>
                                                 @endif
 
                                                 @if($call->status == 3)
                                                     <span class="badge badge-danger">Cancelado</span>
                                                 @endif
                                                 </span>
-
-                                            <span class="info-box-number"><small>Senha:</small> <h3>{{ $call->password }}</h3></span>
                                             <div class="progress">
                                                 <div class="progress-bar" style="width: 10%"></div>
                                             </div>
@@ -154,75 +152,6 @@
 
 
 
-
-
-
-                                    <div class="col-sm-4">
-                                        <div class="form-group">
-                                            <label>*Dia do Vencimento</label>
-                                            <select name="pay_day" class="custom-select" required>
-                                                <option value="">Selecione a opção</option>
-                                                <option value="1">1º</option>
-                                                <option value="2">2/mês</option>
-                                                <option value="3">3/mês</option>
-                                                <option value="4">4/mês</option>
-                                                <option value="5">5/mês</option>
-                                                <option value="6">6/mês</option>
-                                                <option value="7">7/mês</option>
-                                                <option value="8">8/mês</option>
-                                                <option value="9">9/mês</option>
-                                                <option value="10">10/mês</option>
-                                                <option value="11">11/mês</option>
-                                                <option value="12">12/mês</option>
-                                                <option value="13">13/mês</option>
-                                                <option value="14">14/mês</option>
-                                                <option value="15">15/mês</option>
-                                                <option value="16">16/mês</option>
-                                                <option value="17">17/mês</option>
-                                                <option value="18">18/mês</option>
-                                                <option value="19">19/mês</option>
-                                                <option value="20">20/mês</option>
-                                                <option value="21">21/mês</option>
-                                                <option value="22">22/mês</option>
-                                                <option value="23">23/mês</option>
-                                                <option value="24">24/mês</option>
-                                                <option value="25">25/mês</option>
-                                                <option value="26">26/mês</option>
-                                                <option value="27">27/mês</option>
-                                                <option value="28">28/mês</option>
-                                                <option value="29">29/mês</option>
-                                                <option value="30">30/mês</option>
-                                                <option value="31">31/mês</option>
-                                            </select>
-                                        </div>
-                                    </div>
-
-
-                                    <div class="col-sm-4">
-                                        <div class="form-group">
-                                            <label>*Prazo do Contrato</label>
-                                            <select name="deadline" class="custom-select" required>
-                                                <option value="">Selecione a opção</option>
-                                                <option value="1">1 mês</option>
-                                                <option value="2">2 meses</option>
-                                                <option value="3">3 meses</option>
-                                                <option value="4">4 meses</option>
-                                                <option value="5">5 meses</option>
-                                                <option value="6">6 meses</option>
-                                                <option value="7">7 meses</option>
-                                                <option value="8">8 meses</option>
-                                                <option value="9">9 meses</option>
-                                                <option value="10">10 meses</option>
-                                                <option value="11">11 meses</option>
-                                                <option value="12">12 meses</option>
-                                                <option value="24">24 meses</option>
-                                                <option value="36">36 meses</option>
-                                                <option value="48">48 meses</option>
-                                            </select>
-                                        </div>
-                                    </div>
-
-
                                     <div class="col-sm-4">
                                         <div class="form-group">
                                             <label>*Data de Início</label>
@@ -233,6 +162,16 @@
                                         </div>
                                     </div>
 
+                                    <div class="col-sm-4">
+                                        <div class="form-group">
+                                            <label>*Data de Término</label>
+                                            <input type="text" name="end_date" class="form-control"
+                                                   data-inputmask-alias="datetime" data-inputmask-inputformat="dd/mm/yyyy" data-mask
+                                                   placeholder="Data de Término"
+                                                   value="{{ old('end_date') }}" required/>
+                                        </div>
+                                    </div>
+
 
 
 
@@ -240,27 +179,11 @@
                                     <div class="col-12">
                                         <div class="card">
                                             <div class="card-header">
-                                                <h3 class="card-title">Serviço(s) Contratado(s)</h3>
+                                                <h3 class="card-title">Serviço Contratado</h3>
                                             </div>
                                             <!-- /.card-header -->
                                             <div class="card-body table-responsive p-0" style="height: 200px;">
-                                                <table class="table table-head-fixed text-nowrap">
-                                                    <thead>
-                                                    <tr>
-                                                        <th>Serviço</th>
-                                                        <th>Preço</th>
-                                                    </tr>
-                                                    </thead>
-                                                    <tbody>
-                                                    @foreach($call_services as $service)
-                                                        <tr>
-                                                        <td>{{ $service->title }}</td>
-                                                        <td>R$ {{ $service->price }}</td>
-                                                    </tr>
-                                                    @endforeach
-
-                                                    </tbody>
-                                                </table>
+                                                <td>{{ $service->title }}</td>
                                             </div>
                                             <!-- /.card-body -->
                                         </div>

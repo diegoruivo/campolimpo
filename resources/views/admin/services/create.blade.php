@@ -60,7 +60,7 @@
 
 
 
-                            <div class="col-sm-5">
+                            <div class="col-sm-4">
                                 <div class="form-group">
                                     <label>*Categoria de Portfólio</label>
                                     <select name="service" class="custom-select" required>
@@ -76,10 +76,10 @@
                                     <p style="margin-top: 4px;">
                                         <a href="{{ route('admin.service_category.index') }}"
                                            class="text-orange icon-link" style="font-size: .8em;" target="_blank">Editar
-                                            Categorias de Serviços</a> |
+                                            Categorias</a> |
                                         <a href="{{ route('admin.service_category.create') }}"
                                            class="text-orange icon-link" style="font-size: .8em;" target="_blank">Cadastrar
-                                            Nova Categoria de Serviços</a>
+                                            Nova Categoria</a>
                                     </p>
                                 </div>
                             </div>
@@ -87,7 +87,61 @@
 
 
 
-                            <div class="col-sm-3">
+
+                            <div class="col-sm-4">
+                                <div class="form-group">
+                                    <label>Escolha o(s) Setor(res)</label>
+                                    <select class="select2" multiple="multiple" name="sectors[]"
+                                            data-placeholder="Escolha o(s) Serviço(s)"
+                                            style="width: 100%;">
+                                        @foreach($sectors as $sector)
+                                            <option value="{{$sector->id}}">{{ $sector->title }}</option>
+                                        @endforeach
+                                    </select>
+                                    <p style="margin-top: 4px; margin-bottom:40px;">
+                                        <a href="{{ route('admin.call_sectors.index') }}"
+                                           class="text-orange icon-link" style="font-size: .8em;"
+                                           target="_blank">Editar
+                                            Setores</a> |
+                                        <a href="{{ route('admin.call_sectors.create') }}"
+                                           class="text-orange icon-link" style="font-size: .8em;"
+                                           target="_blank">Cadastrar
+                                            Novo Setor</a>
+                                    </p>
+                                </div>
+                            </div>
+
+
+
+                            <div class="col-sm-4">
+                                <div class="form-group">
+                                    <label>*Termo Contratual</label>
+                                    <select name="term" class="custom-select" required>
+                                        <option value=""  {{ (old('term') == '' ? 'selected' : '') }}>Selecione a Termo Contratual</option>
+                                        @foreach($terms as $term)
+                                            @if (!empty($selected))
+                                                <option value="{{ $term->id }}" {{ ($term->id === $selected->id ? 'selected' : '') }}>{{ $term->title }}</option>
+                                            @else
+                                                <option value="{{ $term->id }}">{{ $term->title }}</option>
+                                            @endif
+                                        @endforeach
+                                    </select>
+                                    <p style="margin-top: 4px;">
+                                        <a href="{{ route('admin.terms.index') }}"
+                                           class="text-orange icon-link" style="font-size: .8em;" target="_blank">Editar
+                                            Termos</a> |
+                                        <a href="{{ route('admin.terms.create') }}"
+                                           class="text-orange icon-link" style="font-size: .8em;" target="_blank">Cadastrar
+                                            Novo Termo</a>
+                                    </p>
+                                </div>
+                            </div>
+
+
+
+
+
+                            <div class="col-sm-4">
                                 <div class="form-group">
                                     <label>Título</label>
                                     <input type="text" name="title" class="form-control"
@@ -95,6 +149,15 @@
                                            value="{{ old('title') }}"/>
                                 </div>
                             </div>
+
+
+                            <div class="col-sm-3">
+                                <div class="form-group">
+                                    <label>Preço</label>
+                                    <input type="text" class="form-control" name="price" id="price" value="{{ old('price') }}"/>
+                                </div>
+                            </div>
+
 
                             <div class="col-sm-2">
                                 <div class="form-group">
@@ -112,28 +175,9 @@
                                 </div>
                             </div>
 
-                            <div class="col-sm-2">
-                                <div class="form-group">
-                                    <label>Preço</label>
-                                    <input type="text" class="form-control" name="price" id="price" value="{{ old('price') }}"/>
-                                </div>
-                            </div>
-
-                            <div class="col-sm-9">
-                                <div class="form-group">
-                                    <label>Descrição</label>
-                                    <textarea class="textarea" name="description"
-                                              style="width: 100%; height: 600px; font-size: 14px; line-height: 18px; border: 1px solid #dddddd; padding: 10px;">
-                                        {{ old('description') }}
-                                    </textarea>
-                                </div>
-                            </div>
-
-
                             <div class="col-sm-3">
                                 <div class="form-group">
                                     <label>Habilitar no Site</label>
-
                                     <div class="icheck-primary">
                                         <input type="radio" name="cover"
                                                id="0" value="0">
@@ -147,35 +191,18 @@
                                         <label for="1">Ativo
                                         </label>
                                     </div>
-
-
-
                                 </div>
                             </div>
 
 
-
                             <div class="col-sm-12">
                                 <div class="form-group">
-                                    <label>Escolha o(s) Setor(res)</label>
-                                    <select class="select2" multiple="multiple" name="sectors[]"
-                                            data-placeholder="Escolha o(s) Serviço(s)"
-                                            style="width: 100%;">
-                                        @foreach($sectors as $sector)
-                                            <option value="{{$sector->id}}">{{ $sector->title }}</option>
-                                        @endforeach
-                                    </select>
+                                    <label>Descrição</label>
+                                    <textarea class="textarea" name="description"
+                                              style="width: 100%; height: 600px; font-size: 14px; line-height: 18px; border: 1px solid #dddddd; padding: 10px;">
+                                        {{ old('description') }}
+                                    </textarea>
                                 </div>
-                                <p style="margin-top: 4px; margin-bottom:40px;">
-                                    <a href="{{ route('admin.call_sectors.index') }}"
-                                       class="text-orange icon-link" style="font-size: .8em;"
-                                       target="_blank">Editar
-                                        Setores de Atendimento</a> |
-                                    <a href="{{ route('admin.call_sectors.create') }}"
-                                       class="text-orange icon-link" style="font-size: .8em;"
-                                       target="_blank">Cadastrar
-                                        Novo Setor de Atendimento</a>
-                                </p>
                             </div>
 
 

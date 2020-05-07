@@ -9,11 +9,14 @@ use CampoLimpo\Contract;
 use CampoLimpo\Document;
 use CampoLimpo\DocumentCategory;
 use CampoLimpo\Http\Requests\Admin\Contract as ContractRequest;
+use CampoLimpo\Order;
 use CampoLimpo\Service;
 use CampoLimpo\System;
+use CampoLimpo\Term;
 use CampoLimpo\User;
 use Illuminate\Http\Request;
 use CampoLimpo\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Auth;
 
 class ContractController extends Controller
 {
@@ -44,8 +47,8 @@ class ContractController extends Controller
         $user = User::where('id', $call->user)->first();
         $system = System::where('id', 1)->first();
         $services = Service::orderBy('title')->get();
-        $ncalls = Call::all()->count();
-        $ncontracts = Contract::all()->count();
+        $ncalls = Call::where('user', $user->id)->count();
+        $ncontracts = Contract::where('user', $user->id)->count();
 
         $call_services = $call->services()->get();
 
@@ -76,15 +79,31 @@ class ContractController extends Controller
 
         if (!empty($call->services()->get())) {
             foreach ($call->services()->get() as $service) {
+
                 $createContract = new Contract();
                 $createContract->service = $service->id;
                 $createContract->user = $user->id;
                 $createContract->call = $call->id;
+                $createContract->provider = Auth::user()->id;
                 $createContract->contract_price = $service->price;
                 $createContract->pay_day = $request->pay_day;
                 $createContract->deadline = $request->deadline;
                 $createContract->start_date = $request->start_date;
+                $createContract->status = 0;
+                $createContract->term = $service->term;
                 $createContract->save();
+
+                    $updateCall = Call::where('id', $call->id)->first();
+                    $updateCall->fill($request->all());
+                    $updateCall->status = 2;
+                    $updateCall->save();
+
+                    $createOrder = new Order();
+                    $createOrder->contract = $createContract->id;
+                    $createOrder->status = 0;
+                    $createOrder->save();
+
+                unset($createOrder);
                 unset($createContract);
             }
         }
@@ -109,22 +128,27 @@ class ContractController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Request $request, $id)
     {
         $contract = Contract::where('id', $id)->first();
-        $users = User::orderBy('name')->get();
-        $services = Service::orderBy('id')->get();
-        $sectors = CallSector::all();
+        $call = Call::where('id', $contract->call)->first();
+        $user = User::where('id', $call->user)->first();
         $system = System::where('id', 1)->first();
+        $service = Service::where('id', $contract->service)->first();
+        $ncalls = Call::where('user', $user->id)->count();
+        $ncontracts = Contract::where('user', $user->id)->count();
 
+        $call_services = $call->services()->get();
 
         return view('admin.contracts.edit', [
             'contract' => $contract,
-            'users' => $users,
-            'services' => $services,
-            'sectors' => $sectors,
-            'system' => $system,
-            'selected' => (!empty($user) ? $user : null)
+            'call' => $call,
+            'user' => $user,
+            'service' => $service,
+            'call_services' => $call_services,
+            'ncalls' => $ncalls,
+            'ncontracts' => $ncontracts,
+            'system' => $system
         ]);
     }
 

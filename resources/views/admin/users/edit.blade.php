@@ -53,12 +53,13 @@
 
                 @csrf
                 @method('PUT')
+                <input type="hidden" name="id" value="{{ $user->id }}">
 
                 <div class="card card-primary card-outline">
                     <div class="card-header">
                         <h3 class="card-title">
-                            <i class="fas fa-user"></i>
-                            {{ $user->name }}
+                            <img src="{{ $user->url_cover }}" class="img-size-50 img-circle mr-3">
+                            <b>{{ $user->name }}</b>
                         </h3>
                     </div>
                     <div class="card-body">
@@ -131,7 +132,7 @@
 
                                             <div class="col-sm-8">
                                                 <div class="form-group">
-                                                    <label>Nome</label>
+                                                    <label>*Nome</label>
                                                     <input type="text" name="name" class="form-control"
                                                            placeholder="Nome completo"
                                                            value="{{ old('name') ?? $user->name }}"/>
@@ -160,7 +161,7 @@
 
                                             <div class="col-sm-4">
                                                 <div class="form-group">
-                                                    <label>CPF</label>
+                                                    <label>*CPF</label>
                                                     <input type="text" class="form-control"
                                                            data-inputmask-alias="999.999.999-99" data-inputmask-inputformat="999.999.999-99" data-mask
                                                            name="document" placeholder="CPF do Cliente"
@@ -1361,12 +1362,8 @@
                                             </div>
 
                                             <div class="col-sm-6">
-                                                <section class="app_users_home">
-                                                    <article class="user radius">
-                                                        <div class="cover"
-                                                             style="background-size: cover; background-image: url({{ $user->cover }});"></div>
-                                                    </article>
-                                                </section>
+                                                <img src="{{ $user->url_cover }}" class="profile-user-img img-fluid img-circle">
+
                                             </div>
 
 

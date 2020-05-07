@@ -2,12 +2,12 @@
 
 namespace CampoLimpo\Http\Controllers\Admin;
 
-use CampoLimpo\CategoryPost;
 use CampoLimpo\System;
+use CampoLimpo\Term;
 use Illuminate\Http\Request;
 use CampoLimpo\Http\Controllers\Controller;
 
-class CategoryPostController extends Controller
+class TermController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -16,12 +16,11 @@ class CategoryPostController extends Controller
      */
     public function index()
     {
-
-        $category_post = CategoryPost::all();
+        $terms = Term::all();
         $system = System::where('id', 1)->first();
 
-        return view('admin.category_post.index', [
-            'categories_post' => $category_post,
+        return view('admin.terms.index', [
+            'terms' => $terms,
             'system' => $system
         ]);
     }
@@ -35,7 +34,7 @@ class CategoryPostController extends Controller
     {
         $system = System::where('id', 1)->first();
 
-        return view('admin.category_post.create', [
+        return view('admin.terms.create', [
             'system' => $system
         ]);
     }
@@ -48,11 +47,11 @@ class CategoryPostController extends Controller
      */
     public function store(Request $request)
     {
-        $categoryCreate = CategoryPost::create($request->all());
+        $termCreate = Term::create($request->all());
 
-        return redirect()->route('admin.categories_post.edit', [
-            'category_post' => $categoryCreate->id
-        ])->with(['color' => 'green', 'message' => 'Categoria do Blog cadastrada com sucesso!']);
+        return redirect()->route('admin.terms.edit', [
+            'term' => $termCreate->id
+        ])->with(['color' => 'green', 'message' => 'Termo Contratual cadastrado com sucesso!']);
     }
 
     /**
@@ -74,11 +73,11 @@ class CategoryPostController extends Controller
      */
     public function edit($id)
     {
-        $category_post = CategoryPost::where('id', $id)->first();
+        $term = Term::where('id', $id)->first();
         $system = System::where('id', 1)->first();
 
-        return view('admin.category_post.edit',[
-            'category_post' => $category_post,
+        return view('admin.terms.edit', [
+            'term' => $term,
             'system' => $system
         ]);
     }
@@ -92,13 +91,13 @@ class CategoryPostController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $updateCategoryPost= CategoryPost::where('id', $id)->first();
-        $updateCategoryPost->fill($request->all());
-        $updateCategoryPost->save();
+        $updateTerm = Term::where('id', $id)->first();
+        $updateTerm->fill($request->all());
+        $updateTerm->save();
 
-        return redirect()->route('admin.categories_post.edit', [
-            'category_post' => $updateCategoryPost->id
-        ])->with(['color' => 'green', 'message' => 'Categoria do Blog atualizada com sucesso!']);
+        return redirect()->route('admin.terms.edit', [
+            'term' => $updateTerm->id
+        ])->with(['color' => 'green', 'message' => 'Termo Contratual atualizado com sucesso!']);
     }
 
     /**
@@ -109,10 +108,10 @@ class CategoryPostController extends Controller
      */
     public function destroy($id)
     {
-        $destroyCategoryPost = CategoryPost::destroy($id);
+        $termDestroy = Term::destroy($id);
 
-        return redirect()->route('admin.categories_post.index', [
-            'category_post' => $id
-        ])->with(['color' => 'green', 'message' => 'Categoria do Blog excluída com sucesso!']);
+        return redirect()->route('admin.terms.index', [
+            'term' => $id
+        ])->with(['color' => 'green', 'message' => 'Termo Contratual excluído com sucesso!']);
     }
 }

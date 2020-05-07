@@ -183,6 +183,8 @@ mix
     .copyDirectory('resources/views/admin/assets/plugins/datatables-responsive/js', 'public/backend/assets/plugins/datatables-responsive/js')
     .copyDirectory('resources/views/admin/assets/plugins/datatables-bs4/css', 'public/backend/assets/plugins/datatables-bs4/css')
     .copyDirectory('resources/views/admin/assets/plugins/datatables-responsive/css', 'public/backend/assets/plugins/datatables-responsive/css')
+    
+    .copyDirectory('resources/views/admin/assets/images', 'public/backend/assets/images')
 
     .options({
         processCssUrls: false

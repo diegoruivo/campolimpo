@@ -84,6 +84,9 @@ Route::group(['prefix' => 'admin', 'namespace' => 'Admin', 'as' => 'admin.'], fu
         /** Contracts */
         Route::resource('contracts', 'ContractController');
 
+        /** Orders */
+        Route::resource('orders', 'OrderController');
+
         /** Pages */
         Route::resource('pages', 'PageController');
         Route::resource('page_contents', 'PageContentController');
@@ -99,6 +102,7 @@ Route::group(['prefix' => 'admin', 'namespace' => 'Admin', 'as' => 'admin.'], fu
         Route::resource('system', 'SystemController');
         Route::resource('banks', 'BankController');
         Route::resource('buttons', 'ButtonsController');
+        Route::resource('terms', 'TermController');
 
 
     });

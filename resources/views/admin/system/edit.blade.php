@@ -468,14 +468,4 @@
 
         });
     </script>
-
-
-
-
-
-
-
-
-
-
 @endsection
