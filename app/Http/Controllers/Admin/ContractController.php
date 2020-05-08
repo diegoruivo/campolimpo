@@ -89,6 +89,7 @@ class ContractController extends Controller
                 $createContract->pay_day = $request->pay_day;
                 $createContract->deadline = $request->deadline;
                 $createContract->start_date = $request->start_date;
+                $createContract->description = $request->description;
                 $createContract->status = 0;
                 $createContract->term = $service->term;
                 $createContract->save();
@@ -100,6 +101,8 @@ class ContractController extends Controller
 
                     $createOrder = new Order();
                     $createOrder->contract = $createContract->id;
+                    $createOrder->user = $createContract->user;
+                    $createOrder->service = $createContract->service;
                     $createOrder->status = 0;
                     $createOrder->save();
 
@@ -135,6 +138,7 @@ class ContractController extends Controller
         $user = User::where('id', $call->user)->first();
         $system = System::where('id', 1)->first();
         $service = Service::where('id', $contract->service)->first();
+        $term = Term::where('id', $service->term)->first();
         $ncalls = Call::where('user', $user->id)->count();
         $ncontracts = Contract::where('user', $user->id)->count();
 
@@ -145,6 +149,7 @@ class ContractController extends Controller
             'call' => $call,
             'user' => $user,
             'service' => $service,
+            'term' => $term,
             'call_services' => $call_services,
             'ncalls' => $ncalls,
             'ncontracts' => $ncontracts,
@@ -164,6 +169,7 @@ class ContractController extends Controller
         $updateContract= Contract::where('id', $id)->first();
         $updateContract->fill($request->all());
         $updateContract->save();
+        $updateContract->description = $request->description;
         $updateContract->terms = $request->terms;
         $updateContract->save();
 

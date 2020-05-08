@@ -8,6 +8,7 @@ class Order extends Model
 {
     protected $fillable = [
         'contract',
+        'user',
         'provider',
         'description',
         'start_date',
@@ -18,20 +19,26 @@ class Order extends Model
     ];
 
 
+    public function contract()
+    {
+        return $this->belongsTo(Contract::class, 'contract', 'id');
+    }
+
     public function user()
     {
         return $this->belongsTo(User::class, 'user', 'id');
     }
 
-    public function contract()
+    public function service()
     {
-        return $this->belongsTo(Contract::class, 'contract', 'id');
+        return $this->belongsTo(Service::class, 'service', 'id');
     }
 
     public function provider()
     {
         return $this->belongsTo(User::class, 'provider', 'id');
     }
+
 
 
 

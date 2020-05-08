@@ -109,17 +109,6 @@ class User extends Authenticatable
         return $this->hasMany(Service::class, 'service', 'id');
     }
 
-    public function contracts()
-    {
-        return $this->hasMany(Contract::class, 'contract', 'id');
-    }
-
-    public function orders()
-    {
-        return $this->hasMany(Order::class, 'order', 'id');
-    }
-
-
     public function bank()
     {
         return $this->hasMany(Bank::class, 'bank', 'id');
@@ -135,8 +124,15 @@ class User extends Authenticatable
         return $this->belongsToMany(CallSector::class, 'users_call_sectors', 'user', 'sector');
     }
 
+    public function contracts()
+    {
+        return $this->hasMany(Contract::class, 'contract', 'id');
+    }
 
-
+    public function orders()
+    {
+        return $this->hasMany(Order::class, 'order', 'id');
+    }
 
     public function getUrlCoverAttribute()
     {

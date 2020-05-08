@@ -40,6 +40,9 @@ class Contract extends Model
         return $this->belongsTo(Order::class, 'order', 'id');
     }
 
+
+
+
     public function term()
     {
         return $this->belongsTo(Term::class, 'term', 'id');

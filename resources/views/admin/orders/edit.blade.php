@@ -10,16 +10,16 @@
                 <div class="row mb-2">
                     <div class="col-sm-6">
                         <h1>
-                            <small><i class="fa fa-file-signature"></i></small>
+                            <small><i class="fa fa-business-time"></i></small>
                             Editar Ordem
                         </h1>
                     </div>
                     <div class="col-sm-6">
                         <ol class="breadcrumb float-sm-right">
                             <li class="breadcrumb-item"><a href="{{ route('admin.home') }}">Home</a></li>
-                            <li class="breadcrumb-item"><a href="{{ route('admin.contracts.index') }}">Contratos</a>
+                            <li class="breadcrumb-item"><a href="{{ route('admin.orders.index') }}">Ordens</a>
                             </li>
-                            <li class="breadcrumb-item active">Editar Contrato</li>
+                            <li class="breadcrumb-item active">Editar Ordem</li>
                         </ol>
                     </div>
                 </div>
@@ -51,7 +51,7 @@
             <!-- Default box -->
                 <div class="card">
                     <div class="card-header">
-                        <h3 class="card-title">Edição de Contrato</h3>
+                        <h3 class="card-title">Edição de Ordem</h3>
 
                         <div class="card-tools">
                             <button type="button" class="btn btn-tool" data-card-widget="collapse" data-toggle="tooltip"
@@ -68,38 +68,7 @@
 
 
                             <div class="col-md-3">
-
-                                <!-- Profile Image -->
-                                <div class="card card-primary card-outline">
-                                    <div class="card-body box-profile">
-                                        <div class="text-center">
-                                            @if(!empty($user->cover))
-                                                <img class="profile-user-img img-fluid img-circle"
-                                                     src="{{ $user->cover }}">
-                                            @endif
-                                        </div>
-
-                                        <h3 class="profile-username text-center">{{ $user->name }}</h3>
-
-                                        <p class="text-muted text-center">{{ $user->occupation }}</p>
-
-                                        <ul class="list-group list-group-unbordered mb-3">
-                                            <li class="list-group-item">
-                                                <b>Atendimentos</b> <a class="float-right">{{ $ncalls }}</a>
-                                            </li>
-                                            <li class="list-group-item">
-                                                <b>Serviços Contrados</b> <a class="float-right">{{ $ncontracts }}</a>
-                                            </li>
-                                        </ul>
-
-                                        <a href="{{ route('admin.users.edit', ['user' => $user->id]) }}"
-                                           class="btn btn-primary btn-block"><b>Cadastro do Cliente</b></a>
-                                    </div>
-                                    <!-- /.card-body -->
-                                </div>
-                                <!-- /.card -->
-
-
+                                @include('admin.includes.profile')
                             </div>
 
 
@@ -114,7 +83,7 @@
                                         <div class="info-box-content">
                                             <span class="info-box-text">Ordem referente ao Contrato n° <b>{{ $contract->id }}</b></span>
                                             <span class="progress-description" style="float:right">{{ $contract->created_at }}
-                                                    <br> Status:
+                                                    <br> Status Contrato:
                                                     @if($call->status == 0)
                                                     <span class="badge badge-warning">Inicial</span>
                                                 @endif
@@ -186,12 +155,13 @@
                                         </div>
                                     </div>
 
+
+
                                     <div class="col-sm-3">
                                         <div class="form-group">
                                             <label>Hora Início</label>
-                                            <input type="text" name="start_time" class="form-control"
-                                                   data-inputmask-alias="datetime" data-inputmask-inputformat="HH:mm"
-                                                   data-mask
+                                            <input type="time" name="start_time" class="form-control"
+
                                                    placeholder="Hora Início"
                                                    value="{{ old('start_time') ?? $order->start_time }}"/>
                                         </div>
@@ -211,7 +181,7 @@
                                     <div class="col-sm-3">
                                         <div class="form-group">
                                             <label>Hora Término</label>
-                                            <input type="text" name="end_time" class="form-control"
+                                            <input type="time" name="end_time" class="form-control"
                                                    data-inputmask-alias="datetime" data-inputmask-inputformat="HH:mm"
                                                    data-mask
                                                    placeholder="Hora Início"
@@ -251,14 +221,14 @@
                                             <div class="icheck-primary">
                                                 <input type="radio" name="status" @if($order->status == 2) checked
                                                        @endif id="2" value="2">
-                                                <label for="1">Concluída
+                                                <label for="2">Concluída
                                                 </label>
                                             </div>
 
                                             <div class="icheck-primary">
                                                 <input type="radio" name="status" @if($order->status == 3) checked
                                                        @endif id="3" value="3">
-                                                <label for="1">Cancelada
+                                                <label for="3">Cancelada
                                                 </label>
                                             </div>
 
@@ -279,6 +249,9 @@
 
                         <!-- /.card-body -->
                         <div class="card-footer">
+
+                            Última atualização: {{ date('d/m/Y H:i', strtotime($order->updated_at)) }}
+
                             <button type="submit" class="btn btn-lg bg-gradient-primary" style="float:right;"><i
                                         class="fa fa-long-arrow-alt-right"></i> Atualizar Ordem
                             </button>

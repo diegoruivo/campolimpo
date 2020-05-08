@@ -17,10 +17,7 @@
                     <div class="col-sm-6">
                         <ol class="breadcrumb float-sm-right">
                             <li class="breadcrumb-item"><a href="{{ route('admin.home') }}">Home</a></li>
-                            <li class="breadcrumb-item"><a href="{{ route('admin.orders.index') }}">Ordens</a></li>
-                            <a href="{{ route('admin.orders.create') }}">
-                                <button type="button" class="btn bg-gradient-primary ml-3"><i class="fa fa-plus"></i> Cadastrar Ordem</button>
-                            </a>
+                            <li class="breadcrumb-item">Ordens</li>
                         </ol>
                     </div>
                 </div>
@@ -32,15 +29,15 @@
 
             <div class="card">
                 <div class="card-header">
-                    <h3 class="card-title">Lista de Contratos</h3>
+                    <h3 class="card-title">Lista de Ordens</h3>
                 </div>
                 <!-- /.card-header -->
                 <div class="card-body">
                     <table id="example1" class="table table-bordered table-striped">
                         <thead>
                         <tr>
-                            <th>ID</th>
-                            <th>Contrato</th>
+                            <th>ID Ordem</th>
+                            <th>ID Contrato</th>
                             <th>Cliente</th>
                             <th>Serviço</th>
                             <th>Status</th>
@@ -53,8 +50,8 @@
                                 <tr>
                                     <td>{{ $order->id }}</td>
                                     <td>{{ $order->contract }}</td>
-                                    <td></td>
-                                    <td>{{ $order->service }}</td>
+                                    <td>{{ $order->user()->first()->name}}</td>
+                                    <td>{{ $order->service()->first()->title}}</td>
                                     <td>
                                         @if($order->status == 0)
                                             <span class="badge badge-warning">Inicial</span>

@@ -35,21 +35,25 @@
                         <div class="card">
                             <div class="card-header p-2">
                                 <ul class="nav nav-pills">
-                                    <li class="nav-item"><a class="nav-link active" href="#activity" data-toggle="tab">Atendimento</a>
+                                    <li class="nav-item"><a class="nav-link active" href="#calls" data-toggle="tab">Atendimento</a>
                                     </li>
-                                    <li class="nav-item"><a class="nav-link" href="#settings"
-                                                            data-toggle="tab">Ordens</a></li>
-                                    <li class="nav-item"><a class="nav-link" href="#timeline" data-toggle="tab">Mensagens</a>
+                                    <li class="nav-item"><a class="nav-link" href="#contracts"
+                                                            data-toggle="tab">Contratos</a></li>
+                                    <li class="nav-item"><a class="nav-link" href="#orders" data-toggle="tab">Ordens</a>
                                     </li>
 
                                 </ul>
                             </div><!-- /.card-header -->
                             <div class="card-body">
                                 <div class="tab-content">
-                                    <div class="active tab-pane" id="activity">
 
 
-                                        <!-- TABLE: LATEST ORDERS -->
+
+
+
+
+                                    <div class="active tab-pane" id="calls">
+                                        <!-- TABLE: LATEST CALLS -->
                                         <div class="card">
 
                                             <!-- /.card-header -->
@@ -114,15 +118,84 @@
                                         </div>
                                         <!-- /.card -->
 
-
-
-
-
                                     </div>
                                     <!-- /.tab-pane -->
 
 
-                                    <div class="tab-pane" id="settings">
+
+
+
+
+
+
+                                    <div class="tab-pane" id="contracts">
+
+
+                                        <!-- TABLE: LATEST CALLS -->
+                                        <div class="card">
+
+                                            <!-- /.card-header -->
+                                            <div class="card-body p-0">
+                                                <div class="table-responsive">
+                                                    <table class="table m-0">
+                                                        <thead>
+                                                        <tr>
+                                                            <th>ID</th>
+                                                            <th>Cliente</th>
+                                                            <th>Serviço</th>
+                                                            <th>Valor</th>
+                                                            <th>Status</th>
+                                                        </tr>
+                                                        </thead>
+                                                        <tbody>
+
+                                                        @foreach($contracts as $contract)
+                                                            <tr>
+                                                                <td><a href="{{ route('admin.contracts.edit', ['contract' => $contract->id]) }}">{{ $contract->id }}</a></td>
+                                                                <td><a href="{{ route('admin.contracts.edit', ['contract' => $contract->id]) }}">{{ $contract->user()->first()->name }}</a></td>
+                                                                <td><a href="{{ route('admin.contracts.edit', ['contract' => $contract->id]) }}">{{ $contract->service()->first()->title }}</a></td>
+                                                                <td><a href="{{ route('admin.contracts.edit', ['contract' => $contract->id]) }}">R$ {{ $contract->contract_price }}</a></td>
+                                                                <td><a href="{{ route('admin.contracts.edit', ['contract' => $contract->id]) }}">
+                                                                    @if($contract->status == 0)
+                                                                        <span class="badge badge-warning">Inicial</span>
+                                                                    @endif
+
+                                                                    @if($contract->status == 1)
+                                                                        <span class="badge badge-info">Em Andamento</span>
+                                                                    @endif
+
+                                                                    @if($contract->status == 2)
+                                                                        <span class="badge badge-success">Concluído</span>
+                                                                    @endif
+
+                                                                    @if($contract->status == 3)
+                                                                        <span class="badge badge-danger">Cancelado</span>
+                                                                    @endif
+                                                                    </a>
+                                                                </td>
+                                                            </tr>
+                                                        @endforeach
+
+                                                        </tbody>
+                                                    </table>
+                                                </div>
+                                                <!-- /.table-responsive -->
+                                            </div>
+                                            <!-- /.card-body -->
+                                            <div class="card-footer clearfix">
+                                                <a href="{{ route('admin.contracts.index') }}"
+                                                   class="btn btn-sm btn-secondary float-right">Ver todos os Contratos</a>
+                                            </div>
+                                            <!-- /.card-footer -->
+                                        </div>
+                                        <!-- /.card -->
+
+
+                                    </div>
+
+
+
+                                    <div class="tab-pane" id="orders">
 
 
                                         <!-- TABLE: LATEST ORDERS -->
@@ -134,90 +207,42 @@
                                                     <table class="table m-0">
                                                         <thead>
                                                         <tr>
-                                                            <th>Order ID</th>
-                                                            <th>Item</th>
+                                                            <th>ID Ordem</th>
+                                                            <th>ID Contrato</th>
+                                                            <th>Cliente</th>
+                                                            <th>Serviço</th>
                                                             <th>Status</th>
-                                                            <th>Popularity</th>
                                                         </tr>
                                                         </thead>
                                                         <tbody>
-                                                        <tr>
-                                                            <td><a href="pages/examples/invoice.html">OR9842</a></td>
-                                                            <td>Call of Duty IV</td>
-                                                            <td><span class="badge badge-success">Shipped</span></td>
-                                                            <td>
-                                                                <div class="sparkbar" data-color="#00a65a"
-                                                                     data-height="20">
-                                                                    90,80,90,-70,61,-83,63
-                                                                </div>
-                                                            </td>
-                                                        </tr>
-                                                        <tr>
-                                                            <td><a href="pages/examples/invoice.html">OR1848</a></td>
-                                                            <td>Samsung Smart TV</td>
-                                                            <td><span class="badge badge-warning">Pending</span></td>
-                                                            <td>
-                                                                <div class="sparkbar" data-color="#f39c12"
-                                                                     data-height="20">
-                                                                    90,80,-90,70,61,-83,68
-                                                                </div>
-                                                            </td>
-                                                        </tr>
-                                                        <tr>
-                                                            <td><a href="pages/examples/invoice.html">OR7429</a></td>
-                                                            <td>iPhone 6 Plus</td>
-                                                            <td><span class="badge badge-danger">Delivered</span></td>
-                                                            <td>
-                                                                <div class="sparkbar" data-color="#f56954"
-                                                                     data-height="20">
-                                                                    90,-80,90,70,-61,83,63
-                                                                </div>
-                                                            </td>
-                                                        </tr>
-                                                        <tr>
-                                                            <td><a href="pages/examples/invoice.html">OR7429</a></td>
-                                                            <td>Samsung Smart TV</td>
-                                                            <td><span class="badge badge-info">Processing</span></td>
-                                                            <td>
-                                                                <div class="sparkbar" data-color="#00c0ef"
-                                                                     data-height="20">
-                                                                    90,80,-90,70,-61,83,63
-                                                                </div>
-                                                            </td>
-                                                        </tr>
-                                                        <tr>
-                                                            <td><a href="pages/examples/invoice.html">OR1848</a></td>
-                                                            <td>Samsung Smart TV</td>
-                                                            <td><span class="badge badge-warning">Pending</span></td>
-                                                            <td>
-                                                                <div class="sparkbar" data-color="#f39c12"
-                                                                     data-height="20">
-                                                                    90,80,-90,70,61,-83,68
-                                                                </div>
-                                                            </td>
-                                                        </tr>
-                                                        <tr>
-                                                            <td><a href="pages/examples/invoice.html">OR7429</a></td>
-                                                            <td>iPhone 6 Plus</td>
-                                                            <td><span class="badge badge-danger">Delivered</span></td>
-                                                            <td>
-                                                                <div class="sparkbar" data-color="#f56954"
-                                                                     data-height="20">
-                                                                    90,-80,90,70,-61,83,63
-                                                                </div>
-                                                            </td>
-                                                        </tr>
-                                                        <tr>
-                                                            <td><a href="pages/examples/invoice.html">OR9842</a></td>
-                                                            <td>Call of Duty IV</td>
-                                                            <td><span class="badge badge-success">Shipped</span></td>
-                                                            <td>
-                                                                <div class="sparkbar" data-color="#00a65a"
-                                                                     data-height="20">
-                                                                    90,80,90,-70,61,-83,63
-                                                                </div>
-                                                            </td>
-                                                        </tr>
+
+                                                        @foreach($orders as $order)
+                                                            <tr>
+                                                                <td><a href="{{ route('admin.orders.edit', ['order' => $order->id]) }}">{{ $order->id }}</a></td>
+                                                                <td><a href="{{ route('admin.orders.edit', ['order' => $order->id]) }}">{{ $order->contract }}</a></td>
+                                                                <td><a href="{{ route('admin.orders.edit', ['order' => $order->id]) }}">{{ $order->user()->first()->name}}</a></td>
+                                                                <td><a href="{{ route('admin.orders.edit', ['order' => $order->id]) }}">{{ $order->service()->first()->title}}</a></td>
+                                                                <td><a href="{{ route('admin.orders.edit', ['order' => $order->id]) }}">
+                                                                    @if($order->status == 0)
+                                                                        <span class="badge badge-warning">Inicial</span>
+                                                                    @endif
+
+                                                                    @if($order->status == 1)
+                                                                        <span class="badge badge-info">Em Andamento</span>
+                                                                    @endif
+
+                                                                    @if($order->status == 2)
+                                                                        <span class="badge badge-success">Concluído</span>
+                                                                    @endif
+
+                                                                    @if($order->status == 3)
+                                                                        <span class="badge badge-danger">Cancelado</span>
+                                                                    @endif
+                                                                    </a>
+                                                                </td>
+                                                            </tr>
+                                                        @endforeach
+
                                                         </tbody>
                                                     </table>
                                                 </div>
@@ -225,25 +250,12 @@
                                             </div>
                                             <!-- /.card-body -->
                                             <div class="card-footer clearfix">
-                                                <a href="javascript:void(0)" class="btn btn-sm btn-info float-left">Place
-                                                    New Order</a>
-                                                <a href="javascript:void(0)"
-                                                   class="btn btn-sm btn-secondary float-right">View All
-                                                    Orders</a>
+                                                <a href="{{ route('admin.orders.index') }}"
+                                                   class="btn btn-sm btn-secondary float-right">Ver todas as Ordens</a>
                                             </div>
                                             <!-- /.card-footer -->
                                         </div>
                                         <!-- /.card -->
-
-
-                                    </div>
-                                    <!-- /.tab-pane -->
-
-
-                                    <div class="tab-pane" id="timeline">
-
-
-                                        C
 
 
                                     </div>

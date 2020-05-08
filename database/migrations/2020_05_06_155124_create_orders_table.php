@@ -16,6 +16,8 @@ class CreateOrdersTable extends Migration
         Schema::create('orders', function (Blueprint $table) {
             $table->increments('id');
             $table->unsignedInteger('contract');
+            $table->unsignedInteger('user')->nullable();;
+            $table->unsignedInteger('service')->nullable();;
             $table->unsignedInteger('provider')->nullable();;
             $table->text('description')->nullable();
             $table->date('start_date')->nullable();
@@ -26,6 +28,7 @@ class CreateOrdersTable extends Migration
             $table->timestamps();
 
             $table->foreign('contract')->references('id')->on('contracts')->onDelete('CASCADE');
+            $table->foreign('user')->references('id')->on('users')->onDelete('CASCADE');
             $table->foreign('provider')->references('id')->on('users')->onDelete('CASCADE');
 
         });

@@ -50,6 +50,11 @@ class Service extends Model
         return $this->belongsTo(Term::class, 'term', 'id');
     }
 
+    public function orders()
+    {
+        return $this->hasMany(Order::class, 'order', 'id');
+    }
+
 
 
     public function setTitleAttribute($value)

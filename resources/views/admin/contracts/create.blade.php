@@ -273,12 +273,16 @@
                                 <div class="col-12">
 
                                     <div class="card-header">
-                                        <h3 class="card-title">Descrição</h3>
+                                        <h3 class="card-title">Descrição do Atendimento</h3>
                                     </div>
 
                                     <p class="p-4">{{ $call->description }}</p>
 
                                 </div>
+
+
+
+
 
 
                             </div>

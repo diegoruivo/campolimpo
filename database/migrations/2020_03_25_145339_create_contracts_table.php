@@ -19,6 +19,7 @@ class CreateContractsTable extends Migration
             $table->string('pay_day')->nullable();
             $table->string('deadline')->nullable();
             $table->date('start_date')->nullable();
+            $table->text('description')->nullable();
             $table->text('terms')->nullable();
 
             $table->timestamps();

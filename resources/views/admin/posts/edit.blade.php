@@ -145,8 +145,8 @@
                                                 <label>Descrição</label>
                                                 <textarea class="textarea" name="description"
                                                           style="width: 100%; height: 600px; font-size: 14px; line-height: 18px; border: 1px solid #dddddd; padding: 10px;">
-                                        {{ old('description') ?? $post->description }}
-                                    </textarea>
+                                                    {{ old('description') ?? $post->description }}
+                                                </textarea>
                                             </div>
                                         </div>
 
@@ -219,7 +219,7 @@
                         <!-- /.card-footer-->
                     </div>
                     <!-- /.card -->
-
+                </div>
             </form>
 
         </section>
