@@ -60,11 +60,11 @@ class Web extends Model
         return Storage::url(Cropper::thumb($cover['path'], 1366, 768));
     }
 
-
-
     public function getCreatedAtAttribute($value)
     {
         return date('d/m/Y', strtotime($value));
     }
+
+
 
 }

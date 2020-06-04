@@ -2,13 +2,17 @@
 
 namespace CampoLimpo\Http\Controllers\Admin;
 
+use CampoLimpo\Buttons;
 use CampoLimpo\Call;
 use CampoLimpo\CallSector;
 use CampoLimpo\CallService;
 use CampoLimpo\Contract;
+use CampoLimpo\Order;
+use CampoLimpo\Post;
 use CampoLimpo\Service;
 use CampoLimpo\System;
 use CampoLimpo\User;
+use Illuminate\Database\QueryException;
 use Illuminate\Http\Request;
 use CampoLimpo\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
@@ -29,13 +33,29 @@ class CallController extends Controller
         $call_services = CallService::all();
         $sectors = CallSector::all();
 
+        $buttons = Buttons::orderBy('position', 'ASC')->get();
+        $nclients = User::where('client', 1)->count();
+        $ncalls = Call::all()->count();
+        $calls = Call::all();
+        $contracts = Contract::all();
+        $orders = Order::all();
+        $posts = Post::orderBy('id', 'DESC')->get();
+
         return view('admin.calls.index', [
             'calls' => $calls,
             'system' => $system,
             'users' => $users,
             'services' => $services,
             'call_services' => $call_services,
-            'sectors' => $sectors
+            'sectors' => $sectors,
+
+            'buttons' => $buttons,
+            'calls' => $calls,
+            'contracts' => $contracts,
+            'orders' => $orders,
+            'ncalls' => $ncalls,
+            'nclients' => $nclients,
+            'posts' => $posts
         ]);
     }
 
@@ -77,11 +97,22 @@ class CallController extends Controller
         }
 
         if ((empty($request->user)) and !empty($request->name)) {
-            $userCreate = User::create($request->all());
-            $user = $userCreate->id;
-            $userCreate->client = 1;
-            $userCreate->save();
+            try {
+                $userCreate = User::create($request->all());
+                $user = $userCreate->id;
+                $userCreate->client = 1;
+                $userCreate->save();
+            } catch (QueryException $exception)
+            {
+                return redirect()->route('admin.calls.create', [
+                    'message' => 'Ooops'
+                ])->with(['color' => 'red', 'message' => 'O e-mail já está cadastrado!']);
+            }
+            if (!$userCreate->save()) {
+                return redirect()->back()->withInput()->withErrors();
+            }
         }
+
 
         if ((!empty($request->user)) and empty($request->name)) {
             $user = $request->user;

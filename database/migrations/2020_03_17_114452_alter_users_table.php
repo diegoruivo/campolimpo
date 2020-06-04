@@ -25,7 +25,7 @@ class AlterUsersTable extends Migration
             $table->string('place_of_birth')->nullable();
             $table->string('genre')->nullable();
             $table->string('civil_status')->nullable();
-            $table->string('document')->unique()->nullable();
+            $table->string('document')->nullable();
             $table->string('document_secondary', 20)->nullable();
             $table->string('document_secondary_complement')->nullable();
             $table->string('cover')->nullable();

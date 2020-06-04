@@ -18,9 +18,8 @@
                 <p>{!! $article->description !!}</p>
 
                 @foreach($article->images()->get() as $image)
-                    <img class="full-width img-responsive wow fadeInUp" src="{{ url('storage/' . $image->path) }}"  data-wow-duration=".3" data-wow-delay=".2s" style="margin-top:20px; margin-bottom:30px;">
+                    <img class="full-width img-responsive wow fadeInUp" src="{{ url($image->url_cropped) }}"  data-wow-duration=".3" data-wow-delay=".2s" style="margin-top:20px; margin-bottom:30px;">
                 @endforeach
-
             </div>
 
             </div>

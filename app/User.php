@@ -139,8 +139,7 @@ class User extends Authenticatable
         if (!empty($this->cover)){
             return Storage::url(Cropper::thumb($this->cover, 500, 500));
         }
-        return '';
-
+        return url('backend/assets/images/avatar.jpg');
 
     }
 
@@ -177,7 +176,12 @@ class User extends Authenticatable
 
     public function getDateOfBirthAttribute($value)
     {
-        return date('d/m/Y', strtotime($value));
+        if ((!empty($value)) and ($value != '0000-00-00')) {
+            return date('d/m/Y', strtotime($value));
+        }
+        if (empty($value)) {
+            return "";
+        }
     }
 
 
@@ -294,6 +298,8 @@ class User extends Authenticatable
         list($day, $month, $year) = explode('/', $param);
         return (new \DateTime($year . '-' . $month . '-' . $day))->format('Y-m-d');
     }
+
+
 
     private function clearField(?string $param)
     {

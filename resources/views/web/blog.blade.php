@@ -23,7 +23,7 @@
                                 <a href="{{ route('web.article', ['slug' => $post->slug]) }}" title="{{ $post->title }}">
                                 <div class="col-sm-4 sm-margin-b-50">
                                     <div class="margin-b-20">
-                                        <img class="full-width img-responsive" src="{{ url('storage/' . $post->images()->first()->path) }}">
+                                        <img class="full-width img-responsive" src="{{ url($post->images()->first()->url_cropped) }}">
                                     </div>
                                     <span class="text-uppercase">{{ $post->category()->first()->title }}</span>
                                     <h4>{{ $post->title }}</h4>

@@ -17,7 +17,7 @@
 
             @foreach($homes as $home)
                 <div class="item">
-                    <img class="img-responsive" src="{{ url('storage/' . $home->images()->first()->path) }}">
+                    <img class="img-responsive" src="{{ url($home->images()->first()->url_cropped) }}">
                     <div class="container">
                         <div class="carousel-centered">
                             <div class="margin-b-40">
@@ -48,13 +48,11 @@
                             <div class="margin-b-20">
                                 <h2>{{ $sobre->title }}</h2>
                                 <h4>{{ $sobre->subtitle }}</h4>
-                                <p>{!! $sobre->description  !!}</p>
                             </div>
                             <img class="full-width img-responsive wow fadeInUp"
-                                 src="{{ url('storage/' . $sobre->images()->first()->path) }}" data-wow-duration=".3"
+                                 src="{{ url($sobre->images()->first()->url_cropped) }}" data-wow-duration=".3"
                                  data-wow-delay=".2s">
-                            <p class="wow fadeInUp" style="margin-top:20px;"><a class="link"
-                                                                                href="{{ route('web.content', ['slug' => $sobre->slug]) }}">Leia
+                            <p class="wow fadeInUp" style="margin-top:20px;"><a class="link" href="{{ route('web.content', ['slug' => $sobre->slug]) }}">Leia
                                     Mais</a></p>
                         </div>
                     </a>
@@ -158,15 +156,12 @@
                                 </div>
                                 <div class="service-info">
                                     <h3>{{ $service->title }}</h3>
-                                    <p class="margin-b-5">{!! limitText($service->description, $limit = 240) !!}</p>
+                                    <p class="margin-b-5">{{ preg_replace('/(<.*?>)|(&.*?;)/', '', \Illuminate\Support\Str::words($service->description, 45, "...")) }}</p>
                                 </div>
                                 <a href="{{ route('web.service', ['slug' => $service->slug]) }}" class="content-wrapper-link"></a>
                             </div>
                         </div>
                     @endforeach
-
-
-
 
 
                 </div>
@@ -209,17 +204,16 @@
                     <a href="{{ route('web.article', ['slug' => $post->slug]) }}" title="{{ $post->title }}">
                         <div class="col-sm-4 sm-margin-b-50">
                             <div class="margin-b-20">
-                                <img class="full-width img-responsive" src="{{ url('storage/' . $post->images()->first()->path) }}">
+                                <img class="full-width img-responsive" src="{{ url($post->images()->first()->url_cropped) }}">
                             </div>
                             <span class="text-uppercase">{{ $post->category()->first()->title }}</span>
                             <h4>{{ $post->title }}</h4>
-                            <p>{!! limitText($post->description, $limit = 240)  !!}</p>
+                            <p class="margin-b-5">{{ preg_replace('/(<.*?>)|(&.*?;)/', '', \Illuminate\Support\Str::words($service->description, 45, "...")) }}</p>
                             <h6>Por {{ $post->author()->first()->name }} em {{ date('d/m/Y', strtotime($post->created_at)) }}</h6>
                             <a class="link" href="{{ route('web.article', ['slug' => $post->slug]) }}">Leia Mais</a>
                         </div>
                 @endforeach
 
-            </div>
             <!--// end row -->
         </div>
     </div>
@@ -286,7 +280,7 @@
 
         <!-- Google Map -->
         <div class="map height-300">
-            <iframe src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d14581.538422922275!2d-48.8783306!3d-23.9821921!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0xcb317ad7b3b80a66!2sCAMPOLIMPO!5e0!3m2!1spt-BR!2sbr!4v1588611624978!5m2!1spt-BR!2sbr" width="100%" height="100%" frameborder="0" style="border:0" allowfullscreen></iframe>
+            <iframe src="{{ $system->map }}" width="100%" height="100%" frameborder="0" style="border:0" allowfullscreen></iframe>
         </div>
     </div>
         <!-- End Contact -->

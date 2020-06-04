@@ -80,23 +80,12 @@ class UserController extends Controller
      */
     public function store(UserRequest $request)
     {
-        $userCreate = User::create($request->all());
 
-//        // Relacionamento Setores de Atendimento e Usuários
-//        if (!empty($request->input('sectors'))) {
-//            $ids = $request->input('sectors');
-//            $sector_ids = [];
-//            foreach ($ids as $sector_id) {
-//                $attributes = [];
-//                $sector_ids[$sector_id] = $attributes;
-//            }
-//            $userCreate->sectors()->sync($sector_ids);
-//        }
-
-        if (!empty($request->file('cover'))) {
-            $userCreate->cover = $request->file('cover')->store('user');
-            $userCreate->save();
-        }
+        $userCreate = new User();
+        $userCreate->name = $request->name;
+        $userCreate->client = 1;
+        $userCreate->document = '';
+        $userCreate->save();
 
         return redirect()->route('admin.users.edit', [
             'user' => $userCreate->id
@@ -135,10 +124,6 @@ class UserController extends Controller
         $daps = Dap::where('user', $user->id)->get();
         $rural_environmental_registrations = RuralEnvironmentalRegistry::where('user', $user->id)->get();
 
-//        if (!empty($request->sector)) {
-//            $sector = User::where('id', $request->sector)->first();
-//        }
-
         return view('admin.users.edit', [
             'user' => $user,
             'system' => $system,
@@ -164,6 +149,7 @@ class UserController extends Controller
      */
     public function update(UserRequest $request, $id)
     {
+
         $user = User::where('id', $id)->first();
 
         $user->setSmallRuralProducerAttribute($request->small_rural_producer);
@@ -188,8 +174,6 @@ class UserController extends Controller
             // Cropper::flush($user->cover);
             $user->cover = '';
         }
-
-
 
         $user->fill($request->all());
 

@@ -2,15 +2,18 @@
 
 namespace CampoLimpo\Http\Controllers\Web;
 
+use CampoLimpo\ContentImage;
 use CampoLimpo\Page;
 use CampoLimpo\PageContent;
 use CampoLimpo\Partner;
 use CampoLimpo\Post;
 use CampoLimpo\Service;
 use CampoLimpo\ServiceCategory;
+use CampoLimpo\Support\Cropper;
 use CampoLimpo\System;
 use Illuminate\Http\Request;
 use CampoLimpo\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Storage;
 
 class WebController extends Controller
 {
@@ -28,7 +31,7 @@ class WebController extends Controller
 
         $posts = Post::orderBy('id', 'DESC')->limit(3)->get();
 
-        $pageContato= Page::where('slug', 'contato')->first();
+        $pageContato = Page::where('slug', 'contato')->first();
         $contatos = PageContent::where('page', $pageContato->id)->orderBy('position', 'ASC')->get();
 
         $partners = Partner::orderBy('position', 'ASC')->get();

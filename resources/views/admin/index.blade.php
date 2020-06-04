@@ -10,20 +10,24 @@
   <!-- Tell the browser to be responsive to screen width -->
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
-  <!-- Font Awesome -->
-  <link rel="stylesheet" href="../resources/views/admin/assets/plugins/fontawesome-free/css/all.min.css">
-  <!-- Ionicons -->
-  <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
+  <link rel="stylesheet" href="{{ url(mix('backend/assets/css/libs.css')) }}">
+
   <!-- icheck bootstrap -->
   <link rel="stylesheet" href="../resources/views/admin/assets/plugins/icheck-bootstrap/icheck-bootstrap.min.css">
-  <!-- Theme style -->
-  <link rel="stylesheet" href="../resources/views/admin/assets/dist/css/adminlte.min.css">
   <!-- Google Font: Source Sans Pro -->
   <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
 
 
   <link rel="stylesheet" href="{{ url(mix('backend/assets/css/login.css')) }}"/>
   <link rel="stylesheet" href="{{ url(mix('backend/assets/css/style.css')) }}"/>
+
+  <!-- Google Font: Source Sans Pro -->
+  <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
+  <!-- Font Awesome Kit -->
+  <script src="https://kit.fontawesome.com/cde8c0fee9.js" crossorigin="anonymous"></script>
+  <!-- Ionicons -->
+  <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
+
 
   <link rel="icon" type="image/png" href="{{ url('storage/' . $system->favico) }}"/>
 
@@ -64,7 +68,7 @@
         <div class="row">
           <div class="col-8">
             <p class="mb-1">
-              <a href="forgot-password.html">Esqueci minha senha</a>
+              <a href="">Esqueci minha senha</a>
             </p>
           </div>
           <!-- /.col -->
@@ -85,15 +89,7 @@
 </div>
 <!-- /.login-box -->
 
-<!-- jQuery -->
-<script src="../resources/views/admin2/assets/plugins/jquery/jquery.min.js"></script>
-<!-- Bootstrap 4 -->
-<script src="../resources/views/admin2/assets/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
-<!-- AdminLTE App -->
-<script src="../resources/views/admin2/assets/dist/js/adminlte.min.js"></script>
-
-
-
+<script src="{{ url(mix('backend/assets/js/libs.js')) }}"></script>
 <script src="{{ url(mix('backend/assets/js/jquery.js')) }}"></script>
 <script src="{{ url(mix('backend/assets/js/login.js')) }}"></script>
 

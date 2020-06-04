@@ -224,6 +224,7 @@
                                                 <div class="form-group">
                                                     <label>RG</label>
                                                     <input type="text" name="document_secondary" class="form-control"
+                                                           data-inputmask-alias="99.999.999-9" data-inputmask-inputformat="99.999.999-9" data-mask
                                                            placeholder="RG do Cliente"
                                                            value="{{ old('document_secondary') ?? $user->document_secondary }}"/>
                                                 </div>
@@ -1307,7 +1308,7 @@
 
                                             <div class="col-sm-6">
                                                 <div class="form-group">
-                                                    <label>E-Senha</label>
+                                                    <label>Senha</label>
                                                     <input type="password" name="password" class="form-control"
                                                            placeholder="Digite uma senha em caso de alteração"
                                                            value=""/>
@@ -1391,6 +1392,7 @@
                         </div>
                         <!-- /.card-footer-->
 
+                    </div>
 
                     </div>
 

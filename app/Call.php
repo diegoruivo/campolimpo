@@ -10,6 +10,7 @@ class Call extends Model
         'password',
         'description',
         'status',
+        'service',
         'user',
         'provider'
     ];

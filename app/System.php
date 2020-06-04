@@ -55,6 +55,14 @@ class System extends Model
         return '';
     }
 
+    public function getUrlPathAttribute()
+    {
+        if (!empty($this->path)){
+            return Storage::url(Cropper::thumb($this->path, 100, 100));
+        }
+        return '';
+    }
+
 
 
 

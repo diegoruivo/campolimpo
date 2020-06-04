@@ -17,10 +17,6 @@ class AuthController extends Controller
 {
     public function showLoginForm()
     {
-        // PARA RESETAR SENHA DO USUÁRIO ID 1 - SENHA: 123
-//        $user = User::where('id', 1)->first();
-//        $user->password = '123';
-//        $user->save();
 
         $system = System::where('id', 1)->first();
 

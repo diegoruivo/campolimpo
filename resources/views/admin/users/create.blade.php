@@ -93,106 +93,6 @@
                                                 </div>
                                             </div>
 
-                                            <div class="col-sm-4">
-                                                <div class="form-group">
-                                                    <label>Genero</label>
-                                                    <select name="genre" class="custom-select">
-                                                        <option value="" {{ (old('genre') == '') }}>
-                                                            Escolha o Genero
-                                                        </option>
-                                                        <option value="male" {{ (old('genre') == 'male') }}>
-                                                            Masculino
-                                                        </option>
-                                                        <option value="female" {{ (old('genre') == 'female') }}>
-                                                            Feminino
-                                                        </option>
-                                                        <option value="other" {{ (old('genre') == 'other') }}>
-                                                            Outros
-                                                        </option>
-                                                    </select>
-                                                </div>
-                                            </div>
-
-                                            <div class="col-sm-4">
-                                                <div class="form-group">
-                                                    <label>CPF</label>
-                                                    <input type="text" class="form-control"
-                                                           name="document" placeholder="CPF do Cliente"
-                                                           value="{{ old('document') }}"/>
-                                                </div>
-                                            </div>
-
-                                            <div class="col-sm-4">
-                                                <div class="form-group">
-                                                    <label>Data de Nascimento</label>
-                                                    <input type="text" class="form-control"
-                                                           name="date_of_birth" placeholder="Data de Nascimento"
-                                                           value="{{ old('date_of_birth') }}"/>
-                                                </div>
-                                            </div>
-
-
-                                            <div class="col-sm-4">
-                                                <div class="form-group">
-                                                    <label>Naturalidade</label>
-                                                    <input type="text" name="place_of_birth" class="form-control"
-                                                           placeholder="Cidade de Nascimento"
-                                                           value="{{ old('place_of_birth') }}"/>
-                                                </div>
-                                            </div>
-
-                                            <div class="col-sm-4">
-                                                <div class="form-group">
-                                                    <label>Estado Civil</label>
-                                                    <select name="civil_status" class="custom-select">
-                                                        <option value="" {{ (old('civil_status') == '') }}>
-                                                            Escolha o Estado Civil
-                                                        </option>
-
-                                                        <optgroup label="Cônjuge Obrigatório">
-                                                            <option value="married" {{ (old('civil_status') == 'married') }}>
-                                                                Casado
-                                                            </option>
-                                                            <option value="separated" {{ (old('civil_status') == 'separated') }}>
-                                                                Separado
-                                                            </option>
-                                                        </optgroup>
-                                                        <optgroup label="Cônjuge não Obrigatório">
-                                                            <option value="single" {{ (old('civil_status') == 'single') }}>
-                                                                Solteiro
-                                                            </option>
-                                                            <option value="divorced" {{ (old('civil_status') == 'divorced') }}>
-                                                                Divorciado
-                                                            </option>
-                                                            <option value="widower" {{ (old('civil_status') == 'widower') }}>
-                                                                Viúvo
-                                                            </option>
-                                                        </optgroup>
-                                                    </select>
-                                                </div>
-                                            </div>
-
-
-                                            <div class="col-sm-4">
-                                                <div class="form-group">
-                                                    <label>RG</label>
-                                                    <input type="text" name="document_secondary" class="form-control"
-                                                           placeholder="RG do Cliente"
-                                                           value="{{ old('document_secondary') }}"/>
-                                                </div>
-                                            </div>
-
-                                            <div class="col-sm-4">
-                                                <div class="form-group">
-                                                    <label>Órgão Expedidor</label>
-
-                                                    <input type="text" name="document_secondary_complement"
-                                                           class="form-control" placeholder="Expedição"
-                                                           value="{{ old('document_secondary_complement') }}"/>
-                                                </div>
-                                            </div>
-
-
                                         </div>
 
                                     </div>
@@ -228,8 +128,10 @@
 @endsection
 
 
+
 @section('js')
 
+    <!-- Page script -->
     <script>
         $(function () {
             //Initialize Select2 Elements
@@ -243,60 +145,45 @@
             //Datemask dd/mm/yyyy
             $('#datemask').inputmask('dd/mm/yyyy', { 'placeholder': 'dd/mm/yyyy' })
             //Datemask2 mm/dd/yyyy
-            $('#datemask2').inputmask('mm/dd/yyyy', { 'placeholder': 'mm/dd/yyyy' })
+            $('#cpf').inputmask('999.999.999-99', { 'placeholder': '999.999.999-99' })
             //Money Euro
             $('[data-mask]').inputmask()
 
-            //Date range picker
-            $('#reservation').daterangepicker()
-            //Date range picker with time picker
-            $('#reservationtime').daterangepicker({
-                timePicker: true,
-                timePickerIncrement: 30,
-                locale: {
-                    format: 'MM/DD/YYYY hh:mm A'
-                }
-            })
-            //Date range as a button
-            $('#daterange-btn').daterangepicker(
-                {
-                    ranges   : {
-                        'Today'       : [moment(), moment()],
-                        'Yesterday'   : [moment().subtract(1, 'days'), moment().subtract(1, 'days')],
-                        'Last 7 Days' : [moment().subtract(6, 'days'), moment()],
-                        'Last 30 Days': [moment().subtract(29, 'days'), moment()],
-                        'This Month'  : [moment().startOf('month'), moment().endOf('month')],
-                        'Last Month'  : [moment().subtract(1, 'month').startOf('month'), moment().subtract(1, 'month').endOf('month')]
-                    },
-                    startDate: moment().subtract(29, 'days'),
-                    endDate  : moment()
-                },
-                function (start, end) {
-                    $('#reportrange span').html(start.format('MMMM D, YYYY') + ' - ' + end.format('MMMM D, YYYY'))
-                }
-            )
-
-            //Timepicker
-            $('#timepicker').datetimepicker({
-                format: 'LT'
-            })
-
-            //Bootstrap Duallistbox
-            $('.duallistbox').bootstrapDualListbox()
-
-            //Colorpicker
-            $('.my-colorpicker1').colorpicker()
-            //color picker with addon
-            $('.my-colorpicker2').colorpicker()
-
-            $('.my-colorpicker2').on('colorpickerChange', function(event) {
-                $('.my-colorpicker2 .fa-square').css('color', event.color.toString());
-            });
-
-            $("input[data-bootstrap-switch]").each(function(){
-                $(this).bootstrapSwitch('state', $(this).prop('checked'));
-            });
-
         })
+    </script>
+
+
+    <script type="text/javascript">
+        $(document).ready(function() {
+
+            $("#zipcode").mask("99999-999",{completed:function(){
+                    var zipcode = $(this).val().replace(/[^0-9]/, "");
+
+                    // Validação do CEP; caso o CEP não possua 8 números, então cancela
+                    // a consulta
+                    if(zipcode.length != 8){
+                        return false;
+                    }
+
+
+
+                    // A url de pesquisa consiste no endereço do webservice + o cep que
+                    // o usuário informou + o tipo de retorno desejado (entre "json",
+                    // "jsonp", "xml", "piped" ou "querty")
+                    var url = "http://viacep.com.br/ws/"+zipcode+"/json/";
+
+                    $.getJSON(url, function(dadosRetorno){
+                        try{
+                            // Preenche os campos de acordo com o retorno da pesquisa
+                            $("#street").val(dadosRetorno.logradouro);
+                            $("#neighborhood").val(dadosRetorno.bairro);
+                            $("#city").val(dadosRetorno.localidade);
+                            $("#state").val(dadosRetorno.uf);
+                            $("#nr_end").focus();
+                        }catch(ex){}
+                    });
+                }});
+
+        });
     </script>
 @endsection

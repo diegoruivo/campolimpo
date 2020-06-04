@@ -12,7 +12,7 @@
                     <h2>{{ $content->subtitle }}</h2>
                     <p>{!! $content->description !!}</p>
 
-                    <img class="full-width img-responsive wow fadeInUp" src="{{ url('storage/' . $content->images()->first()->path) }}"  data-wow-duration=".3" data-wow-delay=".2s">
+                    <img class="full-width img-responsive wow fadeInUp" src="{{ url($content->images()->first()->url_cropped) }}"  data-wow-duration=".3" data-wow-delay=".2s">
 
 
                 </div>

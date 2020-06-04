@@ -18,7 +18,7 @@ class Service extends Model
         'cover'
     ];
 
-    public const RALATIONSHIP_SERVICE_CALL = 'call_services';
+    public const RELATIONSHIP_SERVICE_CALL = 'call_services';
 
     public function service_category()
     {
@@ -32,7 +32,7 @@ class Service extends Model
 
     public function services()
     {
-        return $this->belongsToMany(Service::class, self::RALATIONSHIP_SERVICE_CALL, 'calls', 'service');
+        return $this->belongsToMany(Service::class, self::RELATIONSHIP_SERVICE_CALL, 'call', 'service');
     }
 
     public function sectors()

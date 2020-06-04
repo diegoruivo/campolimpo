@@ -31,8 +31,6 @@
 @php
     if (\Illuminate\Support\Facades\File::exists(public_path() . '/storage/' . \Illuminate\Support\Facades\Auth::user()->cover)) {
         $cover = \Illuminate\Support\Facades\Auth::user()->url_cover;
-    } else {
-    $cover = url(asset('backend/assets/images/avatar.jpg'));
     }
     if (\Illuminate\Support\Facades\Auth::user()->name) { $user_name = \Illuminate\Support\Facades\Auth::user()->name; $user_email = \Illuminate\Support\Facades\Auth::user()->email; }
 
@@ -136,46 +134,29 @@
                     <!-- Add icons to the links using the .nav-icon class
                          with font-awesome or any other icon font library -->
 
-                    <li class="nav-item has-treeview {{ isOpen('admin.home') }} {{ isOpen('admin.calls') }} {{ isOpen('admin.contracts') }} {{ isOpen('admin.orders') }}">
-                        <a href="#" class="nav-link {{ isActive('admin.home') }} {{ isActive('admin.calls') }} {{ isActive('admin.contracts') }} {{ isActive('admin.orders') }}">
-                            <i class="nav-icon fas fa-tachometer-alt"></i>
-                            <p>
-                                Monitoramento
-                                <i class="right fas fa-angle-left"></i>
-                            </p>
+                    <li class="nav-item">
+                        <a href="{{ route('admin.home') }}" class="nav-link">
+                            <i class="nav-icon fa fa-home"></i>
+                            <p>Home</p>
                         </a>
-                        <ul class="nav nav-treeview">
-
-                            <li class="nav-item">
-                                <a href="{{ route('admin.calls.index') }}"
-                                   class="nav-link {{ isActive('admin.calls') }}">
-                                    <i class="fa fa-headset nav-icon"></i>
-                                    <p>
-                                        Atendimento
-                                    </p>
-                                </a>
-                            </li>
-
-                            <li class="nav-item">
-                                <a href="{{ route('admin.contracts.index') }}" class="nav-link {{ isActive('admin.contracts') }}">
-                                    <i class="fa fa-file-signature nav-icon"></i>
-                                    <p>
-                                        Contratos
-                                    </p>
-                                </a>
-                            </li>
-
-                            <li class="nav-item">
-                                <a href="{{ route('admin.orders.index') }}" class="nav-link {{ isActive('admin.orders') }}">
-                                    <i class="fa fa-business-time nav-icon"></i>
-                                    <p>
-                                        Ordens
-                                    </p>
-                                </a>
-                            </li>
-
-                        </ul>
                     </li>
+
+
+                    <li class="nav-item">
+                        <a href="{{ route('admin.calls.index') }}" class="nav-link">
+                            <i class="nav-icon fas fa-user-tie"></i>
+                            <p>Atendimento</p>
+                        </a>
+                    </li>
+
+
+                    <li class="nav-item">
+                        <a href="{{ route('admin.home') }}" class="nav-link">
+                            <i class="nav-icon fas fa-tachometer-alt"></i>
+                            <p>Monitoramento</p>
+                        </a>
+                    </li>
+
 
 
                     <li class="nav-item has-treeview {{ isOpen('admin.users') }} {{ isOpen('admin.documents') }} {{ isOpen('admin.accounts') }} {{ isOpen('admin.companies') }} {{ isOpen('admin.properties') }} {{ isOpen('admin.rural_properties') }} {{ isOpen('admin.daps') }} {{ isOpen('admin.rural_environmental_registrations') }}">
@@ -195,7 +176,7 @@
                             </li>
                             <li class="nav-item">
                                 <a href="{{ route('admin.documents.index') }}" class="nav-link {{ isActive('admin.documents') }}">
-                                    <i class="fa fa-caret-right nav-icon"></i>
+                                    <i class="fa fa-id-card nav-icon"></i>
                                     <p>Documentos</p>
                                 </a>
                             </li>

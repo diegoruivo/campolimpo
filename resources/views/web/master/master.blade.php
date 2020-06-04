@@ -31,10 +31,9 @@
         @yield('css')
     @endif
 
-    <link rel="icon" type="image/png" href="{{ url('storage/' . $system->favico) }}"/>
+    <link rel="icon" type="image/png" href="{{ $system->url_favico }}"/>
 
 </head>
-
 
 <body id="home" data-spy="scroll" data-target=".header">
 
@@ -49,8 +48,8 @@
 
                 <div class="logo">
                     <a class="logo-wrap" href="{{ $system->site }}">
-                        <img class="logo-img logo-img-main" src="{{ url('storage/' . $system->logo) }}">
-                        <img class="logo-img logo-img-active" src="{{ url('storage/' . $system->logo) }}">
+                        <img class="logo-img logo-img-main" src="{{ $system->urL_logo }}">
+                        <img class="logo-img logo-img-active" src="{{ $system->url_logo }}">
                     </a>
                 </div>
             </div>
@@ -109,7 +108,7 @@
     <div class="content container">
         <div class="row">
             <div class="col-xs-6">
-                <img class="footer-logo" src="{{ url('storage/' . $system->logo) }}">
+                <img class="footer-logo" src="{{ url($system->url_logo) }}">
             </div>
             <div class="col-xs-6 text-right">
                 <ul class="fh5co-social-icons">
@@ -164,8 +163,6 @@
 {{--<script src="frontend/assets/js/components/wow.min.js" type="text/javascript"></script>--}}
 {{--<script src="frontend/assets/js/components/swiper.min.js" type="text/javascript"></script>--}}
 {{--<script src="frontend/assets/js/components/masonry.min.js" type="text/javascript"></script>--}}
-
-
 
 <script src="{{ url(mix('frontend/assets/js/libs.js')) }}"></script>
 

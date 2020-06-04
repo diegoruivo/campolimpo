@@ -157,8 +157,6 @@ class PageContentController extends Controller
 
 
 
-
-
     public function imageSetCover(Request $request)
     {
         $imageSetCover = ContentImage::where('id', $request->image)->first();
@@ -193,7 +191,6 @@ class PageContentController extends Controller
 
         return response()->json($json);
     }
-
 
 
 }

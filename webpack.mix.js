@@ -121,14 +121,14 @@ mix
         'resources/views/admin/assets/js/login.js'
     ], 'public/backend/assets/js/login.js')
 
-    // .scripts([
-    //     'resources/views/admin/assets/js/datatables/js/jquery.dataTables.min.js',
-    //     'resources/views/admin/assets/js/datatables/js/dataTables.responsive.min.js',
-    //     'resources/views/admin/assets/js/select2/js/select2.min.js',
-    //     'resources/views/admin/assets/js/select2/js/i18n/pt-BR.js',
-    //     'resources/views/admin/assets/js/jquery.form.js',
-    //     'resources/views/admin/assets/js/jquery.mask.js',
-    // ], 'public/backend/assets/js/libs_up.js')
+    .scripts([
+        'resources/views/admin/assets/js/datatables/js/jquery.dataTables.min.js',
+        'resources/views/admin/assets/js/datatables/js/dataTables.responsive.min.js',
+        'resources/views/admin/assets/js/select2/js/select2.min.js',
+        'resources/views/admin/assets/js/select2/js/i18n/pt-BR.js',
+        'resources/views/admin/assets/js/jquery.form.js',
+        'resources/views/admin/assets/js/jquery.mask.js',
+    ], 'public/backend/assets/js/libs_up.js')
 
     .scripts([
         'resources/views/admin/assets/js/scripts.js'

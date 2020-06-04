@@ -17,6 +17,7 @@ class Call extends FormRequest
         return Auth::check();
     }
 
+
     /**
      * Get the validation rules that apply to the request.
      *
@@ -26,6 +27,7 @@ class Call extends FormRequest
     {
         return [
             'user' => 'required',
+            'email' => (!empty($this->request->all()['id']) ? 'email|unique:users,email,' . $this->request->all()['id'] : 'email|unique:users,email'),
         ];
     }
 }
