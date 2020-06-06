@@ -10,6 +10,7 @@
     <link rel="stylesheet" href="{{ url(mix('backend/assets/css/boot.css')) }}"/>
     <link rel="stylesheet" href="{{ url(mix('backend/assets/css/style.css')) }}"/>
     <link rel="stylesheet" href="{{ url(mix('backend/assets/css/libs.css')) }}">
+    <link rel="stylesheet" href="{{ url(mix('backend/assets/css/libs_full_calendar.css')) }}">
 
 @hasSection('css')
     @yield('css')
@@ -368,6 +369,7 @@
 <script src="{{ url(mix('backend/assets/js/libs_table.js')) }}"></script>
 <script src="{{ url(mix('backend/assets/js/scripts_up.js')) }}"></script>
 <script src="{{ url(mix('backend/assets/js/mask_money.js')) }}"></script>
+<script src="{{ url(mix('backend/assets/js/full_calendar.js')) }}"></script>
 
 @hasSection('js')
     @yield('js')

@@ -68,6 +68,14 @@ mix
     ], 'public/backend/assets/css/libs.css')
 
 
+    .styles([
+            'resources/views/admin/assets/plugins/fullcalendar/main.min.css',
+            'resources/views/admin/assets/plugins/fullcalendar-daygrid/main.min.css',
+            'resources/views/admin/assets/plugins/fullcalendar-timegrid/main.min.css',
+            'resources/views/admin/assets/plugins/fullcalendar-bootstrap/main.min.css'
+    ], 'public/backend/assets/css/libs_full_calendar.css')
+
+    
     .scripts([
         'resources/views/admin/assets/plugins/jquery/jquery.min.js',
         'resources/views/admin/assets/plugins/jquery-ui/jquery-ui.min.js',
@@ -99,6 +107,16 @@ mix
     .scripts([
         'resources/views/admin/assets/js/jquery.maskMoney.js',
     ], 'public/backend/assets/js/mask_money.js')
+
+
+    // Full Calendar
+    .scripts([
+        'resources/views/admin/assets/plugins/fullcalendar/main.min.js',
+        'resources/views/admin/assets/plugins/fullcalendar-daygrid/main.min.js',
+        'resources/views/admin/assets/plugins/fullcalendar-timegrid/main.min.js',
+        'resources/views/admin/assets/plugins/fullcalendar-interaction/main.min.js',
+        'resources/views/admin/assets/plugins/fullcalendar-bootstrap/main.min.js',
+    ], 'public/backend/assets/js/full_calendar.js')
 
     // Libs up
     .sass('resources/views/admin/assets/scss/reset.scss', 'public/backend/assets/css/reset.css')
@@ -136,6 +154,11 @@ mix
 
     .copyDirectory('resources/views/admin/assets/scss', 'public/backend/assets/scss')
     .copyDirectory('resources/views/admin/assets/js', 'public/backend/assets/js')
+    .copyDirectory('resources/views/admin/assets/plugins/fullcalendar', 'public/backend/assets/plugins/fullcalendar')
+    .copyDirectory('resources/views/admin/assets/plugins/fullcalendar-daygrid', 'public/backend/assets/plugins/fullcalendar-daygrid')
+    .copyDirectory('resources/views/admin/assets/plugins/fullcalendar-timegrid', 'public/backend/assets/plugins/fullcalendar-timegrid')
+    .copyDirectory('resources/views/admin/assets/plugins/fullcalendar-interaction', 'public/backend/assets/plugins/fullcalendar-interaction')
+    .copyDirectory('resources/views/admin/assets/plugins/fullcalendar-bootstrap', 'public/backend/assets/plugins/fullcalendar-bootstrap')
 
 
     .copyDirectory('resources/views/admin/assets/plugins/fontawesome-free/css', 'public/backend/assets/plugins/fontawesome-free/css')
