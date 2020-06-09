@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateCallsTable extends Migration
+class CreateAttendancesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,11 +13,13 @@ class CreateCallsTable extends Migration
      */
     public function up()
     {
-        Schema::create('calls', function (Blueprint $table) {
+        Schema::create('attendances', function (Blueprint $table) {
             $table->increments('id');
-            $table->text('description')->nullable();
-            $table->string('status')->nullable();
+            $table->unsignedInteger('user');
+            $table->string('password')->nullable();
             $table->timestamps();
+
+            $table->foreign('user')->references('id')->on('users')->onDelete('CASCADE');
         });
     }
 
@@ -28,6 +30,6 @@ class CreateCallsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('calls');
+        Schema::dropIfExists('attendances');
     }
 }

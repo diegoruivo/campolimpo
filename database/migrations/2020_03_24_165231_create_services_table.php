@@ -19,9 +19,11 @@ class CreateServicesTable extends Migration
             $table->string('icon')->nullable();
             $table->string('slug')->nullable();
             $table->double('price', 10, 2)->nullable();
+            $table->double('cost', 10, 2)->nullable();
             $table->text('description')->nullable();
             $table->boolean('cover')->nullable();
             $table->boolean('position')->nullable();
+            $table->boolean('contract')->nullable();
 
             $table->timestamps();
         });

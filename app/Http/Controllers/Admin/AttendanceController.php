@@ -22,7 +22,11 @@ class AttendanceController extends Controller
      */
     public function index()
     {
-        //
+        $system = System::where('id', 1)->first();
+
+        return view('admin.attendances.index', [
+            'system' => $system
+        ]);
     }
 
     /**

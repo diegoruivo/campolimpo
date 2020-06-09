@@ -67,7 +67,7 @@
 
                                 <div class="row">
 
-                                    <div class="col-md-8 col-sm-8 col-12">
+                                    <div class="col-md-12 col-sm-12 col-12">
                                         <div class="info-box bg-gradient-primary">
                                             <span class="info-box-icon"><h1><big><i
                                                                 class="fa fa-headset"></i></big></h1></span>
@@ -108,26 +108,6 @@
                                     </div>
 
 
-                                    <div class="col-md-4 col-sm-4 col-12">
-                                        <div class="form-group">
-                                            <label>Status do Atendimento</label>
-
-                                            <div class="icheck-primary">
-                                                <input type="radio" name="status" @if($call->status == 0) checked
-                                                       @endif id="0" value="0">
-                                                <label for="0">Inicial
-                                                </label>
-                                            </div>
-
-                                            <div class="icheck-primary">
-                                                <input type="radio" name="status" @if($call->status == 1) checked
-                                                       @endif id="1" value="1">
-                                                <label for="1">Processando
-                                                </label>
-                                            </div>
-
-                                        </div>
-                                    </div>
 
                                     @if($call->status != 0)
                                         <div class="col-sm-12">
@@ -195,7 +175,7 @@
                         Última atualização: {{ date('d/m/Y H:i', strtotime($call->updated_at)) }}
 
                         <button type="submit" class="btn btn-lg bg-gradient-primary" style="float:right;"><i
-                                    class="fa fa-long-arrow-alt-right"></i> Atualizar Atendimento
+                                    class="fa fa-long-arrow-alt-right"></i> Encaminhar para Fila de Atendimento
                         </button>
                     </div>
                     <!-- /.card-footer-->

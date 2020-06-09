@@ -58,8 +58,6 @@
                     <div class="card-body">
                         <div class="row">
 
-
-
                             <div class="col-sm-4">
                                 <div class="form-group">
                                     <label>*Categoria de Portfólio</label>
@@ -151,10 +149,17 @@
                             </div>
 
 
-                            <div class="col-sm-3">
+                            <div class="col-sm-2">
                                 <div class="form-group">
                                     <label>Preço</label>
                                     <input type="text" class="form-control" name="price" id="price" value="{{ old('price') }}"/>
+                                </div>
+                            </div>
+
+                            <div class="col-sm-2">
+                                <div class="form-group">
+                                    <label>Custo</label>
+                                    <input type="text" class="form-control" name="cost" id="cost" value="{{ old('cost') }}"/>
                                 </div>
                             </div>
 
@@ -175,7 +180,7 @@
                                 </div>
                             </div>
 
-                            <div class="col-sm-3">
+                            <div class="col-sm-2">
                                 <div class="form-group">
                                     <label>Habilitar no Site</label>
                                     <div class="icheck-primary">
@@ -204,6 +209,79 @@
                                     </textarea>
                                 </div>
                             </div>
+
+
+
+
+
+
+
+                            <div class="col-sm-12">
+                                <div class="form-group">
+                                    <label>Escolha o(s) Documento(s) Obrigatório(s)</label>
+                                    <select class="select2" multiple="multiple" name="documents_categories[]"
+                                            data-placeholder="Escolha o(s) Documento(s) Obrigatório(s)"
+                                            style="width: 100%;">
+                                        @foreach($documents_categories as $document_category)
+                                            <option value="{{$document_category->id}}">{{ $document_category->title }}</option>
+                                        @endforeach
+                                    </select>
+                                    <p style="margin-top: 4px; margin-bottom:40px;">
+                                        <a href="{{ route('admin.document_category.index') }}"
+                                           class="text-orange icon-link" style="font-size: .8em;"
+                                           target="_blank">Editar
+                                            Documentos</a> |
+                                        <a href="{{ route('admin.document_category.create') }}"
+                                           class="text-orange icon-link" style="font-size: .8em;"
+                                           target="_blank">Cadastrar
+                                            Novo Documento</a>
+                                    </p>
+                                </div>
+                            </div>
+
+
+
+
+
+
+
+
+
+
+                            <div class="col-md-12">
+                                <div class="clearfix">
+                                    <label class="pull-left">Itens de Custo Variável</label>
+                                </div>
+
+                                <div class="form-group multiple-form-group input-group">
+
+                                    <div class="col-sm-9">
+                                        <div class="form-group">
+                                            <label>Título do Item</label>
+                                            <input type="text" name="title[]" maxlength="45" id="title" class="form-control">
+                                        </div>
+                                    </div>
+
+                                    <div class="col-sm-3">
+                                        <div class="form-group">
+                                            <label>Custo</label>
+                                            <input type="text" class="form-control" name="variable_cost[]" id="variable_cost" value="{{ old('variable_cost') }}"/>
+                                        </div>
+                                    </div>
+
+
+                                    <div class="col-sm-3">
+
+                                        <span class="input-group-btn">
+                                            <button type="button" class="btn btn-success btn-add">+ Adicionar</button>
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+
+
+
+
 
 
 
@@ -260,9 +338,66 @@
             var $j = jQuery.noConflict();
             $j(document).ready(function(){
                 $j("#price").maskMoney({prefix:'R$ ', allowNegative: true, thousands:'.', decimal:',', affixesStay: false});
+                $j("#cost").maskMoney({prefix:'R$ ', allowNegative: true, thousands:'.', decimal:',', affixesStay: false});
+                $j("#variable_cost").maskMoney({prefix:'R$ ', allowNegative: true, thousands:'.', decimal:',', affixesStay: false});
             });
 
         })
+    </script>
+
+
+
+
+    <script type="text/javascript">
+        (function ($) {
+            $(function () {
+
+                var addFormGroup = function (event) {
+                    event.preventDefault();
+
+                    var $formGroup = $(this).closest('.form-group');
+                    var $multipleFormGroup = $formGroup.closest('.multiple-form-group');
+                    var $formGroupClone = $formGroup.clone();
+
+                    $(this)
+                        .toggleClass('btn-success btn-add btn-danger btn-remove')
+                        .html('–');
+
+                    $formGroupClone.find('input').val('');
+                    $formGroupClone.find('.concept_sistema').text('Sistema');
+                    $formGroupClone.find('.concept').text('Tipo do Item');
+                    $formGroupClone.insertAfter($formGroup);
+
+                    var $lastFormGroupLast = $multipleFormGroup.find('.form-group:last');
+                    if ($multipleFormGroup.data('max') <= countFormGroup($multipleFormGroup)) {
+                        $lastFormGroupLast.find('.btn-add').attr('disabled', true);
+                    }
+                };
+
+                var removeFormGroup = function (event) {
+                    event.preventDefault();
+
+                    var $formGroup = $(this).closest('.form-group');
+                    var $multipleFormGroup = $formGroup.closest('.multiple-form-group');
+
+                    var $lastFormGroupLast = $multipleFormGroup.find('.form-group:last');
+                    if ($multipleFormGroup.data('max') >= countFormGroup($multipleFormGroup)) {
+                        $lastFormGroupLast.find('.btn-add').attr('disabled', false);
+                    }
+
+                    $formGroup.remove();
+                };
+
+                var countFormGroup = function ($form) {
+                    return $form.find('.form-group').length;
+                };
+
+                $(document).on('click', '.btn-add', addFormGroup);
+                $(document).on('click', '.btn-remove', removeFormGroup);
+
+            });
+        })(jQuery);
+
     </script>
 
 @endsection

@@ -184,6 +184,7 @@ class CallController extends Controller
         $updateCall = Call::where('id', $id)->first();
         $updateCall->fill($request->all());
         $updateCall->provider = Auth::user()->id;
+        $updateCall->status = 1;
         $updateCall->save();
 
         // Relacionamento Serviços com Atendimento
@@ -197,9 +198,9 @@ class CallController extends Controller
             $updateCall->services()->sync($services_ids);
         }
 
-        return redirect()->route('admin.calls.edit', [
+        return redirect()->route('admin.calls.index', [
             'call' => $updateCall->id
-        ])->with(['color' => 'green', 'message' => 'Atendimento atualizado com sucesso!']);
+        ])->with(['color' => 'green', 'message' => 'Atendimento encaminhado com sucesso!']);
     }
 
 

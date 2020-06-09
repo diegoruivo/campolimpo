@@ -3,7 +3,10 @@
 namespace CampoLimpo\Http\Controllers\Admin;
 
 use CampoLimpo\CallSector;
+use CampoLimpo\Document;
+use CampoLimpo\DocumentCategory;
 use CampoLimpo\Service;
+use CampoLimpo\ServiceDocument;
 use CampoLimpo\ServicesCallSector;
 use CampoLimpo\ServiceCategory;
 use CampoLimpo\Http\Requests\Admin\Service as ServiceRequest;
@@ -43,6 +46,7 @@ class ServiceController extends Controller
         $system = System::where('id', 1)->first();
         $sectors = CallSector::all();
         $terms = Term::all();
+        $documents_categories = DocumentCategory::all();
 
         if (!empty($request->service_category)) {
             $service_category = ServiceCategory::where('id', $request->service_category)->first();
@@ -56,6 +60,7 @@ class ServiceController extends Controller
             'services_categories' => $services_categories,
             'sectors' => $sectors,
             'terms' => $terms,
+            'documents_categories' => $documents_categories,
             'system' => $system,
             'selected' => (!empty($service_category) ? $service_category : null),
             'selected_term' => (!empty($term) ? $term: null)
@@ -82,6 +87,17 @@ class ServiceController extends Controller
                 $sectors_ids[$sectors_id] = $attributes;
             }
             $createService->sectors()->sync($sectors_ids);
+        }
+
+        // Relacionamento Serviços com Documentos
+        if (!empty($request->input('documents_categories'))) {
+            $idsDocument = $request->input('documents_categories');
+            $document_ids = [];
+            foreach ($idsDocument as $documents_id) {
+                $attributesDocument = [];
+                $documents_ids[$documents_id] = $attributesDocument;
+            }
+            $createService->documents_categories()->sync($documents_ids);
         }
 
         return redirect()->route('admin.services.edit', [
@@ -112,15 +128,19 @@ class ServiceController extends Controller
         $services_categories = ServiceCategory::orderBy('title')->get();
         $sectors = CallSector::all();
         $sector_services = ServicesCallSector::where('service', $service->id)->get();
+        $service_documents = ServiceDocument::where('service', $service->id)->get();
         $system = System::where('id', 1)->first();
         $terms = Term::all();
+        $documents_categories = DocumentCategory::all();
 
         return view('admin.services.edit', [
             'service' => $service,
             'services_categories' => $services_categories,
             'sectors' => $sectors,
             'terms' => $terms,
+            'documents_categories' => $documents_categories,
             'sector_services' => $sector_services,
+            'service_documents' => $service_documents,
             'system' => $system,
             'selected' => (!empty($service) ? $service : null),
             'selected_term' => (!empty($term) ? $term : null)
@@ -149,6 +169,17 @@ class ServiceController extends Controller
                 $sectors_ids[$sectors_id] = $attributes;
             }
             $updateService->sectors()->sync($sectors_ids);
+        }
+
+        // Relacionamento Serviços com Documentos
+        if (!empty($request->input('documents_categories'))) {
+            $idsDocument = $request->input('documents_categories');
+            $document_ids = [];
+            foreach ($idsDocument as $documents_id) {
+                $attributesDocument = [];
+                $documents_ids[$documents_id] = $attributesDocument;
+            }
+            $updateService->documents_categories()->sync($documents_ids);
         }
 
             return redirect()->route('admin.services.edit', [

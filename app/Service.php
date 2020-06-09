@@ -10,12 +10,14 @@ class Service extends Model
         'title',
         'slug',
         'price',
+        'cost',
         'description',
         'service',
         'sector',
         'icon',
         'term',
-        'cover'
+        'cover',
+        'contract'
     ];
 
     public const RELATIONSHIP_SERVICE_CALL = 'call_services';
@@ -39,6 +41,12 @@ class Service extends Model
     {
         return $this->belongsToMany(CallSector::class, 'services_call_sectors', 'service', 'sector');
     }
+
+    public function documents_categories()
+    {
+        return $this->belongsToMany(DocumentCategory::class, 'service_documents', 'service', 'document_category');
+    }
+
 
     public function contracts()
     {
@@ -75,6 +83,27 @@ class Service extends Model
     public function getPriceAttribute($value)
     {
         return number_format($value, 2, ',', '.');
+    }
+
+
+
+    public function setCostAttribute($value)
+    {
+        if (empty($value)) {
+            $this->attributes['cost'] = null;
+        } else {
+            $this->attributes['cost'] = floatval($this->convertStringToDouble($value));
+        }
+    }
+
+    public function getCostAttribute($value)
+    {
+        return number_format($value, 2, ',', '.');
+    }
+
+    public function setContractAttribute($value)
+    {
+        $this->attributes['contract'] = ($value === true || $value === 'on' ? 1 : 0);
     }
 
 

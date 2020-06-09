@@ -327,6 +327,13 @@
                                 </a>
                             </li>
 
+                            <li class="nav-item">
+                                <a href="{{ route('admin.document_category.index') }}" class="nav-link {{ isActive('admin.document_category') }}">
+                                    <i class="fa fa-caret-right nav-icon"></i>
+                                    <p>Categorias de Documentos</p>
+                                </a>
+                            </li>
+
                         </ul>
                     </li>
 

@@ -151,12 +151,19 @@
                             </div>
 
 
-                            <div class="col-sm-3">
+                            <div class="col-sm-2">
                                 <div class="form-group">
                                     <label>Preço</label>
                                     <input type="text" id="price" name="price" class="form-control"
                                            placeholder="Preço"
                                            value="{{ old('price') ?? $service->price }}"/>
+                                </div>
+                            </div>
+
+                            <div class="col-sm-2">
+                                <div class="form-group">
+                                    <label>Custo</label>
+                                    <input type="text" class="form-control" name="cost" id="cost" value="{{ old('cost') ?? $service->cost }}"/>
                                 </div>
                             </div>
 
@@ -179,7 +186,7 @@
 
 
 
-                            <div class="col-sm-3">
+                            <div class="col-sm-2">
                                 <div class="form-group">
                                     <label>Habilitar no Site</label>
                                     <div class="icheck-primary">
@@ -208,6 +215,39 @@
                                     </textarea>
                                 </div>
                             </div>
+
+
+
+
+
+
+                            <div class="col-sm-12">
+                                <div class="form-group">
+                                    <label>Escolha o(s) Documento(s) Obrigatório(s)</label>
+                                    <select class="select2" multiple="multiple" name="documents_categories[]"
+                                            data-placeholder="Escolha o(s) Documento(s) Obrigatório(s)"
+                                            style="width: 100%;">
+                                        @foreach($documents_categories as $document_category)
+                                            <option value="{{$document_category->id}}"
+                                            @foreach($service_documents as $service_document)
+                                                {{ ($document_category->id === $service_document->document_category ? 'selected' : '') }}
+                                                    @endforeach
+                                            >{{ $document_category->title }}</option>
+                                        @endforeach
+                                    </select>
+                                    <p style="margin-top: 4px; margin-bottom:40px;">
+                                        <a href="{{ route('admin.document_category.index') }}"
+                                           class="text-orange icon-link" style="font-size: .8em;"
+                                           target="_blank">Editar
+                                            Documentos</a> |
+                                        <a href="{{ route('admin.document_category.create') }}"
+                                           class="text-orange icon-link" style="font-size: .8em;"
+                                           target="_blank">Cadastrar
+                                            Novo Documento</a>
+                                    </p>
+                                </div>
+                            </div>
+
 
 
                             <!-- /.row -->
@@ -261,6 +301,7 @@
             var $j = jQuery.noConflict();
             $j(document).ready(function(){
                 $j("#price").maskMoney({prefix:'R$ ', allowNegative: true, thousands:'.', decimal:',', affixesStay: false});
+                $j("#cost").maskMoney({prefix:'R$ ', allowNegative: true, thousands:'.', decimal:',', affixesStay: false});
             });
 
         })

@@ -11,4 +11,5 @@ class DocumentCategory extends Model
     ];
 
 
+
 }
