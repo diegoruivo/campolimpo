@@ -243,11 +243,6 @@
 
 
 
-
-
-
-
-
                             <div class="col-md-12">
                                 <div class="clearfix">
                                     <label class="pull-left">Itens de Custo Variável</label>
