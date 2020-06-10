@@ -243,36 +243,36 @@
 
 
 
-                            <div class="col-md-12">
-                                <div class="clearfix">
-                                    <label class="pull-left">Itens de Custo Variável</label>
-                                </div>
+{{--                            <div class="col-md-12">--}}
+{{--                                <div class="clearfix">--}}
+{{--                                    <label class="pull-left">Itens de Custo Variável</label>--}}
+{{--                                </div>--}}
 
-                                <div class="form-group multiple-form-group input-group">
+{{--                                <div class="form-group multiple-form-group input-group">--}}
 
-                                    <div class="col-sm-9">
-                                        <div class="form-group">
-                                            <label>Título do Item</label>
-                                            <input type="text" name="title[]" maxlength="45" id="title" class="form-control">
-                                        </div>
-                                    </div>
+{{--                                    <div class="col-sm-9">--}}
+{{--                                        <div class="form-group">--}}
+{{--                                            <label>Título do Item</label>--}}
+{{--                                            <input type="text" name="title[]" maxlength="45" id="title" class="form-control">--}}
+{{--                                        </div>--}}
+{{--                                    </div>--}}
 
-                                    <div class="col-sm-3">
-                                        <div class="form-group">
-                                            <label>Custo</label>
-                                            <input type="text" class="form-control" name="variable_cost[]" id="variable_cost" value="{{ old('variable_cost') }}"/>
-                                        </div>
-                                    </div>
+{{--                                    <div class="col-sm-3">--}}
+{{--                                        <div class="form-group">--}}
+{{--                                            <label>Custo</label>--}}
+{{--                                            <input type="text" class="form-control" name="variable_cost[]" id="variable_cost" value="{{ old('variable_cost') }}"/>--}}
+{{--                                        </div>--}}
+{{--                                    </div>--}}
 
 
-                                    <div class="col-sm-3">
+{{--                                    <div class="col-sm-3">--}}
 
-                                        <span class="input-group-btn">
-                                            <button type="button" class="btn btn-success btn-add">+ Adicionar</button>
-                                        </span>
-                                    </div>
-                                </div>
-                            </div>
+{{--                                        <span class="input-group-btn">--}}
+{{--                                            <button type="button" class="btn btn-success btn-add">+ Adicionar</button>--}}
+{{--                                        </span>--}}
+{{--                                    </div>--}}
+{{--                                </div>--}}
+{{--                            </div>--}}
 
 
 

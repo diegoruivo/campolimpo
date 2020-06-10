@@ -2,6 +2,8 @@
 
 namespace CampoLimpo\Http\Controllers\Admin;
 
+use CampoLimpo\Attendance;
+use CampoLimpo\AttendanceService;
 use CampoLimpo\Buttons;
 use CampoLimpo\Call;
 use CampoLimpo\CallSector;
@@ -66,16 +68,26 @@ class CallController extends Controller
      */
     public function create(Request $request)
     {
-        $users = User::orderBy('name')->get();
+        $attendance = Attendance::where('id', $request->attendance)->first();
+        $user = User::where('id', $attendance->user)->first();
         $system = System::where('id', 1)->first();
+        $services = Service::orderBy('title')->get();
+        $attendance_services = AttendanceService::where('attendance', $attendance->id)->get();
+        $ncalls = Call::where('user', $user->id)->count();
+        $ncontracts = Contract::where('user', $user->id)->count();
 
         if (!empty($request->user)) {
             $user = User::where('id', $request->user)->first();
         }
 
         return view('admin.calls.create', [
-            'users' => $users,
+            'attendance' => $attendance,
             'system' => $system,
+            'user' => $user,
+            'services' => $services,
+            'attendance_services' => $attendance_services,
+            'ncalls' => $ncalls,
+            'ncontracts' => $ncontracts,
             'selected_user' => (!empty($user) ? $user : null)
         ]);
 
@@ -90,37 +102,10 @@ class CallController extends Controller
     public function store(Request $request)
     {
 
-        if ((empty($request->user)) and empty($request->name)) {
-            return redirect()->route('admin.calls.create', [
-                'message' => 'Ooops'
-            ])->with(['color' => 'red', 'message' => 'Escolha ou cadastre um cliente!']);
-        }
 
-        if ((empty($request->user)) and !empty($request->name)) {
-            try {
-                $userCreate = User::create($request->all());
-                $user = $userCreate->id;
-                $userCreate->client = 1;
-                $userCreate->save();
-            } catch (QueryException $exception)
-            {
-                return redirect()->route('admin.calls.create', [
-                    'message' => 'Ooops'
-                ])->with(['color' => 'red', 'message' => 'O e-mail já está cadastrado!']);
-            }
-            if (!$userCreate->save()) {
-                return redirect()->back()->withInput()->withErrors();
-            }
-        }
-
-
-        if ((!empty($request->user)) and empty($request->name)) {
-            $user = $request->user;
-        }
 
         $call = new Call;
         $call->user = $user;
-        $call->password = $request->password;
         $call->status = 0;
         $call->provider = Auth::user()->id;
 

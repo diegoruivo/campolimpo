@@ -3,12 +3,14 @@
 namespace CampoLimpo\Http\Controllers\Admin;
 
 use CampoLimpo\Attendance;
+use CampoLimpo\AttendanceService;
 use CampoLimpo\Call;
 use CampoLimpo\CallService;
 use CampoLimpo\Contract;
 use CampoLimpo\Service;
 use CampoLimpo\System;
 use CampoLimpo\User;
+use Illuminate\Database\QueryException;
 use Illuminate\Http\Request;
 use CampoLimpo\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
@@ -22,10 +24,12 @@ class AttendanceController extends Controller
      */
     public function index()
     {
+        $attendances = Attendance::where('status', 1)->get();
         $system = System::where('id', 1)->first();
 
         return view('admin.attendances.index', [
-            'system' => $system
+            'system' => $system,
+            'attendances' => $attendances
         ]);
     }
 
@@ -34,9 +38,20 @@ class AttendanceController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create(Request $request)
     {
-        //
+        $users = User::orderBy('name')->get();
+        $system = System::where('id', 1)->first();
+
+        if (!empty($request->user)) {
+            $user = User::where('id', $request->user)->first();
+        }
+
+        return view('admin.attendances.create', [
+            'users' => $users,
+            'system' => $system,
+            'selected_user' => (!empty($user) ? $user : null)
+        ]);
     }
 
     /**
@@ -47,7 +62,45 @@ class AttendanceController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        if ((empty($request->user)) and empty($request->name)) {
+            return redirect()->route('admin.attendances.create', [
+                'message' => 'Ooops'
+            ])->with(['color' => 'red', 'message' => 'Escolha ou cadastre um cliente!']);
+        }
+
+        if ((empty($request->user)) and !empty($request->name)) {
+            try {
+                $userCreate = User::create($request->all());
+                $user = $userCreate->id;
+                $userCreate->client = 1;
+                $userCreate->save();
+            } catch (QueryException $exception)
+            {
+                return redirect()->route('admin.attendances.create', [
+                    'message' => 'Ooops'
+                ])->with(['color' => 'red', 'message' => 'O e-mail já está cadastrado!']);
+            }
+            if (!$userCreate->save()) {
+                return redirect()->back()->withInput()->withErrors();
+            }
+        }
+
+
+        if ((!empty($request->user)) and empty($request->name)) {
+            $user = $request->user;
+        }
+
+        $attendance = new Attendance;
+        $attendance->user = $user;
+        $attendance->password = $request->password;
+        $attendance->status = 0;
+        $attendance->provider = Auth::user()->id;
+
+        $attendance->save();
+
+        return redirect()->route('admin.attendances.edit', [
+            'attendance' => $attendance->id
+        ])->with(['color' => 'green', 'message' => 'Atendimento iniciado com sucesso!']);
     }
 
     /**
@@ -69,20 +122,20 @@ class AttendanceController extends Controller
      */
     public function edit(Request $request, $id)
     {
-        $call = Call::where('id', $request->attendance)->first();
-        $user = User::where('id', $call->user)->first();
+        $attendance = Attendance::where('id', $request->attendance)->first();
+        $user = User::where('id', $attendance->user)->first();
         $system = System::where('id', 1)->first();
         $services = Service::orderBy('title')->get();
-        $call_services = CallService::where('call', $call->id)->get();
+        $attendance_services = AttendanceService::where('attendance', $attendance->id)->get();
         $ncalls = Call::where('user', $user->id)->count();
         $ncontracts = Contract::where('user', $user->id)->count();
 
         return view('admin.attendances.edit', [
-            'call' => $call,
+            'attendance' => $attendance,
             'system' => $system,
             'user' => $user,
             'services' => $services,
-            'call_services' => $call_services,
+            'attendance_services' => $attendance_services,
             'ncalls' => $ncalls,
             'ncontracts' => $ncontracts
         ]);
@@ -98,10 +151,11 @@ class AttendanceController extends Controller
     public function update(Request $request)
     {
 
-        $updateCall = Call::where('id', $request->attendance)->first();
-        $updateCall->fill($request->all());
-        $updateCall->provider = Auth::user()->id;
-        $updateCall->save();
+        $updateAttendance = Attendance::where('id', $request->attendance)->first();
+        $updateAttendance->fill($request->all());
+        $updateAttendance->provider = Auth::user()->id;
+        $updateAttendance->status = 1;
+        $updateAttendance->save();
 
         // Relacionamento Serviços com Atendimento
         if (!empty($request->input('services'))) {
@@ -111,12 +165,12 @@ class AttendanceController extends Controller
                 $attributes = [];
                 $services_ids[$service_id] = $attributes;
             }
-            $updateCall->services()->sync($services_ids);
+            $updateAttendance->services()->sync($services_ids);
         }
 
-            return redirect()->route('admin.contracts.create', [
-                'call' => $updateCall->id
-            ])->with(['color' => 'green', 'message' => 'Atendimento do Setor atualizado com sucesso! Agora especifique o contrato.']);
+            return redirect()->route('admin.attendances.edit', [
+                'attendance' => $updateAttendance->id
+            ])->with(['color' => 'green', 'message' => 'Atendimento encaminhado para a Fila de Atendimento!']);
 
 
     }

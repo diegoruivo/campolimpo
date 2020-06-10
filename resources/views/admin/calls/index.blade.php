@@ -320,7 +320,7 @@
                     <div class="col-md-4">
 
 
-                        <a href="{{ route('admin.calls.create') }}">
+                        <a href="{{ route('admin.attendances.create') }}">
                             <div class="info-box mb-3">
                                     <span class="info-box-icon bg-success elevation-1"><i
                                                 class="fas fa-headset"></i></span>

@@ -11,14 +11,14 @@
                     <div class="col-sm-6">
                         <h1>
                             <small><i class="fa fa-headset"></i></small>
-                            Abrir Atendimento
+                            Atendimento Fila
                         </h1>
                     </div>
                     <div class="col-sm-6">
                         <ol class="breadcrumb float-sm-right">
                             <li class="breadcrumb-item"><a href="{{ route('admin.home') }}">Home</a></li>
-                            <li class="breadcrumb-item"><a href="{{ route('admin.calls.index') }}">Atendimentos</a></li>
-                            <li class="breadcrumb-item active">Abrir Atendimento</li>
+                            <li class="breadcrumb-item"><a href="{{ route('admin.attendances.index') }}">Atendimentos</a></li>
+                            <li class="breadcrumb-item active">Atendimento Fila</li>
                         </ol>
                     </div>
                 </div>
@@ -42,93 +42,108 @@
                 @endmessage
             @endif
 
-            <form role="form" action="{{ route('admin.calls.store') }}" method="post">
+            <form role="form" action="{{ route('admin.calls.store', ['attendance' => $attendance->id]) }}" method="post">
 
             @csrf
-            <?php $password = sprintf('%04X', mt_rand(0, 0xFFFF)); ?>
-            <input type="hidden" name="password" value="{{ $password }}">
+            @method('PUT')
 
             <!-- Default box -->
                 <div class="card">
-                    <div class="card-header">
-                        <h3 class="card-title">Escolha um cliente cadastrado ou cadastre um novo cliente</h3>
 
-                        <div class="card-tools">
-                            <button type="button" class="btn btn-tool" data-card-widget="collapse" data-toggle="tooltip"
-                                    title="Collapse">
-                                <i class="fas fa-minus"></i></button>
-                            <button type="button" class="btn btn-tool" data-card-widget="remove" data-toggle="tooltip"
-                                    title="Remove">
-                                <i class="fas fa-times"></i></button>
-                        </div>
+                    <div class="card-header">
+                        <h3 class="card-title">Detalhes do Atendimento</h3>
                     </div>
 
                     <div class="card-body">
                         <div class="row">
 
 
-                            <div class="col-sm-12">
-                                <div class="form-group">
-                                    <label>Escolha um Cliente</label>
-                                    <select name="user" class="custom-select">
-                                        <option value=""  {{ (old('user') == '' ? 'selected' : '') }}>Selecione o Cliente</option>
-                                        @foreach($users as $user)
-                                            @if (!empty($selected_user))
-                                                <option value="{{ $user->id }}" {{ ($user->id === $selected_user->id ? 'selected' : '') }}>{{ $user->name }} ({{ $user->document }})</option>
-                                            @else
-                                                <option value="{{ $user->id }}">{{ $user->name }} ({{ $user->document }})</option>
-                                            @endif
-                                        @endforeach
-                                    </select>
+                            <div class="col-md-3">
+                                @include('admin.includes.profile')
+                            </div>
+
+
+                            <div class="col-sm-9">
+
+                                <div class="row">
+
+                                    <div class="col-md-12 col-sm-12 col-12">
+                                        <div class="info-box bg-gradient-primary">
+                                            <span class="info-box-icon"><h1><big><i
+                                                                class="fa fa-headset"></i></big></h1></span>
+
+                                            <div class="info-box-content">
+                                                <span class="info-box-text">Atendimento n° <b>{{ $attendance->id }}</b></span>
+                                                <span  class="progress-description" style="float:right">{{ $attendance->created_at }}
+                                                    <br> Status:
+                                                    @if($attendance->status == 0)
+                                                        <span class="badge badge-warning">Inicial</span>
+                                                    @endif
+
+                                                    @if($attendance->status == 1)
+                                                        <span class="badge badge-warning">Fila</span>
+                                                    @endif
+
+                                                    @if($attendance->status == 2)
+                                                        <span class="badge badge-success">Contratado</span>
+                                                    @endif
+
+                                                    @if($attendance->status == 3)
+                                                        <span class="badge badge-danger">Cancelado</span>
+                                                    @endif
+                                                </span>
+
+                                                <span class="info-box-number"><small>Senha:</small> <h3>{{ $attendance->password }}</h3></span>
+                                                <div class="progress">
+                                                    <div class="progress-bar" style="width: 10%"></div>
+                                                </div>
+                                                <span class="time" style="float:right"><i class="far fa-clock"></i>
+                                                    <span id="hora">00h</span><span id="minuto">00m</span><span
+                                                            id="segundo">00s</span>
+                                                </span>
+                                            </div>
+                                            <!-- /.info-box-content -->
+                                        </div>
+                                        <!-- /.info-box -->
+                                    </div>
+
+
+
+                                    <div class="col-sm-12">
+                                        <div class="form-group">
+                                            <label>Escolha o(s) Serviço(s)</label>
+                                            <select class="select2" multiple="multiple" name="services[]"
+                                                    data-placeholder="Escolha o(s) Serviço(s)"
+                                                    style="width: 100%;">
+                                                @foreach($services as $service)
+                                                    <option value="{{$service->id}}"
+                                                    @foreach($attendance_services as  $attendance_service)
+                                                        {{ ($service->id === $attendance_service->service ? 'selected' : '') }}
+                                                            @endforeach
+                                                    >{{ $service->title }}</option>
+                                                @endforeach
+                                            </select>
+                                        </div>
+                                    </div>
+
+
+                                    <div class="col-sm-12">
+                                        <!-- textarea -->
+                                        <div class="form-group">
+                                            <label>Descrição</label>
+                                            <textarea class="form-control" name="description" cols="30"
+                                                      rows="4">{{ old('description') ?? $attendance->description }}</textarea>
+                                        </div>
+                                    </div>
+
 
                                 </div>
+
+
                             </div>
 
 
-                            <div class="col-sm-12 mb-3 mt-3">
-                                <h3 class="card-title">Cadastre um novo Cliente</h3>
-                            </div>
-
-                            <div class="col-sm-12">
-                                <div class="form-group">
-                                    <label>Nome</label>
-                                    <input type="text" name="name" class="form-control"
-                                           placeholder="Nome completo"
-                                           value="{{ old('name') }}"/>
-                                </div>
-                            </div>
-
-                            <div class="col-sm-4">
-                                <div class="form-group">
-                                    <label>E-mail</label>
-                                    <input type="email" name="email" class="form-control"
-                                           placeholder="Endereço de e-mail"
-                                           value="{{ old('email') }}"/>
-                                </div>
-                            </div>
-
-                            <div class="col-sm-4">
-                                <div class="form-group">
-                                    <label>Telefone Fixo</label>
-                                    <input type="tel" name="telephone" class="form-control" class="telephone"
-                                           data-inputmask="'mask': ['(99) 9999-9999']" data-mask
-                                           placeholder="Telefone Fixo"
-                                           value="{{ old('telephone') }}"/>
-                                </div>
-                            </div>
-
-                            <div class="col-sm-4">
-                                <div class="form-group">
-                                    <label>Telefone Móvel</label>
-                                    <input type="tel" name="cell" class="form-control" class="cell"
-                                           data-inputmask="'mask': ['(99) 99999-9999']" data-mask
-                                           placeholder="Telefone Móvel"
-                                           value="{{ old('cell') }}"/>
-                                </div>
-                            </div>
-
-
-                        <!-- /.row -->
+                            <!-- /.row -->
                         </div>
                         <!-- /.card-body -->
 
@@ -138,7 +153,12 @@
 
                     <!-- /.card-body -->
                     <div class="card-footer">
-                        <button type="submit" class="btn btn-lg bg-gradient-primary" style="float:right;"><i class="fa fa-long-arrow-alt-right"></i> Cadastrar Atendimento</button>
+
+                        Última atualização: {{ date('d/m/Y H:i', strtotime($attendance->updated_at)) }}
+
+                        <button type="submit" class="btn btn-lg bg-gradient-primary" style="float:right;"><i
+                                    class="fa fa-long-arrow-alt-right"></i> Criar novo Processo
+                        </button>
                     </div>
                     <!-- /.card-footer-->
                 </div>
@@ -153,8 +173,8 @@
 
 @endsection
 
-
 @section('js')
+
     <!-- Page script -->
     <script>
         $(function () {
@@ -169,10 +189,107 @@
             //Datemask dd/mm/yyyy
             $('#datemask').inputmask('dd/mm/yyyy', {'placeholder': 'dd/mm/yyyy'})
             //Datemask2 mm/dd/yyyy
-            $('#cpf').inputmask('999.999.999-99', {'placeholder': '999.999.999-99'})
+            $('#datemask2').inputmask('mm/dd/yyyy', {'placeholder': 'mm/dd/yyyy'})
             //Money Euro
             $('[data-mask]').inputmask()
 
+            //Date range picker
+            $('#reservation').daterangepicker()
+            //Date range picker with time picker
+            $('#reservationtime').daterangepicker({
+                timePicker: true,
+                timePickerIncrement: 30,
+                locale: {
+                    format: 'MM/DD/YYYY hh:mm A'
+                }
+            })
+            //Date range as a button
+            $('#daterange-btn').daterangepicker(
+                {
+                    ranges: {
+                        'Today': [moment(), moment()],
+                        'Yesterday': [moment().subtract(1, 'days'), moment().subtract(1, 'days')],
+                        'Last 7 Days': [moment().subtract(6, 'days'), moment()],
+                        'Last 30 Days': [moment().subtract(29, 'days'), moment()],
+                        'This Month': [moment().startOf('month'), moment().endOf('month')],
+                        'Last Month': [moment().subtract(1, 'month').startOf('month'), moment().subtract(1, 'month').endOf('month')]
+                    },
+                    startDate: moment().subtract(29, 'days'),
+                    endDate: moment()
+                },
+                function (start, end) {
+                    $('#reportrange span').html(start.format('MMMM D, YYYY') + ' - ' + end.format('MMMM D, YYYY'))
+                }
+            )
+
+            //Timepicker
+            $('#timepicker').datetimepicker({
+                format: 'LT'
+            })
+
+            //Bootstrap Duallistbox
+            $('.duallistbox').bootstrapDualListbox()
+
+            //Colorpicker
+            $('.my-colorpicker1').colorpicker()
+            //color picker with addon
+            $('.my-colorpicker2').colorpicker()
+
+            $('.my-colorpicker2').on('colorpickerChange', function (event) {
+                $('.my-colorpicker2 .fa-square').css('color', event.color.toString());
+            });
+
+            $("input[data-bootstrap-switch]").each(function () {
+                $(this).bootstrapSwitch('state', $(this).prop('checked'));
+            });
+
         })
+
+
+        // Cronometro
+        var intervalo;
+
+        function tempo(op) {
+            if (op == 1) {
+                document.getElementById('parar').style.display = "block";
+                document.getElementById('comeca').style.display = "none";
+            }
+            var s = 1;
+            var m = 0;
+            var h = 0;
+            intervalo = window.setInterval(function () {
+                if (s == 60) {
+                    m++;
+                    s = 0;
+                }
+                if (m == 60) {
+                    h++;
+                    s = 0;
+                    m = 0;
+                }
+                if (h < 10) document.getElementById("hora").innerHTML = "0" + h + "h"; else document.getElementById("hora").innerHTML = h + "h";
+                if (s < 10) document.getElementById("segundo").innerHTML = "0" + s + "s"; else document.getElementById("segundo").innerHTML = s + "s";
+                if (m < 10) document.getElementById("minuto").innerHTML = "0" + m + "m"; else document.getElementById("minuto").innerHTML = m + "m";
+                s++;
+            }, 1000);
+        }
+
+        function parar() {
+            window.clearInterval(intervalo);
+            document.getElementById('parar').style.display = "none";
+            document.getElementById('comeca').style.display = "block";
+        }
+
+        function volta() {
+            document.getElementById('voltas').innerHTML += document.getElementById('hora').firstChild.data + "" + document.getElementById('minuto').firstChild.data + "" + document.getElementById('segundo').firstChild.data + "<br>";
+        }
+
+        function limpa() {
+            document.getElementById('voltas').innerHTML = "";
+        }
+
+        window.onload = tempo;
+
+
     </script>
 @endsection

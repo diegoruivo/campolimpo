@@ -37,9 +37,11 @@ Route::group(['prefix' => 'admin', 'namespace' => 'Admin', 'as' => 'admin.'], fu
         Route::get('home', 'AuthController@home')->name('home');
 
         /** Atendimento */
+        Route::resource('attendances', 'AttendanceController');
+
+
         Route::get('calls/attendance', 'CallController@attendance')->name('calls.attendance');
         Route::resource('calls', 'CallController');
-        Route::resource('attendances', 'AttendanceController');
 
 
         /** Setores de Atendimento */
@@ -103,7 +105,6 @@ Route::group(['prefix' => 'admin', 'namespace' => 'Admin', 'as' => 'admin.'], fu
         Route::resource('banks', 'BankController');
         Route::resource('buttons', 'ButtonsController');
         Route::resource('terms', 'TermController');
-
 
     });
 

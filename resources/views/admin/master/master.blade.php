@@ -144,7 +144,7 @@
 
 
                     <li class="nav-item">
-                        <a href="{{ route('admin.calls.index') }}" class="nav-link">
+                        <a href="{{ route('admin.attendances.index') }}" class="nav-link">
                             <i class="nav-icon fas fa-user-tie"></i>
                             <p>Atendimento</p>
                         </a>

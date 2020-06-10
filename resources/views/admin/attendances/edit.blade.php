@@ -11,14 +11,14 @@
                     <div class="col-sm-6">
                         <h1>
                             <small><i class="fa fa-headset"></i></small>
-                            Atendimento do Setor
+                            Atendimento Inicial
                         </h1>
                     </div>
                     <div class="col-sm-6">
                         <ol class="breadcrumb float-sm-right">
                             <li class="breadcrumb-item"><a href="{{ route('admin.home') }}">Home</a></li>
-                            <li class="breadcrumb-item"><a href="{{ route('admin.calls.index') }}">Atendimentos</a></li>
-                            <li class="breadcrumb-item active">Atendimento do Setor</li>
+                            <li class="breadcrumb-item"><a href="{{ route('admin.attendances.index') }}">Atendimentos</a></li>
+                            <li class="breadcrumb-item active">Atendimento</li>
                         </ol>
                     </div>
                 </div>
@@ -42,7 +42,7 @@
                 @endmessage
             @endif
 
-            <form role="form" action="{{ route('admin.attendances.update', ['call' => $call->id]) }}" method="post">
+            <form role="form" action="{{ route('admin.attendances.update', ['attendance' => $attendance->id]) }}" method="post">
 
             @csrf
             @method('PUT')
@@ -67,35 +67,35 @@
 
                                 <div class="row">
 
-                                    <div class="col-md-12">
+                                    <div class="col-md-12 col-sm-12 col-12">
                                         <div class="info-box bg-gradient-primary">
                                             <span class="info-box-icon"><h1><big><i
                                                                 class="fa fa-headset"></i></big></h1></span>
 
                                             <div class="info-box-content">
-                                                <span class="info-box-text">Atendimento n° <b>{{ $call->id }}</b></span>
-                                                <span  class="progress-description" style="float:right">{{ $call->created_at }}
+                                                <span class="info-box-text">Atendimento n° <b>{{ $attendance->id }}</b></span>
+                                                <span  class="progress-description" style="float:right">{{ $attendance->created_at }}
                                                     <br> Status:
-                                                    @if($call->status == 0)
+                                                    @if($attendance->status == 0)
                                                         <span class="badge badge-warning">Inicial</span>
                                                     @endif
 
-                                                    @if($call->status == 1)
-                                                        <span class="badge badge-warning">Processando</span>
+                                                    @if($attendance->status == 1)
+                                                        <span class="badge badge-warning">Fila</span>
                                                     @endif
 
-                                                    @if($call->status == 2)
+                                                    @if($attendance->status == 2)
                                                         <span class="badge badge-success">Contratado</span>
                                                     @endif
 
-                                                    @if($call->status == 3)
+                                                    @if($attendance->status == 3)
                                                         <span class="badge badge-danger">Cancelado</span>
                                                     @endif
                                                 </span>
 
-                                                <span class="info-box-number"><small>Senha:</small> <h3>{{ $call->password }}</h3></span>
+                                                <span class="info-box-number"><small>Senha:</small> <h3>{{ $attendance->password }}</h3></span>
                                                 <div class="progress">
-                                                    <div class="progress-bar" style="width: 40%"></div>
+                                                    <div class="progress-bar" style="width: 10%"></div>
                                                 </div>
                                                 <span class="time" style="float:right"><i class="far fa-clock"></i>
                                                     <span id="hora">00h</span><span id="minuto">00m</span><span
@@ -108,30 +108,17 @@
                                     </div>
 
 
-                                        <div class="col-sm-12">
-                                        <h5>Serviço(s) Solicitado(s)</h5>
-                                        @foreach($services as $service)
-                                            @foreach($call_services as $call_service)
-                                                {{ ($service->id === $call_service->service ? $service->title . ' | ' : '') }}
-                                            @endforeach
-                                        @endforeach
-                                        </div>
-
-                                        <div class="col-sm-12 mt-3 mb-4">
-                                            <h5>Descrição do Atendimento</h5>
-                                            {{ $call->description }}
-                                        </div>
 
                                     <div class="col-sm-12">
                                         <div class="form-group">
-                                            <label>Atualize o(s) Serviço(s)</label>
+                                            <label>Escolha o(s) Serviço(s)</label>
                                             <select class="select2" multiple="multiple" name="services[]"
                                                     data-placeholder="Escolha o(s) Serviço(s)"
                                                     style="width: 100%;">
                                                 @foreach($services as $service)
                                                     <option value="{{$service->id}}"
-                                                    @foreach($call_services as  $call_service)
-                                                        {{ ($service->id === $call_service->service ? 'selected' : '') }}
+                                                    @foreach($attendance_services as  $attendance_service)
+                                                        {{ ($service->id === $attendance_service->service ? 'selected' : '') }}
                                                             @endforeach
                                                     >{{ $service->title }}</option>
                                                 @endforeach
@@ -143,9 +130,9 @@
                                     <div class="col-sm-12">
                                         <!-- textarea -->
                                         <div class="form-group">
-                                            <label>Atualize a Descrição</label>
+                                            <label>Descrição</label>
                                             <textarea class="form-control" name="description" cols="30"
-                                                      rows="4">{{ old('description') ?? $call->description }}</textarea>
+                                                      rows="4">{{ old('description') ?? $attendance->description }}</textarea>
                                         </div>
                                     </div>
 
@@ -167,10 +154,10 @@
                     <!-- /.card-body -->
                     <div class="card-footer">
 
-                        Última atualização: {{ date('d/m/Y H:i', strtotime($call->updated_at)) }}
+                        Última atualização: {{ date('d/m/Y H:i', strtotime($attendance->updated_at)) }}
 
                         <button type="submit" class="btn btn-lg bg-gradient-primary" style="float:right;"><i
-                                    class="fa fa-long-arrow-alt-right"></i> Gerar Contrato
+                                    class="fa fa-long-arrow-alt-right"></i> Encaminhar para Fila de Atendimento
                         </button>
                     </div>
                     <!-- /.card-footer-->
